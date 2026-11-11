@@ -12,6 +12,30 @@
   <style>
     :root{--ink:#3b2214;--cream:#f6e5c3;--paper:#fff5de;--yellow:#f3b61f;--red:#d94a2b;--green:#3f7d3b;--soft:#5d3a22;--shadow:5px 5px 0 var(--ink);--display:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--body:'Baloo 2','Trebuchet MS','Segoe UI',sans-serif}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--cream);color:var(--ink);font:18px/1.45 var(--body);background-image:radial-gradient(rgba(59,34,20,.055) 1px,transparent 1.3px);background-size:18px 18px}button,input{font:inherit;color:inherit}button{cursor:pointer}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.top{background:var(--paper);border-bottom:4px solid var(--ink);padding:16px clamp(16px,4vw,48px);display:flex;align-items:center;gap:14px}.brand{font:30px var(--display);color:var(--red);text-shadow:1px 2px var(--ink)}.top a{color:inherit;font-weight:800}.top .spacer{flex:1}.wrap{width:min(1040px,100%);margin:0 auto;padding:32px 16px 70px}.hero{margin:12px 0 24px}.hero p{font-size:20px}.panel{background:var(--paper);border:4px solid var(--ink);border-radius:18px 15px 20px 16px;box-shadow:var(--shadow);padding:clamp(18px,4vw,30px);margin:20px 0}.panel h2{color:#a92f1a;margin-bottom:12px;font-size:30px}.forms{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}.forms form{display:grid;gap:8px}.forms label{font-weight:800}.forms input,.class-name{min-height:56px;padding:8px 12px;border:3px solid var(--ink);border-radius:10px;background:#fffaf0;font-size:18px}.btn{min-height:56px;padding:10px 18px;border:3px solid var(--ink);border-radius:12px;background:var(--yellow);box-shadow:3px 3px 0 var(--ink);font-weight:800}.btn-red{background:var(--red);color:white}.btn-green{background:var(--green);color:white}.btn-small{min-height:48px;padding:7px 12px;font-size:16px}.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.status{min-height:26px;margin-top:12px;font-weight:800;color:var(--green)}.status.error{color:#a92f1a}.muted{color:var(--soft);font-size:15px}.class-form{display:flex;gap:10px;flex-wrap:wrap}.class-name{flex:1;min-width:220px}.class-list{display:grid;gap:18px}.class-card{border:3px solid var(--ink);border-radius:14px;padding:16px;background:#fffaf0}.class-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}.class-head h3{font-size:26px}.invite{overflow-wrap:anywhere;padding:8px 10px;background:var(--cream);border:2px dashed var(--ink);margin:10px 0;font-size:15px}.student-list{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}.student-list th,.student-list td{border-bottom:2px solid #d6bd91;padding:9px 7px;text-align:left;vertical-align:top}.student-list th{font-weight:800}.student-list .btn{white-space:nowrap}.empty{padding:16px;text-align:center;color:var(--soft);font-weight:700}.hidden{display:none!important}.warning{border-left:6px solid var(--red);padding:10px 14px;background:#fff0d9;margin-top:14px;font-size:15px}.pill{display:inline-block;padding:3px 10px;background:var(--yellow);border:2px solid var(--ink);border-radius:999px;font-weight:800;font-size:14px}@media(max-width:600px){.top{flex-wrap:wrap}.student-list,.student-list tbody,.student-list tr,.student-list td{display:block;width:100%}.student-list thead{display:none}.student-list tr{padding:8px 0;border-bottom:2px solid #d6bd91}.student-list td{border:0;padding:4px 2px}.student-list td::before{content:attr(data-label) ': ';font-weight:800}}
+    .confirm-panel{max-width:680px;margin:34px auto;text-align:center;overflow:hidden;position:relative}
+    .confirm-art{width:min(190px,52vw);height:auto;margin:2px auto 16px;filter:drop-shadow(4px 5px 0 rgba(59,34,20,.18))}
+    .confirm-art .mail-flap{transform-origin:90px 70px;animation:mailWave 2.4s ease-in-out infinite}
+    .confirm-art .mail-spark{transform-origin:center;animation:sparkle 1.8s ease-in-out infinite alternate}
+    .confirm-panel h2{font-size:clamp(30px,7vw,44px);color:var(--ink);margin-bottom:8px}
+    .confirm-copy{font-size:18px;max-width:480px;margin:0 auto 14px}
+    .confirm-email{display:inline-block;max-width:100%;overflow-wrap:anywhere;background:#ffe5a0;border:2px dashed var(--ink);border-radius:10px;padding:6px 12px;font-weight:800;margin:3px auto 14px}
+    .confirm-steps{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:15px 0 20px}
+    .confirm-step{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:800;color:var(--soft)}
+    .confirm-step span{width:30px;height:30px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:50%;background:#fffaf0;font-family:var(--display)}
+    .confirm-step.is-active span{background:var(--yellow);animation:stepPulse 1.5s ease-in-out infinite}
+    .confirm-step.is-done span{background:#a9d68b}
+    .confirm-arrow{font-weight:800;color:var(--red)}
+    .confirm-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .text-button{min-height:48px;padding:8px 12px;text-decoration:underline;text-underline-offset:3px;font-weight:800}
+    .confirm-status{min-height:26px;margin:12px 0;color:var(--green);font-weight:800}
+    .confirm-status.error{color:#a92f1a}
+    .auth-link{min-height:48px;padding:8px 0;color:#a92f1a;text-decoration:underline;text-underline-offset:3px;font-weight:800;text-align:left}
+    .auth-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    @keyframes mailWave{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg) translateY(-2px)}}
+    @keyframes sparkle{from{opacity:.45;transform:scale(.8) rotate(-8deg)}to{opacity:1;transform:scale(1.12) rotate(8deg)}}
+    @keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(243,182,31,.45)}50%{box-shadow:0 0 0 7px rgba(243,182,31,0)}}
+    @media(prefers-reduced-motion:reduce){.confirm-art .mail-flap,.confirm-art .mail-spark,.confirm-step.is-active span{animation:none}}
+    @media(max-width:600px){.confirm-actions .btn{width:100%}}
   </style>
 </head>
 <body>
@@ -34,7 +58,10 @@
           <h3>Masuk</h3>
           <label for="login-email">Email</label><input id="login-email" type="email" autocomplete="username" required>
           <label for="login-password">Kata sandi</label><input id="login-password" type="password" autocomplete="current-password" minlength="8" required>
-          <button class="btn btn-red" type="submit">Masuk</button>
+          <div class="auth-actions">
+            <button class="btn btn-red" type="submit">Masuk</button>
+            <button class="auth-link" id="open-password-reset" type="button">Lupa kata sandi?</button>
+          </div>
         </form>
         <form id="register-form">
           <h3>Daftar guru</h3>
@@ -45,6 +72,63 @@
       </div>
       <p class="status" id="auth-status" role="status" aria-live="polite"></p>
       <p class="warning">Data murid yang tersimpan hanya nama panggilan dan ringkasan progres. Jangan minta nama lengkap atau data pribadi.</p>
+    </section>
+    <section class="panel hidden" id="reset-request-panel">
+      <h2>Minta tautan reset</h2>
+      <p class="muted">Masukkan email akun guru. Kami akan mengirim tautan untuk membuat kata sandi baru.</p>
+      <form id="reset-request-form" class="forms" style="grid-template-columns:1fr;margin-top:16px">
+        <label for="reset-email">Email akun</label>
+        <input id="reset-email" type="email" autocomplete="email" required>
+        <div class="auth-actions">
+          <button class="btn btn-red" id="send-reset-link" type="submit">Kirim tautan reset</button>
+          <button class="auth-link" id="back-to-login" type="button">Kembali ke login</button>
+        </div>
+      </form>
+      <p class="status" id="reset-request-status" role="status" aria-live="polite"></p>
+    </section>
+    <section class="panel hidden" id="password-update-panel">
+      <h2 tabindex="-1">Buat kata sandi baru</h2>
+      <p class="muted">Gunakan minimal 8 karakter dan jangan gunakan kata sandi yang dipakai di tempat lain.</p>
+      <form id="password-update-form" class="forms" style="grid-template-columns:1fr;margin-top:16px">
+        <label for="new-password">Kata sandi baru</label>
+        <input id="new-password" type="password" autocomplete="new-password" minlength="8" required>
+        <label for="confirm-new-password">Ulangi kata sandi baru</label>
+        <input id="confirm-new-password" type="password" autocomplete="new-password" minlength="8" required>
+        <div class="auth-actions">
+          <button class="btn btn-green" id="save-new-password" type="submit">Simpan kata sandi</button>
+        </div>
+      </form>
+      <p class="status" id="password-update-status" role="status" aria-live="polite"></p>
+    </section>
+    <section class="panel confirm-panel hidden" id="confirmation-panel" aria-live="polite">
+      <svg class="confirm-art" id="confirm-art" viewBox="0 0 180 150" role="img" aria-label="Amplop konfirmasi akun">
+        <path d="M22 44 90 8l68 36-4 82H26Z" fill="#f3b61f" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
+        <rect x="35" y="52" width="110" height="70" rx="8" fill="#fff5de" stroke="#3b2214" stroke-width="5"/>
+        <path d="m38 59 52 42 52-42" fill="none" stroke="#d94a2b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="mail-flap" d="m28 48 62 49 62-49" fill="#ffe5a0" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
+        <path class="mail-spark" d="m150 24 3-10m11 18 9-5M18 20l-7-7m8 25-10 2" fill="none" stroke="#3f7d3b" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="90" cy="82" r="13" fill="#3f7d3b" stroke="#3b2214" stroke-width="3"/>
+        <path d="m84 82 4 4 8-9" fill="none" stroke="#fff5de" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h2 id="confirm-title">Cek kotak suratmu!</h2>
+      <p class="confirm-copy" id="confirm-copy">Kami mengirim tautan konfirmasi. Buka email itu untuk mengaktifkan akun guru.</p>
+      <p class="confirm-email" id="confirm-email"></p>
+      <div class="confirm-steps" id="confirm-steps">
+        <div class="confirm-step is-done"><span>1</span><b>Akun dibuat</b></div>
+        <span class="confirm-arrow" aria-hidden="true">→</span>
+        <div class="confirm-step is-active"><span>2</span><b>Cek email</b></div>
+        <span class="confirm-arrow" aria-hidden="true">→</span>
+        <div class="confirm-step"><span>3</span><b>Masuk</b></div>
+      </div>
+      <p class="confirm-status" id="confirm-status" role="status"></p>
+      <div class="confirm-actions" id="confirm-pending-actions">
+        <button class="btn" id="resend-confirmation" type="button">Kirim ulang email</button>
+        <button class="btn btn-red" id="change-confirmation-email" type="button">Periksa alamat email</button>
+      </div>
+      <div class="confirm-actions hidden" id="confirm-success-actions">
+        <button class="btn btn-green" id="continue-after-confirmation" type="button">Lanjut ke portal guru</button>
+        <button class="btn btn-red hidden" id="login-after-confirmation" type="button">Masuk dengan akun</button>
+      </div>
     </section>
     <section class="panel hidden" id="dashboard">
       <h2>Kelas saya</h2>
@@ -65,6 +149,8 @@
     let supabaseClient = null;
     let currentUser = null;
     let renderedClasses = [];
+    let pendingConfirmationEmail = '';
+    let confirmationUser = null;
     function setStatus(element, message, isError){
       element.textContent = message || '';
       element.classList.toggle('error', !!isError);
@@ -72,6 +158,77 @@
     async function getClient(){
       if(!supabaseClient) supabaseClient = await window.loadLapakSupabase();
       return supabaseClient;
+    }
+    function confirmationRedirectUrl(){
+      const redirect = new URL(window.location.pathname, window.location.origin);
+      redirect.searchParams.set('konfirmasi', 'berhasil');
+      return redirect.href;
+    }
+    function passwordResetRedirectUrl(){
+      const redirect = new URL(window.location.pathname, window.location.origin);
+      redirect.searchParams.set('aksi', 'reset');
+      return redirect.href;
+    }
+    function showAuthPanel(message, isError){
+      $('#confirmation-panel').classList.add('hidden');
+      $('#reset-request-panel').classList.add('hidden');
+      $('#password-update-panel').classList.add('hidden');
+      $('#dashboard').classList.add('hidden');
+      $('#auth-panel').classList.remove('hidden');
+      if(message) setStatus($('#auth-status'), message, isError);
+    }
+    function showPasswordUpdate(){
+      $('#auth-panel').classList.add('hidden');
+      $('#confirmation-panel').classList.add('hidden');
+      $('#reset-request-panel').classList.add('hidden');
+      $('#dashboard').classList.add('hidden');
+      $('#password-update-panel').classList.remove('hidden');
+      $('#logout').classList.add('hidden');
+      const title = $('#password-update-panel').querySelector('h2');
+      if(title) title.focus();
+    }
+    function showPendingConfirmation(email){
+      pendingConfirmationEmail = email;
+      $('#auth-panel').classList.add('hidden');
+      $('#confirmation-panel').classList.remove('hidden');
+      $('#confirm-title').textContent = 'Cek kotak suratmu!';
+      $('#confirm-copy').textContent = 'Kami mengirim tautan konfirmasi. Buka email itu untuk mengaktifkan akun guru.';
+      $('#confirm-email').textContent = email;
+      $('#confirm-steps').classList.remove('hidden');
+      $('#confirm-pending-actions').classList.remove('hidden');
+      $('#confirm-success-actions').classList.add('hidden');
+      $('#confirm-status').textContent = 'Setelah email dikonfirmasi, kembali ke halaman ini untuk masuk.';
+      $('#confirm-status').classList.remove('error');
+    }
+    function showConfirmationSuccess(user){
+      confirmationUser = user || null;
+      $('#auth-panel').classList.add('hidden');
+      $('#dashboard').classList.add('hidden');
+      $('#logout').classList.add('hidden');
+      $('#confirmation-panel').classList.remove('hidden');
+      $('#confirm-title').textContent = 'Email terkonfirmasi!';
+      $('#confirm-copy').textContent = user
+        ? 'Akun guru sudah aktif. Lapak Kancil siap membantumu membuka kelas.'
+        : 'Alamat email sudah dikonfirmasi. Masuk dengan kata sandi untuk mulai membuat kelas.';
+      $('#confirm-email').textContent = user && user.email ? user.email : pendingConfirmationEmail;
+      $('#confirm-steps').classList.add('hidden');
+      $('#confirm-pending-actions').classList.add('hidden');
+      $('#confirm-success-actions').classList.remove('hidden');
+      $('#continue-after-confirmation').classList.toggle('hidden', !user);
+      $('#login-after-confirmation').classList.toggle('hidden', !!user);
+      $('#confirm-status').textContent = user ? 'Berhasil! Berikutnya, buat kelas dan bagikan tautannya.' : 'Konfirmasi berhasil. Silakan masuk untuk melanjutkan.';
+      $('#confirm-status').classList.remove('error');
+    }
+    function returnToAuth(showRegister){
+      $('#confirmation-panel').classList.add('hidden');
+      $('#auth-panel').classList.remove('hidden');
+      if(showRegister && pendingConfirmationEmail){
+        $('#register-email').value = pendingConfirmationEmail;
+        $('#register-email').focus();
+      } else {
+        $('#login-email').value = pendingConfirmationEmail || $('#confirm-email').textContent;
+        $('#login-email').focus();
+      }
     }
     async function showSignedIn(user){
       currentUser = user;
@@ -238,21 +395,131 @@
         await showSignedIn(result.data.user);
       } catch(err){ setStatus(status, err.message || 'Tidak dapat masuk.', true); }
     });
+    $('#open-password-reset').addEventListener('click', function(){
+      $('#reset-email').value = $('#login-email').value.trim();
+      $('#auth-panel').classList.add('hidden');
+      $('#reset-request-panel').classList.remove('hidden');
+      $('#reset-request-status').textContent = '';
+      $('#reset-request-status').classList.remove('error');
+      $('#reset-email').focus();
+    });
+    $('#back-to-login').addEventListener('click', function(){
+      showAuthPanel();
+      $('#login-email').value = $('#reset-email').value.trim();
+      $('#login-email').focus();
+    });
+    $('#reset-request-form').addEventListener('submit', async function(event){
+      event.preventDefault();
+      const email = $('#reset-email').value.trim();
+      const button = $('#send-reset-link');
+      const status = $('#reset-request-status');
+      button.disabled = true;
+      button.textContent = 'Mengirim...';
+      setStatus(status, 'Meminta tautan reset...');
+      try {
+        const client = await getClient();
+        const result = await client.auth.resetPasswordForEmail(email, {
+          redirectTo:passwordResetRedirectUrl()
+        });
+        if(result.error) throw result.error;
+        pendingConfirmationEmail = email;
+        setStatus(status, 'Jika email tersebut terdaftar, tautan reset akan dikirim. Periksa kotak masuk dan folder spam.');
+      } catch(err){ setStatus(status, err.message || 'Tautan reset belum dapat dikirim.', true); }
+      finally {
+        button.disabled = false;
+        button.textContent = 'Kirim ulang tautan';
+      }
+    });
+    $('#password-update-form').addEventListener('submit', async function(event){
+      event.preventDefault();
+      const password = $('#new-password').value;
+      const confirmation = $('#confirm-new-password').value;
+      const status = $('#password-update-status');
+      const button = $('#save-new-password');
+      if(password.length < 8){
+        setStatus(status, 'Kata sandi harus memiliki minimal 8 karakter.', true);
+        return;
+      }
+      if(password !== confirmation){
+        setStatus(status, 'Kata sandinya belum sama. Periksa kembali kedua kolom.', true);
+        $('#confirm-new-password').focus();
+        return;
+      }
+      button.disabled = true;
+      button.textContent = 'Menyimpan...';
+      setStatus(status, 'Memperbarui kata sandi...');
+      try {
+        const client = await getClient();
+        const result = await client.auth.updateUser({password});
+        if(result.error) throw result.error;
+        const signOut = await client.auth.signOut();
+        if(signOut.error) throw signOut.error;
+        $('#password-update-form').reset();
+        showAuthPanel('Kata sandi berhasil diubah. Silakan masuk dengan kata sandi baru.');
+        window.history.replaceState({}, '', window.location.pathname);
+      } catch(err){ setStatus(status, err.message || 'Kata sandi belum berhasil diperbarui.', true); }
+      finally {
+        button.disabled = false;
+        button.textContent = 'Simpan kata sandi';
+      }
+    });
     $('#register-form').addEventListener('submit', async function(event){
       event.preventDefault();
       const status = $('#auth-status');
+      const email = $('#register-email').value.trim();
       setStatus(status, 'Membuat akun...');
       try {
         const client = await getClient();
         const result = await client.auth.signUp({
-          email:$('#register-email').value.trim(),
-          password:$('#register-password').value
+          email,
+          password:$('#register-password').value,
+          options:{emailRedirectTo:confirmationRedirectUrl()}
         });
         if(result.error) throw result.error;
         if(result.data.session) await showSignedIn(result.data.user);
-        else setStatus(status, 'Akun dibuat. Periksa email untuk konfirmasi, lalu masuk.');
+        else showPendingConfirmation(email);
       } catch(err){ setStatus(status, err.message || 'Akun gagal dibuat.', true); }
     });
+    $('#resend-confirmation').addEventListener('click', async function(){
+      const button = $('#resend-confirmation');
+      const status = $('#confirm-status');
+      if(!pendingConfirmationEmail){
+        status.textContent = 'Alamat email belum tersedia. Silakan periksa kembali formulir pendaftaran.';
+        status.classList.add('error');
+        return;
+      }
+      button.disabled = true;
+      button.textContent = 'Mengirim...';
+      status.textContent = '';
+      try {
+        const client = await getClient();
+        const result = await client.auth.resend({
+          type:'signup',
+          email:pendingConfirmationEmail,
+          options:{emailRedirectTo:confirmationRedirectUrl()}
+        });
+        if(result.error) throw result.error;
+        status.textContent = 'Email konfirmasi baru sudah diminta. Periksa juga folder spam/promosi.';
+        status.classList.remove('error');
+      } catch(err){
+        status.textContent = err.message || 'Email konfirmasi gagal dikirim ulang.';
+        status.classList.add('error');
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Kirim ulang email';
+      }
+    });
+    $('#change-confirmation-email').addEventListener('click', function(){ returnToAuth(true); });
+    $('#continue-after-confirmation').addEventListener('click', async function(){
+      try {
+        if(confirmationUser) await showSignedIn(confirmationUser);
+      } catch(err){
+        $('#confirmation-panel').classList.remove('hidden');
+        $('#confirm-status').textContent = err.message || 'Dashboard belum dapat dibuka.';
+        $('#confirm-status').classList.add('error');
+      }
+    });
+    $('#login-after-confirmation').addEventListener('click', function(){ returnToAuth(false); });
     $('#create-class-form').addEventListener('submit', async function(event){
       event.preventDefault();
       const name = $('#class-name').value.trim();
@@ -286,7 +553,17 @@
         const client = await getClient();
         const result = await client.auth.getSession();
         if(result.error) throw result.error;
-        if(result.data.session) await showSignedIn(result.data.session.user);
+        const params = new URLSearchParams(window.location.search);
+        const hashParams = new URLSearchParams(window.location.hash.slice(1));
+        const confirmationError = params.get('error_description') || params.get('error');
+        if(confirmationError){
+          showAuthPanel(`Tautan belum berhasil diproses: ${confirmationError.replace(/\+/g, ' ')}`, true);
+        } else if(params.get('aksi') === 'reset' || hashParams.get('type') === 'recovery'){
+          showPasswordUpdate();
+        } else if(params.get('konfirmasi') === 'berhasil'){
+          showConfirmationSuccess(result.data.session ? result.data.session.user : null);
+          window.history.replaceState({}, '', window.location.pathname);
+        } else if(result.data.session) await showSignedIn(result.data.session.user);
       } catch(err){ setStatus($('#auth-status'), err.message || 'Portal guru belum siap.', true); }
     })();
   </script>
