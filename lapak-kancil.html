@@ -1322,13 +1322,14 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
       <div class="intro-card">
         <h2>Halo, asisten baru!</h2>
         <p>Si Kancil butuh teman jaga lapak. Siapa nama panggilanmu?</p>
+        <p class="field-hint" id="class-note" role="status" hidden></p>
         <form id="form-start" novalidate>
           <label for="nama">Nama panggilan</label>
           <input id="nama" name="nama" type="text" maxlength="12" autocomplete="off" placeholder="Contoh: Ayu" aria-describedby="nama-hint">
           <p class="field-hint" id="nama-hint" role="status"></p>
           <button class="btn btn-primary btn-wide" type="submit">Buka lapak</button>
         </form>
-        <p class="microcopy">Tanpa akun. Progres tersimpan di perangkat ini.</p>
+        <p class="microcopy">Tanpa akun murid. Progres tersimpan di perangkat ini; jika masuk lewat tautan kelas, progres juga dikirim saat online.</p>
       </div>
     </div>
   </section>
@@ -1492,7 +1493,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
       <div class="settings-card">
         <h2>Pemain</h2>
         <div class="setting-row">
-          <div><strong id="settings-player">Sahabat Kancil</strong><p>Progres disimpan di browser perangkat ini. Tidak ada akun atau login.</p></div>
+          <div><strong id="settings-player">Sahabat Kancil</strong><p>Progres disimpan di browser. Jika bergabung lewat tautan kelas, ringkasan belajar juga disinkronkan saat online.</p></div>
         </div>
         <div class="danger-zone">
           <h3>Mulai dari awal</h3>
@@ -1523,9 +1524,18 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
 </main>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <div id="drag-ghost" aria-hidden="true"></div>
+<script src="supabase-config.js"></script>
+<script src="supabase-client.js"></script>
 <script>
 'use strict';
 const STORAGE_KEY = 'lapakKancil.v1';
+const classInviteCode = new URLSearchParams(window.location.search).get('kelas');
+const validClassInvite = classInviteCode && /^[a-f0-9]{24}$/i.test(classInviteCode);
+let classLinkSession = null;
+let classSyncTimer = null;
+let classSyncInFlight = false;
+let classSyncPending = false;
+let lastClassSyncError = '';
 const LEVELS = 5;
 const QUESTIONS_PER_LEVEL = 10;
 const UNLOCK_STARS = 8;
@@ -2418,6 +2428,118 @@ function saveState(){
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch(err){}
 }
+function classSessionStorageKey(){
+  return `lapakKancil.classSession.v1:${String(classInviteCode || '').toLowerCase()}`;
+}
+function loadClassLinkSession(){
+  if(!validClassInvite) return null;
+  try {
+    const raw = localStorage.getItem(classSessionStorageKey());
+    if(raw){
+      const saved = JSON.parse(raw);
+      if(saved && saved.inviteCode === classInviteCode.toLowerCase() &&
+        /^[a-f0-9]{64}$/i.test(saved.token || '') &&
+        (saved.studentId === '' || /^[0-9a-f-]{36}$/i.test(saved.studentId))){
+        return saved;
+      }
+    }
+    const bytes = new Uint8Array(32);
+    if(!window.crypto || !window.crypto.getRandomValues) throw new Error('Perangkat ini tidak bisa membuat ID aman untuk kelas.');
+    window.crypto.getRandomValues(bytes);
+    const token = Array.from(bytes).map(function(byte){ return byte.toString(16).padStart(2, '0'); }).join('');
+    const created = {inviteCode:classInviteCode.toLowerCase(), token, studentId:'', className:''};
+    localStorage.setItem(classSessionStorageKey(), JSON.stringify(created));
+    return created;
+  } catch(err){
+    setClassStatus(err.message || 'Data kelas tidak dapat disimpan di perangkat ini.');
+    return null;
+  }
+}
+function setClassStatus(message, announceError){
+  const note = $('#class-note');
+  if(note){
+    note.hidden = !message;
+    note.textContent = message || '';
+  }
+  if(message && announceError && currentScreen !== 'intro') toast(message, 5000);
+}
+function classProgressSnapshot(){
+  const mistakes = Object.keys(state.mistakes).map(function(key){
+    const item = state.mistakes[key];
+    return {key, stall:item.stall, count:item.count};
+  }).sort(function(a, b){ return b.count - a.count; }).slice(0, 15);
+  const current = session ? {
+    stall:session.stallId,
+    level:session.level + 1,
+    answered:session.solved
+  } : null;
+  const completed = lastResult ? {
+    stall:lastResult.stallId,
+    level:lastResult.level + 1,
+    firstTry:lastResult.firstTry,
+    stars:lastResult.starsEarned
+  } : null;
+  return {stars:state.stars, mistakes, stickers:state.stickers.length, current, completed};
+}
+async function syncClassProgress(){
+  if(!validClassInvite || !state.name) return;
+  if(classSyncInFlight){
+    classSyncPending = true;
+    return;
+  }
+  classSyncInFlight = true;
+  if(!classLinkSession) classLinkSession = loadClassLinkSession();
+  if(!classLinkSession){
+    classSyncInFlight = false;
+    return;
+  }
+  if(!navigator.onLine){
+    setClassStatus('Kamu bergabung lewat tautan kelas. Progres akan dikirim saat internet tersedia.');
+    classSyncInFlight = false;
+    return;
+  }
+  try {
+    const client = await window.loadLapakSupabase();
+    if(!classLinkSession.studentId){
+      const joined = await client.rpc('lapak_student_join_class', {
+        p_invite_code:classLinkSession.inviteCode,
+        p_nickname:state.name,
+        p_session_token:classLinkSession.token
+      });
+      if(joined.error) throw joined.error;
+      if(!joined.data || !joined.data.student_id) throw new Error('Tautan kelas tidak ditemukan atau sudah dinonaktifkan.');
+      classLinkSession.studentId = joined.data.student_id;
+      classLinkSession.className = joined.data.class_name;
+      localStorage.setItem(classSessionStorageKey(), JSON.stringify(classLinkSession));
+    }
+    const result = await client.rpc('lapak_student_save_progress', {
+      p_student_id:classLinkSession.studentId,
+      p_session_token:classLinkSession.token,
+      p_nickname:state.name,
+      p_progress:classProgressSnapshot()
+    });
+    if(result.error) throw result.error;
+    lastClassSyncError = '';
+    setClassStatus(`Terhubung ke kelas ${classLinkSession.className}. Progresmu tersinkron.`);
+  } catch(err){
+    const message = err && err.message ? err.message : 'Progres kelas belum tersinkron.';
+    if(message !== lastClassSyncError){
+      lastClassSyncError = message;
+      setClassStatus(`Belum bisa menyinkronkan progres: ${message}`, true);
+    }
+  } finally {
+    classSyncInFlight = false;
+    if(classSyncPending){
+      classSyncPending = false;
+      scheduleClassSync();
+    }
+  }
+}
+function scheduleClassSync(delay){
+  if(!validClassInvite || !state.name) return;
+  window.clearTimeout(classSyncTimer);
+  classSyncTimer = window.setTimeout(function(){ syncClassProgress(); }, Number.isFinite(delay) ? delay : 1200);
+}
 function stallStars(stallId){
   const row = state.stars[stallId];
   return Array.isArray(row) ? row.reduce(function(a, b){ return a + b; }, 0) : 0;
@@ -2527,6 +2649,10 @@ function resetProgress(){
   state = defaultState();
   state.settings = settings;
   try { localStorage.removeItem(STORAGE_KEY); } catch(err){}
+  if(validClassInvite){
+    try { localStorage.removeItem(classSessionStorageKey()); } catch(err){}
+    classLinkSession = null;
+  }
   saveState();
 }
 let audioContext = null;
@@ -2936,7 +3062,9 @@ function renderSettings(){
   const player = $('#settings-player');
   if(player) player.textContent = state.name || 'Sahabat Kancil';
   const note = $('#settings-note');
-  if(note) note.textContent = 'Semua progres tersimpan otomatis di perangkat ini.';
+  if(note) note.textContent = validClassInvite
+    ? 'Progres tersimpan di perangkat ini dan disinkronkan ke kelas saat online.'
+    : 'Semua progres tersimpan otomatis di perangkat ini.';
   updateSoundUI();
   updateSpeechUI();
 }
@@ -3367,6 +3495,7 @@ function startSession(stallId, level){
   showScreen('play');
   soundClick();
   nextQuestion();
+  scheduleClassSync();
 }
 function dueReviewKey(){
   if(!session) return null;
@@ -3468,6 +3597,7 @@ function recordCurrent(firstTry){
   session.solved++;
   if(q.review && firstTry) clearMistake(q.factKey);
   renderProgress();
+  scheduleClassSync();
 }
 function handleCorrect(){
   if(!session || session.phase !== 'answering') return;
@@ -3579,6 +3709,7 @@ function finishSession(){
     totalStars:allStars(),
     stickerTotal:stickerCount()
   };
+  scheduleClassSync(0);
   session = null;
   renderResult(lastResult);
   showScreen('result');
@@ -3747,6 +3878,12 @@ function startFromIntro(event){
   setPlayerName(cleaned);
   if(input) input.value = state.name;
   if(hint) hint.textContent = '';
+  if(validClassInvite){
+    classLinkSession = classLinkSession || loadClassLinkSession();
+    if(!classLinkSession) return;
+    setClassStatus('Menghubungkan ke kelas. Permainan tetap bisa dilanjutkan jika sedang offline.');
+    syncClassProgress();
+  }
   renderMap();
   showScreen('map');
   soundCorrect();
@@ -4049,8 +4186,20 @@ function bindEvents(){
   updateSpeechUI();
   const nameInput = $('#nama');
   if(nameInput) nameInput.value = state.name || '';
-  if(state.name) showScreen('map');
+  if(validClassInvite){
+    const note = $('#class-note');
+    if(note){
+      note.hidden = false;
+      note.textContent = 'Tautan kelas terdeteksi. Masukkan nama panggilan agar gurumu bisa melihat progres belajarmu.';
+    }
+    classLinkSession = loadClassLinkSession();
+    showScreen('intro');
+  } else if(classInviteCode){
+    setClassStatus('Tautan kelas ini tidak valid. Minta tautan baru kepada gurumu.');
+    showScreen('intro');
+  } else if(state.name) showScreen('map');
   else showScreen('intro');
+  window.addEventListener('online', function(){ scheduleClassSync(0); });
 })();
 </script>
 </body>

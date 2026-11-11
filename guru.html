@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3b61f">
+  <title>Portal Guru — Lapak Kancil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Lilita+One&display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#3b2214;--cream:#f6e5c3;--paper:#fff5de;--yellow:#f3b61f;--red:#d94a2b;--green:#3f7d3b;--soft:#5d3a22;--shadow:5px 5px 0 var(--ink);--display:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--body:'Baloo 2','Trebuchet MS','Segoe UI',sans-serif}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--cream);color:var(--ink);font:18px/1.45 var(--body);background-image:radial-gradient(rgba(59,34,20,.055) 1px,transparent 1.3px);background-size:18px 18px}button,input{font:inherit;color:inherit}button{cursor:pointer}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.top{background:var(--paper);border-bottom:4px solid var(--ink);padding:16px clamp(16px,4vw,48px);display:flex;align-items:center;gap:14px}.brand{font:30px var(--display);color:var(--red);text-shadow:1px 2px var(--ink)}.top a{color:inherit;font-weight:800}.top .spacer{flex:1}.wrap{width:min(1040px,100%);margin:0 auto;padding:32px 16px 70px}.hero{margin:12px 0 24px}.hero p{font-size:20px}.panel{background:var(--paper);border:4px solid var(--ink);border-radius:18px 15px 20px 16px;box-shadow:var(--shadow);padding:clamp(18px,4vw,30px);margin:20px 0}.panel h2{color:#a92f1a;margin-bottom:12px;font-size:30px}.forms{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}.forms form{display:grid;gap:8px}.forms label{font-weight:800}.forms input,.class-name{min-height:56px;padding:8px 12px;border:3px solid var(--ink);border-radius:10px;background:#fffaf0;font-size:18px}.btn{min-height:56px;padding:10px 18px;border:3px solid var(--ink);border-radius:12px;background:var(--yellow);box-shadow:3px 3px 0 var(--ink);font-weight:800}.btn-red{background:var(--red);color:white}.btn-green{background:var(--green);color:white}.btn-small{min-height:48px;padding:7px 12px;font-size:16px}.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.status{min-height:26px;margin-top:12px;font-weight:800;color:var(--green)}.status.error{color:#a92f1a}.muted{color:var(--soft);font-size:15px}.class-form{display:flex;gap:10px;flex-wrap:wrap}.class-name{flex:1;min-width:220px}.class-list{display:grid;gap:18px}.class-card{border:3px solid var(--ink);border-radius:14px;padding:16px;background:#fffaf0}.class-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}.class-head h3{font-size:26px}.invite{overflow-wrap:anywhere;padding:8px 10px;background:var(--cream);border:2px dashed var(--ink);margin:10px 0;font-size:15px}.student-list{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}.student-list th,.student-list td{border-bottom:2px solid #d6bd91;padding:9px 7px;text-align:left;vertical-align:top}.student-list th{font-weight:800}.student-list .btn{white-space:nowrap}.empty{padding:16px;text-align:center;color:var(--soft);font-weight:700}.hidden{display:none!important}.warning{border-left:6px solid var(--red);padding:10px 14px;background:#fff0d9;margin-top:14px;font-size:15px}.pill{display:inline-block;padding:3px 10px;background:var(--yellow);border:2px solid var(--ink);border-radius:999px;font-weight:800;font-size:14px}@media(max-width:600px){.top{flex-wrap:wrap}.student-list,.student-list tbody,.student-list tr,.student-list td{display:block;width:100%}.student-list thead{display:none}.student-list tr{padding:8px 0;border-bottom:2px solid #d6bd91}.student-list td{border:0;padding:4px 2px}.student-list td::before{content:attr(data-label) ': ';font-weight:800}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">Lapak Kancil</div>
+    <div class="spacer"></div>
+    <a href="lapak-kancil.html">Buka permainan</a>
+    <button class="btn btn-small hidden" id="logout" type="button">Keluar</button>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <h1>Portal Guru</h1>
+      <p>Buat kelas, bagikan tautan, lalu lihat perkembangan belajar murid.</p>
+    </section>
+    <section class="panel" id="auth-panel">
+      <h2>Masuk atau buat akun guru</h2>
+      <p class="muted">Gunakan email guru. Murid tidak memerlukan akun.</p>
+      <div class="forms">
+        <form id="login-form">
+          <h3>Masuk</h3>
+          <label for="login-email">Email</label><input id="login-email" type="email" autocomplete="username" required>
+          <label for="login-password">Kata sandi</label><input id="login-password" type="password" autocomplete="current-password" minlength="8" required>
+          <button class="btn btn-red" type="submit">Masuk</button>
+        </form>
+        <form id="register-form">
+          <h3>Daftar guru</h3>
+          <label for="register-email">Email</label><input id="register-email" type="email" autocomplete="email" required>
+          <label for="register-password">Kata sandi (minimal 8 karakter)</label><input id="register-password" type="password" autocomplete="new-password" minlength="8" required>
+          <button class="btn" type="submit">Buat akun</button>
+        </form>
+      </div>
+      <p class="status" id="auth-status" role="status" aria-live="polite"></p>
+      <p class="warning">Data murid yang tersimpan hanya nama panggilan dan ringkasan progres. Jangan minta nama lengkap atau data pribadi.</p>
+    </section>
+    <section class="panel hidden" id="dashboard">
+      <h2>Kelas saya</h2>
+      <form class="class-form" id="create-class-form">
+        <label class="sr-only" for="class-name">Nama kelas</label>
+        <input class="class-name" id="class-name" maxlength="60" placeholder="Contoh: Kelas 3A" required>
+        <button class="btn btn-green" type="submit">Buat kelas</button>
+      </form>
+      <p class="status" id="dashboard-status" role="status" aria-live="polite"></p>
+      <div class="class-list" id="class-list"></div>
+    </section>
+  </main>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-client.js"></script>
+  <script>
+    'use strict';
+    const $ = function(selector){ return document.querySelector(selector); };
+    let supabaseClient = null;
+    let currentUser = null;
+    let renderedClasses = [];
+    function setStatus(element, message, isError){
+      element.textContent = message || '';
+      element.classList.toggle('error', !!isError);
+    }
+    async function getClient(){
+      if(!supabaseClient) supabaseClient = await window.loadLapakSupabase();
+      return supabaseClient;
+    }
+    async function showSignedIn(user){
+      currentUser = user;
+      $('#auth-panel').classList.add('hidden');
+      $('#dashboard').classList.remove('hidden');
+      $('#logout').classList.remove('hidden');
+      await loadClasses();
+    }
+    async function loadClasses(){
+      const client = await getClient();
+      const result = await client.from('lapak_classes')
+        .select('id,name,invite_code,is_active,created_at')
+        .order('created_at', {ascending:false});
+      if(result.error) throw result.error;
+      renderedClasses = result.data || [];
+      renderClasses();
+    }
+    function el(tag, text, className){
+      const node = document.createElement(tag);
+      if(text !== undefined) node.textContent = text;
+      if(className) node.className = className;
+      return node;
+    }
+    function makeButton(text, action, className){
+      const button = el('button', text, 'btn btn-small ' + (className || ''));
+      button.type = 'button';
+      button.addEventListener('click', action);
+      return button;
+    }
+    function renderClasses(){
+      const root = $('#class-list');
+      root.replaceChildren();
+      if(!renderedClasses.length){
+        root.appendChild(el('p', 'Belum ada kelas. Buat kelas pertama untuk membagikan tautan.', 'empty'));
+        return;
+      }
+      renderedClasses.forEach(function(classInfo){
+        const card = el('article', undefined, 'class-card');
+        const head = el('div', undefined, 'class-head');
+        const titleBox = document.createElement('div');
+        titleBox.append(el('h3', classInfo.name), el('span', classInfo.is_active ? 'Tautan aktif' : 'Tautan dinonaktifkan', 'pill'));
+        const actions = el('div', undefined, 'actions');
+        actions.append(
+          makeButton('Salin tautan', function(){ copyInvite(classInfo.invite_code); }, ''),
+          makeButton(classInfo.is_active ? 'Nonaktifkan tautan' : 'Aktifkan tautan', function(){ toggleInvite(classInfo); }, ''),
+          makeButton('Muat murid', function(){ loadStudents(classInfo, card); }, 'btn-green')
+        );
+        head.append(titleBox, actions);
+        const link = new URL('lapak-kancil.html', window.location.href);
+        link.search = '';
+        link.searchParams.set('kelas', classInfo.invite_code);
+        const invite = el('p', link.href, 'invite');
+        invite.title = 'Tautan undangan kelas';
+        card.append(head, invite);
+        root.appendChild(card);
+      });
+    }
+    async function copyInvite(code){
+      const link = new URL('lapak-kancil.html', window.location.href);
+      link.search = '';
+      link.searchParams.set('kelas', code);
+      try {
+        await navigator.clipboard.writeText(link.href);
+        setStatus($('#dashboard-status'), 'Tautan kelas berhasil disalin.');
+      } catch(err){
+        setStatus($('#dashboard-status'), 'Salin tautan yang ditampilkan secara manual.', true);
+      }
+    }
+    async function toggleInvite(classInfo){
+      try {
+        const client = await getClient();
+        const result = await client.from('lapak_classes')
+          .update({is_active:!classInfo.is_active})
+          .eq('id', classInfo.id);
+        if(result.error) throw result.error;
+        setStatus($('#dashboard-status'), classInfo.is_active ? 'Tautan dinonaktifkan. Murid baru tidak bisa bergabung.' : 'Tautan kelas diaktifkan kembali.');
+        await loadClasses();
+      } catch(err){ setStatus($('#dashboard-status'), err.message || 'Status tautan gagal diperbarui.', true); }
+    }
+    async function loadStudents(classInfo, card){
+      try {
+        const client = await getClient();
+        const result = await client.from('lapak_students')
+          .select('id,nickname,progress,joined_at,last_seen_at')
+          .eq('class_id', classInfo.id)
+          .order('last_seen_at', {ascending:false});
+        if(result.error) throw result.error;
+        const old = card.querySelector('.student-area');
+        if(old) old.remove();
+        const area = el('div', undefined, 'student-area');
+        if(!result.data.length){
+          area.appendChild(el('p', 'Belum ada murid yang bergabung.', 'empty'));
+        } else {
+          const table = el('table', undefined, 'student-list');
+          const thead = document.createElement('thead');
+          const heading = document.createElement('tr');
+          ['Nama panggilan','Bintang','Sedang belajar','Terakhir aktif','Aksi'].forEach(function(label){ heading.appendChild(el('th', label)); });
+          thead.appendChild(heading);
+          const body = document.createElement('tbody');
+          result.data.forEach(function(student){
+            const progress = student.progress || {};
+            const stars = progress.stars || {};
+            const totalStars = Object.values(stars).reduce(function(total, row){
+              return total + (Array.isArray(row) ? row.reduce(function(sum, value){ return sum + (Number(value) || 0); }, 0) : 0);
+            }, 0);
+            const current = progress.current;
+            const last = current
+              ? `${current.stall || 'Lapak'} · Level ${current.level || '?'} · ${current.answered || 0} soal`
+              : progress.completed ? `${progress.completed.stall} · Level ${progress.completed.level} selesai` : 'Belum mulai';
+            const tr = document.createElement('tr');
+            [
+              ['Nama panggilan', student.nickname],
+              ['Bintang', String(totalStars)],
+              ['Sedang belajar', last],
+              ['Terakhir aktif', new Date(student.last_seen_at).toLocaleString('id-ID')]
+            ].forEach(function(item){
+              const td = el('td', item[1]);
+              td.dataset.label = item[0];
+              tr.appendChild(td);
+            });
+            const action = document.createElement('td');
+            action.dataset.label = 'Aksi';
+            action.appendChild(makeButton('Hapus murid', function(){ removeStudent(student, classInfo, card); }, 'btn-red'));
+            tr.appendChild(action);
+            body.appendChild(tr);
+          });
+          table.append(thead, body);
+          area.appendChild(table);
+        }
+        const errors = result.data.flatMap(function(student){
+          return (student.progress && Array.isArray(student.progress.mistakes) ? student.progress.mistakes : []);
+        });
+        if(errors.length){
+          const frequencies = new Map();
+          errors.forEach(function(item){ frequencies.set(item.key, (frequencies.get(item.key) || 0) + Number(item.count || 1)); });
+          const frequent = Array.from(frequencies.entries()).sort(function(a,b){ return b[1] - a[1]; }).slice(0,5);
+          area.appendChild(el('p', 'Soal yang sering perlu latihan: ' + frequent.map(function(item){ return `${item[0]} (${item[1]})`; }).join(', '), 'warning'));
+        }
+        card.appendChild(area);
+        setStatus($('#dashboard-status'), `${result.data.length} murid ditampilkan. Data diperbarui saat murid menyinkronkan progres.`);
+      } catch(err){ setStatus($('#dashboard-status'), err.message || 'Data murid gagal dimuat.', true); }
+    }
+    async function removeStudent(student, classInfo, card){
+      if(!window.confirm(`Hapus progres ${student.nickname} dari kelas ini?`)) return;
+      try {
+        const client = await getClient();
+        const result = await client.from('lapak_students').delete().eq('id', student.id);
+        if(result.error) throw result.error;
+        setStatus($('#dashboard-status'), `Progres ${student.nickname} dihapus dari kelas.`);
+        await loadStudents(classInfo, card);
+      } catch(err){ setStatus($('#dashboard-status'), err.message || 'Murid gagal dihapus.', true); }
+    }
+    $('#login-form').addEventListener('submit', async function(event){
+      event.preventDefault();
+      const status = $('#auth-status');
+      setStatus(status, 'Memeriksa akun...');
+      try {
+        const client = await getClient();
+        const result = await client.auth.signInWithPassword({
+          email:$('#login-email').value.trim(),
+          password:$('#login-password').value
+        });
+        if(result.error) throw result.error;
+        await showSignedIn(result.data.user);
+      } catch(err){ setStatus(status, err.message || 'Tidak dapat masuk.', true); }
+    });
+    $('#register-form').addEventListener('submit', async function(event){
+      event.preventDefault();
+      const status = $('#auth-status');
+      setStatus(status, 'Membuat akun...');
+      try {
+        const client = await getClient();
+        const result = await client.auth.signUp({
+          email:$('#register-email').value.trim(),
+          password:$('#register-password').value
+        });
+        if(result.error) throw result.error;
+        if(result.data.session) await showSignedIn(result.data.user);
+        else setStatus(status, 'Akun dibuat. Periksa email untuk konfirmasi, lalu masuk.');
+      } catch(err){ setStatus(status, err.message || 'Akun gagal dibuat.', true); }
+    });
+    $('#create-class-form').addEventListener('submit', async function(event){
+      event.preventDefault();
+      const name = $('#class-name').value.trim();
+      if(!name) return;
+      try {
+        const client = await getClient();
+        const result = await client.from('lapak_classes')
+          .insert({name, teacher_id:currentUser.id})
+          .select('id,name,invite_code,is_active,created_at')
+          .single();
+        if(result.error) throw result.error;
+        $('#class-name').value = '';
+        setStatus($('#dashboard-status'), 'Kelas berhasil dibuat. Bagikan tautannya kepada murid.');
+        await loadClasses();
+      } catch(err){ setStatus($('#dashboard-status'), err.message || 'Kelas gagal dibuat.', true); }
+    });
+    $('#logout').addEventListener('click', async function(){
+      try {
+        const client = await getClient();
+        const result = await client.auth.signOut();
+        if(result.error) throw result.error;
+        currentUser = null;
+        $('#dashboard').classList.add('hidden');
+        $('#auth-panel').classList.remove('hidden');
+        $('#logout').classList.add('hidden');
+        setStatus($('#auth-status'), 'Kamu sudah keluar.');
+      } catch(err){ setStatus($('#dashboard-status'), err.message || 'Tidak dapat keluar.', true); }
+    });
+    (async function boot(){
+      try {
+        const client = await getClient();
+        const result = await client.auth.getSession();
+        if(result.error) throw result.error;
+        if(result.data.session) await showSignedIn(result.data.session.user);
+      } catch(err){ setStatus($('#auth-status'), err.message || 'Portal guru belum siap.', true); }
+    })();
+  </script>
+</body>
+</html>
