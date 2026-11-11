@@ -791,6 +791,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
 .switch[aria-checked="true"]{background:var(--daun-light)}
 .switch[aria-checked="true"]::after{transform:translateX(16px)}
 .settings-note{font-size:13px;font-weight:700;color:var(--ink-soft);margin-top:14px}
+.settings-note.is-error{color:var(--cabai-dark)}
 .danger-zone{margin-top:8px;padding:14px;border:3px dashed var(--cabai);border-radius:12px;background:#fff0e5}
 .danger-zone h3{font-size:21px;color:var(--cabai-dark)}
 .danger-zone p{font-size:14px;font-weight:600;margin:3px 0 10px}
@@ -1497,8 +1498,13 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
         </div>
         <div class="danger-zone">
           <h3>Mulai dari awal</h3>
-          <p>Nama, bintang, dan stiker akan dihapus dari perangkat ini.</p>
+          <p id="reset-description">Nama, bintang, dan stiker akan dihapus dari perangkat ini.</p>
           <button class="btn btn-cream" id="btn-reset" type="button">Atur ulang progres</button>
+          <div id="class-reset-controls" hidden>
+            <p class="settings-note">Progres kelas hanya bisa direset dengan persetujuan guru.</p>
+            <button class="btn btn-cream" id="btn-request-class-reset" type="button">Minta izin reset dari guru</button>
+            <p class="settings-note" id="class-reset-status" role="status" aria-live="polite"></p>
+          </div>
           <div class="confirm-reset" id="confirm-reset" hidden>
             <p>Yakin ingin menghapus semua progres?</p>
             <div class="confirm-actions">
@@ -2440,6 +2446,7 @@ function loadClassLinkSession(){
       if(saved && saved.inviteCode === classInviteCode.toLowerCase() &&
         /^[a-f0-9]{64}$/i.test(saved.token || '') &&
         (saved.studentId === '' || /^[0-9a-f-]{36}$/i.test(saved.studentId))){
+        if(!Number.isInteger(saved.resetVersion) || saved.resetVersion < 0) saved.resetVersion = 0;
         return saved;
       }
     }
@@ -2447,7 +2454,7 @@ function loadClassLinkSession(){
     if(!window.crypto || !window.crypto.getRandomValues) throw new Error('Perangkat ini tidak bisa membuat ID aman untuk kelas.');
     window.crypto.getRandomValues(bytes);
     const token = Array.from(bytes).map(function(byte){ return byte.toString(16).padStart(2, '0'); }).join('');
-    const created = {inviteCode:classInviteCode.toLowerCase(), token, studentId:'', className:''};
+    const created = {inviteCode:classInviteCode.toLowerCase(), token, studentId:'', className:'', resetVersion:0};
     localStorage.setItem(classSessionStorageKey(), JSON.stringify(created));
     return created;
   } catch(err){
@@ -2462,6 +2469,31 @@ function setClassStatus(message, announceError){
     note.textContent = message || '';
   }
   if(message && announceError && currentScreen !== 'intro') toast(message, 5000);
+}
+function setClassResetStatus(message, isError){
+  const status = $('#class-reset-status');
+  if(!status) return;
+  status.textContent = message || '';
+  status.classList.toggle('is-error', !!isError);
+}
+function applyApprovedClassReset(resetVersion){
+  const name = state.name;
+  const settings = Object.assign({}, state.settings);
+  state = defaultState();
+  state.name = name;
+  state.settings = settings;
+  saveState();
+  if(classLinkSession){
+    classLinkSession.resetVersion = resetVersion;
+    localStorage.setItem(classSessionStorageKey(), JSON.stringify(classLinkSession));
+  }
+  session = null;
+  lastResult = null;
+  activeStallId = null;
+  renderMap();
+  renderSettings();
+  if(currentScreen !== 'intro') showScreen('map');
+  toast('Guru menyetujui reset. Progres kelasmu sudah dimulai dari awal.');
 }
 function classProgressSnapshot(){
   const mistakes = Object.keys(state.mistakes).map(function(key){
@@ -2510,15 +2542,34 @@ async function syncClassProgress(){
       if(!joined.data || !joined.data.student_id) throw new Error('Tautan kelas tidak ditemukan atau sudah dinonaktifkan.');
       classLinkSession.studentId = joined.data.student_id;
       classLinkSession.className = joined.data.class_name;
+      classLinkSession.resetVersion = Number(joined.data.reset_version) || 0;
       localStorage.setItem(classSessionStorageKey(), JSON.stringify(classLinkSession));
     }
-    const result = await client.rpc('lapak_student_save_progress', {
+    const result = await client.rpc('lapak_student_sync_progress', {
       p_student_id:classLinkSession.studentId,
       p_session_token:classLinkSession.token,
       p_nickname:state.name,
-      p_progress:classProgressSnapshot()
+      p_progress:classProgressSnapshot(),
+      p_reset_version:classLinkSession.resetVersion
     });
     if(result.error) throw result.error;
+    if(result.data && result.data.reset_required){
+      applyApprovedClassReset(Number(result.data.reset_version) || 0);
+      setClassResetStatus('Reset disetujui oleh guru. Progres kelas sudah dihapus.', false);
+      scheduleClassSync(0);
+      return;
+    }
+    if(result.data && Number.isInteger(result.data.reset_version)){
+      classLinkSession.resetVersion = result.data.reset_version;
+      localStorage.setItem(classSessionStorageKey(), JSON.stringify(classLinkSession));
+    }
+    if(result.data && result.data.reset_status === 'pending'){
+      setClassResetStatus('Permintaan reset menunggu persetujuan guru.', false);
+    } else if(result.data && result.data.reset_status === 'denied'){
+      setClassResetStatus('Guru menolak permintaan reset. Progresmu tetap tersimpan.', true);
+    } else if(result.data && result.data.reset_status === 'approved'){
+      setClassResetStatus('Reset sudah disetujui dan progres kelas sudah dihapus.', false);
+    }
     lastClassSyncError = '';
     setClassStatus(`Terhubung ke kelas ${classLinkSession.className}. Progresmu tersinkron.`);
   } catch(err){
@@ -2533,6 +2584,33 @@ async function syncClassProgress(){
       classSyncPending = false;
       scheduleClassSync();
     }
+  }
+}
+async function requestClassProgressReset(){
+  if(!validClassInvite || !classLinkSession || !classLinkSession.studentId){
+    setClassResetStatus('Hubungkan ke kelas terlebih dahulu dengan internet.', true);
+    return;
+  }
+  if(!navigator.onLine){
+    setClassResetStatus('Perlu internet untuk mengirim permintaan kepada guru.', true);
+    return;
+  }
+  const button = $('#btn-request-class-reset');
+  if(button) button.disabled = true;
+  try {
+    const client = await window.loadLapakSupabase();
+    const result = await client.rpc('lapak_student_request_reset', {
+      p_student_id:classLinkSession.studentId,
+      p_session_token:classLinkSession.token
+    });
+    if(result.error) throw result.error;
+    setClassResetStatus(result.data && result.data.status === 'pending'
+      ? 'Permintaan reset terkirim. Progres tetap tersimpan sampai guru menyetujuinya.'
+      : 'Tidak ada permintaan reset yang menunggu.', false);
+  } catch(err){
+    setClassResetStatus(err && err.message ? err.message : 'Permintaan reset belum berhasil dikirim.', true);
+  } finally {
+    if(button) button.disabled = false;
   }
 }
 function scheduleClassSync(delay){
@@ -2645,6 +2723,10 @@ function setPlayerName(name){
   saveState();
 }
 function resetProgress(){
+  if(validClassInvite){
+    setClassResetStatus('Untuk reset progres kelas, minta persetujuan guru terlebih dahulu.', true);
+    return;
+  }
   const settings = Object.assign({}, state.settings);
   state = defaultState();
   state.settings = settings;
@@ -3062,6 +3144,14 @@ function renderSettings(){
   const player = $('#settings-player');
   if(player) player.textContent = state.name || 'Sahabat Kancil';
   const note = $('#settings-note');
+  const resetButton = $('#btn-reset');
+  const classResetControls = $('#class-reset-controls');
+  const resetDescription = $('#reset-description');
+  if(resetButton) resetButton.hidden = !!validClassInvite;
+  if(classResetControls) classResetControls.hidden = !validClassInvite;
+  if(resetDescription) resetDescription.textContent = validClassInvite
+    ? 'Progres kelas hanya dapat dihapus setelah guru menyetujui permintaan reset.'
+    : 'Nama, bintang, dan stiker akan dihapus dari perangkat ini.';
   if(note) note.textContent = validClassInvite
     ? 'Progres tersimpan di perangkat ini dan disinkronkan ke kelas saat online.'
     : 'Semua progres tersimpan otomatis di perangkat ini.';
@@ -3828,6 +3918,10 @@ function closeResetConfirm(){
   if(box) box.hidden = true;
 }
 function doReset(){
+  if(validClassInvite){
+    requestClassProgressReset();
+    return;
+  }
   resetProgress();
   session = null;
   activeStallId = null;
@@ -4055,6 +4149,7 @@ function onClick(event){
   if(id === 'btn-reset'){ openResetConfirm(); return; }
   if(id === 'btn-reset-cancel'){ closeResetConfirm(); return; }
   if(id === 'btn-reset-confirm'){ doReset(); return; }
+  if(id === 'btn-request-class-reset'){ requestClassProgressReset(); return; }
   if(id === 'btn-check-share'){ checkShare(); return; }
   if(id === 'btn-share-reset'){ resetShare(); return; }
   if(id === 'btn-next-q'){ continueSession(); return; }
@@ -4197,9 +4292,15 @@ function bindEvents(){
   } else if(classInviteCode){
     setClassStatus('Tautan kelas ini tidak valid. Minta tautan baru kepada gurumu.');
     showScreen('intro');
-  } else if(state.name) showScreen('map');
+  } else if(state.name){
+    showScreen('map');
+    scheduleClassSync(0);
+  }
   else showScreen('intro');
   window.addEventListener('online', function(){ scheduleClassSync(0); });
+  window.setInterval(function(){
+    if(validClassInvite && state.name) scheduleClassSync(0);
+  }, 30000);
 })();
 </script>
 </body>

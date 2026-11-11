@@ -12,6 +12,9 @@
   <style>
     :root{--ink:#3b2214;--cream:#f6e5c3;--paper:#fff5de;--yellow:#f3b61f;--red:#d94a2b;--green:#3f7d3b;--soft:#5d3a22;--shadow:5px 5px 0 var(--ink);--display:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;--body:'Baloo 2','Trebuchet MS','Segoe UI',sans-serif}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--cream);color:var(--ink);font:18px/1.45 var(--body);background-image:radial-gradient(rgba(59,34,20,.055) 1px,transparent 1.3px);background-size:18px 18px}button,input{font:inherit;color:inherit}button{cursor:pointer}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.top{background:var(--paper);border-bottom:4px solid var(--ink);padding:16px clamp(16px,4vw,48px);display:flex;align-items:center;gap:14px}.brand{font:30px var(--display);color:var(--red);text-shadow:1px 2px var(--ink)}.top a{color:inherit;font-weight:800}.top .spacer{flex:1}.wrap{width:min(1040px,100%);margin:0 auto;padding:32px 16px 70px}.hero{margin:12px 0 24px}.hero p{font-size:20px}.panel{background:var(--paper);border:4px solid var(--ink);border-radius:18px 15px 20px 16px;box-shadow:var(--shadow);padding:clamp(18px,4vw,30px);margin:20px 0}.panel h2{color:#a92f1a;margin-bottom:12px;font-size:30px}.forms{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}.forms form{display:grid;gap:8px}.forms label{font-weight:800}.forms input,.class-name{min-height:56px;padding:8px 12px;border:3px solid var(--ink);border-radius:10px;background:#fffaf0;font-size:18px}.btn{min-height:56px;padding:10px 18px;border:3px solid var(--ink);border-radius:12px;background:var(--yellow);box-shadow:3px 3px 0 var(--ink);font-weight:800}.btn-red{background:var(--red);color:white}.btn-green{background:var(--green);color:white}.btn-small{min-height:48px;padding:7px 12px;font-size:16px}.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.status{min-height:26px;margin-top:12px;font-weight:800;color:var(--green)}.status.error{color:#a92f1a}.muted{color:var(--soft);font-size:15px}.class-form{display:flex;gap:10px;flex-wrap:wrap}.class-name{flex:1;min-width:220px}.class-list{display:grid;gap:18px}.class-card{border:3px solid var(--ink);border-radius:14px;padding:16px;background:#fffaf0}.class-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}.class-head h3{font-size:26px}.invite{overflow-wrap:anywhere;padding:8px 10px;background:var(--cream);border:2px dashed var(--ink);margin:10px 0;font-size:15px}.student-list{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}.student-list th,.student-list td{border-bottom:2px solid #d6bd91;padding:9px 7px;text-align:left;vertical-align:top}.student-list th{font-weight:800}.student-list .btn{white-space:nowrap}.empty{padding:16px;text-align:center;color:var(--soft);font-weight:700}.hidden{display:none!important}.warning{border-left:6px solid var(--red);padding:10px 14px;background:#fff0d9;margin-top:14px;font-size:15px}.pill{display:inline-block;padding:3px 10px;background:var(--yellow);border:2px solid var(--ink);border-radius:999px;font-weight:800;font-size:14px}@media(max-width:600px){.top{flex-wrap:wrap}.student-list,.student-list tbody,.student-list tr,.student-list td{display:block;width:100%}.student-list thead{display:none}.student-list tr{padding:8px 0;border-bottom:2px solid #d6bd91}.student-list td{border:0;padding:4px 2px}.student-list td::before{content:attr(data-label) ': ';font-weight:800}}
+    .reset-requests{margin-top:16px;padding:14px;background:#fff0d9;border:2px solid var(--ink);border-radius:12px}
+    .reset-requests h4{font:22px var(--display);margin-bottom:8px;color:#a92f1a}
+    .reset-request-item{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 0;border-top:1px solid #d6bd91}
     .confirm-panel{max-width:680px;margin:34px auto;text-align:center;overflow:hidden;position:relative}
     .confirm-art{width:min(190px,52vw);height:auto;margin:2px auto 16px;filter:drop-shadow(4px 5px 0 rgba(59,34,20,.18))}
     .confirm-art .mail-flap{transform-origin:90px 70px;animation:mailWave 2.4s ease-in-out infinite}
@@ -367,9 +370,56 @@
           const frequent = Array.from(frequencies.entries()).sort(function(a,b){ return b[1] - a[1]; }).slice(0,5);
           area.appendChild(el('p', 'Soal yang sering perlu latihan: ' + frequent.map(function(item){ return `${item[0]} (${item[1]})`; }).join(', '), 'warning'));
         }
+        const requestArea = el('section', undefined, 'reset-requests');
+        requestArea.appendChild(el('h4', 'Permintaan reset progres'));
+        if(!result.data.length){
+          requestArea.appendChild(el('p', 'Belum ada murid atau permintaan reset.', 'muted'));
+        } else {
+          const resetResult = await client.from('lapak_reset_requests')
+            .select('id,student_id,status,requested_at')
+            .in('student_id', result.data.map(function(student){ return student.id; }))
+            .eq('status', 'pending')
+            .order('requested_at', {ascending:true});
+          if(resetResult.error) throw resetResult.error;
+          if(!resetResult.data.length){
+            requestArea.appendChild(el('p', 'Belum ada permintaan yang menunggu.', 'muted'));
+          } else {
+            resetResult.data.forEach(function(request){
+              const student = result.data.find(function(item){ return item.id === request.student_id; });
+              const row = el('div', undefined, 'reset-request-item');
+              row.appendChild(el('p', `${student ? student.nickname : 'Murid'} meminta reset · ${new Date(request.requested_at).toLocaleString('id-ID')}`));
+              const actions = el('div', undefined, 'actions');
+              actions.append(
+                makeButton('Setujui reset', function(){ reviewResetRequest(request, true, classInfo, card); }, 'btn-green'),
+                makeButton('Tolak', function(){ reviewResetRequest(request, false, classInfo, card); }, 'btn-red')
+              );
+              row.appendChild(actions);
+              requestArea.appendChild(row);
+            });
+          }
+        }
+        area.appendChild(requestArea);
         card.appendChild(area);
         setStatus($('#dashboard-status'), `${result.data.length} murid ditampilkan. Data diperbarui saat murid menyinkronkan progres.`);
       } catch(err){ setStatus($('#dashboard-status'), err.message || 'Data murid gagal dimuat.', true); }
+    }
+    async function reviewResetRequest(request, approve, classInfo, card){
+      const message = approve
+        ? 'Setujui reset? Progres tersimpan murid ini akan dihapus pada perangkat yang tersinkron.'
+        : 'Tolak permintaan reset? Progres murid akan tetap tersimpan.';
+      if(!window.confirm(message)) return;
+      try {
+        const client = await getClient();
+        const result = await client.rpc('lapak_teacher_review_reset', {
+          p_request_id:request.id,
+          p_approve:approve
+        });
+        if(result.error) throw result.error;
+        setStatus($('#dashboard-status'), approve
+          ? 'Reset disetujui. Progres kelas dihapus saat perangkat murid tersinkron.'
+          : 'Permintaan reset ditolak. Progres murid tetap tersimpan.');
+        await loadStudents(classInfo, card);
+      } catch(err){ setStatus($('#dashboard-status'), err.message || 'Permintaan reset gagal ditinjau.', true); }
     }
     async function removeStudent(student, classInfo, card){
       if(!window.confirm(`Hapus progres ${student.nickname} dari kelas ini?`)) return;
