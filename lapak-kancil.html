@@ -1,0 +1,4057 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f3b61f">
+<title>Lapak Kancil — Belajar Hitung di Pasar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Lilita+One&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root{
+  --ink:#3b2214;
+  --ink-soft:#5d3a22;
+  --cream:#f6e5c3;
+  --cream-2:#fff5de;
+  --paper:#e8c98f;
+  --putih:#fffaf0;
+  --kunyit:#f3b61f;
+  --kunyit-light:#ffd35c;
+  --cabai:#d94a2b;
+  --cabai-dark:#a92f1a;
+  --daun:#3f7d3b;
+  --daun-light:#7bb661;
+  --langit:#78bad3;
+  --langit-dark:#2f7f9e;
+  --pink:#e8899a;
+  --cokelat-terang:#b5763e;
+  --font-display:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;
+  --font-body:'Baloo 2','Trebuchet MS','Segoe UI',Tahoma,sans-serif;
+  --shadow:6px 6px 0 var(--ink);
+  --shadow-sm:4px 4px 0 var(--ink);
+  --shadow-xs:3px 3px 0 var(--ink);
+  --radius-a:16px 20px 15px 22px;
+  --radius-b:22px 15px 20px 16px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  min-height:100vh;
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:18px;
+  line-height:1.45;
+  background-color:var(--cream);
+  background-image:
+    radial-gradient(rgba(59,34,20,.055) 1.1px, transparent 1.3px),
+    radial-gradient(rgba(255,255,255,.35) 1px, transparent 1.2px);
+  background-size:18px 18px, 23px 23px;
+  background-position:0 0, 7px 11px;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+button:disabled{cursor:default}
+button,input{font-family:inherit}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter-spacing:.4px}
+[hidden]{display:none!important}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:4px dashed var(--ink);outline-offset:4px}
+::selection{background:var(--kunyit);color:var(--ink)}
+.sprite{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+#app{min-height:100dvh}
+.screen{display:none;min-height:100dvh}
+.screen.is-active{display:block}
+.kicker{font-family:var(--font-body);font-weight:800;letter-spacing:2.4px;text-transform:uppercase;font-size:clamp(11px,2vw,14px);color:var(--cabai-dark)}
+.microcopy{font-size:14px;opacity:.72;text-align:center}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:56px;padding:12px 22px;
+  border:3px solid var(--ink);border-radius:var(--radius-a);
+  background:var(--kunyit);color:var(--ink);
+  font-weight:800;font-size:clamp(17px,2.2vw,21px);line-height:1.08;text-align:center;
+  box-shadow:var(--shadow-sm);
+  transition:transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+.btn:hover{transform:translate(-1px,-1px) rotate(-.35deg)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.btn-primary{background:var(--cabai);color:var(--putih);text-shadow:1px 2px 0 rgba(59,34,20,.55)}
+.btn-green{background:var(--daun);color:var(--putih);text-shadow:1px 2px 0 rgba(59,34,20,.45)}
+.btn-cream{background:var(--cream-2)}
+.btn-wide{width:100%}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.58;box-shadow:var(--shadow-xs);filter:saturate(.6)}
+.btn:disabled:hover,.btn[aria-disabled="true"]:hover{transform:none}
+.icon-btn{
+  width:56px;height:56px;min-width:56px;padding:8px;
+  display:grid;place-items:center;
+  border:3px solid var(--ink);border-radius:15px 18px 14px 19px;
+  background:var(--cream-2);box-shadow:var(--shadow-sm);
+  transition:transform .12s ease, box-shadow .12s ease;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+.icon-btn:hover{transform:translate(-1px,-1px) rotate(1deg)}
+.icon-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.icon-btn svg{width:30px;height:30px}
+.pill-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  min-height:56px;padding:8px 15px;
+  border:3px solid var(--ink);border-radius:999px;
+  background:var(--cream-2);box-shadow:var(--shadow-sm);
+  font-weight:800;font-size:17px;
+  transition:transform .12s ease, box-shadow .12s ease;
+  touch-action:manipulation;
+}
+.pill-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.pill-btn .ui-icon{width:25px;height:25px}
+.badge{
+  display:inline-grid;place-items:center;min-width:42px;min-height:28px;padding:2px 8px;
+  background:var(--kunyit);border:2px solid var(--ink);border-radius:999px;
+  font-size:14px;font-weight:800;line-height:1;
+}
+.star-chip{
+  display:inline-flex;align-items:center;gap:7px;
+  min-height:48px;padding:5px 12px;
+  border:3px solid var(--ink);border-radius:999px;
+  background:var(--cream-2);box-shadow:var(--shadow-xs);
+  font-family:var(--font-display);font-size:20px;
+}
+.star-chip svg{width:25px;height:25px}
+.ui-icon{width:26px;height:26px;flex:none}
+
+.topbar{
+  position:sticky;top:0;z-index:30;
+  display:flex;align-items:center;gap:10px;
+  min-height:78px;padding:10px clamp(10px,3vw,26px);
+  padding-top:calc(10px + env(safe-area-inset-top,0px));
+  background:var(--cream-2);border-bottom:4px solid var(--ink);
+  box-shadow:0 5px 0 rgba(59,34,20,.12);
+}
+.topbar-spacer{flex:1}
+.brand-small{
+  font-family:var(--font-display);font-size:clamp(22px,4vw,32px);
+  color:var(--cabai);letter-spacing:.8px;text-shadow:2px 3px 0 var(--ink);
+  transform:rotate(-1.5deg);white-space:nowrap;
+}
+.topbar-title{
+  font-family:var(--font-display);font-size:clamp(22px,4vw,34px);color:var(--ink);
+  letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+@media(max-width:560px){
+  .pill-label{display:none}
+  .pill-btn{padding:8px 10px}
+  .brand-small{font-size:21px}
+}
+
+#screen-intro{
+  position:relative;overflow:hidden;background:var(--langit);
+  background-image:radial-gradient(rgba(255,255,255,.16) 2px,transparent 2.2px);
+  background-size:24px 24px;
+}
+#screen-intro::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:90px;
+  background:var(--daun);border-top:4px solid var(--ink);
+  clip-path:polygon(0 38%,5% 28%,11% 40%,18% 22%,25% 36%,33% 20%,42% 34%,51% 19%,60% 35%,69% 22%,78% 37%,86% 24%,94% 36%,100% 26%,100% 100%,0 100%);
+}
+.intro-decor{position:absolute;inset:0;pointer-events:none;z-index:0}
+.deco-sun{position:absolute;top:3%;right:5%;width:clamp(70px,12vw,150px);height:auto;animation:sunTurn 40s linear infinite}
+.deco-cloud{position:absolute;width:clamp(100px,16vw,210px);height:auto;opacity:.95}
+.deco-cloud-a{top:12%;left:4%;animation:cloudDrift 16s ease-in-out infinite alternate}
+.deco-cloud-b{top:30%;left:58%;width:clamp(80px,12vw,160px);animation:cloudDrift 20s ease-in-out infinite alternate-reverse}
+.deco-bunting{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(900px,92vw);height:auto}
+.intro-scene{
+  position:relative;z-index:1;width:min(1180px,100%);margin:0 auto;
+  padding:clamp(28px,5vw,66px) clamp(14px,4vw,34px) 110px;
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
+  gap:clamp(20px,4vw,56px);align-items:center;min-height:100dvh;
+}
+.intro-hero{position:relative;padding-bottom:20px}
+.intro-hero .kicker{color:var(--ink-soft);background:var(--cream-2);display:inline-block;padding:3px 10px;border:2px solid var(--ink);border-radius:8px;transform:rotate(-2deg)}
+.game-title{
+  margin-top:14px;font-size:clamp(60px,10.5vw,118px);
+  color:var(--kunyit-light);-webkit-text-stroke:3px var(--ink);
+  text-shadow:5px 7px 0 var(--ink),10px 12px 0 rgba(59,34,20,.18);
+  letter-spacing:2px;line-height:.88;transform:rotate(-2deg);
+}
+.game-title span{color:var(--cabai);display:inline-block;transform:rotate(1.5deg) translateX(10px)}
+.intro-tagline{max-width:430px;margin-top:18px;font-size:clamp(18px,2.5vw,23px);font-weight:700;text-wrap:balance}
+.intro-mascot{
+  position:relative;width:clamp(170px,26vw,290px);
+  margin:18px 0 0 clamp(4px,3vw,30px);
+  filter:drop-shadow(7px 9px 0 rgba(59,34,20,.85));transform:rotate(2deg);
+}
+.intro-mascot .kancil-svg{width:100%;height:auto}
+.intro-tent{
+  position:absolute;right:-4%;bottom:-24px;width:clamp(180px,28vw,310px);
+  opacity:.98;transform:rotate(3deg);filter:drop-shadow(6px 7px 0 rgba(59,34,20,.7));
+  pointer-events:none;--tent-a:#f3b61f;--tent-b:#fff5de;
+}
+.intro-card{
+  position:relative;background:var(--cream-2);border:4px solid var(--ink);
+  border-radius:var(--radius-b);box-shadow:var(--shadow);
+  padding:clamp(22px,4vw,38px);transform:rotate(1.2deg);
+}
+.intro-card::before,.intro-card::after{
+  content:"";position:absolute;width:78px;height:24px;
+  background:rgba(243,182,31,.8);border:2px solid rgba(59,34,20,.35);
+  transform:rotate(-7deg);top:-13px;left:24px;
+}
+.intro-card::after{left:auto;right:22px;transform:rotate(6deg);background:rgba(217,74,43,.55)}
+.intro-card h2{font-size:clamp(28px,4.5vw,42px);color:var(--cabai-dark);margin-bottom:8px}
+.intro-card>p{font-size:18px;line-height:1.4;margin-bottom:20px}
+.intro-card form{display:grid;gap:8px}
+.intro-card label{font-weight:800;font-size:17px}
+.intro-card input{
+  width:100%;min-height:60px;padding:8px 16px;
+  border:3px solid var(--ink);border-radius:12px 15px 11px 16px;
+  background:var(--putih);color:var(--ink);font-size:22px;font-weight:700;
+  box-shadow:inset 3px 3px 0 rgba(59,34,20,.09);
+}
+.intro-card input::placeholder{color:rgba(59,34,20,.4)}
+.intro-card input:focus{outline:4px dashed var(--cabai);outline-offset:3px}
+.field-hint{min-height:22px;font-size:15px;font-weight:700;color:var(--cabai-dark)}
+.intro-card .btn{margin-top:6px}
+.intro-card .microcopy{margin-top:16px}
+.map-wrap,.stall-wrap{width:min(1180px,100%);margin:0 auto;padding:clamp(20px,4vw,44px) clamp(12px,3.5vw,30px) 70px}
+.map-heading{position:relative;z-index:1;max-width:730px;margin-bottom:clamp(18px,4vw,36px)}
+.map-heading h1{font-size:clamp(34px,6vw,62px);color:var(--ink);margin:4px 0 8px;text-wrap:balance}
+.map-heading h1 span{color:var(--cabai);text-shadow:2px 3px 0 var(--kunyit)}
+.map-heading>p:last-child{font-size:clamp(16px,2.4vw,20px);font-weight:600;max-width:580px}
+
+.market-map{position:relative;padding:10px 0 30px}
+.road-map{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible}
+.road-edge{fill:none;stroke:var(--ink);stroke-width:13;stroke-linecap:round;opacity:.9}
+.road-line{fill:none;stroke:var(--paper);stroke-width:8;stroke-linecap:round;stroke-dasharray:18 16}
+.market-decor{position:absolute;inset:0;pointer-events:none;z-index:0}
+.deco-plant{position:absolute;width:clamp(70px,10vw,130px);height:auto;opacity:.9}
+.deco-plant-a{left:-2%;top:26%;transform:rotate(-8deg)}
+.deco-plant-b{right:-1%;top:58%;transform:rotate(7deg) scaleX(-1)}
+.deco-map-cloud{position:absolute;right:4%;top:2%;width:clamp(80px,12vw,150px);opacity:.75}
+.stall-list{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:clamp(12px,3vw,26px);justify-items:center}
+.stall-card{
+  position:relative;display:block;width:min(430px,92%);padding:0;
+  text-align:center;background:transparent;transform:rotate(var(--tilt,-1deg));
+  transition:transform .18s ease, filter .18s ease;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+.stall-card:hover{transform:rotate(var(--tilt,-1deg)) translateY(-7px) scale(1.012)}
+.stall-card:active{transform:rotate(var(--tilt,-1deg)) translateY(1px) scale(.996)}
+.tent-wrap{display:block;position:relative;max-width:430px;margin:0 auto}
+.tent-wrap .tent{width:100%;height:auto;filter:drop-shadow(7px 8px 0 rgba(59,34,20,.82));transition:filter .18s ease}
+.stall-sign{
+  position:absolute;left:50%;top:9.5%;transform:translateX(-50%) rotate(-2deg);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  min-width:54%;max-width:82%;min-height:64px;padding:4px 14px;
+  background:var(--cream-2);border:3px solid var(--ink);
+  border-radius:9px 12px 8px 13px;box-shadow:4px 4px 0 var(--ink);
+}
+.stall-sign .motif{width:30px;height:30px;flex:none}
+.stall-name{font-family:var(--font-display);font-size:clamp(24px,5.3vw,38px);line-height:1;letter-spacing:.6px;color:var(--ink)}
+.stall-card[data-stall="tambah"]{--tent-a:#f3b61f;--tent-b:#fff1c9}
+.stall-card[data-stall="kurang"]{--tent-a:#d94a2b;--tent-b:#ffe0c9}
+.stall-card[data-stall="kali"]{--tent-a:#3f7d3b;--tent-b:#e8f3c7}
+.stall-card[data-stall="bagi"]{--tent-a:#78bad3;--tent-b:#e7f7ff}
+.stall-card[data-stall="campur"]{--tent-a:#e8899a;--tent-b:#fff0cf}
+.stall-card.is-locked .tent{filter:grayscale(.55) sepia(.15) drop-shadow(5px 6px 0 rgba(59,34,20,.55))}
+.stall-card.is-locked .stall-sign{transform:translateX(-50%) rotate(-2deg) translateY(3px);background:#e8dcc4}
+.stall-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:6px}
+.stall-stars{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 13px;min-height:44px;
+  border:3px solid var(--ink);border-radius:999px;background:var(--cream-2);
+  box-shadow:var(--shadow-xs);font-family:var(--font-display);font-size:21px;
+}
+.stall-stars svg{width:24px;height:24px}
+.stall-blurb{
+  display:inline-block;max-width:96%;margin-top:6px;padding:3px 10px;
+  border-radius:8px;background:rgba(255,250,240,.92);
+  box-shadow:0 2px 0 rgba(59,34,20,.14);
+  font-weight:700;font-size:16px;color:var(--ink-soft);
+}
+.stall-card.is-locked .stall-blurb{display:none}
+.lock-badge{
+  display:inline-flex;align-items:center;gap:8px;max-width:94%;margin-top:4px;padding:8px 13px;
+  background:var(--ink);color:var(--cream-2);border:3px solid var(--ink);
+  border-radius:10px 13px 9px 14px;box-shadow:var(--shadow-xs);
+  font-size:14px;font-weight:700;line-height:1.2;transform:rotate(-1deg);
+}
+.lock-badge svg{width:22px;height:22px;flex:none}
+.lock-badge.is-open{background:var(--daun)}
+.map-mascot{
+  position:relative;width:clamp(140px,18vw,220px);margin:38px auto 0;z-index:1;
+  filter:drop-shadow(5px 6px 0 rgba(59,34,20,.65));transform:rotate(-2deg);
+}
+.map-mascot .kancil-svg{width:100%;height:auto}
+.map-speech{
+  position:absolute;right:-4%;top:6%;max-width:230px;
+  background:var(--cream-2);border:3px solid var(--ink);
+  border-radius:14px 16px 14px 4px;padding:8px 12px;
+  box-shadow:var(--shadow-xs);font-weight:700;font-size:15px;transform:rotate(2deg);
+}
+@media(min-width:880px){
+  .stall-list{grid-template-columns:1fr 1fr;column-gap:clamp(8px,4vw,54px);row-gap:0;align-items:start}
+  .stall-card{width:min(390px,100%)}
+  .stall-card:nth-child(1){grid-column:1;margin-top:0;margin-left:3%}
+  .stall-card:nth-child(2){grid-column:2;margin-top:120px;margin-right:2%}
+  .stall-card:nth-child(3){grid-column:1;margin-top:-14px;margin-left:8%}
+  .stall-card:nth-child(4){grid-column:2;margin-top:110px;margin-right:4%}
+  .stall-card:nth-child(5){grid-column:1/-1;width:min(560px,72%);margin-top:32px;justify-self:center}
+  .map-mascot{margin-top:20px;margin-left:4%}
+}
+@media(max-width:879px){
+  .stall-card:nth-child(odd){margin-left:-2%}
+  .stall-card:nth-child(even){margin-right:-2%}
+  .stall-card:nth-child(2),.stall-card:nth-child(4){margin-top:6px}
+  .road-map{opacity:.55}
+}
+
+.stall-hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(8px,3vw,36px);margin-bottom:clamp(18px,3vw,32px)}
+.stall-hero-art{position:relative;width:min(440px,72vw);flex:none}
+.stall-hero-art .tent{width:100%;height:auto;filter:drop-shadow(7px 8px 0 rgba(59,34,20,.72))}
+.stall-hero-art .stall-sign{min-height:70px}
+.stall-hero-copy{flex:1;min-width:240px;max-width:520px}
+.stall-hero-copy h1{font-size:clamp(36px,6vw,60px);color:var(--cabai);text-shadow:2px 3px 0 var(--kunyit)}
+.stall-hero-copy p{font-weight:700;font-size:clamp(16px,2.3vw,20px);margin-top:8px}
+.stall-starline{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.stall-starline .star-chip{background:var(--kunyit-light)}
+.level-heading{display:flex;align-items:center;gap:12px;margin:10px 0 16px}
+.level-heading h2{font-size:clamp(24px,4vw,34px)}
+.level-heading .line{height:4px;flex:1;background:var(--ink);border-radius:99px;opacity:.25}
+.level-list{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:clamp(12px,2.5vw,24px)}
+.level-card{
+  position:relative;width:min(195px,43vw);min-height:190px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+  padding:22px 12px 16px;border:3px solid var(--ink);border-radius:12px 16px 10px 18px;
+  background:var(--cream-2);box-shadow:var(--shadow-sm);
+  transform:rotate(var(--tilt,-1deg));touch-action:manipulation;text-align:center;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.level-card::before{
+  content:"";position:absolute;top:9px;left:50%;width:16px;height:16px;
+  transform:translateX(-50%);border:3px solid var(--ink);border-radius:50%;
+  background:var(--paper);box-shadow:inset 0 3px 0 rgba(59,34,20,.18);
+}
+.level-card:hover{transform:rotate(var(--tilt,-1deg)) translateY(-4px)}
+.level-card:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.level-card .level-num{font-family:var(--font-display);font-size:19px;color:var(--cabai-dark);letter-spacing:.6px}
+.level-card .level-title{font-weight:800;font-size:17px;line-height:1.15;min-height:40px;display:flex;align-items:center}
+.level-card .level-stars{display:flex;align-items:center;gap:5px;min-height:30px}
+.level-card .level-stars svg{width:30px;height:30px}
+.level-card.is-locked{background:#e8dcc4;filter:saturate(.55);box-shadow:var(--shadow-xs)}
+.level-card.is-locked .level-title{opacity:.7}
+.level-card.is-locked::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:repeating-linear-gradient(-45deg,transparent 0 12px,rgba(59,34,20,.05) 12px 20px);
+}
+.level-card .level-note{font-size:13px;font-weight:700;line-height:1.15;color:var(--ink-soft);min-height:15px}
+.level-card.is-next{outline:4px solid var(--kunyit);outline-offset:3px}
+.level-card.is-done .level-num{color:var(--daun)}
+.stall-help{
+  margin:26px auto 0;max-width:760px;display:flex;align-items:center;gap:14px;
+  background:var(--cream-2);border:3px dashed var(--ink);
+  border-radius:14px;padding:12px 16px;transform:rotate(.4deg);
+}
+.stall-help .kancil-svg{width:84px;flex:none}
+.stall-help p{font-weight:700;font-size:16px}
+@media(max-width:540px){
+  .level-list{gap:10px}
+  .level-card{width:min(165px,44vw);min-height:172px;padding:20px 8px 12px}
+  .level-card .level-title{font-size:15px}
+  .level-card .level-stars svg{width:26px;height:26px}
+}
+.playbar{
+  position:sticky;top:0;z-index:35;display:flex;align-items:center;gap:10px;
+  padding:8px clamp(8px,2.5vw,22px);
+  padding-top:calc(8px + env(safe-area-inset-top,0px));
+  background:var(--cream-2);border-bottom:4px solid var(--ink);
+}
+.play-progress{flex:1;min-width:0}
+.play-progress-top{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:800;font-size:14px}
+.play-progress-top span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-display);font-size:clamp(17px,3vw,23px);letter-spacing:.3px}
+.play-progress-top span:last-child{white-space:nowrap;color:var(--cabai-dark)}
+.progress-dots{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap}
+.progress-dot{width:14px;height:14px;border:2px solid var(--ink);border-radius:50%;background:var(--cream);transition:background .15s,transform .15s}
+.progress-dot.is-done{background:var(--daun-light)}
+.progress-dot.is-current{background:var(--kunyit);transform:scale(1.3)}
+.progress-dot.is-miss{background:var(--pink)}
+.exit-bar{
+  position:sticky;top:78px;z-index:34;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px clamp(10px,3vw,24px);
+  background:#ffe2b8;border-bottom:3px solid var(--ink);
+}
+.exit-bar p{font-weight:700;font-size:15px}
+.exit-actions{display:flex;gap:8px;flex-wrap:wrap}
+.play-wrap{
+  width:min(1180px,100%);margin:0 auto;
+  padding:clamp(14px,3vw,30px) clamp(10px,3vw,26px) 64px;
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+  gap:clamp(16px,3vw,30px);align-items:start;
+}
+.story-column{min-width:0}
+.story-card{
+  position:relative;background:var(--putih);border:3px solid var(--ink);
+  border-radius:var(--radius-b);box-shadow:var(--shadow);
+  padding:clamp(16px,3vw,28px);transform:rotate(-.55deg);
+}
+.story-card::before{
+  content:"";position:absolute;top:-14px;left:clamp(20px,8vw,80px);width:90px;height:26px;
+  background:rgba(243,182,31,.82);border:2px solid rgba(59,34,20,.32);
+  transform:rotate(-5deg);
+}
+.story-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px}
+.buyer-chip,.level-chip{
+  display:inline-flex;align-items:center;min-height:32px;padding:2px 11px;
+  border:2px solid var(--ink);border-radius:999px;font-size:14px;font-weight:800;
+}
+.buyer-chip{background:var(--kunyit-light);transform:rotate(-1deg)}
+.level-chip{background:var(--cream);color:var(--ink-soft)}
+.story-text{font-size:clamp(19px,2.7vw,25px);font-weight:700;line-height:1.45;letter-spacing:.1px}
+.question-text{
+  margin-top:14px;padding:10px 14px;
+  background:var(--kunyit-light);border:3px solid var(--ink);border-radius:11px 14px 10px 15px;
+  font-size:clamp(19px,2.7vw,24px);font-weight:800;line-height:1.35;
+  box-shadow:var(--shadow-xs);
+}
+.story-tools{display:flex;justify-content:flex-end;margin-top:12px}
+.read-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:56px;padding:8px 16px;border:3px solid var(--ink);border-radius:999px;
+  background:var(--cream-2);box-shadow:var(--shadow-xs);font-weight:800;font-size:16px;
+  transition:transform .12s,box-shadow .12s;touch-action:manipulation;
+}
+.read-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.read-btn svg{width:25px;height:25px}
+.read-btn.is-speaking{background:var(--langit)}
+.visual-tray{
+  position:relative;margin-top:20px;padding:clamp(10px,2.5vw,20px);
+  border:4px solid var(--ink);border-radius:14px 18px 13px 20px;
+  background-color:#e8c98f;
+  background-image:
+    linear-gradient(45deg,rgba(255,255,255,.22) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.22) 75%),
+    linear-gradient(45deg,rgba(255,255,255,.22) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.22) 75%);
+  background-position:0 0,9px 9px;background-size:18px 18px;
+  box-shadow:var(--shadow);
+}
+.tray-title{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  margin-bottom:10px;font-weight:800;font-size:15px;color:var(--ink-soft);
+}
+.tray-title .tally{
+  display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:2px 11px;
+  background:var(--cream-2);border:2px solid var(--ink);border-radius:999px;
+  font-family:var(--font-display);font-size:19px;color:var(--ink);
+}
+.tray-instruction{font-size:15px;font-weight:700;line-height:1.3;margin-bottom:10px;background:var(--cream-2);border:2px dashed var(--ink);border-radius:8px;padding:6px 10px}
+.count-groups{display:grid;gap:14px}
+.count-group{
+  background:rgba(255,245,222,.52);border:3px solid var(--ink);border-radius:10px 14px 9px 15px;
+  padding:8px;position:relative;
+}
+.count-group-label{display:flex;align-items:center;gap:7px;font-weight:800;font-size:15px;margin-bottom:4px}
+.count-items{display:flex;flex-wrap:wrap;gap:4px;min-height:56px}
+.count-item{
+  position:relative;width:56px;height:56px;min-width:56px;padding:2px;
+  border:3px solid transparent;border-radius:13px;background:transparent;
+  display:grid;place-items:center;touch-action:manipulation;
+  transition:transform .12s,background .12s,border-color .12s;
+}
+.count-item svg{width:100%;height:100%;pointer-events:none}
+.count-item:hover{transform:translateY(-3px)}
+.count-item.is-counted{background:rgba(243,182,31,.62);border-color:var(--ink);transform:translateY(-4px) rotate(-2deg)}
+.count-item.is-counted::after{
+  content:"";position:absolute;right:2px;bottom:2px;width:16px;height:16px;
+  border-radius:50%;background:var(--daun);border:2px solid var(--ink);
+}
+.count-item.is-removed{opacity:.32;filter:grayscale(1);pointer-events:none}
+.count-item.is-removed::before{
+  content:"";position:absolute;left:8%;right:8%;top:50%;height:4px;
+  background:var(--cabai);border-radius:99px;transform:rotate(-38deg);box-shadow:0 0 0 1px rgba(255,250,240,.5);
+}
+.bundle-row{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
+.bundle{
+  position:relative;width:64px;height:64px;min-width:64px;padding:3px;
+  border:3px solid transparent;border-radius:12px;background:transparent;
+  display:grid;place-items:center;touch-action:manipulation;
+  transition:transform .12s,background .12s,border-color .12s;
+}
+.bundle svg{width:100%;height:100%;pointer-events:none}
+.bundle .bundle-num{
+  position:absolute;right:-3px;bottom:-3px;min-width:24px;height:24px;padding:0 4px;
+  display:grid;place-items:center;background:var(--cabai);color:var(--putih);
+  border:2px solid var(--ink);border-radius:50%;font-family:var(--font-display);font-size:13px;
+}
+.bundle.is-counted{background:rgba(243,182,31,.6);border-color:var(--ink);transform:translateY(-4px)}
+.bundle.is-counted::after{content:"";position:absolute;left:4px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--daun);border:2px solid var(--ink)}
+.bundle.is-removed{opacity:.3;filter:grayscale(1);pointer-events:none}
+.base10-block{display:grid;gap:12px}
+.base10-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:rgba(255,245,222,.55);border:3px solid var(--ink);border-radius:10px;padding:7px}
+.base10-label{width:74px;font-weight:800;font-size:14px;line-height:1.15}
+.money-visual{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(10px,3vw,26px);padding:8px}
+.money-card{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;transform:rotate(-1.5deg)}
+.money-card:last-child{transform:rotate(1.5deg)}
+.money-card svg{width:clamp(130px,28vw,220px);height:auto;filter:drop-shadow(3px 4px 0 rgba(59,34,20,.55))}
+.money-card span{font-family:var(--font-display);font-size:clamp(18px,3vw,24px);background:var(--cream-2);border:2px solid var(--ink);border-radius:6px;padding:1px 10px}
+.money-symbol{font-family:var(--font-display);font-size:clamp(30px,6vw,50px);color:var(--cabai)}
+.two-step-visual{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;padding:6px}
+.two-step-card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  min-width:86px;padding:7px 10px;background:var(--cream-2);border:3px solid var(--ink);
+  border-radius:10px 13px 9px 14px;box-shadow:var(--shadow-xs);text-align:center;
+}
+.two-step-card svg{width:54px;height:54px}
+.two-step-card span{font-weight:800;font-size:14px;line-height:1.15}
+.math-op{font-family:var(--font-display);font-size:clamp(26px,5vw,38px);color:var(--cabai);line-height:1}
+.share-static-note{margin-top:8px;text-align:center;font-weight:700;font-size:14px;color:var(--ink-soft)}
+.mascot-slot .kancil-svg{width:100%;height:auto}
+.big-star svg{width:100%;height:100%}
+
+.array-shell{overflow:auto;padding:4px;border-radius:10px}
+.array-table{display:grid;gap:3px;min-width:max-content}
+.array-row{
+  display:flex;align-items:center;gap:3px;min-height:56px;width:100%;padding:2px 5px;
+  border:2px dashed transparent;border-radius:9px;touch-action:manipulation;text-align:left;
+  transition:background .12s,border-color .12s;
+}
+.array-row:hover{background:rgba(255,245,222,.45)}
+.array-row.is-counted{background:rgba(243,182,31,.55);border-color:var(--ink)}
+.array-row .row-label{
+  width:34px;min-width:34px;text-align:center;font-family:var(--font-display);
+  font-size:17px;color:var(--ink-soft);
+}
+.array-row .row-count{margin-left:auto;font-weight:800;font-size:15px;color:var(--ink-soft);padding-left:4px}
+.array-cells{display:flex;gap:2px;flex-wrap:nowrap}
+.array-cell{width:clamp(24px,5.4vw,36px);height:clamp(24px,5.4vw,36px);flex:none;opacity:.95}
+.array-legend{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px;font-weight:700;font-size:14px}
+.array-note{background:var(--cream-2);border:2px solid var(--ink);border-radius:8px;padding:4px 9px}
+
+.share-shell{display:grid;gap:13px}
+.share-pool{
+  display:flex;flex-wrap:wrap;gap:4px;min-height:72px;padding:7px;
+  border:3px dashed var(--ink);border-radius:11px;background:rgba(255,245,222,.6);
+}
+.share-pool.is-empty{justify-content:center;align-items:center;color:var(--ink-soft);font-weight:700;font-size:14px}
+.drag-item{
+  width:56px;height:56px;min-width:56px;padding:2px;border:3px solid transparent;
+  border-radius:12px;background:transparent;touch-action:none;
+  transition:transform .1s,background .1s,border-color .1s;position:relative;
+}
+.drag-item svg{width:100%;height:100%;pointer-events:none}
+.drag-item:hover{transform:translateY(-2px)}
+.drag-item.is-selected{background:var(--kunyit-light);border-color:var(--ink);transform:translateY(-4px)}
+.drag-item.is-dragging{opacity:.25}
+.plates{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(8px,2vw,16px);padding:4px}
+.plate{
+  position:relative;width:clamp(92px,22vw,130px);min-height:104px;padding:20px 6px 8px;
+  border:3px solid var(--ink);border-radius:50%;
+  background:var(--putih);
+  box-shadow:inset 0 0 0 6px var(--cream),var(--shadow-xs);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  touch-action:manipulation;transition:transform .12s,background .12s;
+}
+.plate:hover{transform:translateY(-3px)}
+.plate.is-target{background:var(--kunyit-light);transform:scale(1.04)}
+.plate.is-full{background:#f4f0df}
+.plate-count{
+  position:absolute;top:2px;left:50%;transform:translateX(-50%);
+  min-width:30px;min-height:24px;padding:1px 6px;display:grid;place-items:center;
+  background:var(--cabai);color:var(--putih);border:2px solid var(--ink);
+  border-radius:999px;font-family:var(--font-display);font-size:14px;
+}
+.plate-items{display:flex;flex-wrap:wrap;justify-content:center;gap:1px;max-width:100%}
+.plate-items svg{width:22px;height:22px;pointer-events:none}
+.plate-empty{font-size:12px;font-weight:700;color:var(--ink-soft);opacity:.7}
+.plate-label{font-size:12px;font-weight:800;color:var(--ink-soft)}
+.share-status{font-weight:800;text-align:center;min-height:24px;color:var(--daun);font-size:15px}
+.share-status.is-wait{color:var(--ink-soft)}
+.share-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.btn-text{
+  display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:8px 18px;
+  border:3px solid var(--ink);border-radius:999px;background:var(--cream-2);
+  box-shadow:var(--shadow-xs);font-weight:800;font-size:15px;touch-action:manipulation;
+}
+.btn-text:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+
+.answer-column{min-width:0}
+.play-mascot{display:flex;align-items:flex-end;gap:8px;margin-bottom:8px;min-height:80px}
+.play-mascot .kancil-svg{width:clamp(92px,14vw,140px);height:auto;filter:drop-shadow(4px 5px 0 rgba(59,34,20,.55));transform:rotate(-2deg)}
+.mascot-bubble{
+  flex:1;max-width:320px;background:var(--cream-2);border:3px solid var(--ink);
+  border-radius:14px 16px 14px 4px;padding:8px 12px;box-shadow:var(--shadow-xs);
+  font-weight:700;font-size:15px;line-height:1.25;
+}
+.answer-card{
+  background:var(--cream-2);border:4px solid var(--ink);
+  border-radius:var(--radius-a);box-shadow:var(--shadow);
+  padding:clamp(13px,2.5vw,20px);position:relative;
+}
+.answer-prompt{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-weight:800;font-size:14px;color:var(--ink-soft)}
+.answer-display{
+  display:flex;align-items:center;justify-content:flex-end;gap:2px;
+  min-height:64px;padding:6px 16px;background:var(--putih);
+  border:3px solid var(--ink);border-radius:12px 15px 11px 16px;
+  box-shadow:inset 3px 3px 0 rgba(59,34,20,.08);
+  font-family:var(--font-display);font-size:clamp(30px,7vw,40px);letter-spacing:1px;
+  overflow:hidden;
+}
+.answer-display .prefix{font-size:clamp(18px,4vw,24px);color:var(--ink-soft);margin-right:auto}
+.answer-display.is-empty{color:rgba(59,34,20,.3)}
+.answer-display.is-shake{animation:softShake .35s ease}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.key{
+  min-height:60px;padding:4px;border:3px solid var(--ink);border-radius:11px 14px 10px 15px;
+  background:var(--kunyit-light);box-shadow:var(--shadow-xs);
+  font-family:var(--font-display);font-size:clamp(22px,5vw,28px);line-height:1;
+  touch-action:manipulation;transition:transform .1s,box-shadow .1s,background .1s;
+}
+.key:hover{background:#ffe083}
+.key:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.key-back{background:var(--cream);font-family:var(--font-body);font-size:clamp(14px,3vw,17px);font-weight:800}
+.key-submit{background:var(--daun);color:var(--putih);font-family:var(--font-body);font-size:clamp(15px,3.2vw,18px);font-weight:800;text-shadow:1px 1px 0 rgba(59,34,20,.45)}
+.key-submit:hover{background:#4b9146}
+.key:disabled{opacity:.5;transform:none;box-shadow:var(--shadow-xs);cursor:default}
+.keypad-note{text-align:center;font-size:13px;font-weight:700;color:var(--ink-soft);margin-top:7px;min-height:17px}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.choice-btn{
+  min-height:64px;padding:8px 10px;border:3px solid var(--ink);border-radius:12px 15px 11px 16px;
+  background:var(--cream-2);box-shadow:var(--shadow-xs);
+  font-family:var(--font-display);font-size:clamp(22px,5vw,30px);
+  transition:transform .1s,box-shadow .1s,background .1s;touch-action:manipulation;
+}
+.choice-btn:hover{background:var(--kunyit-light)}
+.choice-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.choice-btn:disabled{opacity:.55}
+.feedback{min-height:40px;margin-top:14px;scroll-margin-top:88px}
+.feedback-card{
+  display:flex;gap:10px;align-items:flex-start;padding:12px 14px;
+  border:3px solid var(--ink);border-radius:14px 16px 13px 17px;
+  background:var(--cream-2);box-shadow:var(--shadow-sm);
+  font-weight:700;font-size:16px;line-height:1.35;transform:rotate(.35deg);
+}
+.feedback-card.good{background:#e4f2cf}
+.feedback-card.hint{background:#fff0ba}
+.feedback-card.solution{background:#e6f0dd}
+.feedback-card .feedback-art{width:48px;flex:none;margin-top:2px}
+.feedback-card .feedback-title{font-family:var(--font-display);font-size:19px;letter-spacing:.3px;display:block;margin-bottom:1px}
+.feedback-card p+p{margin-top:6px}
+.solution-steps{display:grid;gap:6px;margin-top:7px}
+.solution-step{
+  display:flex;gap:8px;align-items:flex-start;background:rgba(255,255,255,.62);
+  border:2px solid rgba(59,34,20,.45);border-radius:8px;padding:6px 8px;font-size:15px;
+}
+.solution-step .step-num{
+  flex:none;width:24px;height:24px;display:grid;place-items:center;
+  background:var(--kunyit);border:2px solid var(--ink);border-radius:50%;
+  font-family:var(--font-display);font-size:13px;
+}
+.solution-step.is-answer{background:var(--kunyit-light);font-weight:800}
+.feedback-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.feedback-actions .btn{font-size:16px;padding:8px 16px}
+.equation-hint{
+  display:inline-flex;align-items:center;gap:6px;margin-top:6px;
+  background:var(--kunyit-light);border:2px solid var(--ink);border-radius:8px;padding:2px 9px;
+  font-family:var(--font-display);font-size:20px;letter-spacing:.5px;
+}
+.campur-note{font-size:14px;color:var(--ink-soft);font-weight:700}
+.toast{
+  position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);
+  z-index:200;max-width:min(92vw,520px);padding:12px 18px;
+  background:var(--ink);color:var(--cream-2);border:3px solid var(--cream-2);
+  border-radius:12px 15px 11px 16px;box-shadow:0 4px 0 rgba(0,0,0,.25);
+  font-weight:700;font-size:15px;text-align:center;opacity:0;pointer-events:none;
+  transition:opacity .2s,transform .2s;
+}
+.toast.is-visible{opacity:1;transform:translate(-50%,0)}
+#drag-ghost{
+  position:fixed;z-index:300;width:56px;height:56px;pointer-events:none;
+  transform:translate(-50%,-50%) rotate(-5deg);display:none;
+  filter:drop-shadow(4px 5px 0 rgba(59,34,20,.7));
+}
+#drag-ghost.is-active{display:block}
+@media(max-width:980px){
+  .play-wrap{grid-template-columns:1fr;gap:16px}
+  .story-card{transform:rotate(-.3deg)}
+  .play-mascot{min-height:0;margin-bottom:0}
+  .play-mascot .kancil-svg{width:84px}
+  .answer-column{display:block}
+  .answer-card{position:relative}
+}
+@media(max-width:600px){
+  .playbar{gap:6px;padding-left:6px;padding-right:6px}
+  .playbar .icon-btn{width:52px;width:52px;min-width:52px;height:52px}
+  .progress-dots{gap:4px;margin-top:4px}
+  .progress-dot{width:12px;height:12px}
+  .story-card{box-shadow:var(--shadow-sm);border-width:3px}
+  .visual-tray{box-shadow:var(--shadow-sm)}
+  .count-item{width:56px;height:56px;min-width:56px}
+  .plate{width:clamp(88px,26vw,110px)}
+  .feedback-card{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+#screen-result{background:var(--cream);background-image:radial-gradient(rgba(59,34,20,.055) 1.1px,transparent 1.3px);background-size:18px 18px}
+.result-wrap{width:min(980px,100%);margin:0 auto;padding:clamp(22px,5vw,60px) clamp(12px,4vw,28px) 70px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.result-board{
+  position:relative;width:min(680px,100%);
+  background:var(--cream-2);border:4px solid var(--ink);border-radius:var(--radius-b);
+  box-shadow:var(--shadow);padding:clamp(22px,5vw,42px);text-align:center;transform:rotate(-.5deg);
+}
+.result-board::before,.result-board::after{
+  content:"";position:absolute;width:82px;height:24px;top:-14px;left:28px;
+  background:rgba(243,182,31,.8);border:2px solid rgba(59,34,20,.3);transform:rotate(-6deg);
+}
+.result-board::after{left:auto;right:26px;transform:rotate(5deg);background:rgba(120,186,211,.65)}
+.result-board h1{font-size:clamp(34px,7vw,58px);color:var(--cabai);text-shadow:3px 3px 0 var(--kunyit);margin-top:2px}
+.result-stars{display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,22px);margin:18px 0 8px;min-height:100px}
+.big-star{width:clamp(74px,16vw,104px);height:clamp(74px,16vw,104px);position:relative;opacity:.32;transform:scale(.92)}
+.big-star .star-fill{opacity:0;transform:scale(.3);transform-origin:center}
+.big-star.is-earned{opacity:1;transform:scale(1)}
+.big-star.is-earned .star-fill{opacity:1;transform:scale(1);animation:starPop .45s cubic-bezier(.2,1.6,.4,1) both;animation-delay:var(--delay,0s)}
+.result-sub{font-weight:700;font-size:clamp(16px,2.4vw,20px)}
+.result-sticker{margin:18px auto 0;max-width:420px}
+.sticker-reward{
+  display:flex;align-items:center;gap:14px;padding:12px 16px;
+  border:3px dashed var(--ink);border-radius:14px;background:var(--kunyit-light);
+  text-align:left;transform:rotate(.6deg);
+}
+.sticker-reward svg{width:76px;height:76px;flex:none;filter:drop-shadow(3px 3px 0 rgba(59,34,20,.35))}
+.sticker-reward strong{display:block;font-family:var(--font-display);font-size:20px;letter-spacing:.4px}
+.sticker-reward span{font-size:14px;font-weight:700;line-height:1.25;display:block;margin-top:2px}
+.sticker-reward.no-sticker{background:var(--cream);border-style:solid;transform:none}
+.result-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+.result-actions .btn{min-width:min(100%,190px)}
+.result-mascot{width:clamp(150px,22vw,230px);filter:drop-shadow(5px 6px 0 rgba(59,34,20,.55));transform:rotate(2deg);margin-top:-4px}
+.result-mascot .kancil-svg{width:100%;height:auto}
+.unlock-note{
+  display:inline-block;margin-top:6px;background:var(--daun);color:var(--putih);
+  border:2px solid var(--ink);border-radius:8px;padding:4px 11px;
+  font-weight:800;font-size:14px;transform:rotate(-1deg);
+}
+
+#screen-stickers{background:var(--paper);background-image:radial-gradient(rgba(59,34,20,.1) 1px,transparent 1.2px);background-size:16px 16px}
+.sticker-page{
+  width:min(1050px,100%);margin:clamp(16px,4vw,30px) auto 70px;
+  padding:clamp(16px,4vw,32px);
+  background:var(--cream-2);
+  border:4px solid var(--ink);border-radius:10px 18px 12px 20px;
+  box-shadow:var(--shadow);position:relative;transform:rotate(-.35deg);
+}
+.sticker-page::before{
+  content:"";position:absolute;top:-15px;left:8%;width:110px;height:28px;
+  background:rgba(243,182,31,.75);border:2px solid rgba(59,34,20,.3);transform:rotate(-4deg);
+}
+.sticker-heading{margin-bottom:18px}
+.sticker-heading h2{font-size:clamp(28px,5vw,40px);color:var(--cabai-dark);margin:2px 0 6px}
+.sticker-heading p{font-weight:600;max-width:680px}
+.sticker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:clamp(10px,2.5vw,20px)}
+.sticker-slot{
+  position:relative;min-height:160px;padding:12px 8px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  border:3px solid var(--ink);border-radius:12px 16px 11px 15px;
+  background:var(--putih);box-shadow:var(--shadow-xs);
+  transform:rotate(var(--tilt,0deg));
+}
+.sticker-slot .sticker-art{width:clamp(72px,12vw,94px);height:clamp(72px,12vw,94px);filter:drop-shadow(3px 3px 0 rgba(59,34,20,.28))}
+.sticker-slot .sticker-name{font-weight:800;font-size:14px;line-height:1.1;text-align:center}
+.sticker-slot .sticker-stall{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--cabai-dark);opacity:.8}
+.sticker-slot.is-locked{background:repeating-linear-gradient(-45deg,#e8dcc4 0 12px,#f0e4cc 12px 24px);box-shadow:none;filter:saturate(.5)}
+.sticker-slot.is-locked .sticker-art{filter:grayscale(1) brightness(.25) opacity(.16)}
+.sticker-slot.is-locked .sticker-name{opacity:.55}
+.sticker-slot.is-new::after{
+  content:"BARU";position:absolute;top:-10px;right:-6px;padding:2px 7px;
+  background:var(--cabai);color:var(--putih);border:2px solid var(--ink);
+  border-radius:6px;font-size:11px;font-weight:800;transform:rotate(6deg);letter-spacing:.5px;
+}
+.sticker-slot.is-collected:hover{animation:stickerWiggle .35s ease}
+.sticker-note{margin-top:18px;font-weight:700;font-size:15px;text-align:center;color:var(--ink-soft)}
+
+.settings-wrap{width:min(820px,100%);margin:0 auto;padding:clamp(18px,4vw,40px) clamp(12px,3vw,26px) 70px;display:grid;gap:18px}
+.settings-card{background:var(--cream-2);border:4px solid var(--ink);border-radius:var(--radius-b);box-shadow:var(--shadow);padding:clamp(18px,3vw,28px);transform:rotate(.25deg)}
+.settings-card h2{font-size:clamp(26px,4vw,34px);margin-bottom:14px;color:var(--cabai-dark)}
+.setting-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;border-top:2px dashed rgba(59,34,20,.28)}
+.setting-row:first-of-type{border-top:0;padding-top:0}
+.setting-row strong{font-size:17px;display:block}
+.setting-row p{font-size:14px;font-weight:600;color:var(--ink-soft);max-width:440px;margin-top:2px}
+.switch{
+  position:relative;width:72px;min-width:72px;height:56px;padding:4px;
+  border:3px solid var(--ink);border-radius:999px;background:#d9c7a5;
+  box-shadow:inset 2px 2px 0 rgba(59,34,20,.18);touch-action:manipulation;
+  transition:background .15s;
+}
+.switch::after{
+  content:"";position:absolute;top:4px;left:4px;width:42px;height:42px;
+  background:var(--cream-2);border:3px solid var(--ink);border-radius:50%;
+  box-shadow:2px 2px 0 rgba(59,34,20,.3);transition:transform .15s;
+}
+.switch[aria-checked="true"]{background:var(--daun-light)}
+.switch[aria-checked="true"]::after{transform:translateX(16px)}
+.settings-note{font-size:13px;font-weight:700;color:var(--ink-soft);margin-top:14px}
+.danger-zone{margin-top:8px;padding:14px;border:3px dashed var(--cabai);border-radius:12px;background:#fff0e5}
+.danger-zone h3{font-size:21px;color:var(--cabai-dark)}
+.danger-zone p{font-size:14px;font-weight:600;margin:3px 0 10px}
+.confirm-reset{padding:12px;border:3px solid var(--ink);border-radius:10px;background:var(--cream);margin-top:10px}
+.confirm-reset p{font-weight:800;color:var(--cabai-dark);margin-bottom:8px}
+.confirm-actions{display:flex;gap:8px;flex-wrap:wrap}
+.settings-about p{font-weight:600;font-size:15px}
+.settings-about ul{margin:8px 0 0;padding-left:20px;font-weight:600;font-size:14px}
+.settings-about li{margin:2px 0}
+
+.kancil-svg .k-eye{transform-box:fill-box;transform-origin:center;animation:kancilBlink 5.2s infinite}
+.kancil-svg.is-happy{animation:kancilJump .55s ease}
+@keyframes kancilBlink{0%,92%,97%,100%{transform:scaleY(1)}94%,95.5%{transform:scaleY(.08)}}
+@keyframes kancilJump{0%,100%{transform:translateY(0) rotate(0)}28%{transform:translateY(-18px) rotate(-2deg)}55%{transform:translateY(0) rotate(1deg)}72%{transform:translateY(-8px)}}
+@keyframes starPop{0%{opacity:0;transform:scale(.2) rotate(-30deg)}70%{opacity:1;transform:scale(1.18) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes sunTurn{to{transform:rotate(360deg)}}
+@keyframes cloudDrift{from{transform:translateX(-8px)}to{transform:translateX(16px)}}
+@keyframes softShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}55%{transform:translateX(5px)}80%{transform:translateX(-2px)}}
+@keyframes stickerWiggle{0%,100%{transform:rotate(var(--tilt,0deg))}35%{transform:rotate(calc(var(--tilt,0deg) + 3deg)) scale(1.03)}70%{transform:rotate(calc(var(--tilt,0deg) - 2deg))}}
+@keyframes popIn{0%{opacity:0;transform:scale(.88) rotate(-1deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
+.is-pop{animation:popIn .22s ease both}
+@media(max-width:600px){
+  .result-board{padding:22px 14px}
+  .sticker-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  .sticker-slot{min-height:135px}
+  .sticker-slot .sticker-art{width:64px;height:64px}
+  .setting-row{align-items:flex-start}
+}
+@media(max-width:900px){
+  .intro-scene{grid-template-columns:1fr;gap:12px;padding-top:clamp(84px,14vw,120px);align-items:start}
+  .intro-hero{text-align:center;padding-bottom:0}
+  .intro-hero .kicker{margin:0 auto}
+  .game-title{font-size:clamp(58px,16vw,96px)}
+  .intro-tagline{margin-left:auto;margin-right:auto}
+  .intro-mascot{margin:6px auto -50px;width:clamp(150px,34vw,220px);z-index:2}
+  .intro-tent{right:2%;bottom:-46px;width:clamp(170px,34vw,260px)}
+  .intro-card{max-width:540px;margin:0 auto;width:100%}
+}
+@media(max-width:620px){
+  body{font-size:17px}
+  .topbar{min-height:70px;gap:7px;padding-left:8px;padding-right:8px}
+  .topbar .icon-btn{width:52px;height:52px;min-width:52px}
+  .topbar .brand-small{font-size:19px}
+  .topbar-title{font-size:21px}
+  .star-chip{font-size:17px;padding:4px 9px;min-height:44px}
+  .star-chip svg{width:21px;height:21px}
+  .map-wrap{padding-top:16px}
+  .map-heading h1{font-size:clamp(31px,9vw,44px)}
+  .map-heading>p:last-child{font-size:15px}
+  .stall-card{width:100%}
+  .stall-sign{min-height:52px;padding:2px 10px;top:9%}
+  .stall-name{font-size:clamp(22px,7.5vw,30px)}
+  .stall-sign .motif{width:24px;height:24px}
+  .stall-blurb{font-size:14px}
+  .stall-stars{font-size:18px;min-height:40px}
+  .stall-stars svg{width:21px;height:21px}
+  .lock-badge{font-size:12px;padding:6px 10px}
+  .map-mascot{width:140px}
+  .map-speech{font-size:13px;max-width:180px}
+  .stall-hero-copy{text-align:center;min-width:0}
+  .stall-starline{justify-content:center}
+  .stall-help{flex-direction:column;text-align:center;gap:4px}
+  .stall-help .kancil-svg{width:70px}
+  .level-card{width:min(158px,44vw)}
+  .exit-bar p{font-size:14px;width:100%}
+  .exit-actions{width:100%}
+  .exit-actions .btn{flex:1;font-size:15px;padding:8px 10px}
+  .story-card{padding:15px}
+  .story-text{font-size:19px}
+  .question-text{font-size:19px;padding:8px 10px}
+  .visual-tray{padding:10px;border-width:3px}
+  .count-item{width:56px;height:56px;min-width:56px}
+  .base10-label{width:60px;font-size:13px}
+  .answer-display{min-height:60px}
+  .choices{gap:7px}
+  .choice-btn{min-height:60px}
+  .feedback-actions .btn{flex:1}
+  .result-actions .btn{width:100%}
+  .sticker-page{margin-top:12px}
+}
+@media(max-width:390px){
+  .topbar .brand-small{display:none}
+  .topbar-title{font-size:19px}
+  .pill-btn .badge{min-width:36px;font-size:12px}
+  .stall-sign{min-width:60%}
+  .count-item{width:56px;height:56px;min-width:56px}
+  .key{min-height:56px}
+}
+@media(min-width:1600px){
+  body{font-size:19px}
+  .map-wrap,.stall-wrap,.play-wrap{max-width:1260px}
+}
+@media(orientation:landscape) and (max-height:540px){
+  .intro-scene{min-height:auto;padding-top:24px;padding-bottom:60px}
+  .intro-mascot{width:150px}
+  .intro-tent{width:190px}
+  .play-mascot{display:none}
+  .array-shell{max-height:240px}
+}
+@supports(padding:max(0px)){
+  .toast{bottom:max(18px,calc(env(safe-area-inset-bottom,0px) + 12px))}
+}
+</style>
+</head>
+<body>
+<svg id="svg-sprite" class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<defs>
+  <symbol id="icon-star" viewBox="0 0 48 48">
+    <path d="M24 4.5 30.3 17l13.8 2-10 9.7 2.4 13.7L24 36l-12.4 6.5L14 28.7 4 19l13.9-2Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M24 10.5 27.7 18l8.2 1.1-6 5.8 1.5 8.1L24 29.4l-7.4 3.6 1.4-8.1-5.9-5.8 8.2-1.1Z" fill="#ffd35c"/>
+  </symbol>
+  <symbol id="icon-star-outline" viewBox="0 0 48 48">
+    <path d="M24 4.5 30.3 17l13.8 2-10 9.7 2.4 13.7L24 36l-12.4 6.5L14 28.7 4 19l13.9-2Z" fill="none" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round" opacity=".35"/>
+  </symbol>
+  <symbol id="icon-lock" viewBox="0 0 48 48">
+    <rect x="9" y="21" width="30" height="22" rx="5" fill="#f3b61f" stroke="#3b2214" stroke-width="3.4"/>
+    <path d="M16 21v-5.5a8 8 0 0 1 16 0V21" fill="none" stroke="#3b2214" stroke-width="3.4" stroke-linecap="round"/>
+    <circle cx="24" cy="31" r="3.2" fill="#3b2214"/>
+    <path d="M24 33v5" stroke="#3b2214" stroke-width="3.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-book" viewBox="0 0 48 48">
+    <path d="M7 9.5c6-2 12-1.5 17 2.5 5-4 11-4.5 17-2.5v28c-6-2-12-1.5-17 2.5-5-4-11-4.5-17-2.5Z" fill="#fff5de" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M24 12v26" stroke="#3b2214" stroke-width="3.4"/>
+    <path d="M12 17h6M12 23h6M30 17h6M30 23h6" stroke="#d94a2b" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-gear" viewBox="0 0 48 48">
+    <path d="m24 5 4.3 5.6 7-1.1 1.2 7 6.5 2.8-3.2 6.3 3.7 6-5.9 4-1.8 6.9-7-1.1L24 43l-4.8-4.6-6.9 1.1-1.9-6.9-5.9-4 3.7-6-3.2-6.3 6.5-2.8 1.2-7 7 1.1Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3.2" stroke-linejoin="round"/>
+    <circle cx="24" cy="24" r="8" fill="#fff5de" stroke="#3b2214" stroke-width="3.2"/>
+  </symbol>
+  <symbol id="icon-back" viewBox="0 0 48 48">
+    <path d="M29 9 14 24l15 15" fill="none" stroke="#3b2214" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 24h24" stroke="#3b2214" stroke-width="5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-sound" viewBox="0 0 48 48">
+    <path d="M6 19h8L26 9v30L14 29H6Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3.3" stroke-linejoin="round"/>
+    <path d="M32 17a10 10 0 0 1 0 14M37 12a17 17 0 0 1 0 24" fill="none" stroke="#3b2214" stroke-width="3.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-muted" viewBox="0 0 48 48">
+    <path d="M6 19h8L26 9v30L14 29H6Z" fill="#d9c7a5" stroke="#3b2214" stroke-width="3.3" stroke-linejoin="round"/>
+    <path d="m31 18 12 12M43 18 31 30" stroke="#d94a2b" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-read" viewBox="0 0 48 48">
+    <path d="M7 19h7L24 10v28L14 29H7Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3.3" stroke-linejoin="round"/>
+    <path d="M31 18a9 9 0 0 1 0 12M36 13a16 16 0 0 1 0 22" fill="none" stroke="#3b2214" stroke-width="3.3" stroke-linecap="round"/>
+    <path d="M38 8v6M43 13h-6M40 4l3 3" stroke="#d94a2b" stroke-width="2.8" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 48 48">
+    <path d="m9 25 10 10 20-23" fill="none" stroke="#3f7d3b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="icon-bundle" viewBox="0 0 100 100">
+    <path d="M14 39h72l-6 48c-1 7-6 10-12 10H32c-6 0-11-3-12-10Z" fill="#b5763e" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M18 52h64M22 68h56M26 82h48" stroke="#8a542b" stroke-width="3" stroke-linecap="round"/>
+    <path d="M29 39c-2-15 32-22 42-5" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="35" cy="46" r="4" fill="#f3b61f"/><circle cx="50" cy="45" r="4" fill="#f3b61f"/><circle cx="65" cy="46" r="4" fill="#f3b61f"/>
+    <circle cx="41" cy="57" r="4" fill="#f3b61f"/><circle cx="58" cy="57" r="4" fill="#f3b61f"/>
+  </symbol>
+  <symbol id="item-uang" viewBox="0 0 180 100">
+    <rect x="5" y="12" width="170" height="76" rx="7" fill="#f6e5c3" stroke="#3b2214" stroke-width="5"/>
+    <rect x="15" y="22" width="150" height="56" rx="4" fill="none" stroke="#b5763e" stroke-width="3" stroke-dasharray="6 4"/>
+    <circle cx="42" cy="50" r="16" fill="#f3b61f" stroke="#3b2214" stroke-width="3.5"/>
+    <path d="M42 40v20M36 45h12M36 55h12" stroke="#3b2214" stroke-width="2.6"/>
+    <path d="M70 39h48M70 50h35M70 61h44" stroke="#5d3a22" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+    <circle cx="143" cy="50" r="12" fill="none" stroke="#b5763e" stroke-width="3"/>
+  </symbol>
+  <symbol id="item-koin" viewBox="0 0 100 100">
+    <circle cx="50" cy="53" r="36" fill="#f3b61f" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="50" cy="53" r="26" fill="none" stroke="#b5763e" stroke-width="3"/>
+    <path d="M44 40v26M38 46h13M37 55h13" stroke="#3b2214" stroke-width="3.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="item-keranjang" viewBox="0 0 100 100">
+    <path d="M15 38h70l-6 48c-1 7-6 10-12 10H33c-6 0-11-3-12-10Z" fill="#c58a4a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M18 51h64M22 67h56M26 82h48" stroke="#3b2214" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+    <path d="M29 38c-2-16 40-24 44-4" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="item-piring" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="55" rx="40" ry="31" fill="#fffaf0" stroke="#3b2214" stroke-width="4"/>
+    <ellipse cx="50" cy="55" rx="27" ry="19" fill="none" stroke="#b5763e" stroke-width="3"/>
+    <path d="M20 40c13-8 47-8 60 0" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round" opacity=".25"/>
+  </symbol>
+  <symbol id="motif-plus" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#f3b61f" stroke="#3b2214" stroke-width="3"/>
+    <path d="M24 12v24M12 24h24" stroke="#3b2214" stroke-width="6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="motif-minus" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#d94a2b" stroke="#3b2214" stroke-width="3"/>
+    <path d="M12 24h24" stroke="#fff5de" stroke-width="6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="motif-kali" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#3f7d3b" stroke="#3b2214" stroke-width="3"/>
+    <path d="m15 15 18 18M33 15 15 33" stroke="#fff5de" stroke-width="5.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="motif-bagi" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#78bad3" stroke="#3b2214" stroke-width="3"/>
+    <path d="M13 24h22" stroke="#fff5de" stroke-width="5.5" stroke-linecap="round"/>
+    <circle cx="24" cy="15" r="3.4" fill="#fff5de"/><circle cx="24" cy="33" r="3.4" fill="#fff5de"/>
+  </symbol>
+  <symbol id="motif-campur" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#e8899a" stroke="#3b2214" stroke-width="3"/>
+    <path d="M24 13v14M17 20h14" stroke="#fff5de" stroke-width="4" stroke-linecap="round"/>
+    <path d="M14 32h20" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="18" cy="28" r="2.4" fill="#3b2214"/><circle cx="30" cy="28" r="2.4" fill="#3b2214"/>
+  </symbol>
+  <symbol id="decor-sun" viewBox="0 0 120 120">
+    <circle cx="60" cy="60" r="30" fill="#ffd35c" stroke="#3b2214" stroke-width="4"/>
+    <g stroke="#3b2214" stroke-width="4" stroke-linecap="round">
+      <path d="M60 10v13M60 97v13M10 60h13M97 60h13M25 25l9 9M86 86l9 9M95 25l-9 9M34 86l-9 9"/>
+    </g>
+    <circle cx="50" cy="55" r="3.5" fill="#3b2214"/><circle cx="70" cy="55" r="3.5" fill="#3b2214"/>
+    <path d="M50 68c5 5 15 5 20 0" fill="none" stroke="#3b2214" stroke-width="3.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="decor-cloud" viewBox="0 0 180 90">
+    <path d="M28 70c-16 0-22-18-10-27-2-17 18-27 30-17 7-16 34-17 42 0 17-3 28 13 20 25 14 1 16 19 3 24Z" fill="#fffaf0" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M40 54c8 4 18 4 28 0M84 50c7 4 16 4 23 0" fill="none" stroke="#78bad3" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+  </symbol>
+  <symbol id="decor-bunting" viewBox="0 0 900 100">
+    <path d="M0 18c130 35 280 42 450 36S760 38 900 15" fill="none" stroke="#3b2214" stroke-width="4"/>
+    <g stroke="#3b2214" stroke-width="3" stroke-linejoin="round">
+      <path d="M40 24l22 34 18-38Z" fill="#d94a2b"/>
+      <path d="M110 32l22 35 19-37Z" fill="#f3b61f"/>
+      <path d="M182 40l21 35 20-36Z" fill="#3f7d3b"/>
+      <path d="M255 45l21 36 21-35Z" fill="#78bad3"/>
+      <path d="M330 48l20 36 22-34Z" fill="#e8899a"/>
+      <path d="M406 50l20 36 22-34Z" fill="#f3b61f"/>
+      <path d="M482 50l20 35 22-34Z" fill="#d94a2b"/>
+      <path d="M558 48l20 35 22-34Z" fill="#3f7d3b"/>
+      <path d="M634 46l21 34 21-35Z" fill="#78bad3"/>
+      <path d="M710 42l22 33 20-37Z" fill="#e8899a"/>
+      <path d="M787 36l22 33 19-38Z" fill="#f3b61f"/>
+      <path d="M858 29l20 32 17-36Z" fill="#d94a2b"/>
+    </g>
+  </symbol>
+  <symbol id="decor-plant" viewBox="0 0 120 150">
+    <path d="M28 140h64l-7-45H35Z" fill="#b5763e" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M32 113h56M37 128h46" stroke="#8a542b" stroke-width="3" stroke-linecap="round"/>
+    <g stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round">
+      <path d="M60 96C50 74 22 66 16 76c-4 10 20 24 44 20Z" fill="#7bb661"/>
+      <path d="M62 96c8-25 37-35 44-25 5 9-17 27-44 25Z" fill="#3f7d3b"/>
+      <path d="M58 97C54 68 66 36 78 34c13 1 2 36-20 63Z" fill="#5a9e4b"/>
+      <path d="M60 97C46 78 30 55 40 42c11-9 26 18 20 55Z" fill="#4b8e43"/>
+    </g>
+    <path d="M58 98c-2 14-3 25-2 36" stroke="#3b2214" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+</defs>
+</svg>
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<defs>
+  <symbol id="stall-tent" viewBox="0 0 320 240">
+    <rect x="28" y="86" width="12" height="128" rx="4" fill="#8a542b" stroke="#3b2214" stroke-width="5"/>
+    <rect x="280" y="88" width="12" height="126" rx="4" fill="#8a542b" stroke="#3b2214" stroke-width="5"/>
+    <path d="M20 78 65 30h190l45 48Z" fill="var(--tent-b,#fff5de)" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M65 30h38l-15 48H20Z" fill="var(--tent-a,#f3b61f)" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M141 30h38l5 48h-53Z" fill="var(--tent-a,#f3b61f)" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M217 30h38l30 48h-63Z" fill="var(--tent-a,#f3b61f)" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M20 78h280c-3 16-17 25-28 20-6 15-21 21-31 8-9 12-24 12-33-2-8 12-22 12-31 0-10 14-25 12-33-2-9 12-24 10-31-5-11 13-25 6-28-8-13 4-24-2-26-11Z" fill="var(--tent-b,#fff5de)" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M48 92c9 7 20 8 29 1M103 95c9 7 20 7 29 0M158 96c9 7 20 7 29 0M213 95c9 7 20 7 29 0M266 92c8 6 17 6 25 1" fill="none" stroke="var(--tent-a,#f3b61f)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M42 162h236v39H42Z" fill="#b5763e" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M49 169h222M49 184h222" stroke="#8a542b" stroke-width="3" stroke-linecap="round"/>
+    <rect x="55" y="141" width="58" height="27" rx="4" fill="#8a542b" stroke="#3b2214" stroke-width="4"/>
+    <rect x="121" y="135" width="72" height="33" rx="4" fill="#a96b36" stroke="#3b2214" stroke-width="4"/>
+    <rect x="204" y="144" width="66" height="24" rx="4" fill="#8a542b" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="73" cy="151" r="9" fill="#d94a2b" stroke="#3b2214" stroke-width="3"/>
+    <circle cx="94" cy="150" r="8" fill="#f3b61f" stroke="#3b2214" stroke-width="3"/>
+    <path d="M132 143c8-11 21-11 29 0 6-9 19-9 25 0" fill="#7bb661" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="220" cy="155" r="8" fill="#f3b61f" stroke="#3b2214" stroke-width="3"/>
+    <circle cx="240" cy="153" r="9" fill="#7bb661" stroke="#3b2214" stroke-width="3"/>
+    <circle cx="257" cy="156" r="7" fill="#d94a2b" stroke="#3b2214" stroke-width="3"/>
+    <path d="M77 203c4-11 15-15 23-11 2 12-8 22-20 22-2 0-4-4-3-11Z" fill="#3f7d3b" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M117 204c-2-12 8-20 18-19 6 9 1 23-11 25-3 0-6-2-7-6Z" fill="#7bb661" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M164 207c-3-12 7-22 18-21 8 8 5 23-7 27-5 1-10-1-11-6Z" fill="#3f7d3b" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="218" cy="207" r="12" fill="#f3b61f" stroke="#3b2214" stroke-width="3.5"/>
+    <circle cx="245" cy="207" r="12" fill="#d94a2b" stroke="#3b2214" stroke-width="3.5"/>
+    <path d="M212 195c5-5 12-5 17-1M239 195c5-5 12-5 17-1" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+
+  <symbol id="item-bayam" viewBox="0 0 100 100">
+    <g stroke="#3b2214" stroke-width="4" stroke-linejoin="round">
+      <path d="M50 78C42 60 24 47 18 51c-7 5 1 25 20 34 5 2 9 0 12-7Z" fill="#3f7d3b"/>
+      <path d="M50 78c8-19 25-31 31-27 7 5-1 26-21 34-5 2-9-1-10-7Z" fill="#4b8e43"/>
+      <path d="M50 77C40 55 39 28 48 20c9-3 17 22 11 56Z" fill="#5a9e4b"/>
+      <path d="M48 76C37 61 27 48 32 38c8-5 19 14 24 34Z" fill="#7bb661"/>
+      <path d="M52 75c4-22 14-40 23-42 8 5 4 28-13 44Z" fill="#3f7d3b"/>
+    </g>
+    <path d="M38 76h25l-3 17H41Z" fill="#e8c98f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M41 83h18" stroke="#b5763e" stroke-width="3" stroke-linecap="round"/>
+    <path d="M48 22c-3 16-3 36 2 53M42 47c3-9 10-16 17-19" fill="none" stroke="#d4e8b2" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="item-kangkung" viewBox="0 0 100 100">
+    <g fill="none" stroke="#3b2214" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M47 84C44 55 36 25 26 16M53 85c3-31 12-57 22-66M50 84c0-28 3-52 7-70" stroke="#4b8e43" stroke-width="4"/>
+    </g>
+    <g stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round">
+      <path d="M26 16 C12 12 8 25 17 33c8 7 18 2 19-8Z" fill="#5a9e4b"/>
+      <path d="M75 18c14-8 22 2 15 13-6 11-19 9-23-2Z" fill="#3f7d3b"/>
+      <path d="M57 15c-3-13 8-19 17-11 8 8 3 20-7 21Z" fill="#7bb661"/>
+      <path d="M40 38c-14-5-20 7-11 16 9 8 20 2 20-8Z" fill="#3f7d3b"/>
+      <path d="M64 45c13-7 22 2 16 13-5 10-17 8-21-2Z" fill="#5a9e4b"/>
+      <path d="M34 62c-12-3-17 8-9 16 8 7 18 1 18-8Z" fill="#7bb661"/>
+      <path d="M63 65c11-5 18 4 12 13-5 8-15 6-17-2Z" fill="#3f7d3b"/>
+    </g>
+    <path d="M38 82h26l-3 16H41Z" fill="#e8c98f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M42 89h18" stroke="#b5763e" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="item-wortel" viewBox="0 0 100 100">
+    <g stroke="#3b2214" stroke-width="4" stroke-linejoin="round">
+      <path d="M30 34c14-10 28-7 31 8 4 19-9 43-21 46-12-8-17-35-10-54Z" fill="#e47a2e"/>
+      <path d="M64 58c9-11 20-10 24 0 3 10-7 22-17 19-6-2-9-10-7-19Z" fill="#f0923c"/>
+      <path d="M33 38c4 17 5 34 2 44M47 37c5 13 6 27 3 38" fill="none" stroke="#f6b06e" stroke-width="3" stroke-linecap="round"/>
+      <path d="M38 34c-6-14-17-20-24-18M44 32c-1-15 2-25 7-30M50 34c7-12 18-17 25-14" fill="none" stroke="#3f7d3b" stroke-width="4" stroke-linecap="round"/>
+      <path d="M14 16c9-1 17 4 24 18-11 3-19-4-24-18ZM51 2c8 6 9 18 6 30-10-5-12-18-6-30ZM75 20c2 9-4 17-18 23-4-10 4-19 18-23Z" fill="#5a9e4b"/>
+    </g>
+    <path d="M28 42c5 14 6 28 4 38" fill="none" stroke="#ffd35c" stroke-width="2.5" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+  <symbol id="item-tomat" viewBox="0 0 100 100">
+    <circle cx="50" cy="56" r="35" fill="#d94a2b" stroke="#3b2214" stroke-width="4"/>
+    <path d="M50 25c-5-10-2-17 5-19 2 8 0 14-5 19Z" fill="#3f7d3b" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M49 25c-13-9-25-5-27 2 10 3 20 4 27-2ZM51 25c12-8 22-4 25 3-10 2-19 2-25-3Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M33 45c5-6 12-9 20-9" fill="none" stroke="#f6a07e" stroke-width="5" stroke-linecap="round" opacity=".65"/>
+    <circle cx="68" cy="42" r="3" fill="#3b2214" opacity=".25"/>
+  </symbol>
+  <symbol id="item-mangga" viewBox="0 0 100 100">
+    <path d="M51 22c17-10 35 3 37 25 2 23-15 42-36 40-22-2-36-23-30-44 4-13 16-21 29-21Z" fill="#f3b61f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M62 23c7-10 20-13 26-8-3 11-13 17-26 8Z" fill="#3f7d3b" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M67 24c-2-9 1-16 7-21" fill="none" stroke="#3b2214" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M36 37c8-7 18-9 26-6" fill="none" stroke="#ffe28a" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+    <path d="M69 61c4 8 3 16-1 22" fill="none" stroke="#e8899a" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+  <symbol id="item-pisang" viewBox="0 0 100 100">
+    <g stroke="#3b2214" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 27c4 34 22 53 55 49 8-1 10 5 4 9-31 17-65-7-70-55-1-7 10-10 11-3Z" fill="#f3b61f"/>
+      <path d="M34 25c7 28 24 43 49 40 6 0 9 6 3 9-26 13-51-6-58-46-1-6 5-8 6-3Z" fill="#ffd35c"/>
+      <path d="M47 24c5 20 18 31 36 30 6 0 7 6 1 8-20 8-37-7-43-35-1-5 5-7 6-3Z" fill="#f3b61f"/>
+      <path d="M19 22c3-7 8-10 14-10M32 20c3-6 7-9 12-9M45 20c3-5 6-8 11-8" fill="none" stroke="#5d3a22" stroke-width="4"/>
+    </g>
+    <path d="M28 31c8 21 22 33 41 37" fill="none" stroke="#fff0a8" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="item-jeruk" viewBox="0 0 100 100">
+    <circle cx="50" cy="56" r="34" fill="#f0923c" stroke="#3b2214" stroke-width="4"/>
+    <path d="M51 22c3-11 12-18 22-17-1 11-10 18-22 17Z" fill="#3f7d3b" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M50 24v-9" stroke="#3b2214" stroke-width="3.5" stroke-linecap="round"/>
+    <g fill="#b5763e" opacity=".55">
+      <circle cx="36" cy="48" r="1.6"/><circle cx="49" cy="40" r="1.6"/><circle cx="62" cy="48" r="1.6"/>
+      <circle cx="34" cy="63" r="1.6"/><circle cx="48" cy="57" r="1.6"/><circle cx="64" cy="64" r="1.6"/>
+      <circle cx="44" cy="73" r="1.6"/><circle cx="59" cy="74" r="1.6"/>
+    </g>
+    <path d="M31 43c5-6 11-9 18-10" fill="none" stroke="#ffc06a" stroke-width="4.5" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="item-apel" viewBox="0 0 100 100">
+    <path d="M51 28c15-9 34 2 35 24 1 24-15 40-35 39-20-1-36-18-34-41 2-21 20-30 34-22Z" fill="#d94a2b" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M51 27c-2-10 2-18 10-22 2 9-1 18-10 22Z" fill="#3f7d3b" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M51 26c-1-7-5-12-12-15" fill="none" stroke="#3b2214" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M33 47c6-8 14-11 22-11" fill="none" stroke="#f6a07e" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+    <circle cx="66" cy="39" r="2.5" fill="#3b2214" opacity=".2"/>
+  </symbol>
+</defs>
+</svg>
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<defs>
+  <symbol id="item-pisang-goreng" viewBox="0 0 100 100">
+    <path d="M12 68c9-13 21-21 34-22 12-1 20 8 25 18 4 8-2 15-11 14-15-2-29 1-39 8-8 6-15-9-9-18Z" fill="#e8a33d" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M33 47c8-9 21-13 33-9 11 3 17 13 16 23-1 8-8 10-14 4-9-9-21-12-33-6-10 5-12-4-2-12Z" fill="#f3b61f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M31 62c9-5 19-5 27 0M52 39c5-5 12-7 18-5" fill="none" stroke="#a96b36" stroke-width="3" stroke-linecap="round" opacity=".65"/>
+    <path d="M25 49c3-4 7-7 12-9M64 72c5-2 9-1 12 2" fill="none" stroke="#ffe28a" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="item-klepon" viewBox="0 0 100 100">
+    <path d="M14 72c14-15 57-18 74-2-8 14-24 21-40 20-14-1-27-8-34-18Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g stroke="#3b2214" stroke-width="4">
+      <circle cx="32" cy="51" r="17" fill="#5a9e4b"/>
+      <circle cx="58" cy="43" r="20" fill="#4b8e43"/>
+      <circle cx="75" cy="60" r="15" fill="#5a9e4b"/>
+    </g>
+    <g fill="#fff5de">
+      <circle cx="27" cy="44" r="1.8"/><circle cx="35" cy="39" r="1.8"/><circle cx="40" cy="51" r="1.8"/><circle cx="24" cy="55" r="1.8"/>
+      <circle cx="54" cy="31" r="1.8"/><circle cx="62" cy="37" r="1.8"/><circle cx="68" cy="49" r="1.8"/><circle cx="48" cy="49" r="1.8"/>
+      <circle cx="80" cy="55" r="1.8"/><circle cx="71" cy="68" r="1.8"/>
+    </g>
+    <path d="M23 64c11-5 45-7 61 0" fill="none" stroke="#3f7d3b" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="item-kue-lapis" viewBox="0 0 100 100">
+    <path d="M20 25h60v55H20Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M20 36h60v11H20ZM20 58h60v11H20Z" fill="#e8899a" stroke="#3b2214" stroke-width="3"/>
+    <path d="M20 47h60v11H20Z" fill="#7bb661" stroke="#3b2214" stroke-width="3"/>
+    <path d="M20 69h60v11H20Z" fill="#e8899a" stroke="#3b2214" stroke-width="3"/>
+    <path d="M26 29h18M31 31v-6" fill="none" stroke="#fff5de" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+    <path d="M77 80c7 3 9 10 4 15-5 4-12 1-13-5-1-4 3-9 9-10Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="item-es-cendol" viewBox="0 0 100 100">
+    <path d="M27 20h46l-6 59c-1 8-6 13-17 13s-16-5-17-13Z" fill="#e7f7ff" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M24 20h52" stroke="#3b2214" stroke-width="5" stroke-linecap="round"/>
+    <path d="M31 38c12 4 27 4 38-1l-4 39c-1 6-5 9-15 9s-14-4-15-9Z" fill="#d9b26a" opacity=".72"/>
+    <g fill="#5a9e4b" stroke="#3b2214" stroke-width="1.7">
+      <circle cx="40" cy="48" r="3"/><circle cx="49" cy="55" r="3"/><circle cx="58" cy="47" r="3"/><circle cx="66" cy="58" r="3"/><circle cx="43" cy="65" r="3"/><circle cx="55" cy="70" r="3"/>
+    </g>
+    <path d="M31 33c11-4 27-4 38 1" fill="none" stroke="#fff5de" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+    <path d="M73 12c-2 18-4 31-8 44" fill="none" stroke="#d94a2b" stroke-width="4" stroke-linecap="round"/>
+    <path d="M35 26h7M47 26h7M59 26h7" stroke="#78bad3" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="item-onde" viewBox="0 0 100 100">
+    <g stroke="#3b2214" stroke-width="4">
+      <circle cx="32" cy="49" r="18" fill="#c58a4a"/>
+      <circle cx="58" cy="41" r="20" fill="#b5763e"/>
+      <circle cx="74" cy="63" r="17" fill="#c58a4a"/>
+    </g>
+    <g fill="#fff5de">
+      <circle cx="27" cy="42" r="1.5"/><circle cx="36" cy="37" r="1.5"/><circle cx="41" cy="48" r="1.5"/><circle cx="25" cy="55" r="1.5"/>
+      <circle cx="54" cy="30" r="1.5"/><circle cx="63" cy="36" r="1.5"/><circle cx="68" cy="47" r="1.5"/><circle cx="49" cy="49" r="1.5"/>
+      <circle cx="79" cy="58" r="1.5"/><circle cx="69" cy="71" r="1.5"/>
+    </g>
+    <path d="M22 62c9-4 18-4 26 0M48 52c7-4 15-4 21 0" fill="none" stroke="#8a542b" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="item-serabi" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="60" rx="38" ry="24" fill="#e8a33d" stroke="#3b2214" stroke-width="4"/>
+    <path d="M18 55c4-13 17-19 32-19s28 6 32 19c-8 13-23 19-32 19s-24-6-32-19Z" fill="#f3b61f" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="50" cy="53" r="12" fill="#8a542b" opacity=".65"/>
+    <path d="M37 48c8-5 19-5 26 0M34 63c9 4 23 4 32 0" fill="none" stroke="#fff5de" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <circle cx="27" cy="57" r="2.2" fill="#b5763e"/><circle cx="73" cy="57" r="2.2" fill="#b5763e"/>
+  </symbol>
+  <symbol id="item-tahu" viewBox="0 0 100 100">
+    <path d="M32 57h37l-8 33H40Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M35 70h30M37 82h26" stroke="#b5763e" stroke-width="3" stroke-linecap="round"/>
+    <g stroke="#3b2214" stroke-width="3.7">
+      <circle cx="38" cy="43" r="14" fill="#f3b61f"/>
+      <circle cx="60" cy="33" r="15" fill="#e8a33d"/>
+      <circle cx="68" cy="55" r="13" fill="#f3b61f"/>
+    </g>
+    <path d="M31 38c5-4 11-5 17-2M53 28c5-3 11-3 15 0M63 50c4-2 8-2 12 0" fill="none" stroke="#ffe28a" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="item-cireng" viewBox="0 0 100 100">
+    <path d="M22 88 46 18" stroke="#b5763e" stroke-width="4" stroke-linecap="round"/>
+    <g stroke="#3b2214" stroke-width="4" stroke-linejoin="round">
+      <path d="M44 16c12-8 23-4 25 7 2 12-12 19-24 12-7-4-7-13-1-19Z" fill="#e8a33d"/>
+      <path d="M63 35c12-8 24-3 25 8 1 12-13 18-24 10-7-5-7-13-1-18Z" fill="#f3b61f"/>
+      <path d="M27 49c11-8 23-4 25 7 2 11-11 18-23 11-7-4-8-12-2-18Z" fill="#e8a33d"/>
+      <path d="M50 57c11-7 22-3 23 8 1 10-12 16-22 9-6-4-6-12-1-17Z" fill="#f3b61f"/>
+    </g>
+    <g fill="#8a542b" opacity=".7">
+      <circle cx="52" cy="23" r="1.6"/><circle cx="58" cy="17" r="1.6"/><circle cx="70" cy="41" r="1.6"/><circle cx="75" cy="47" r="1.6"/>
+      <circle cx="34" cy="56" r="1.6"/><circle cx="40" cy="51" r="1.6"/><circle cx="56" cy="64" r="1.6"/>
+    </g>
+  </symbol>
+  <symbol id="item-kue-cubit" viewBox="0 0 100 100">
+    <path d="M23 48h54l-5 37c-1 6-5 9-11 9H39c-6 0-10-3-11-9Z" fill="#e8899a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M20 48h60" stroke="#3b2214" stroke-width="5" stroke-linecap="round"/>
+    <path d="M28 34c6-9 38-9 44 0 4 7 0 14-8 14H36c-8 0-12-7-8-14Z" fill="#f3b61f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#3b2214">
+      <circle cx="38" cy="39" r="3"/><circle cx="52" cy="35" r="3"/><circle cx="64" cy="40" r="3"/>
+    </g>
+    <path d="M33 58c9-3 22-3 31 0M35 70c8-2 20-2 28 0" fill="none" stroke="#fff5de" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+  <symbol id="item-getuk" viewBox="0 0 100 100">
+    <path d="M19 35h62v42c0 7-5 11-12 11H31c-7 0-12-4-12-11Z" fill="#e8a33d" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M19 47h62v14H19Z" fill="#7bb661" stroke="#3b2214" stroke-width="3"/>
+    <path d="M25 67h50M27 79h46" stroke="#b5763e" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+    <g fill="#fff5de">
+      <circle cx="29" cy="59" r="1.6"/><circle cx="39" cy="55" r="1.6"/><circle cx="50" cy="60" r="1.6"/><circle cx="61" cy="54" r="1.6"/><circle cx="71" cy="59" r="1.6"/>
+    </g>
+    <path d="M25 32c6-9 19-12 29-8 8 3 13 9 17 8" fill="none" stroke="#3b2214" stroke-width="3.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="item-lupis" viewBox="0 0 100 100">
+    <path d="M22 70c10-15 45-19 58-7 7 7 4 18-5 22-16 8-42 7-53-3-5-5-4-8 0-12Z" fill="#8a542b" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M31 62c9-9 30-12 42-6 10 5 12 14 5 20-13 10-36 8-46-2-4-4-4-8-1-12Z" fill="#b5763e" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <g fill="#fff5de">
+      <circle cx="31" cy="60" r="1.5"/><circle cx="40" cy="53" r="1.5"/><circle cx="50" cy="50" r="1.5"/><circle cx="60" cy="51" r="1.5"/><circle cx="69" cy="56" r="1.5"/>
+      <circle cx="36" cy="70" r="1.5"/><circle cx="48" cy="65" r="1.5"/><circle cx="59" cy="64" r="1.5"/><circle cx="70" cy="69" r="1.5"/>
+    </g>
+    <path d="M77 30c8 1 12 7 12 15-7 2-14-3-16-9-1-3 1-5 4-6Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="item-kue-talam" viewBox="0 0 100 100">
+    <path d="M27 49h46l-5 35c-1 6-6 9-18 9s-17-3-18-9Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M28 49h44c0 11-9 17-22 17s-22-6-22-17Z" fill="#7bb661" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M31 41c5-9 33-9 38 0 3 6-2 10-8 10H39c-6 0-11-4-8-10Z" fill="#fff5de" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#fff5de">
+      <circle cx="38" cy="34" r="1.5"/><circle cx="48" cy="31" r="1.5"/><circle cx="58" cy="34" r="1.5"/><circle cx="43" cy="39" r="1.5"/><circle cx="54" cy="39" r="1.5"/>
+    </g>
+    <path d="M35 60c8-3 20-3 28 0M34 73c7-2 17-2 24 0" fill="none" stroke="#b5763e" stroke-width="2.5" stroke-linecap="round" opacity=".45"/>
+  </symbol>
+  <symbol id="item-batagor" viewBox="0 0 100 100">
+    <path d="M17 74c13-8 52-9 64 0l-5 10c-13 7-40 8-54 1Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g stroke="#3b2214" stroke-width="4" stroke-linejoin="round">
+      <path d="M25 62c-5-11 4-21 15-18 5-11 19-11 24-1 12-3 20 8 15 18 9 7 3 18-8 16-5 7-17 7-22 0-6 4-15 2-17-4-9 2-15-5-7-11Z" fill="#e8a33d"/>
+      <path d="M39 40c8-3 15 0 18 7M65 55c5-6 12-6 17-2" fill="none"/>
+    </g>
+    <path d="M35 64c5 5 13 7 20 4M24 51c7-2 12-6 15-12" fill="none" stroke="#a96b36" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+    <g fill="#8a542b" opacity=".7">
+      <circle cx="43" cy="78" r="1.4"/><circle cx="53" cy="80" r="1.4"/><circle cx="63" cy="77" r="1.4"/><circle cx="48" cy="73" r="1.4"/><circle cx="59" cy="72" r="1.4"/>
+    </g>
+  </symbol>
+  <symbol id="item-es-doger" viewBox="0 0 100 100">
+    <path d="M27 22h46l-6 57c-1 9-8 14-17 14s-16-5-17-14Z" fill="#f8c7d3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M25 22h50" stroke="#3b2214" stroke-width="5" stroke-linecap="round"/>
+    <path d="M34 50c9 5 23 5 32-1l-3 26c-1 6-5 9-13 9s-12-3-13-9Z" fill="#e8899a" opacity=".7"/>
+    <g stroke="#3b2214" stroke-width="1.7">
+      <circle cx="41" cy="42" r="4" fill="#f3b61f"/>
+      <circle cx="55" cy="46" r="4" fill="#5a9e4b"/>
+      <circle cx="66" cy="40" r="3.5" fill="#fff5de"/>
+      <circle cx="48" cy="56" r="3.5" fill="#8a542b"/>
+      <circle cx="60" cy="58" r="3.5" fill="#f3b61f"/>
+      <circle cx="42" cy="66" r="3" fill="#fff5de"/>
+    </g>
+    <path d="M69 9c-2 18-4 30-8 45" fill="none" stroke="#78bad3" stroke-width="4" stroke-linecap="round"/>
+    <path d="M31 32c10-3 26-3 36 0" fill="none" stroke="#fff5de" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+  </symbol>
+  <symbol id="item-putu-ayu" viewBox="0 0 100 100">
+    <path d="M25 45h50l-5 39c-1 6-7 9-20 9s-19-3-20-9Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M25 45h50c0 10-10 16-25 16S25 55 25 45Z" fill="#7bb661" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M30 36c7-9 33-9 40 0 4 6-1 11-8 11H38c-7 0-12-5-8-11Z" fill="#fff5de" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#fff5de">
+      <circle cx="37" cy="30" r="1.5"/><circle cx="48" cy="27" r="1.5"/><circle cx="59" cy="31" r="1.5"/><circle cx="43" cy="36" r="1.5"/><circle cx="54" cy="36" r="1.5"/>
+    </g>
+    <path d="M33 59c9-3 23-3 32 0M34 72c8-2 20-2 28 0" fill="none" stroke="#b5763e" stroke-width="2.5" stroke-linecap="round" opacity=".45"/>
+  </symbol>
+</defs>
+</svg>
+<main id="app">
+  <section class="screen" id="screen-intro" aria-labelledby="intro-title">
+    <div class="intro-decor" aria-hidden="true">
+      <svg class="deco-sun"><use href="#decor-sun"/></svg>
+      <svg class="deco-cloud deco-cloud-a"><use href="#decor-cloud"/></svg>
+      <svg class="deco-cloud deco-cloud-b"><use href="#decor-cloud"/></svg>
+      <svg class="deco-bunting"><use href="#decor-bunting"/></svg>
+    </div>
+    <div class="intro-scene">
+      <div class="intro-hero">
+        <p class="kicker">Pasar pagi sudah ramai!</p>
+        <h1 class="game-title" id="intro-title">Lapak<br><span>Kancil</span></h1>
+        <p class="intro-tagline">Bantu Si Kancil melayani pembeli sambil berhitung.</p>
+        <div class="intro-mascot mascot-slot" id="intro-mascot" aria-hidden="true"></div>
+        <div class="intro-tent" aria-hidden="true"><svg viewBox="0 0 320 240"><use href="#stall-tent"/></svg></div>
+      </div>
+      <div class="intro-card">
+        <h2>Halo, asisten baru!</h2>
+        <p>Si Kancil butuh teman jaga lapak. Siapa nama panggilanmu?</p>
+        <form id="form-start" novalidate>
+          <label for="nama">Nama panggilan</label>
+          <input id="nama" name="nama" type="text" maxlength="12" autocomplete="off" placeholder="Contoh: Ayu" aria-describedby="nama-hint">
+          <p class="field-hint" id="nama-hint" role="status"></p>
+          <button class="btn btn-primary btn-wide" type="submit">Buka lapak</button>
+        </form>
+        <p class="microcopy">Tanpa akun. Progres tersimpan di perangkat ini.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-map" aria-labelledby="map-title">
+    <header class="topbar">
+      <div class="brand-small">Lapak Kancil</div>
+      <div class="topbar-spacer"></div>
+      <button class="pill-btn" id="btn-stickers" type="button">
+        <svg class="ui-icon"><use href="#icon-book"/></svg>
+        <span class="pill-label">Stiker</span>
+        <span class="badge" id="sticker-count">0/15</span>
+      </button>
+      <button class="icon-btn" id="btn-sound-map" type="button" data-sound-toggle aria-label="Matikan efek suara" aria-pressed="true">
+        <svg><use href="#icon-sound"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-settings" type="button" aria-label="Pengaturan">
+        <svg><use href="#icon-gear"/></svg>
+      </button>
+    </header>
+    <div class="map-wrap">
+      <div class="map-heading">
+        <p class="kicker">Jalan Pasar Kancil</p>
+        <h1 id="map-title">Pilih lapakmu, <span id="map-name">Sahabat</span>!</h1>
+        <p>Kumpulkan bintang di setiap lapak. Lapak berikutnya terbuka kalau bintangmu cukup.</p>
+      </div>
+      <div class="market-map">
+        <svg class="road-map" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="road-edge" d="M50 -5 C20 10, 80 25, 50 40 C20 55, 82 68, 50 82 C35 89, 40 95, 50 105"/>
+          <path class="road-line" d="M50 -5 C20 10, 80 25, 50 40 C20 55, 82 68, 50 82 C35 89, 40 95, 50 105"/>
+        </svg>
+        <div class="market-decor" aria-hidden="true">
+          <svg class="deco-plant deco-plant-a"><use href="#decor-plant"/></svg>
+          <svg class="deco-plant deco-plant-b"><use href="#decor-plant"/></svg>
+          <svg class="deco-map-cloud"><use href="#decor-cloud"/></svg>
+        </div>
+        <div class="stall-list" id="stall-list"></div>
+        <div class="map-mascot mascot-slot" id="map-mascot" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-stall" aria-labelledby="stall-title">
+    <header class="topbar">
+      <button class="icon-btn" id="btn-stall-back" type="button" aria-label="Kembali ke peta">
+        <svg><use href="#icon-back"/></svg>
+      </button>
+      <h1 class="topbar-title" id="stall-title">Lapak</h1>
+      <div class="topbar-spacer"></div>
+      <div class="star-chip"><svg><use href="#icon-star"/></svg><span id="stall-star-chip">0/15</span></div>
+      <button class="icon-btn" id="btn-stall-sound" type="button" data-sound-toggle aria-label="Matikan efek suara" aria-pressed="true">
+        <svg><use href="#icon-sound"/></svg>
+      </button>
+    </header>
+    <div class="stall-wrap" id="stall-content"></div>
+  </section>
+
+  <section class="screen" id="screen-play" aria-labelledby="play-title">
+    <header class="playbar">
+      <button class="icon-btn" id="btn-play-back" type="button" aria-label="Keluar dari level">
+        <svg><use href="#icon-back"/></svg>
+      </button>
+      <div class="play-progress">
+        <div class="play-progress-top"><span id="play-title">Lapak</span><span id="play-counter">Soal 1/10</span></div>
+        <div class="progress-dots" id="progress-dots" aria-hidden="true"></div>
+      </div>
+      <button class="icon-btn" id="btn-play-read" type="button" aria-label="Bacakan soal" hidden>
+        <svg><use href="#icon-read"/></svg>
+      </button>
+      <button class="icon-btn" id="btn-play-sound" type="button" data-sound-toggle aria-label="Matikan efek suara" aria-pressed="true">
+        <svg><use href="#icon-sound"/></svg>
+      </button>
+    </header>
+    <div class="exit-bar" id="exit-bar" hidden>
+      <p>Keluar dari level? Progres soal ini belum disimpan.</p>
+      <div class="exit-actions">
+        <button class="btn btn-cream" id="btn-exit-cancel" type="button">Lanjut main</button>
+        <button class="btn btn-primary" id="btn-exit-confirm" type="button">Ya, keluar</button>
+      </div>
+    </div>
+    <div class="play-wrap">
+      <div class="story-column">
+        <article class="story-card">
+          <div class="story-meta">
+            <span id="buyer-chip" class="buyer-chip"></span>
+            <span id="level-chip" class="level-chip"></span>
+          </div>
+          <p class="story-text" id="story-text"></p>
+          <p class="question-text" id="question-text"></p>
+          <div class="story-tools">
+            <button class="read-btn" id="btn-read-inline" type="button" hidden>
+              <svg><use href="#icon-read"/></svg>
+              <span>Bacakan soal</span>
+            </button>
+          </div>
+        </article>
+        <div class="visual-tray" id="visual-tray"></div>
+      </div>
+      <aside class="answer-column">
+        <div class="play-mascot mascot-slot" id="play-mascot" aria-hidden="true"></div>
+        <div class="answer-card" id="answer-card"></div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-result" aria-labelledby="result-title">
+    <div class="result-wrap">
+      <div class="result-board">
+        <p class="kicker">Tingkat selesai</p>
+        <h1 id="result-title">Rapi sekali!</h1>
+        <div class="result-stars" id="result-stars"></div>
+        <p class="result-sub" id="result-sub"></p>
+        <div class="result-sticker" id="result-sticker"></div>
+        <div class="result-actions" id="result-actions"></div>
+      </div>
+      <div class="result-mascot mascot-slot" id="result-mascot" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-stickers" aria-labelledby="stickers-title">
+    <header class="topbar">
+      <button class="icon-btn" id="btn-stickers-back" type="button" aria-label="Kembali ke peta">
+        <svg><use href="#icon-back"/></svg>
+      </button>
+      <h1 class="topbar-title" id="stickers-title">Buku Stiker</h1>
+      <div class="topbar-spacer"></div>
+      <div class="star-chip"><svg><use href="#icon-star"/></svg><span id="stickers-count">0/15</span></div>
+    </header>
+    <div class="sticker-page">
+      <div class="sticker-heading">
+        <p class="kicker">Koleksi jajanan pasar</p>
+        <h2>Stiker yang sudah ditempel</h2>
+        <p>Setiap lapak punya tiga stiker. Selesaikan tingkat 1, 3, dan 5 untuk mendapatkannya.</p>
+      </div>
+      <div class="sticker-grid" id="sticker-grid"></div>
+      <p class="sticker-note" id="sticker-note"></p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-settings" aria-labelledby="settings-title">
+    <header class="topbar">
+      <button class="icon-btn" id="btn-settings-back" type="button" aria-label="Kembali ke peta">
+        <svg><use href="#icon-back"/></svg>
+      </button>
+      <h1 class="topbar-title" id="settings-title">Pengaturan</h1>
+    </header>
+    <div class="settings-wrap">
+      <div class="settings-card">
+        <h2>Suara &amp; bacaan</h2>
+        <div class="setting-row">
+          <div><strong>Efek suara</strong><p>Bunyi kecil saat menyentuh benda, menjawab benar, dan naik tingkat.</p></div>
+          <button class="switch" id="btn-sound-settings" type="button" role="switch" aria-checked="true" aria-label="Efek suara"><span class="sr-only">Efek suara</span></button>
+        </div>
+        <div class="setting-row" id="row-auto-read" hidden>
+          <div><strong>Bacakan soal otomatis</strong><p>Soal dibacakan dengan suara Indonesia setiap kali muncul.</p></div>
+          <button class="switch" id="btn-read-settings" type="button" role="switch" aria-checked="false" aria-label="Bacakan soal otomatis"><span class="sr-only">Bacakan soal otomatis</span></button>
+        </div>
+        <p class="settings-note" id="speech-note"></p>
+      </div>
+      <div class="settings-card">
+        <h2>Pemain</h2>
+        <div class="setting-row">
+          <div><strong id="settings-player">Sahabat Kancil</strong><p>Progres disimpan di browser perangkat ini. Tidak ada akun atau login.</p></div>
+        </div>
+        <div class="danger-zone">
+          <h3>Mulai dari awal</h3>
+          <p>Nama, bintang, dan stiker akan dihapus dari perangkat ini.</p>
+          <button class="btn btn-cream" id="btn-reset" type="button">Atur ulang progres</button>
+          <div class="confirm-reset" id="confirm-reset" hidden>
+            <p>Yakin ingin menghapus semua progres?</p>
+            <div class="confirm-actions">
+              <button class="btn btn-cream" id="btn-reset-cancel" type="button">Batal</button>
+              <button class="btn btn-primary" id="btn-reset-confirm" type="button">Ya, hapus</button>
+            </div>
+          </div>
+        </div>
+        <p class="settings-note" id="settings-note"></p>
+      </div>
+      <div class="settings-card settings-about">
+        <h2>Tentang Lapak Kancil</h2>
+        <p>Game hitung untuk anak SD kelas 1–4. Dibuat sebagai satu file yang bisa dibuka tanpa internet; font akan memakai cadangan sistem saat offline.</p>
+        <ul>
+          <li>Lima lapak, masing-masing lima tingkat.</li>
+          <li>Tambah, kurang, kali, bagi, lalu campuran.</li>
+          <li>Tidak ada timer, nyawa, iklan, atau peringkat.</li>
+          <li>Sentuh benda, seret ke piring, atau ketik jawaban di keypad.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="drag-ghost" aria-hidden="true"></div>
+<script>
+'use strict';
+const STORAGE_KEY = 'lapakKancil.v1';
+const LEVELS = 5;
+const QUESTIONS_PER_LEVEL = 10;
+const UNLOCK_STARS = 8;
+const MC_CHANCE = 0.3;
+
+const STALLS = [
+  {id:'tambah', name:'Tambah', motif:'plus', op:'+', tentA:'#f3b61f', tentB:'#fff1c9',
+   blurb:'Hitung sayur dan buah yang datang.', hero:'Sayur mayur dan buah menumpuk di meja. Ayo bantu Kancil menghitung!'},
+  {id:'kurang', name:'Kurang', motif:'minus', op:'-', tentA:'#d94a2b', tentB:'#ffe0c9',
+   blurb:'Hitung yang terjual dan yang tersisa.', hero:'Pembeli sudah datang. Hitung sisa dagangan dengan teliti, ya.'},
+  {id:'kali', name:'Kali', motif:'kali', op:'×', tentA:'#3f7d3b', tentB:'#e8f3c7',
+   blurb:'Lihat kelompok baris dan kolom.', hero:'Kantong-kantong berisi buah ditata rapi. Hitung per kelompok!'},
+  {id:'bagi', name:'Bagi', motif:'bagi', op:'÷', tentA:'#78bad3', tentB:'#e7f7ff',
+   blurb:'Bagikan jajanan sampai rata.', hero:'Piring-piring kosong sudah siap. Bagi jajanan sama banyak, ya.'},
+  {id:'campur', name:'Campur', motif:'campur', op:'mix', tentA:'#e8899a', tentB:'#fff0cf',
+   blurb:'Tambah, kurang, kali, bagi — semua jadi satu!', hero:'Lapak paling ramai di ujung jalan. Semua hitungan ada di sini!'}
+];
+const STALL_BY_ID = Object.fromEntries(STALLS.map(s => [s.id, s]));
+
+const LEVEL_META = {
+  tambah:[
+    {title:'Hitung sampai 10', blurb:'Sentuh benda satu per satu.', hint:'Hitung kelompok pertama, lalu lanjutkan ke kelompok kedua.'},
+    {title:'Sampai 20', blurb:'Ada simpanan sepuluh.', hint:'Isi sepuluh dulu, lalu hitung sisanya.'},
+    {title:'Puluhan', blurb:'Pakai kelompok sepuluh.', hint:'Satu ikat berisi sepuluh. Hitung puluhan lalu satuannya.'},
+    {title:'Dua angka', blurb:'Puluhan dan satuan.', hint:'Jumlahkan puluhannya dulu, lalu satuannya.'},
+    {title:'Pasar ramai', blurb:'Soal cerita panjang.', hint:'Pisahkan angka yang penting, lalu jumlahkan.'}
+  ],
+  kurang:[
+    {title:'Hitung sampai 10', blurb:'Ambil sambil menghitung.', hint:'Mulai dari jumlah besar, lalu mundur.'},
+    {title:'Sampai 20', blurb:'Mundur dari dua angka.', hint:'Kurangi sepuluh dulu kalau ada, lalu sisanya.'},
+    {title:'Pinjam sepuluh', blurb:'Awas, satuan kurang.', hint:'Pinjam satu puluhan untuk membantu satuan.'},
+    {title:'Dua angka', blurb:'Puluhan dan satuan.', hint:'Kurangi puluhannya, lalu satuannya.'},
+    {title:'Uang pasar', blurb:'Hitung kembalian.', hint:'Kembalian = uang dibayar dikurangi harga.'}
+  ],
+  kali:[
+    {title:'Tabel 2, 5, 10', blurb:'Mulai dari yang mudah.', hint:'Hitung per baris: 2, 4, 6, ... atau 5, 10, 15, ...'},
+    {title:'Tabel 3 & 4', blurb:'Tambah satu kelompok.', hint:'Hitung per baris, jangan lupa baris terakhir.'},
+    {title:'Tabel 6 & 7', blurb:'Kelompok yang lebih besar.', hint:'Baris ini berisi 6 atau 7. Hitung loncat per baris.'},
+    {title:'Tabel 8 & 9', blurb:'Hampir sampai sepuluh.', hint:'Hitung per baris dengan sabar. Kamu bisa!'},
+    {title:'Semua tabel', blurb:'Campuran tabel 2–10.', hint:'Cari tabel yang kamu kenal, lalu hitung per baris.'}
+  ],
+  bagi:[
+    {title:'Bagi 2, 5, 10', blurb:'Bagi ke piring.', hint:'Ingat perkalian: pembagi × ? = jumlah benda.'},
+    {title:'Bagi 3 & 4', blurb:'Seret sampai rata.', hint:'Setiap piring harus mendapat jumlah yang sama.'},
+    {title:'Bagi 6 & 7', blurb:'Kelompok kecil.', hint:'Coba satu per satu ke setiap piring.'},
+    {title:'Bagi 8 & 9', blurb:'Hampir penuh.', hint:'Periksa dengan perkalian setelah selesai.'},
+    {title:'Semua pembagian', blurb:'Gabungan semua tabel.', hint:'Gunakan fakta perkalian yang sudah kamu hafal.'}
+  ],
+  campur:[
+    {title:'Tambah & kurang', blurb:'Dua operasi pertama.', hint:'Baca ceritanya pelan-pelan. Apa yang ditanyakan?'},
+    {title:'Kali & bagi', blurb:'Kelompok dan piring.', hint:'Kali berarti kelompok; bagi berarti dibagi rata.'},
+    {title:'Empat operasi', blurb:'Semua jenis soal.', hint:'Pilih cara yang paling mudah untukmu.'},
+    {title:'Dua langkah', blurb:'Hitung dua kali.', hint:'Selesaikan langkah pertama, lalu langkah kedua.'},
+    {title:'Pasar besar', blurb:'Tantangan terakhir.', hint:'Tulis dulu yang diketahui, lalu hitung.'}
+  ]
+};
+
+const BUYERS = ['Bu Ani','Pak Budi','Sari','Dimas','Bu Rina','Pak Joko','Nadia','Bayu','Bu Siti','Adik Tio','Kak Lala','Pak Rahmat'];
+const CONTAINERS = ['kantong','keranjang kecil','bungkus','krat','wadah','piring'];
+const PRAISES = [
+  'Tepat! Kamu teliti sekali.',
+  'Betul. Kancil ikut senang.',
+  'Pas! Hitunganmu rapi.',
+  'Bagus, kamu tidak terburu-buru.',
+  'Wah, jawabannya kena.',
+  'Betul sekali. Lanjut, yuk.',
+  'Kamu menghitung dengan sabar.',
+  'Tepat! Pembeli senang dilayani.'
+];
+const RETRY_LINES = [
+  'Hampir! Coba hitung sekali lagi, ya.',
+  'Tidak apa-apa. Kancil bantu dengan gambar.',
+  'Sedikit lagi. Lihat kelompoknya dulu.',
+  'Ayo coba sekali lagi, pelan-pelan.',
+  'Belum tepat, tapi kamu sudah dekat.'
+];
+const ITEM = {
+  bayam:{label:'bayam', unit:'ikat', icon:'item-bayam', cat:'sayur'},
+  kangkung:{label:'kangkung', unit:'ikat', icon:'item-kangkung', cat:'sayur'},
+  wortel:{label:'wortel', unit:'bonggol', icon:'item-wortel', cat:'sayur'},
+  tomat:{label:'tomat', unit:'buah', icon:'item-tomat', cat:'sayur'},
+  mangga:{label:'mangga', unit:'buah', icon:'item-mangga', cat:'buah'},
+  pisang:{label:'pisang', unit:'buah', icon:'item-pisang', cat:'buah'},
+  jeruk:{label:'jeruk', unit:'buah', icon:'item-jeruk', cat:'buah'},
+  apel:{label:'apel', unit:'buah', icon:'item-apel', cat:'buah'},
+  pisangGoreng:{label:'pisang goreng', unit:'buah', icon:'item-pisang-goreng', cat:'jajanan'},
+  klepon:{label:'klepon', unit:'butir', icon:'item-klepon', cat:'jajanan'},
+  onde:{label:'onde-onde', unit:'butir', icon:'item-onde', cat:'jajanan'},
+  serabi:{label:'serabi', unit:'buah', icon:'item-serabi', cat:'jajanan'},
+  tahu:{label:'tahu bulat', unit:'buah', icon:'item-tahu', cat:'jajanan'},
+  cireng:{label:'cireng', unit:'buah', icon:'item-cireng', cat:'jajanan'}
+};
+const ITEM_KEYS = Object.keys(ITEM);
+const ITEM_GROUPS = [
+  ['bayam','kangkung'],
+  ['wortel','tomat'],
+  ['mangga','pisang','jeruk','apel'],
+  ['pisangGoreng','serabi','tahu','cireng'],
+  ['klepon','onde']
+];
+const STICKERS = [
+  {id:'klepon', name:'Klepon', icon:'item-klepon', stall:'tambah', level:0},
+  {id:'onde-onde', name:'Onde-onde', icon:'item-onde', stall:'tambah', level:2},
+  {id:'serabi', name:'Serabi', icon:'item-serabi', stall:'tambah', level:4},
+  {id:'kue-lapis', name:'Kue Lapis', icon:'item-kue-lapis', stall:'kurang', level:0},
+  {id:'getuk', name:'Getuk', icon:'item-getuk', stall:'kurang', level:2},
+  {id:'lupis', name:'Lupis', icon:'item-lupis', stall:'kurang', level:4},
+  {id:'es-cendol', name:'Es Cendol', icon:'item-es-cendol', stall:'kali', level:0},
+  {id:'pisang-goreng', name:'Pisang Goreng', icon:'item-pisang-goreng', stall:'kali', level:2},
+  {id:'tahu-bulat', name:'Tahu Bulat', icon:'item-tahu', stall:'kali', level:4},
+  {id:'kue-cubit', name:'Kue Cubit', icon:'item-kue-cubit', stall:'bagi', level:0},
+  {id:'cireng', name:'Cireng', icon:'item-cireng', stall:'bagi', level:2},
+  {id:'kue-talam', name:'Kue Talam', icon:'item-kue-talam', stall:'bagi', level:4},
+  {id:'batagor', name:'Batagor', icon:'item-batagor', stall:'campur', level:0},
+  {id:'es-doger', name:'Es Doger', icon:'item-es-doger', stall:'campur', level:2},
+  {id:'putu-ayu', name:'Putu Ayu', icon:'item-putu-ayu', stall:'campur', level:4}
+];
+const STICKER_BY_ID = Object.fromEntries(STICKERS.map(s => [s.id, s]));
+
+function rnd(n){ return Math.floor(Math.random() * n); }
+function randInt(min, max){ return min + rnd(max - min + 1); }
+function pick(list){ return list[rnd(list.length)]; }
+function chance(p){ return Math.random() < p; }
+function shuffle(list){
+  const arr = list.slice();
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = rnd(i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+function unique(list){ return Array.from(new Set(list)); }
+function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+function formatRp(n){ return 'Rp' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+function itemOf(key){ return ITEM[key] || ITEM.mangga; }
+function itemLabel(key, n){
+  const it = itemOf(key);
+  return it.label;
+}
+function pairForStory(){
+  const group = pick(ITEM_GROUPS);
+  const a = pick(group);
+  let b = pick(group);
+  if(group.length > 1){
+    let guard = 0;
+    while(b === a && guard++ < 20) b = pick(group);
+  }
+  return [a, b];
+}
+function singleItem(cat){
+  let pool = ITEM_KEYS;
+  if(cat) pool = ITEM_KEYS.filter(k => ITEM[k].cat === cat);
+  return pick(pool.length ? pool : ITEM_KEYS);
+}
+function tableSetFor(level, stall){
+  if(stall === 'campur'){
+    if(level <= 0) return [2,5,10];
+    if(level === 1) return [2,3,4,5,10];
+    return [2,3,4,5,6,7,8,9,10];
+  }
+  return [
+    [2,5,10],
+    [3,4],
+    [6,7],
+    [8,9],
+    [2,3,4,5,6,7,8,9,10]
+  ][clamp(level,0,4)];
+}
+function divisionSetFor(level, stall){
+  if(stall === 'campur'){
+    if(level <= 0) return [2,5,10];
+    if(level === 1) return [2,3,4,5,10];
+    return [2,3,4,5,6,7,8,9,10];
+  }
+  return [
+    [2,5,10],
+    [3,4],
+    [6,7],
+    [8,9],
+    [2,3,4,5,6,7,8,9,10]
+  ][clamp(level,0,4)];
+}
+const ANGKA_UCAP = ['nol','satu','dua','tiga','empat','lima','enam','tujuh','delapan','sembilan','sepuluh','sebelas'];
+function spokenNumber(n){
+  n = Math.floor(Math.abs(n));
+  if(n <= 11) return ANGKA_UCAP[n];
+  if(n < 20) return ANGKA_UCAP[n - 10] + ' belas';
+  if(n < 100) return ANGKA_UCAP[Math.floor(n / 10)] + ' puluh' + (n % 10 ? ' ' + ANGKA_UCAP[n % 10] : '');
+  if(n < 200) return 'seratus' + (n % 100 ? ' ' + spokenNumber(n % 100) : '');
+  if(n < 1000) return ANGKA_UCAP[Math.floor(n / 100)] + ' ratus' + (n % 100 ? ' ' + spokenNumber(n % 100) : '');
+  if(n < 2000) return 'seribu' + (n % 1000 ? ' ' + spokenNumber(n % 1000) : '');
+  return ANGKA_UCAP[Math.floor(n / 1000)] + ' ribu' + (n % 1000 ? ' ' + spokenNumber(n % 1000) : '');
+}
+function spokenRp(n){ return spokenNumber(n) + ' rupiah'; }
+function speechText(q){
+  let s = q.story + ' ' + q.question;
+  if(q.money){
+    s = s.replace(/Rp([\d.]+)/g, function(_, num){ return spokenRp(Number(num.replace(/\./g, ''))); });
+  }
+  return s.replace(/×/g, ' kali ').replace(/÷/g, ' bagi ').replace(/\s+/g, ' ').trim();
+}
+function catNoun(itemKeyA, itemKeyB){
+  const a = itemOf(itemKeyA), b = itemOf(itemKeyB || itemKeyA);
+  if(a.cat === b.cat) return {sayur:'sayur', buah:'buah', jajanan:'jajanan'}[a.cat];
+  return 'dagangan';
+}
+function storyTambah(a, b, itemA, itemB, buyer, variant){
+  const A = itemOf(itemA), B = itemOf(itemB);
+  const noun = catNoun(itemA, itemB);
+  const v = variant % 4;
+  if(v === 0){
+    return {
+      story: `${buyer} membeli ${a} ${A.unit} ${A.label} dan ${b} ${B.unit} ${B.label}.`,
+      question: `Berapa banyak ${noun} yang dibeli ${buyer}?`
+    };
+  }
+  if(v === 1){
+    return {
+      story: `Di keranjang ${buyer} ada ${a} ${A.unit} ${A.label}. Lalu ${buyer} menambahkan ${b} ${B.unit} ${B.label}.`,
+      question: `Berapa banyak ${noun} di keranjang sekarang?`
+    };
+  }
+  if(v === 2){
+    return {
+      story: `Lapak Si Kancil menerima ${a} ${A.unit} ${A.label} dari kebun pagi ini. Siangnya datang lagi ${b} ${B.unit} ${B.label}.`,
+      question: 'Berapa banyak yang diterima lapak hari ini?'
+    };
+  }
+  return {
+    story: `Pak Rudi menata ${a} ${A.unit} ${A.label} di kiri dan ${b} ${B.unit} ${B.label} di kanan meja.`,
+    question: 'Berapa jumlah semuanya?'
+  };
+}
+function storyKurang(a, b, itemKey, buyer, variant, money){
+  const I = itemOf(itemKey);
+  if(money){
+    return {
+      story: `Ibu memberi ${buyer} uang ${formatRp(a)}. ${buyer} membeli jajanan seharga ${formatRp(b)}.`,
+      question: `Berapa uang kembalian ${buyer}?`
+    };
+  }
+  const v = variant % 3;
+  if(v === 0){
+    return {
+      story: `${buyer} membawa ${a} ${I.unit} ${I.label} ke lapak. Sebanyak ${b} ${I.unit} sudah terjual.`,
+      question: `Berapa ${I.unit} ${I.label} yang tersisa?`
+    };
+  }
+  if(v === 1){
+    return {
+      story: `Di keranjang ada ${a} ${I.unit} ${I.label}. ${buyer} membeli ${b} ${I.unit}.`,
+      question: `Berapa ${I.unit} ${I.label} yang masih ada?`
+    };
+  }
+  return {
+    story: `Lapak Si Kancil punya ${a} ${I.unit} ${I.label}. Karena ada yang rusak, ${b} ${I.unit} dibuang.`,
+    question: `Berapa ${I.unit} ${I.label} yang masih bagus?`
+  };
+}
+function storyKali(a, b, itemKey, buyer, variant){
+  const I = itemOf(itemKey);
+  const cont = pick(CONTAINERS);
+  const v = variant % 4;
+  if(v === 0){
+    return {
+      story: `Ada ${a} ${cont} di meja. Setiap ${cont} berisi ${b} ${I.unit} ${I.label}.`,
+      question: `Berapa ${I.unit} ${I.label} seluruhnya?`
+    };
+  }
+  if(v === 1){
+    return {
+      story: `${buyer} membeli ${a} bungkus jajanan. Setiap bungkus berisi ${b} ${I.unit} ${I.label}.`,
+      question: `Berapa ${I.unit} ${I.label} yang dibeli ${buyer}?`
+    };
+  }
+  if(v === 2){
+    return {
+      story: `Si Kancil menata ${I.label} dalam ${a} baris. Setiap baris berisi ${b} ${I.unit} ${I.label}.`,
+      question: `Berapa ${I.label} yang ditata?`
+    };
+  }
+  return {
+    story: `Si Kancil menyiapkan jajanan untuk ${a} pembeli. Setiap pembeli mendapat ${b} ${I.unit} ${I.label}.`,
+    question: `Berapa ${I.unit} ${I.label} yang harus disiapkan?`
+  };
+}
+function storyBagi(a, b, itemKey, buyer, variant){
+  const I = itemOf(itemKey);
+  const v = variant % 4;
+  if(v === 0){
+    return {
+      story: `${a} ${I.unit} ${I.label} dibagi rata ke ${b} piring.`,
+      question: `Berapa ${I.unit} ${I.label} di setiap piring?`
+    };
+  }
+  if(v === 1){
+    return {
+      story: `${buyer} punya ${a} ${I.unit} ${I.label}. Ia membagi semuanya sama banyak kepada ${b} teman.`,
+      question: `Berapa ${I.unit} ${I.label} untuk setiap teman?`
+    };
+  }
+  if(v === 2){
+    return {
+      story: `Si Kancil membuat ${a} ${I.unit} ${I.label}. Semuanya dimasukkan sama banyak ke ${b} kotak.`,
+      question: 'Berapa isi setiap kotak?'
+    };
+  }
+  return {
+    story: `Ada ${a} ${I.unit} ${I.label} dan ${b} piring kosong. Semua akan dibagi rata.`,
+    question: `Berapa ${I.unit} ${I.label} di setiap piring?`
+  };
+}
+
+function buildHint(q){
+  if(q.hint) return q.hint;
+  if(q.money) return 'Kembalian dihitung dari uang yang dibayar dikurangi harga jajanan.';
+  if(q.twoStep) return 'Selesaikan langkah pertama dulu, lalu gunakan hasilnya untuk langkah kedua.';
+  if(q.op === '+') return q.a + q.b <= 20
+    ? `Mulai dari ${q.a}, lalu hitung maju ${q.b} langkah. Kamu bisa menyentuh bendanya.`
+    : 'Pisahkan puluhan dan satuan. Jumlahkan puluhannya dulu, lalu satuannya.';
+  if(q.op === '-') return q.a <= 20
+    ? `Mulai dari ${q.a}, lalu mundur ${q.b} langkah. Bisa disentuh satu per satu.`
+    : `Kurangi ${q.b} dari ${q.a} pelan-pelan. Bisa dipisah menjadi puluhan dan satuan.`;
+  if(q.op === '×') return `Ada ${q.a} baris, setiap baris berisi ${q.b}. Hitung loncat per baris.`;
+  if(q.op === '÷') return `Ingat perkalian: ${q.b} × ? = ${q.a}. ${q.a <= 30 ? 'Seret benda ke piring sampai rata.' : 'Kelompokkan benda sepuluh-sepuluh agar mudah.'}`;
+  return 'Baca ceritanya sekali lagi. Cari angka yang perlu dihitung.';
+}
+function buildSteps(q){
+  if(q.steps) return q.steps;
+  if(q.money){
+    const diff = q.a - q.b;
+    return [
+      {text:`Uang yang dibayar: ${formatRp(q.a)}.`},
+      {text:`Harga jajanan: ${formatRp(q.b)}.`},
+      {text:`Kembalian: ${formatRp(q.a)} − ${formatRp(q.b)} = ${formatRp(diff)}.`, answer:true}
+    ];
+  }
+  if(q.twoStep){
+    return q.steps || [{text:`Jawaban akhirnya ${q.answer}.`, answer:true}];
+  }
+  if(q.op === '+'){
+    const ans = q.a + q.b;
+    if(q.a + q.b <= 20){
+      return [
+        {text:`Hitung kelompok pertama: ${q.a}.`},
+        {text:`Hitung maju ${q.b} langkah dari ${q.a}.`},
+        {text:`Jadi ${q.a} + ${q.b} = ${ans}.`, answer:true}
+      ];
+    }
+    const ta = Math.floor(q.a / 10) * 10, oa = q.a % 10;
+    const tb = Math.floor(q.b / 10) * 10, ob = q.b % 10;
+    return [
+      {text:`Pisahkan bilangan: ${q.a} = ${ta} + ${oa}; ${q.b} = ${tb} + ${ob}.`},
+      {text:`Jumlahkan puluhan: ${ta} + ${tb} = ${ta + tb}.`},
+      {text:`Jumlahkan satuan: ${oa} + ${ob} = ${oa + ob}.`},
+      {text:`Gabungkan: ${ta + tb} + ${oa + ob} = ${ans}.`, answer:true}
+    ];
+  }
+  if(q.op === '-'){
+    const ans = q.a - q.b;
+    if(q.a <= 20){
+      return [
+        {text:`Mulai dari ${q.a}.`},
+        {text:`Mundur ${q.b} langkah.`},
+        {text:`Jadi ${q.a} − ${q.b} = ${ans}.`, answer:true}
+      ];
+    }
+    const tb = Math.floor(q.b / 10) * 10, ob = q.b % 10;
+    const afterTens = q.a - tb;
+    return [
+      {text:`Kurangi puluhannya dulu: ${q.a} − ${tb} = ${afterTens}.`},
+      {text:`Kurangi satuannya: ${afterTens} − ${ob} = ${ans}.`},
+      {text:`Jadi ${q.a} − ${q.b} = ${ans}.`, answer:true}
+    ];
+  }
+  if(q.op === '×'){
+    const counts = [];
+    for(let i = 1; i <= q.a; i++) counts.push(i * q.b);
+    return [
+      {text:`Hitung loncat per baris: ${counts.join(', ')}.`},
+      {text:`Ada ${q.a} kelompok berisi ${q.b}.`},
+      {text:`Jadi ${q.a} × ${q.b} = ${q.answer}.`, answer:true}
+    ];
+  }
+  if(q.op === '÷'){
+    return [
+      {text:`Siapkan ${q.b} piring.`},
+      {text:`Bagikan ${q.a} benda satu per satu sampai rata.`},
+      {text:`Periksa: ${q.b} × ${q.answer} = ${q.a}. Jadi tiap piring berisi ${q.answer}.`, answer:true}
+    ];
+  }
+  return [{text:`Jawabannya ${q.answer}.`, answer:true}];
+}
+function candidateErrors(q){
+  const ans = q.answer;
+  const errs = [];
+  function add(v){ if(Number.isInteger(v) && v >= 0 && v !== ans) errs.push(v); }
+  if(q.money){
+    add(ans + 1000); add(ans - 1000); add(ans + 2000); add(q.a); add(q.b);
+  } else if(q.twoStep){
+    if(q.kind === 'kaliKurang'){
+      add(q.a * q.b); add(q.a * q.b - q.c + 1); add(q.a * q.b - q.c - 1); add(q.a + q.b + q.c); add(q.a * q.b + q.c);
+    } else if(q.kind === 'tambahKurang'){
+      add(q.a + q.b); add(q.a + q.b - q.c + 1); add(q.a + q.b - q.c - 1); add(q.a + q.b + q.c); add(q.a - q.b - q.c);
+    } else if(q.kind === 'kaliTambah'){
+      add(q.a * q.b); add(q.a * q.b + q.c + 1); add(q.a * q.b + q.c - 1); add(q.a + q.b + q.c); add(q.a * q.b - q.c);
+    }
+  } else if(q.op === '+'){
+    add(ans + 1); add(ans - 1); add(ans + 2); add(ans - 2); add(ans + 10); add(ans - 10); add(q.a); add(q.b); add(Math.abs(q.a - q.b));
+  } else if(q.op === '-'){
+    add(ans + 1); add(ans - 1); add(ans + 2); add(ans - 2); add(ans + 10); add(ans - 10); add(q.a + q.b); add(q.b); add(q.a);
+  } else if(q.op === '×'){
+    add(ans + q.a); add(ans - q.a); add(ans + q.b); add(ans - q.b); add(ans + 1); add(ans - 1); add(ans + 10); add(ans - 10); add(q.a + q.b);
+  } else if(q.op === '÷'){
+    add(ans + 1); add(ans - 1); add(ans + 2); add(ans - 2); add(q.b); add(q.a); add(q.a - q.b); add(q.b * (ans + 1)); add(q.b * (ans - 1));
+  }
+  for(let d = 1; errs.length < 14 && d <= 40; d++){ add(ans + d); add(Math.max(0, ans - d)); }
+  return unique(errs).slice(0, 14);
+}
+function buildOptions(q){
+  const errors = shuffle(candidateErrors(q).filter(function(value){ return q.money || value <= 100; })).slice(0, 3);
+  const options = shuffle([q.answer].concat(errors));
+  while(options.length < 4){
+    const extra = q.answer + options.length + 3;
+    if(!options.includes(extra)) options.push(extra);
+  }
+  return options;
+}
+let __questionSerial = 0;
+function finalizeQuestion(q){
+  q.id = 'q' + (++__questionSerial) + '-' + Date.now().toString(36);
+  q.answer = Math.round(q.answer);
+  q.answerText = q.money ? formatRp(q.answer) : String(q.answer);
+  q.hint = buildHint(q);
+  q.steps = buildSteps(q);
+  q.speech = speechText(q);
+  if(q.mc) q.options = buildOptions(q);
+  if(!q.visual) q.visual = {type:'story', item:itemOf(q.item || 'mangga').icon};
+  return q;
+}
+function parseFactKey(key){
+  const p = String(key || '').split(':');
+  if(p[0] === 'dua') return {type:'dua', kind:p[1], a:Number(p[2]), b:Number(p[3]), c:Number(p[4])};
+  return {type:p[0], a:Number(p[1]), b:Number(p[2])};
+}
+const ADD_CFG = [
+  {aMin:2,aMax:8,bMin:1,bMax:8,sum:10,minSum:4},
+  {aMin:5,aMax:12,bMin:4,bMax:12,sum:20,minSum:10},
+  {aMin:12,aMax:78,bMin:5,bMax:20,sum:100,minSum:20},
+  {aMin:15,aMax:79,bMin:12,bMax:75,sum:100,minSum:30},
+  {aMin:10,aMax:89,bMin:10,bMax:89,sum:100,minSum:25}
+];
+function generateTambah(stallId, level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  let a, b;
+  if(Number.isFinite(opts.a) && Number.isFinite(opts.b)){
+    a = opts.a; b = opts.b;
+  } else {
+    const cfg = ADD_CFG[L];
+    let guard = 0;
+    do {
+      a = randInt(cfg.aMin, cfg.aMax);
+      b = randInt(cfg.bMin, cfg.bMax);
+      guard++;
+    } while((a + b > cfg.sum || a + b < cfg.minSum) && guard < 120);
+    if(a + b > cfg.sum){
+      b = Math.max(cfg.bMin, cfg.sum - a);
+      if(a + b > cfg.sum) a = cfg.sum - b;
+    }
+  }
+  const pair = (opts.items && opts.items.length >= 2) ? opts.items : pairForStory();
+  const itemA = pair[0], itemB = pair[1];
+  const buyer = opts.buyer || pick(BUYERS);
+  const variant = Number.isFinite(opts.variant) ? opts.variant : rnd(4);
+  const st = storyTambah(a, b, itemA, itemB, buyer, variant);
+  return {
+    stallId, level:L, op:'+', a, b, answer:a + b,
+    item:itemA, items:[itemA,itemB], buyer,
+    story:st.story, question:st.question,
+    visual:{type:'count-add', groups:[a,b], items:[itemA,itemB]},
+    factKey:`tambah:${a}:${b}`,
+    focusTable:null,
+    money:false,
+    twoStep:false,
+    mc:false
+  };
+}
+function generateKurang(stallId, level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  const money = opts.money === true || (opts.money !== false && L === 4 && !opts.review && chance(0.55));
+  let a, b;
+  if(money){
+    if(Number.isFinite(opts.a) && Number.isFinite(opts.b)){
+      a = opts.a; b = opts.b;
+    } else {
+      b = randInt(2, 7) * 1000;
+      a = b + randInt(1, 3) * 1000;
+      if(a > 9000){
+        b = 2000;
+        a = 5000;
+      }
+    }
+  } else if(Number.isFinite(opts.a) && Number.isFinite(opts.b)){
+    a = opts.a; b = opts.b;
+  } else {
+    const ranges = [
+      [3,10,1,8], [10,20,2,18], [21,99,2,19], [35,99,10,88], [20,99,5,96]
+    ];
+    const rr = ranges[L];
+    let guard = 0;
+    do {
+      a = randInt(rr[0], rr[1]);
+      b = randInt(rr[2], Math.max(rr[2], Math.min(rr[3], a - 2)));
+      guard++;
+      if(L === 2 && (a % 10) < (b % 10) && guard < 40) b = Math.max(2, b - 1);
+    } while((b >= a || a - b < 1) && guard < 80);
+    if(b >= a) b = Math.max(1, a - 1);
+  }
+  const item = opts.item || singleItem(money ? 'jajanan' : null);
+  const buyer = opts.buyer || pick(BUYERS);
+  const variant = Number.isFinite(opts.variant) ? opts.variant : rnd(3);
+  const st = storyKurang(a, b, item, buyer, variant, money);
+  return {
+    stallId, level:L, op:'-', a, b, answer:a - b,
+    item, buyer,
+    story:st.story, question:st.question,
+    visual:money ? {type:'money', paid:a, price:b, item} : {type:'count-sub', start:a, remove:b, item},
+    factKey:money ? `uang:${a}:${b}` : `kurang:${a}:${b}`,
+    focusTable:null,
+    money,
+    twoStep:false,
+    mc:false
+  };
+}
+function generateKali(stallId, level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  const set = (opts.tables && opts.tables.length) ? opts.tables : tableSetFor(L, stallId);
+  let a, b;
+  if(Number.isFinite(opts.a) && Number.isFinite(opts.b)){
+    a = opts.a; b = opts.b;
+  } else {
+    a = pick(set);
+    b = randInt(2, 10);
+  }
+  const item = opts.item || singleItem();
+  const buyer = opts.buyer || pick(BUYERS);
+  const variant = Number.isFinite(opts.variant) ? opts.variant : rnd(4);
+  const st = storyKali(a, b, item, buyer, variant);
+  return {
+    stallId, level:L, op:'×', a, b, answer:a * b,
+    item, buyer,
+    story:st.story, question:st.question,
+    visual:{type:'array', rows:a, cols:b, item},
+    factKey:`kali:${a}:${b}`,
+    focusTable:a,
+    money:false,
+    twoStep:false,
+    mc:false
+  };
+}
+function generateBagi(stallId, level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  const set = (opts.tables && opts.tables.length) ? opts.tables : divisionSetFor(L, stallId);
+  let total, divisor, quotient;
+  if(Number.isFinite(opts.a) && Number.isFinite(opts.b)){
+    total = opts.a; divisor = opts.b;
+    quotient = total / divisor;
+  } else {
+    divisor = pick(set);
+    quotient = randInt(2, 10);
+    total = divisor * quotient;
+  }
+  if(!Number.isInteger(quotient) || quotient < 2){
+    divisor = 2;
+    quotient = 4;
+    total = 8;
+  }
+  const item = opts.item || singleItem();
+  const buyer = opts.buyer || pick(BUYERS);
+  const variant = Number.isFinite(opts.variant) ? opts.variant : rnd(4);
+  const st = storyBagi(total, divisor, item, buyer, variant);
+  return {
+    stallId, level:L, op:'÷', a:total, b:divisor, answer:quotient,
+    item, buyer,
+    story:st.story, question:st.question,
+    visual: total <= 30
+      ? {type:'share', total, divisor, item}
+      : {type:'group-share', total, divisor, item},
+    factKey:`bagi:${total}:${divisor}`,
+    focusTable:divisor,
+    money:false,
+    twoStep:false,
+    mc:false
+  };
+}
+function generateTwoStep(level, opts){
+  opts = opts || {};
+  const L = clamp(level, 2, 4);
+  const kinds = L >= 4 ? ['kaliKurang','tambahKurang','kaliTambah'] : ['kaliKurang','tambahKurang'];
+  const kind = opts.kind || pick(kinds);
+  let a, b, c, answer;
+  if(Number.isFinite(opts.a) && Number.isFinite(opts.b) && Number.isFinite(opts.c)){
+    a = opts.a; b = opts.b; c = opts.c;
+  } else if(kind === 'kaliKurang'){
+    a = randInt(2, 7);
+    b = randInt(3, 9);
+    const total = a * b;
+    c = randInt(1, Math.max(1, Math.min(total - 2, 20)));
+  } else if(kind === 'tambahKurang'){
+    do {
+      a = randInt(12, 60);
+      b = randInt(8, 30);
+    } while(a + b > 100);
+    c = randInt(2, Math.max(2, Math.min(a + b - 2, 30)));
+  } else {
+    a = randInt(2, 7);
+    b = randInt(3, 9);
+    const total = a * b;
+    c = randInt(2, Math.max(2, Math.min(20, 98 - total)));
+  }
+  if(kind === 'kaliKurang') answer = a * b - c;
+  else if(kind === 'tambahKurang') answer = a + b - c;
+  else answer = a * b + c;
+  if(answer < 1 || answer > 100){
+    if(kind === 'kaliKurang'){ a = 3; b = 4; c = 2; answer = 10; }
+    else if(kind === 'tambahKurang'){ a = 20; b = 10; c = 5; answer = 25; }
+    else { a = 3; b = 4; c = 5; answer = 17; }
+  }
+  const item = opts.item || singleItem();
+  const buyer = opts.buyer || pick(BUYERS);
+  const I = itemOf(item);
+  let story, question, steps;
+  if(kind === 'kaliKurang'){
+    story = `${buyer} membeli ${a} bungkus. Tiap bungkus berisi ${b} ${I.unit} ${I.label}. Sebanyak ${c} ${I.unit} diberikan kepada teman.`;
+    question = `Berapa ${I.unit} ${I.label} yang tersisa?`;
+    steps = [
+      {text:`Hitung seluruhnya dulu: ${a} × ${b} = ${a * b}.`},
+      {text:`Kurangi yang diberikan: ${a * b} − ${c} = ${answer}.`, answer:true}
+    ];
+  } else if(kind === 'tambahKurang'){
+    story = `Di lapak ada ${a} ${I.unit} ${I.label}. Datang lagi ${b} ${I.unit}. Sebanyak ${c} ${I.unit} terjual.`;
+    question = `Berapa ${I.unit} ${I.label} yang tersisa?`;
+    steps = [
+      {text:`Jumlahkan yang ada: ${a} + ${b} = ${a + b}.`},
+      {text:`Kurangi yang terjual: ${a + b} − ${c} = ${answer}.`, answer:true}
+    ];
+  } else {
+    story = `${buyer} membeli ${a} bungkus berisi ${b} ${I.unit} ${I.label}. Ia menambah ${c} ${I.unit} lagi.`;
+    question = `Berapa ${I.unit} ${I.label} seluruhnya?`;
+    steps = [
+      {text:`Hitung isi bungkusan: ${a} × ${b} = ${a * b}.`},
+      {text:`Tambahkan yang tadi ditambah: ${a * b} + ${c} = ${answer}.`, answer:true}
+    ];
+  }
+  return {
+    stallId:'campur', level:L, op:'mix', a, b, c, answer,
+    item, buyer, kind,
+    story, question, steps,
+    visual:{type:'story', item, groups:[a,b,c]},
+    factKey:`dua:${kind}:${a}:${b}:${c}`,
+    focusTable:null,
+    money:false,
+    twoStep:true,
+    mc:false
+  };
+}
+function generateCampur(level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  const wantsTwo = opts.kind || (L >= 3 && !opts.noTwo && (opts.review || chance(L === 4 ? 0.36 : 0.24)));
+  let q;
+  if(wantsTwo){
+    q = generateTwoStep(L, opts);
+  } else {
+    let op = opts.forceOp;
+    if(!op){
+      if(L === 0) op = pick(['+','-']);
+      else if(L === 1) op = pick(['×','÷']);
+      else op = pick(['+','-','×','÷']);
+    }
+    if(op === '+') q = generateTambah('campur', L === 0 ? 1 : L === 1 ? 2 : L, opts);
+    else if(op === '-') q = generateKurang('campur', L, Object.assign({money:false}, opts, {money:opts.money === true}));
+    else if(op === '×') q = generateKali('campur', L, Object.assign({}, opts, {tables:tableSetFor(L, 'campur')}));
+    else q = generateBagi('campur', L, Object.assign({}, opts, {tables:divisionSetFor(L, 'campur')}));
+  }
+  q.stallId = 'campur';
+  q.level = L;
+  q.campur = true;
+  const allowMC = L >= 2 && !opts.noMC && (opts.review || opts.forceMC || chance(MC_CHANCE));
+  if(allowMC){
+    q.mc = true;
+    if(q.visual.type === 'share'){
+      q.visual = {type:'group-share', total:q.a, divisor:q.b, item:q.visual.item};
+    }
+  }
+  return q;
+}
+function generateQuestion(stallId, level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  let q;
+  if(stallId === 'campur') q = generateCampur(L, opts);
+  else if(stallId === 'tambah') q = generateTambah(stallId, L, opts);
+  else if(stallId === 'kurang') q = generateKurang(stallId, L, opts);
+  else if(stallId === 'kali') q = generateKali(stallId, L, opts);
+  else if(stallId === 'bagi') q = generateBagi(stallId, L, opts);
+  else q = generateCampur(L, opts);
+  q.stallId = stallId;
+  q.level = L;
+  return finalizeQuestion(q);
+}
+function generateReview(factKey, stallId, level){
+  const f = parseFactKey(factKey);
+  const L = clamp(level, 0, 4);
+  let q;
+  if(f.type === 'tambah') q = generateTambah(stallId, L, {a:f.a, b:f.b, review:true});
+  else if(f.type === 'kurang') q = generateKurang(stallId, L, {a:f.a, b:f.b, review:true, money:false});
+  else if(f.type === 'uang') q = generateKurang(stallId, L, {a:f.a, b:f.b, review:true, money:true});
+  else if(f.type === 'kali') q = generateKali(stallId, L, {a:f.a, b:f.b, review:true});
+  else if(f.type === 'bagi') q = generateBagi(stallId, L, {a:f.a, b:f.b, review:true});
+  else if(f.type === 'dua') q = generateTwoStep(L, {kind:f.kind, a:f.a, b:f.b, c:f.c, review:true});
+  else q = generateQuestion(stallId, L);
+  q.stallId = stallId;
+  q.level = L;
+  q.campur = stallId === 'campur';
+  q.review = true;
+  q.mc = false;
+  q.options = null;
+  return finalizeQuestion(q);
+}
+function validateQuestion(q){
+  const errors = [];
+  const fail = function(msg){ errors.push(msg); };
+  if(!q || typeof q !== 'object'){ return ['bukan objek']; }
+  if(!STALL_BY_ID[q.stallId]) fail('stallId tidak dikenal');
+  if(!(Number.isInteger(q.level) && q.level >= 0 && q.level < LEVELS)) fail('level tidak valid');
+  if(!Number.isInteger(q.answer) || q.answer < 0) fail('jawaban harus bilangan bulat positif');
+  if(!Number.isInteger(q.a) || !Number.isInteger(q.b)) fail('a/b bukan bilangan bulat');
+  if(q.twoStep){
+    if(!Number.isInteger(q.c)) fail('c bukan bilangan bulat');
+    let expected = null;
+    if(q.kind === 'kaliKurang') expected = q.a * q.b - q.c;
+    else if(q.kind === 'tambahKurang') expected = q.a + q.b - q.c;
+    else if(q.kind === 'kaliTambah') expected = q.a * q.b + q.c;
+    else fail('kind dua langkah tidak dikenal');
+    if(expected !== null && expected !== q.answer) fail('jawaban dua langkah salah');
+    if(q.answer < 1 || q.answer > 100) fail('jawaban dua langkah di luar 1..100');
+  } else if(q.money){
+    if(q.op !== '-') fail('uang harus operasi kurang');
+    if(q.a <= q.b) fail('uang dibayar harus lebih besar dari harga');
+    if(q.a - q.b !== q.answer) fail('kembalian salah');
+    if(q.answer < 1000) fail('kembalian terlalu kecil');
+  } else if(q.op === '+'){
+    if(q.a + q.b !== q.answer) fail('penjumlahan salah');
+    if(q.answer > 100) fail('penjumlahan melewati 100');
+    if(q.a < 1 || q.b < 1) fail('penjumlahan memakai nol');
+  } else if(q.op === '-'){
+    if(q.a - q.b !== q.answer) fail('pengurangan salah');
+    if(q.a <= q.b) fail('pengurangan menghasilkan nol/negatif');
+    if(q.answer > 100) fail('pengurangan melewati 100');
+  } else if(q.op === '×'){
+    if(q.a * q.b !== q.answer) fail('perkalian salah');
+    if(q.answer > 100) fail('perkalian melewati 100');
+    if(q.a < 2 || q.b < 2) fail('perkalian memakai satu');
+    if(q.focusTable !== q.a && q.focusTable !== q.b) fail('tabel fokus tidak cocok');
+  } else if(q.op === '÷'){
+    if(q.b < 2) fail('pembagi terlalu kecil');
+    if(q.a % q.b !== 0) fail('pembagian tidak exact');
+    if(q.a / q.b !== q.answer) fail('hasil bagi salah');
+    if(q.answer < 2 || q.answer > 10) fail('hasil bagi di luar 2..10');
+    if(q.a > 100) fail('pembagian melewati 100');
+  } else {
+    fail('operasi tidak dikenal');
+  }
+  if(typeof q.story !== 'string' || q.story.length < 10) fail('cerita kosong');
+  if(typeof q.question !== 'string' || q.question.length < 5) fail('pertanyaan kosong');
+  if(typeof q.hint !== 'string' || q.hint.length < 5) fail('hint kosong');
+  if(!Array.isArray(q.steps) || !q.steps.length) fail('langkah kosong');
+  if(typeof q.speech !== 'string' || !q.speech.length) fail('speech kosong');
+  if(typeof q.factKey !== 'string' || !q.factKey.includes(':')) fail('factKey kosong');
+  const textCheck = [q.story, q.question, q.hint, q.speech].join(' ');
+  if(/undefined|NaN|\{|\}/.test(textCheck)) fail('teks memuat nilai rusak');
+  if(q.mc){
+    if(!Array.isArray(q.options) || q.options.length !== 4) fail('pilihan ganda harus 4');
+    else {
+      if(unique(q.options).length !== 4) fail('pilihan ganda duplikat');
+      if(!q.options.includes(q.answer)) fail('jawaban tidak ada di pilihan');
+      if(q.options.some(v => !Number.isInteger(v) || v < 0)) fail('pilihan bukan bilangan bulat');
+    }
+  }
+  if(q.visual){
+    if(q.visual.type === 'share'){
+      if(q.visual.total !== q.a) fail('total share tidak cocok');
+      if(q.visual.divisor !== q.b) fail('pembagi share tidak cocok');
+      if(q.a > 30) fail('share terlalu banyak untuk drag');
+    } else if(q.visual.type === 'group-share'){
+      if(q.visual.total !== q.a) fail('total group-share tidak cocok');
+      if(q.visual.divisor !== q.b) fail('pembagi group-share tidak cocok');
+    } else if(q.visual.type === 'array'){
+      if(q.visual.rows !== q.a || q.visual.cols !== q.b) fail('array tidak cocok');
+    } else if(q.visual.type === 'count-sub'){
+      if(q.visual.start !== q.a || q.visual.remove !== q.b) fail('count-sub tidak cocok');
+    } else if(q.visual.type === 'money'){
+      if(q.visual.paid !== q.a || q.visual.price !== q.b) fail('visual uang tidak cocok');
+    }
+  } else {
+    fail('visual kosong');
+  }
+  return errors;
+}
+function emptyStars(){
+  const out = {};
+  STALLS.forEach(function(stall){ out[stall.id] = [0,0,0,0,0]; });
+  return out;
+}
+function defaultState(){
+  return {
+    version:1,
+    name:'',
+    stars:emptyStars(),
+    stickers:[],
+    newStickers:[],
+    mistakes:{},
+    settings:{effects:true, autoRead:false},
+    createdAt:Date.now()
+  };
+}
+function normalizeState(raw){
+  const base = defaultState();
+  if(!raw || typeof raw !== 'object') return base;
+  if(typeof raw.name === 'string'){
+    base.name = raw.name.replace(/[\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 12);
+  }
+  if(raw.stars && typeof raw.stars === 'object'){
+    STALLS.forEach(function(stall){
+      const row = raw.stars[stall.id];
+      if(Array.isArray(row)){
+        for(let i = 0; i < LEVELS; i++){
+          const v = Number(row[i]);
+          base.stars[stall.id][i] = Number.isInteger(v) ? clamp(v, 0, 3) : 0;
+        }
+      }
+    });
+  }
+  if(Array.isArray(raw.stickers)){
+    base.stickers = unique(raw.stickers.filter(function(id){ return !!STICKER_BY_ID[id]; }));
+  }
+  if(Array.isArray(raw.newStickers)){
+    base.newStickers = unique(raw.newStickers.filter(function(id){ return !!STICKER_BY_ID[id]; }));
+  }
+  if(raw.mistakes && typeof raw.mistakes === 'object'){
+    const entries = [];
+    Object.keys(raw.mistakes).forEach(function(key){
+      const item = raw.mistakes[key];
+      if(!key.includes(':') || !item || typeof item !== 'object') return;
+      if(!STALL_BY_ID[item.stall]) return;
+      entries.push([key, {
+        stall:item.stall,
+        level:clamp(Number(item.level) || 0, 0, 4),
+        count:Math.max(1, Math.floor(Number(item.count) || 1)),
+        at:Number(item.at) || Date.now()
+      }]);
+    });
+    entries.sort(function(a, b){ return b[1].at - a[1].at; });
+    entries.slice(0, 100).forEach(function(pair){ base.mistakes[pair[0]] = pair[1]; });
+  }
+  if(raw.settings && typeof raw.settings === 'object'){
+    base.settings.effects = raw.settings.effects !== false;
+    base.settings.autoRead = raw.settings.autoRead === true;
+  }
+  base.createdAt = Number(raw.createdAt) || Date.now();
+  return base;
+}
+function loadState(){
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return defaultState();
+    return normalizeState(JSON.parse(raw));
+  } catch(err){
+    return defaultState();
+  }
+}
+let state = loadState();
+function saveState(){
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(err){}
+}
+function stallStars(stallId){
+  const row = state.stars[stallId];
+  return Array.isArray(row) ? row.reduce(function(a, b){ return a + b; }, 0) : 0;
+}
+function allStars(){
+  return STALLS.reduce(function(sum, stall){ return sum + stallStars(stall.id); }, 0);
+}
+function stickerCount(){
+  return state.stickers.length;
+}
+function isLevelDone(stallId, level){
+  return (state.stars[stallId] || [])[level] > 0;
+}
+function isLevelUnlocked(stallId, level){
+  if(!isStallUnlocked(stallId)) return false;
+  if(level <= 0) return true;
+  return isLevelDone(stallId, level - 1);
+}
+function stallLockInfo(stallId){
+  const index = STALLS.findIndex(function(s){ return s.id === stallId; });
+  if(index <= 0) return {locked:false, text:''};
+  if(index === 4){
+    const weak = STALLS.slice(0, 4).filter(function(s){ return stallStars(s.id) < UNLOCK_STARS; });
+    if(!weak.length) return {locked:false, text:''};
+    return {
+      locked:true,
+      text:`Campur terbuka setelah empat lapak punya ${UNLOCK_STARS} bintang. Masih perlu di ${weak.map(function(s){ return s.name; }).join(', ')}.`
+    };
+  }
+  const prev = STALLS[index - 1];
+  const got = stallStars(prev.id);
+  if(got >= UNLOCK_STARS) return {locked:false, text:''};
+  return {
+    locked:true,
+    text:`Kumpulkan ${UNLOCK_STARS - got} bintang lagi di Lapak ${prev.name}.`
+  };
+}
+function isStallUnlocked(stallId){
+  return !stallLockInfo(stallId).locked;
+}
+function nextLevelIndex(stallId){
+  for(let i = 0; i < LEVELS; i++){
+    if(isLevelUnlocked(stallId, i) && !isLevelDone(stallId, i)) return i;
+  }
+  return -1;
+}
+function nextStallId(stallId){
+  const index = STALLS.findIndex(function(s){ return s.id === stallId; });
+  return index >= 0 && index < STALLS.length - 1 ? STALLS[index + 1].id : null;
+}
+function stickerFor(stallId, level){
+  return STICKERS.find(function(s){ return s.stall === stallId && s.level === level; }) || null;
+}
+function recordLevelResult(stallId, level, earned){
+  const previous = state.stars[stallId][level];
+  state.stars[stallId][level] = Math.max(previous, clamp(earned, 1, 3));
+  let newSticker = null;
+  const sticker = stickerFor(stallId, level);
+  if(sticker && state.stickers.indexOf(sticker.id) === -1){
+    state.stickers.push(sticker.id);
+    state.newStickers.push(sticker.id);
+    newSticker = sticker;
+  }
+  saveState();
+  return {
+    previousStars:previous,
+    stars:state.stars[stallId][level],
+    sticker,
+    newSticker
+  };
+}
+function markMistake(q){
+  const old = state.mistakes[q.factKey];
+  state.mistakes[q.factKey] = {
+    stall:q.stallId,
+    level:q.level,
+    count:(old ? old.count : 0) + 1,
+    at:Date.now()
+  };
+  const entries = Object.keys(state.mistakes).map(function(key){
+    return [key, state.mistakes[key]];
+  }).sort(function(a, b){ return b[1].at - a[1].at; }).slice(0, 100);
+  state.mistakes = {};
+  entries.forEach(function(pair){ state.mistakes[pair[0]] = pair[1]; });
+  saveState();
+}
+function clearMistake(factKey){
+  if(state.mistakes[factKey]){
+    delete state.mistakes[factKey];
+    saveState();
+  }
+}
+function reviewSeeds(stallId){
+  return Object.keys(state.mistakes).filter(function(key){
+    return state.mistakes[key].stall === stallId;
+  }).sort(function(a, b){
+    const A = state.mistakes[a], B = state.mistakes[b];
+    return B.count - A.count || A.at - B.at;
+  });
+}
+function setPlayerName(name){
+  state.name = String(name || '').replace(/[\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 12);
+  saveState();
+}
+function resetProgress(){
+  const settings = Object.assign({}, state.settings);
+  state = defaultState();
+  state.settings = settings;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(err){}
+  saveState();
+}
+let audioContext = null;
+function audioEngine(){
+  if(!state.settings.effects) return null;
+  try {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return null;
+    if(!audioContext) audioContext = new Ctx();
+    if(audioContext.state === 'suspended') audioContext.resume();
+    return audioContext;
+  } catch(err){
+    return null;
+  }
+}
+function playTone(freq, delay, duration, type, volume){
+  const ctx = audioEngine();
+  if(!ctx) return;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  const start = ctx.currentTime + delay;
+  osc.type = type || 'sine';
+  osc.frequency.setValueAtTime(freq, start);
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(volume || 0.045, start + 0.015);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(start);
+  osc.stop(start + duration + 0.02);
+}
+function soundTap(n){
+  const freq = 430 + Math.min(12, Number(n) || 0) * 26;
+  playTone(freq, 0, 0.07, 'triangle', 0.025);
+}
+function soundClick(){ playTone(520, 0, 0.06, 'triangle', 0.028); }
+function soundCorrect(){
+  playTone(523.25, 0, 0.16, 'sine', 0.05);
+  playTone(659.25, 0.09, 0.18, 'sine', 0.05);
+  playTone(783.99, 0.18, 0.23, 'sine', 0.05);
+}
+function soundWrong(){
+  playTone(329.63, 0, 0.16, 'sine', 0.03);
+  playTone(261.63, 0.12, 0.22, 'sine', 0.028);
+}
+function soundStar(){
+  playTone(659.25, 0, 0.16, 'triangle', 0.045);
+  playTone(783.99, 0.11, 0.16, 'triangle', 0.045);
+  playTone(1046.5, 0.22, 0.26, 'triangle', 0.045);
+}
+function soundSticker(){
+  playTone(784, 0, 0.13, 'sine', 0.04);
+  playTone(987.77, 0.09, 0.15, 'sine', 0.04);
+  playTone(1174.66, 0.19, 0.25, 'sine', 0.04);
+}
+function soundUnlock(){
+  playTone(392, 0, 0.18, 'triangle', 0.04);
+  playTone(523.25, 0.12, 0.18, 'triangle', 0.04);
+  playTone(659.25, 0.24, 0.18, 'triangle', 0.04);
+  playTone(783.99, 0.36, 0.3, 'triangle', 0.04);
+}
+const speechSynth = window.speechSynthesis || null;
+let voiceList = [];
+let indonesianVoice = null;
+let speakToken = 0;
+function refreshVoices(){
+  if(!speechSynth){
+    voiceList = [];
+    indonesianVoice = null;
+    if(typeof updateSpeechUI === 'function') updateSpeechUI();
+    return;
+  }
+  voiceList = speechSynth.getVoices() || [];
+  indonesianVoice = voiceList.find(function(voice){
+    return /^id([-_]|$)/i.test(voice.lang || '');
+  }) || voiceList.find(function(voice){
+    return /indones/i.test(voice.name || '') && /^id/i.test(voice.lang || '');
+  }) || null;
+  if(typeof updateSpeechUI === 'function') updateSpeechUI();
+}
+function canUseSpeech(){
+  return !!speechSynth && !!indonesianVoice;
+}
+function setSpeakingUI(on){
+  document.querySelectorAll('#btn-play-read, #btn-read-inline').forEach(function(btn){
+    btn.classList.toggle('is-speaking', !!on);
+  });
+}
+function stopSpeech(){
+  if(!speechSynth) return;
+  speakToken++;
+  try { speechSynth.cancel(); } catch(err){}
+  setSpeakingUI(false);
+}
+function speakQuestion(text){
+  if(!canUseSpeech() || !text) return false;
+  stopSpeech();
+  const token = ++speakToken;
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'id-ID';
+  utterance.voice = indonesianVoice;
+  utterance.rate = 0.92;
+  utterance.pitch = 1.03;
+  utterance.onstart = function(){
+    if(token === speakToken) setSpeakingUI(true);
+  };
+  utterance.onend = function(){
+    if(token === speakToken) setSpeakingUI(false);
+  };
+  utterance.onerror = function(){
+    if(token === speakToken) setSpeakingUI(false);
+  };
+  try {
+    speechSynth.speak(utterance);
+    return true;
+  } catch(err){
+    setSpeakingUI(false);
+    return false;
+  }
+}
+if(speechSynth){
+  speechSynth.addEventListener('voiceschanged', refreshVoices);
+}
+function $(selector, root){
+  return (root || document).querySelector(selector);
+}
+function $$(selector, root){
+  return Array.from((root || document).querySelectorAll(selector));
+}
+function uiIcon(id, cls){
+  return `<svg class="${cls || ''}" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><use href="#${id}"/></svg>`;
+}
+function itemIcon(id, cls){
+  const raw = String(id || '');
+  const icon = raw.indexOf('item-') === 0 || raw.indexOf('icon-') === 0 ? raw : itemOf(raw).icon;
+  return `<svg class="${cls || ''}" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="#${icon}"/></svg>`;
+}
+function tentSVG(cls){
+  return `<svg class="${cls || 'tent'}" viewBox="0 0 320 240" aria-hidden="true" focusable="false"><use href="#stall-tent"/></svg>`;
+}
+function mascotSVG(){
+  return `<svg class="kancil-svg" viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <ellipse cx="120" cy="286" rx="72" ry="13" fill="rgba(59,34,20,.22)"/>
+    <path d="M156 226c23-9 42 0 37 15-3 12-20 14-29 6 10-1 15-6 13-11-3-7-14-5-21-2Z" fill="#b5763e" stroke="#3b2214" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M91 240v33l-19 2 5-36Z" fill="#a8653a" stroke="#3b2214" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M137 240v33l19 2-5-36Z" fill="#a8653a" stroke="#3b2214" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M71 270h23v10H71Z" fill="#3b2214"/>
+    <path d="M146 270h23v10h-23Z" fill="#3b2214"/>
+    <path d="M78 198q0-15 23-17h46q23 6 16 30l-4 34q-8 12-39 12t-38-12Z" fill="#b5763e" stroke="#3b2214" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M100 190q-2-38 20-45 22 7 20 45Z" fill="#b5763e" stroke="#3b2214" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M88 83Q62 66 68 29q24 4 37 42Z" fill="#b5763e" stroke="#3b2214" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M152 83q26-17 20-54-24 4-37 42Z" fill="#b5763e" stroke="#3b2214" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M88 69Q75 58 76 40q13 6 19 24Z" fill="#e8a2a5" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M152 69q13-11 12-29-13 6-19 24Z" fill="#e8a2a5" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <ellipse cx="120" cy="112" rx="51" ry="47" fill="#b5763e" stroke="#3b2214" stroke-width="7"/>
+    <path d="M104 67q16-10 32 0" fill="none" stroke="#8a542b" stroke-width="5" stroke-linecap="round"/>
+    <ellipse cx="120" cy="137" rx="29" ry="19" fill="#f6d7ae" stroke="#3b2214" stroke-width="6"/>
+    <g class="k-eye">
+      <ellipse cx="101" cy="109" rx="14" ry="15" fill="#fffaf0" stroke="#3b2214" stroke-width="5"/>
+      <ellipse cx="139" cy="109" rx="14" ry="15" fill="#fffaf0" stroke="#3b2214" stroke-width="5"/>
+      <circle cx="102" cy="112" r="8" fill="#3b2214"/>
+      <circle cx="140" cy="112" r="8" fill="#3b2214"/>
+      <circle cx="105" cy="108" r="2.6" fill="#fffaf0"/>
+      <circle cx="143" cy="108" r="2.6" fill="#fffaf0"/>
+    </g>
+    <path d="M92 94q8-5 16-1M132 93q8-4 16 1" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="88" cy="134" r="8" fill="#e8899a" opacity=".7"/>
+    <circle cx="152" cy="134" r="8" fill="#e8899a" opacity=".7"/>
+    <path d="M112 128q8-3 16 0-2 9-8 9t-8-9Z" fill="#3b2214"/>
+    <path d="M110 142q10 8 20 0" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+    <path d="M102 178q18 10 36 0l4 13q-21 13-44 0Z" fill="#d94a2b" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M94 200q-28 10-32 33" fill="none" stroke="#3b2214" stroke-width="21" stroke-linecap="round"/>
+    <path d="M94 200q-28 10-32 33" fill="none" stroke="#b5763e" stroke-width="13" stroke-linecap="round"/>
+    <path d="M146 200q28 10 32 33" fill="none" stroke="#3b2214" stroke-width="21" stroke-linecap="round"/>
+    <path d="M146 200q28 10 32 33" fill="none" stroke="#b5763e" stroke-width="13" stroke-linecap="round"/>
+    <circle cx="61" cy="235" r="10" fill="#3b2214"/>
+    <circle cx="179" cy="235" r="10" fill="#3b2214"/>
+    <path d="M95 201q25-10 50 0l4 44q-29 11-58 0Z" fill="#fff1c9" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M108 219h24v21h-24Z" fill="#ffe0b0" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M114 228h12M120 222v12" stroke="#d94a2b" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="155" cy="76" r="4" fill="#f6d7ae"/>
+    <circle cx="166" cy="98" r="3" fill="#f6d7ae"/>
+  </svg>`;
+}
+function placeMascots(){
+  const intro = $('#intro-mascot');
+  if(intro) intro.innerHTML = mascotSVG();
+  const map = $('#map-mascot');
+  if(map) map.innerHTML = mascotSVG() + '<span class="map-speech" id="map-speech"></span>';
+  const play = $('#play-mascot');
+  if(play) play.innerHTML = mascotSVG() + '<div class="mascot-bubble" id="mascot-bubble">Ayo hitung bersama Kancil!</div>';
+  const result = $('#result-mascot');
+  if(result) result.innerHTML = mascotSVG();
+}
+function celebrateMascot(){
+  $$('.kancil-svg').forEach(function(svg){
+    svg.classList.remove('is-happy');
+    void svg.getBoundingClientRect();
+    svg.classList.add('is-happy');
+  });
+  window.setTimeout(function(){
+    $$('.kancil-svg.is-happy').forEach(function(svg){ svg.classList.remove('is-happy'); });
+  }, 720);
+}
+function setMascotBubble(text){
+  const bubble = $('#mascot-bubble');
+  if(bubble) bubble.textContent = text;
+}
+function toast(message, duration){
+  const el = $('#toast');
+  if(!el) return;
+  el.textContent = message;
+  el.classList.add('is-visible');
+  window.clearTimeout(toast._timer);
+  toast._timer = window.setTimeout(function(){
+    el.classList.remove('is-visible');
+  }, duration || 2800);
+}
+function showScreen(name){
+  currentScreen = name;
+  stopSpeech();
+  closeExitBar();
+  closeResetConfirm();
+  $$('.screen').forEach(function(screen){
+    screen.classList.toggle('is-active', screen.id === 'screen-' + name);
+  });
+  window.scrollTo(0, 0);
+  const screen = $('#screen-' + name);
+  const heading = screen ? screen.querySelector('h1') : null;
+  if(heading){
+    heading.setAttribute('tabindex', '-1');
+    window.requestAnimationFrame(function(){ heading.focus({preventScroll:true}); });
+  }
+  if(name === 'intro'){
+    window.setTimeout(function(){ const input = $('#nama'); if(input) input.focus(); }, 120);
+  }
+}
+function updateSoundUI(){
+  $$('[data-sound-toggle]').forEach(function(btn){
+    const on = state.settings.effects;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.setAttribute('aria-label', on ? 'Matikan efek suara' : 'Nyalakan efek suara');
+    const use = btn.querySelector('use');
+    if(use) use.setAttribute('href', on ? '#icon-sound' : '#icon-muted');
+  });
+  const soundSwitch = $('#btn-sound-settings');
+  if(soundSwitch) soundSwitch.setAttribute('aria-checked', state.settings.effects ? 'true' : 'false');
+  const readSwitch = $('#btn-read-settings');
+  if(readSwitch) readSwitch.setAttribute('aria-checked', state.settings.autoRead ? 'true' : 'false');
+}
+function updateSpeechUI(){
+  const available = canUseSpeech();
+  ['#btn-play-read', '#btn-read-inline'].forEach(function(sel){
+    const btn = $(sel);
+    if(btn) btn.hidden = !available;
+  });
+  const row = $('#row-auto-read');
+  if(row) row.hidden = !available;
+  const note = $('#speech-note');
+  if(note){
+    note.textContent = available
+      ? 'Suara bahasa Indonesia tersedia. Soal bisa dibacakan kapan saja.'
+      : 'Perangkat ini belum menyediakan suara bahasa Indonesia. Kamu tetap bisa membaca soal sendiri.';
+  }
+  const readSwitch = $('#btn-read-settings');
+  if(readSwitch) readSwitch.setAttribute('aria-checked', available && state.settings.autoRead ? 'true' : 'false');
+  if(!available) stopSpeech();
+}
+function renderSoundButtons(){
+  updateSoundUI();
+}
+function renderMap(){
+  const name = $('#map-name');
+  if(name) name.textContent = state.name || 'Sahabat';
+  const count = $('#sticker-count');
+  if(count) count.textContent = stickerCount() + '/15';
+  const list = $('#stall-list');
+  if(!list) return;
+  const tilts = ['-1.2deg','1deg','-.7deg','1.1deg','-.4deg'];
+  list.innerHTML = STALLS.map(function(stall, index){
+    const info = stallLockInfo(stall.id);
+    const stars = stallStars(stall.id);
+    const badge = info.locked
+      ? `<span class="lock-badge">${uiIcon('icon-lock')}<span>${info.text}</span></span>`
+      : (stall.id === 'campur' ? '<span class="lock-badge is-open">Tantangan akhir</span>' : '');
+    const label = info.locked
+      ? `Lapak ${stall.name}, terkunci. ${info.text}`
+      : `Buka Lapak ${stall.name}, ${stars} dari 15 bintang. ${stall.blurb}`;
+    return `<button class="stall-card ${info.locked ? 'is-locked' : ''}" type="button"
+      data-stall="${stall.id}" style="--tilt:${tilts[index]}"
+      aria-label="${label}" ${info.locked ? 'aria-disabled="true"' : ''}>
+      <span class="tent-wrap">
+        ${tentSVG()}
+        <span class="stall-sign">
+          ${uiIcon('motif-' + stall.motif, 'motif')}
+          <span class="stall-name">${stall.name}</span>
+        </span>
+      </span>
+      <span class="stall-meta">
+        <span class="stall-stars">${uiIcon('icon-star')}<span>${stars}/15</span></span>
+      </span>
+      <span class="stall-blurb">${stall.blurb}</span>
+      ${badge}
+    </button>`;
+  }).join('');
+  const speech = $('#map-speech');
+  if(speech){
+    if(stickerCount() >= 15){
+      speech.textContent = 'Semua stiker lengkap! Kamu teman lapak yang hebat.';
+    } else if(allStars() === 0){
+      speech.textContent = 'Ayo mulai dari Lapak Tambah. Kancil menunggumu!';
+    } else {
+      const next = STALLS.find(function(s){ return !stallLockInfo(s.id).locked && (nextLevelIndex(s.id) >= 0 || stallStars(s.id) < 15); });
+      speech.textContent = next ? `Lapak ${next.name} siap dikunjungi.` : 'Kumpulkan bintang sebanyak mungkin, ya!';
+    }
+  }
+  renderSoundButtons();
+}
+function renderStall(stallId){
+  const stall = STALL_BY_ID[stallId];
+  if(!stall) return;
+  const info = stallLockInfo(stallId);
+  if(info.locked){
+    toast(info.text);
+    renderMap();
+    showScreen('map');
+    return;
+  }
+  const stars = stallStars(stallId);
+  const stickerTotal = STICKERS.filter(function(s){ return s.stall === stallId && state.stickers.indexOf(s.id) >= 0; }).length;
+  const title = $('#stall-title');
+  if(title) title.textContent = 'Lapak ' + stall.name;
+  const chip = $('#stall-star-chip');
+  if(chip) chip.textContent = stars + '/15';
+  const next = nextLevelIndex(stallId);
+  const tilts = ['-1deg','.9deg','-.5deg','1.2deg','-.8deg'];
+  const levels = LEVEL_META[stallId].map(function(meta, i){
+    const unlocked = isLevelUnlocked(stallId, i);
+    const done = isLevelDone(stallId, i);
+    const earned = state.stars[stallId][i];
+    const sticker = stickerFor(stallId, i);
+    const hasSticker = sticker && state.stickers.indexOf(sticker.id) >= 0;
+    let note = 'Siap dimainkan';
+    if(!unlocked) note = 'Selesaikan level sebelumnya';
+    else if(sticker && !hasSticker) note = 'Hadiah stiker ' + sticker.name;
+    else if(done) note = earned + ' bintang · main lagi';
+    const label = `Level ${i + 1}, ${meta.title}. ${unlocked ? (done ? earned + ' bintang' : 'siap dimainkan') : 'terkunci'}`;
+    return `<button class="level-card ${!unlocked ? 'is-locked' : ''} ${done ? 'is-done' : ''} ${next === i ? 'is-next' : ''}"
+      type="button" data-level="${i}" style="--tilt:${tilts[i]}"
+      aria-label="${label}" ${!unlocked ? 'aria-disabled="true"' : ''}>
+      <span class="level-num">Level ${i + 1}</span>
+      <span class="level-title">${meta.title}</span>
+      <span class="level-stars" aria-hidden="true">${[0,1,2].map(function(n){ return uiIcon(n < earned ? 'icon-star' : 'icon-star-outline'); }).join('')}</span>
+      <span class="level-note">${note}</span>
+    </button>`;
+  }).join('');
+  const wrap = $('#stall-content');
+  if(!wrap) return;
+  wrap.innerHTML = `<div class="stall-hero">
+      <div class="stall-hero-art">
+        ${tentSVG()}
+        <span class="stall-sign">${uiIcon('motif-' + stall.motif, 'motif')}<span class="stall-name">${stall.name}</span></span>
+      </div>
+      <div class="stall-hero-copy">
+        <p class="kicker">Lapak ${STALLS.findIndex(function(s){ return s.id === stallId; }) + 1} dari 5</p>
+        <h1>Lapak ${stall.name}</h1>
+        <p>${stall.hero}</p>
+        <div class="stall-starline">
+          <span class="star-chip">${uiIcon('icon-star')}<span>${stars}/15 bintang</span></span>
+          <span class="star-chip">${uiIcon('icon-book')}<span>${stickerTotal}/3 stiker</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="level-heading"><h2>Pilih tingkat</h2><span class="line"></span></div>
+    <div class="level-list">${levels}</div>
+    <div class="stall-help">${mascotSVG()}<p>${stall.blurb} ${stall.hero}</p></div>`;
+  renderSoundButtons();
+}
+function renderStickers(){
+  const count = $('#stickers-count');
+  if(count) count.textContent = stickerCount() + '/15';
+  const grid = $('#sticker-grid');
+  if(!grid) return;
+  const fresh = state.newStickers.slice();
+  grid.innerHTML = STICKERS.map(function(sticker, i){
+    const collected = state.stickers.indexOf(sticker.id) >= 0;
+    const isNew = fresh.indexOf(sticker.id) >= 0;
+    return `<div class="sticker-slot ${collected ? 'is-collected' : 'is-locked'} ${isNew ? 'is-new' : ''}"
+      style="--tilt:${(i % 3 - 1) * 1.1}deg" aria-label="${sticker.name}, ${collected ? 'sudah ditempel' : 'belum ditemukan'}">
+      ${itemIcon(sticker.icon, 'sticker-art')}
+      <span class="sticker-name">${sticker.name}</span>
+      <span class="sticker-stall">${STALL_BY_ID[sticker.stall].name}</span>
+    </div>`;
+  }).join('');
+  const note = $('#sticker-note');
+  if(note){
+    note.textContent = stickerCount() >= 15
+      ? 'Semua stiker sudah ditempel. Buku stikermu penuh!'
+      : 'Selesaikan tingkat 1, 3, dan 5 di setiap lapak untuk mengisi buku ini.';
+  }
+  if(fresh.length){
+    state.newStickers = [];
+    saveState();
+  }
+}
+function renderSettings(){
+  const player = $('#settings-player');
+  if(player) player.textContent = state.name || 'Sahabat Kancil';
+  const note = $('#settings-note');
+  if(note) note.textContent = 'Semua progres tersimpan otomatis di perangkat ini.';
+  updateSoundUI();
+  updateSpeechUI();
+}
+function answerText(q){
+  return q.money ? formatRp(q.answer) : String(q.answer);
+}
+function equationText(q){
+  if(q.twoStep) return 'Dua langkah hitung';
+  if(q.money) return `${formatRp(q.a)} − ${formatRp(q.b)} = ?`;
+  if(q.op === '÷') return `${q.b} × ? = ${q.a}`;
+  return `${q.a} ${q.op} ${q.b} = ?`;
+}
+function correctEquationText(q){
+  if(q.twoStep) return 'Jawaban akhir: ' + answerText(q);
+  if(q.money) return `${formatRp(q.a)} − ${formatRp(q.b)} = ${formatRp(q.answer)}`;
+  return `${q.a} ${q.op} ${q.b} = ${q.answer}`;
+}
+function tallyText(q){
+  if(q.money) return `${formatRp(q.a)} − ${formatRp(q.b)}`;
+  if(q.twoStep) return 'Dua langkah';
+  return `${q.a} ${q.op} ${q.b}`;
+}
+function visualInstruction(q){
+  if(q.visual.type === 'share') return 'Seret benda ke piring sampai setiap piring sama banyak.';
+  if(q.visual.type === 'group-share') return 'Kelompokkan sepuluh-sepuluh, lalu hitung isi setiap piring.';
+  if(q.visual.type === 'array') return 'Sentuh baris untuk menghitung loncat.';
+  if(q.visual.type === 'money') return 'Uang yang dibayar dikurangi harga jajanan.';
+  if(q.visual.type === 'count-sub') return 'Hitung mundur dari jumlah besar. Boleh sentuh bendanya.';
+  if(q.visual.type === 'story') return 'Selesaikan langkah pertama dulu, lalu langkah kedua.';
+  return 'Sentuh benda untuk membantu menghitung.';
+}
+function base10Block(count, item, label){
+  const tens = Math.floor(count / 10);
+  const ones = count % 10;
+  const bundles = Array.from({length:tens}, function(_, i){
+    return `<button class="bundle" type="button" data-count="bundle" aria-pressed="false" aria-label="Kelompok sepuluh nomor ${i + 1}">${itemIcon('icon-bundle')}<span class="bundle-num">10</span></button>`;
+  }).join('');
+  const singles = Array.from({length:ones}, function(_, i){
+    return `<button class="count-item" type="button" data-count="single" aria-pressed="false" aria-label="${itemOf(item).label} ${i + 1}">${itemIcon(item)}</button>`;
+  }).join('');
+  return `<div class="base10-block">
+    <div class="base10-row">
+      <span class="base10-label">${label}<br><strong>${count}</strong></span>
+      <div class="bundle-row">${bundles || '<span class="plate-empty">tidak ada puluhan</span>'}</div>
+    </div>
+    ${ones ? `<div class="base10-row"><span class="base10-label">Satuan<br><strong>${ones}</strong></span><div class="bundle-row">${singles}</div></div>` : ''}
+  </div>`;
+}
+function countGroup(count, item, label, iconItem){
+  const items = Array.from({length:count}, function(_, i){
+    return `<button class="count-item" type="button" data-count="single" aria-pressed="false" aria-label="${itemOf(iconItem).label} ${i + 1}">${itemIcon(iconItem)}</button>`;
+  }).join('');
+  return `<div class="count-group">
+    <div class="count-group-label">${label}</div>
+    <div class="count-items">${items}</div>
+  </div>`;
+}
+function countVisual(q){
+  const isSub = q.op === '-';
+  const itemA = q.items ? q.items[0] : q.item;
+  const itemB = q.items ? q.items[1] : q.item;
+  if(isSub){
+    if(q.a <= 24){
+      return `<div class="count-groups">${countGroup(q.a, q.item, `Mulai dengan ${q.a} ${itemOf(q.item).unit}`, q.item)}</div>`;
+    }
+    return base10Block(q.a, q.item, 'Semua benda');
+  }
+  if(q.a + q.b <= 24){
+    return `<div class="count-groups">
+      ${countGroup(q.a, itemA, `Kelompok 1 · ${q.a} ${itemOf(itemA).unit}`, itemA)}
+      ${countGroup(q.b, itemB, `Kelompok 2 · ${q.b} ${itemOf(itemB).unit}`, itemB)}
+    </div>`;
+  }
+  return `<div class="count-groups">
+    ${base10Block(q.a, itemA, 'Kelompok 1')}
+    ${base10Block(q.b, itemB, 'Kelompok 2')}
+  </div>`;
+}
+function arrayVisual(q){
+  const I = itemOf(q.item);
+  const rows = Array.from({length:q.a}, function(_, r){
+    const cells = Array.from({length:q.b}, function(){
+      return `<span class="array-cell">${itemIcon(q.item)}</span>`;
+    }).join('');
+    return `<button class="array-row" type="button" data-array-row="${r}" aria-pressed="false" aria-label="Baris ${r + 1}, berisi ${q.b} ${I.unit} ${I.label}">
+      <span class="row-label">${r + 1}</span>
+      <span class="array-cells">${cells}</span>
+      <span class="row-count" data-row-count="${r}"></span>
+    </button>`;
+  }).join('');
+  return `<div class="array-shell"><div class="array-table">${rows}</div></div>
+    <div class="array-legend">
+      <span class="array-note">${q.a} baris</span>
+      <span aria-hidden="true">×</span>
+      <span class="array-note">${q.b} ${I.unit} per baris</span>
+    </div>`;
+}
+function moneyVisual(q){
+  return `<div class="money-visual">
+    <div class="money-card">${itemIcon('item-uang')}<span>${formatRp(q.a)}</span><small>Dibayar</small></div>
+    <span class="money-symbol" aria-hidden="true">−</span>
+    <div class="money-card">${itemIcon('item-uang')}<span>${formatRp(q.b)}</span><small>Harga</small></div>
+  </div>`;
+}
+function twoStepVisual(q){
+  const I = itemOf(q.item);
+  let parts;
+  if(q.kind === 'kaliKurang'){
+    parts = [
+      {icon:'item-keranjang', label:`${q.a} bungkus`},
+      {op:'×'},
+      {icon:q.item, label:`${q.b} ${I.unit}`},
+      {op:'−'},
+      {icon:q.item, label:`${q.c} ${I.unit}`}
+    ];
+  } else if(q.kind === 'tambahKurang'){
+    parts = [
+      {icon:q.item, label:`${q.a} ${I.unit}`},
+      {op:'+'},
+      {icon:q.item, label:`${q.b} ${I.unit}`},
+      {op:'−'},
+      {icon:q.item, label:`${q.c} ${I.unit}`}
+    ];
+  } else {
+    parts = [
+      {icon:'item-keranjang', label:`${q.a} bungkus`},
+      {op:'×'},
+      {icon:q.item, label:`${q.b} ${I.unit}`},
+      {op:'+'},
+      {icon:q.item, label:`${q.c} ${I.unit}`}
+    ];
+  }
+  return `<div class="two-step-visual">${parts.map(function(part){
+    if(part.op) return `<span class="math-op" aria-hidden="true">${part.op}</span>`;
+    return `<div class="two-step-card">${itemIcon(part.icon)}<span>${part.label}</span></div>`;
+  }).join('')}</div>`;
+}
+function groupShareVisual(q){
+  const plates = Array.from({length:q.b}, function(_, i){
+    return `<div class="plate"><span class="plate-count">?</span><span class="plate-label">Piring ${i + 1}</span></div>`;
+  }).join('');
+  return `${base10Block(q.a, q.item, 'Semua benda')}
+    <div class="plates">${plates}</div>
+    <p class="share-static-note">Dibagi rata ke ${q.b} piring. Berapa isi setiap piring?</p>`;
+}
+function renderVisual(q){
+  const tray = $('#visual-tray');
+  if(!tray) return;
+  let body = '';
+  if(q.visual.type === 'count-add' || q.visual.type === 'count-sub') body = countVisual(q);
+  else if(q.visual.type === 'array') body = arrayVisual(q);
+  else if(q.visual.type === 'money') body = moneyVisual(q);
+  else if(q.visual.type === 'story') body = twoStepVisual(q);
+  else if(q.visual.type === 'group-share') body = groupShareVisual(q);
+  else if(q.visual.type === 'share') body = '<div id="share-stage"></div>';
+  tray.innerHTML = `<div class="tray-title"><span>Alat bantu hitung</span><span class="tally">${tallyText(q)}</span></div>
+    <p class="tray-instruction">${visualInstruction(q)}</p>${body}`;
+  if(q.visual.type === 'share'){
+    initShare(q);
+    renderShareStage();
+  }
+}
+function initShare(q){
+  if(!session) return;
+  if(!session.share || session.share.total !== q.visual.total || session.share.divisor !== q.visual.divisor){
+    session.share = {
+      total:q.visual.total,
+      divisor:q.visual.divisor,
+      assignment:new Array(q.visual.total).fill(-1),
+      selected:null
+    };
+  }
+}
+function sharePlateCounts(){
+  if(!session || !session.share) return [];
+  const counts = new Array(session.share.divisor).fill(0);
+  session.share.assignment.forEach(function(plate){
+    if(plate >= 0 && plate < counts.length) counts[plate]++;
+  });
+  return counts;
+}
+function renderShareStage(){
+  const stage = $('#share-stage');
+  if(!stage || !session || !session.share) return;
+  const q = session.current;
+  const share = session.share;
+  const counts = sharePlateCounts();
+  const pool = share.assignment.map(function(plate, index){ return plate < 0 ? index : -1; }).filter(function(index){ return index >= 0; });
+  const poolHtml = pool.length
+    ? pool.map(function(index){
+      return `<button class="drag-item ${share.selected === index ? 'is-selected' : ''}" type="button"
+        data-share-index="${index}" aria-pressed="${share.selected === index}"
+        aria-label="${itemOf(q.item).label}, ambil benda">${itemIcon(q.item)}</button>`;
+    }).join('')
+    : '<span>Semua benda sudah di piring.</span>';
+  const platesHtml = Array.from({length:share.divisor}, function(_, plateIndex){
+    const items = share.assignment.map(function(plate, index){ return plate === plateIndex ? index : -1; }).filter(function(index){ return index >= 0; });
+    return `<button class="plate ${items.length ? 'is-full' : ''}" type="button" data-plate="${plateIndex}"
+      aria-label="Piring ${plateIndex + 1}, ${items.length} benda">
+      <span class="plate-count">${items.length}</span>
+      <span class="plate-items">${items.map(function(){ return itemIcon(q.item); }).join('')}</span>
+      ${items.length ? '' : '<span class="plate-empty">kosong</span>'}
+      <span class="plate-label">Piring ${plateIndex + 1}</span>
+    </button>`;
+  }).join('');
+  const allPlaced = pool.length === 0;
+  const even = allPlaced && counts.every(function(n){ return n === counts[0]; });
+  let status;
+  let statusClass = 'is-wait';
+  if(!allPlaced){
+    status = `Masih ada ${pool.length} benda. Seret atau ketuk benda, lalu ketuk piring.`;
+  } else if(even){
+    status = `Semua piring berisi ${counts[0]}. Tekan Periksa pembagian.`;
+    statusClass = '';
+  } else {
+    status = 'Jumlah tiap piring belum sama. Pindahkan lagi, ya.';
+  }
+  stage.innerHTML = `<div class="share-shell">
+    <div class="share-pool ${pool.length ? '' : 'is-empty'}" id="share-pool">${poolHtml}</div>
+    <div class="plates" id="share-plates">${platesHtml}</div>
+    <p class="share-status ${statusClass}" id="share-status">${status}</p>
+    <div class="share-actions">
+      <button class="btn-text" type="button" id="btn-share-reset">Kembalikan semua</button>
+    </div>
+  </div>`;
+  syncShareCheck();
+}
+function syncShareCheck(){
+  const btn = $('#btn-check-share');
+  if(!btn) return;
+  const emptyPool = session && session.share && session.share.assignment.every(function(plate){ return plate >= 0; });
+  btn.disabled = !emptyPool || !session || session.phase !== 'answering';
+}
+function renderAnswerCard(q){
+  const card = $('#answer-card');
+  if(!card) return;
+  if(q.mc){
+    card.innerHTML = `<div class="answer-prompt"><span>Pilih jawaban</span><span class="campur-note">Satu yang tepat</span></div>
+      <div class="choices" id="choices">${q.options.map(function(value){
+        return `<button class="choice-btn" type="button" data-choice="${value}" aria-label="Pilihan ${q.money ? formatRp(value) : value}">${q.money ? formatRp(value) : value}</button>`;
+      }).join('')}</div>
+      <p class="keypad-note">Ketuk jawaban yang kamu pilih.</p>`;
+    return;
+  }
+  if(q.visual.type === 'share'){
+    card.innerHTML = `<div class="answer-prompt"><span>Bagi rata</span><span class="campur-note">${q.a} benda · ${q.b} piring</span></div>
+      <button class="btn btn-primary btn-wide" type="button" id="btn-check-share" disabled>Periksa pembagian</button>
+      <p class="keypad-note">Setiap piring harus berisi sama banyak.</p>`;
+    syncShareCheck();
+    return;
+  }
+  card.innerHTML = `<div class="answer-prompt"><span>Jawabanmu</span><span class="campur-note">${q.money ? 'Tanpa titik' : 'Ketik angka'}</span></div>
+    <div class="answer-display is-empty" id="answer-display" aria-live="polite">
+      <span class="prefix">${q.money ? 'Rp' : '='}</span><span id="answer-text">?</span>
+    </div>
+    <div class="keypad" id="keypad">
+      ${[1,2,3,4,5,6,7,8,9].map(function(n){ return `<button class="key" type="button" data-key="${n}" aria-label="${n}">${n}</button>`; }).join('')}
+      <button class="key key-back" type="button" data-key="back" aria-label="Hapus angka">Hapus</button>
+      <button class="key" type="button" data-key="0" aria-label="0">0</button>
+      <button class="key key-submit" type="button" data-key="submit" disabled>Periksa</button>
+    </div>
+    <p class="keypad-note" id="keypad-note">${q.money ? 'Ketik jumlah rupiah tanpa titik.' : 'Ketik jawaban, lalu tekan Periksa.'}</p>`;
+  renderAnswerDisplay();
+}
+function renderAnswerDisplay(){
+  const display = $('#answer-display');
+  const text = $('#answer-text');
+  const submit = $('.key-submit');
+  if(!display || !text) return;
+  const value = session ? session.input : '';
+  display.classList.toggle('is-empty', !value);
+  text.textContent = value || '?';
+  if(submit) submit.disabled = !value || !session || session.phase !== 'answering';
+}
+function addDigit(digit){
+  if(!session || session.phase !== 'answering') return;
+  if(session.current && session.current.mc) return;
+  if(session.current && session.current.visual.type === 'share') return;
+  if(session.input.length >= 5) return;
+  if(session.input === '0') session.input = '';
+  session.input += String(digit);
+  soundTap(session.input.length);
+  renderAnswerDisplay();
+}
+function backspaceDigit(){
+  if(!session || session.phase !== 'answering') return;
+  session.input = session.input.slice(0, -1);
+  renderAnswerDisplay();
+}
+function clearInput(){
+  if(!session) return;
+  session.input = '';
+  renderAnswerDisplay();
+}
+function disableAnswerControls(disabled){
+  $$('#answer-card button').forEach(function(btn){ btn.disabled = !!disabled; });
+  if(!disabled) syncShareCheck();
+}
+function shakeAnswerDisplay(){
+  const display = $('#answer-display');
+  if(!display) return;
+  display.classList.remove('is-shake');
+  void display.offsetWidth;
+  display.classList.add('is-shake');
+  window.setTimeout(function(){ display.classList.remove('is-shake'); }, 400);
+}
+function revealFeedback(block){
+  const feedback = $('#feedback');
+  if(!feedback) return;
+  const rect = feedback.getBoundingClientRect();
+  if(rect.top < 88 || rect.bottom > window.innerHeight - 8){
+    feedback.scrollIntoView({block: block || 'nearest'});
+  }
+}
+function feedbackCard(kind, icon, title, body){
+  return `<div class="feedback-card ${kind}">
+    <div class="feedback-art">${icon}</div>
+    <div><span class="feedback-title">${title}</span>${body}</div>
+  </div>`;
+}
+function showGoodFeedback(q){
+  const feedback = $('#feedback');
+  if(!feedback) return;
+  const isLast = session && session.solved >= QUESTIONS_PER_LEVEL;
+  feedback.innerHTML = feedbackCard('good', uiIcon('icon-check'), pick(PRAISES),
+    `<p>${correctEquationText(q)}</p>
+     <div class="feedback-actions"><button class="btn btn-primary" type="button" data-action="continue" id="btn-next-q">${isLast ? 'Lihat hasil' : 'Lanjut'}</button></div>`);
+  revealFeedback();
+}
+function showHintFeedback(q){
+  const feedback = $('#feedback');
+  if(!feedback) return;
+  feedback.innerHTML = feedbackCard('hint', uiIcon('icon-read'), 'Coba sekali lagi',
+    `<p>${pick(RETRY_LINES)}</p>
+     <p><strong>Petunjuk:</strong> ${q.hint}</p>
+     <div class="equation-hint">${equationText(q)}</div>`);
+  revealFeedback();
+}
+function showSolutionFeedback(q){
+  const feedback = $('#feedback');
+  if(!feedback) return;
+  const steps = q.steps.map(function(step, i){
+    return `<div class="solution-step ${step.answer ? 'is-answer' : ''}">
+      <span class="step-num">${i + 1}</span><span>${step.text}</span>
+    </div>`;
+  }).join('');
+  const isLast = session && session.solved >= QUESTIONS_PER_LEVEL - 1;
+  feedback.innerHTML = feedbackCard('solution', uiIcon('icon-book'), 'Ini cara menyelesaikannya',
+    `<p>Jawaban yang tepat: <strong>${answerText(q)}</strong></p>
+     <div class="solution-steps">${steps}</div>
+     <div class="feedback-actions"><button class="btn btn-primary" type="button" data-action="continue" id="btn-next-q">${isLast ? 'Lihat hasil' : 'Lanjut'}</button></div>`);
+  disableAnswerControls(true);
+  revealFeedback('start');
+}
+function clearFeedback(){
+  const feedback = $('#feedback');
+  if(feedback) feedback.innerHTML = '';
+}
+function renderProgress(){
+  const dots = $('#progress-dots');
+  if(dots){
+    const results = session ? session.results : [];
+    const current = session ? (session.phase === 'correct' ? Math.max(0, session.solved - 1) : session.solved) : 0;
+    dots.innerHTML = Array.from({length:QUESTIONS_PER_LEVEL}, function(_, i){
+      const res = results[i];
+      const cls = res ? (res.firstTry ? 'is-done' : 'is-miss') : (i === current ? 'is-current' : '');
+      return `<span class="progress-dot ${cls}"></span>`;
+    }).join('');
+  }
+  const counter = $('#play-counter');
+  if(counter && session){
+    const number = session.phase === 'correct' ? session.solved : session.solved + 1;
+    counter.textContent = `Soal ${Math.min(number, QUESTIONS_PER_LEVEL)}/${QUESTIONS_PER_LEVEL}`;
+  }
+}
+let session = null;
+let lastResult = null;
+let activeStallId = null;
+let currentScreen = 'intro';
+let dragState = null;
+let suppressClickUntil = 0;
+function openStall(stallId){
+  const info = stallLockInfo(stallId);
+  if(info.locked){
+    toast(info.text);
+    soundClick();
+    return;
+  }
+  activeStallId = stallId;
+  renderStall(stallId);
+  showScreen('stall');
+  soundClick();
+}
+function startSession(stallId, level){
+  if(!isStallUnlocked(stallId)){
+    toast(stallLockInfo(stallId).text);
+    return;
+  }
+  if(!isLevelUnlocked(stallId, level)){
+    toast('Selesaikan level sebelumnya dulu, ya.');
+    return;
+  }
+  stopSpeech();
+  activeStallId = stallId;
+  lastResult = null;
+  session = {
+    stallId,
+    level,
+    solved:0,
+    firstTry:0,
+    results:[],
+    current:null,
+    phase:'answering',
+    input:'',
+    attempts:0,
+    mistakeMarked:false,
+    scheduledCurrent:false,
+    recordedCurrent:false,
+    reviewQueue:[],
+    stateReviews:0,
+    usedKeys:{},
+    share:null,
+    runId:Date.now() + '-' + Math.random(),
+    startedAt:Date.now(),
+    finished:false
+  };
+  renderProgress();
+  showScreen('play');
+  soundClick();
+  nextQuestion();
+}
+function dueReviewKey(){
+  if(!session) return null;
+  session.reviewQueue = session.reviewQueue.filter(function(entry){ return !!state.mistakes[entry.key]; });
+  const due = session.reviewQueue.filter(function(entry){
+    return entry.at <= session.solved && entry.at < QUESTIONS_PER_LEVEL;
+  }).sort(function(a, b){ return a.at - b.at; });
+  if(!due.length) return null;
+  const entry = due[0];
+  session.reviewQueue = session.reviewQueue.filter(function(item){ return item !== entry; });
+  return entry.key;
+}
+function pickNextQuestion(){
+  const dueKey = dueReviewKey();
+  if(dueKey){
+    return generateReview(dueKey, session.stallId, session.level);
+  }
+  if(session.solved >= 2 && session.stateReviews < 2 && chance(0.22)){
+    const seeds = reviewSeeds(session.stallId).filter(function(key){ return !session.usedKeys[key]; });
+    if(seeds.length){
+      const key = pick(seeds);
+      session.stateReviews++;
+      session.usedKeys[key] = true;
+      return generateReview(key, session.stallId, session.level);
+    }
+  }
+  const q = generateQuestion(session.stallId, session.level);
+  session.usedKeys[q.factKey] = true;
+  return q;
+}
+function scheduleReview(q){
+  if(!session || q.review || session.scheduledCurrent) return;
+  session.scheduledCurrent = true;
+  const at = session.solved + 1 + randInt(3, 6);
+  if(at >= QUESTIONS_PER_LEVEL) return;
+  if(session.reviewQueue.some(function(entry){ return entry.key === q.factKey; })) return;
+  session.reviewQueue.push({at, key:q.factKey});
+}
+function nextQuestion(){
+  if(!session || session.finished) return;
+  if(session.solved >= QUESTIONS_PER_LEVEL){
+    finishSession();
+    return;
+  }
+  session.phase = 'answering';
+  session.input = '';
+  session.attempts = 0;
+  session.mistakeMarked = false;
+  session.scheduledCurrent = false;
+  session.recordedCurrent = false;
+  session.share = null;
+  clearFeedback();
+  const q = pickNextQuestion();
+  session.current = q;
+  renderQuestion(q);
+  window.scrollTo(0, 0);
+  if(state.settings.autoRead && canUseSpeech()){
+    const runId = session.runId;
+    window.setTimeout(function(){
+      if(session && session.runId === runId && session.current === q && currentScreen === 'play'){
+        speakQuestion(q.speech);
+      }
+    }, 420);
+  }
+}
+function renderQuestion(q){
+  const stall = STALL_BY_ID[session.stallId];
+  const meta = LEVEL_META[session.stallId][session.level];
+  const title = $('#play-title');
+  if(title) title.textContent = `${stall.name} · Level ${session.level + 1}`;
+  const counter = $('#play-counter');
+  if(counter) counter.textContent = `Soal ${session.solved + 1}/${QUESTIONS_PER_LEVEL}`;
+  const buyer = $('#buyer-chip');
+  if(buyer) buyer.textContent = q.review ? 'Ulangi pelajaran' : (q.buyer ? 'Pembeli: ' + q.buyer : 'Soal cerita');
+  const levelChip = $('#level-chip');
+  if(levelChip) levelChip.textContent = `Level ${session.level + 1} · ${meta.title}`;
+  const story = $('#story-text');
+  if(story) story.textContent = q.story;
+  const question = $('#question-text');
+  if(question) question.textContent = q.question;
+  updateSpeechUI();
+  renderVisual(q);
+  renderAnswerCard(q);
+  renderProgress();
+  setMascotBubble(q.review ? 'Kita ulangi soal ini, ya. Pelan-pelan saja.' : 'Baca dulu, lalu hitung pelan-pelan.');
+  window.scrollTo(0, 0);
+}
+function recordCurrent(firstTry){
+  if(!session || session.recordedCurrent) return;
+  session.recordedCurrent = true;
+  const q = session.current;
+  session.results.push({
+    factKey:q.factKey,
+    firstTry:!!firstTry,
+    attempts:session.attempts,
+    review:!!q.review
+  });
+  if(firstTry) session.firstTry++;
+  session.solved++;
+  if(q.review && firstTry) clearMistake(q.factKey);
+  renderProgress();
+}
+function handleCorrect(){
+  if(!session || session.phase !== 'answering') return;
+  const q = session.current;
+  session.phase = 'correct';
+  disableAnswerControls(true);
+  recordCurrent(session.attempts === 0);
+  showGoodFeedback(q);
+  setMascotBubble(session.solved >= QUESTIONS_PER_LEVEL ? 'Semua pembeli senang! Lihat hasilnya, yuk.' : 'Lanjut ke pembeli berikutnya, yuk.');
+  soundCorrect();
+  celebrateMascot();
+  window.setTimeout(function(){
+    const button = $('#btn-next-q');
+    if(button) button.focus({preventScroll:true});
+  }, 60);
+}
+function handleWrong(sourceButton){
+  if(!session || session.phase !== 'answering') return;
+  const q = session.current;
+  session.attempts++;
+  if(!session.mistakeMarked){
+    markMistake(q);
+    session.mistakeMarked = true;
+  }
+  scheduleReview(q);
+  if(session.attempts === 1){
+    if(q.mc && sourceButton) sourceButton.disabled = true;
+    if(!q.mc && q.visual.type !== 'share'){
+      session.input = '';
+      renderAnswerDisplay();
+    }
+    showHintFeedback(q);
+    shakeAnswerDisplay();
+    setMascotBubble('Hampir! Baca petunjuknya, lalu coba lagi.');
+    soundWrong();
+    if(q.visual.type === 'share') syncShareCheck();
+  } else {
+    session.phase = 'solution';
+    showSolutionFeedback(q);
+    setMascotBubble('Tidak apa-apa. Kita lihat caranya bersama.');
+    soundWrong();
+  }
+}
+function submitKeypad(){
+  if(!session || session.phase !== 'answering' || !session.input) return;
+  const q = session.current;
+  if(Number(session.input) === q.answer) handleCorrect();
+  else handleWrong();
+}
+function handleChoice(value, button){
+  if(!session || session.phase !== 'answering' || !session.current.mc) return;
+  const q = session.current;
+  if(Number(value) === q.answer) handleCorrect();
+  else handleWrong(button);
+}
+function shareAllPlaced(){
+  return !!session && !!session.share && session.share.assignment.every(function(plate){ return plate >= 0; });
+}
+function checkShare(){
+  if(!session || session.phase !== 'answering' || !session.current || session.current.visual.type !== 'share') return;
+  if(!shareAllPlaced()){
+    toast('Masih ada benda di keranjang. Pindahkan semuanya dulu, ya.');
+    return;
+  }
+  const counts = sharePlateCounts();
+  const even = counts.length > 0 && counts.every(function(n){ return n === counts[0]; });
+  if(even) handleCorrect();
+  else handleWrong();
+}
+function continueSession(){
+  if(!session) return;
+  if(session.phase === 'correct'){
+    session.phase = 'advancing';
+    if(session.solved >= QUESTIONS_PER_LEVEL) finishSession();
+    else nextQuestion();
+  } else if(session.phase === 'solution'){
+    session.phase = 'advancing';
+    recordCurrent(false);
+    if(session.solved >= QUESTIONS_PER_LEVEL) finishSession();
+    else nextQuestion();
+  }
+}
+function finishSession(){
+  if(!session || session.finished) return;
+  session.finished = true;
+  const snapshot = session;
+  const stall = STALL_BY_ID[snapshot.stallId];
+  const meta = LEVEL_META[snapshot.stallId][snapshot.level];
+  const firstTry = snapshot.firstTry;
+  const starsEarned = 1 + (firstTry >= 7 ? 1 : 0) + (firstTry >= 9 ? 1 : 0);
+  const nextStall = nextStallId(snapshot.stallId);
+  const wasNextUnlocked = nextStall ? isStallUnlocked(nextStall) : false;
+  const record = recordLevelResult(snapshot.stallId, snapshot.level, starsEarned);
+  const nextUnlockedNow = nextStall ? (!wasNextUnlocked && isStallUnlocked(nextStall)) : false;
+  lastResult = {
+    stallId:snapshot.stallId,
+    stallName:stall.name,
+    level:snapshot.level,
+    levelTitle:meta.title,
+    firstTry,
+    starsEarned,
+    previousStars:record.previousStars,
+    bestStars:record.stars,
+    newSticker:record.newSticker,
+    sticker:record.sticker,
+    nextStall,
+    nextStallName:nextStall ? STALL_BY_ID[nextStall].name : '',
+    nextUnlockedNow,
+    totalStars:allStars(),
+    stickerTotal:stickerCount()
+  };
+  session = null;
+  renderResult(lastResult);
+  showScreen('result');
+  celebrateMascot();
+  if(lastResult.newSticker) window.setTimeout(soundSticker, 280);
+  else soundStar();
+  if(lastResult.nextUnlockedNow) window.setTimeout(soundUnlock, 900);
+}
+function renderResult(data){
+  const title = $('#result-title');
+  if(title) title.textContent = data.starsEarned === 3 ? 'Luar biasa!' : data.starsEarned === 2 ? 'Kerja bagus!' : 'Tingkat selesai!';
+  const stars = $('#result-stars');
+  if(stars){
+    stars.setAttribute('aria-label', `${data.starsEarned} dari 3 bintang`);
+    stars.innerHTML = [0,1,2].map(function(i){
+      const earned = i < data.starsEarned;
+      return `<div class="big-star ${earned ? 'is-earned' : ''}" style="--delay:${i * 0.14}s" aria-hidden="true">
+        <svg viewBox="0 0 48 48"><use href="#icon-star-outline"/><use class="star-fill" href="#icon-star"/></svg>
+      </div>`;
+    }).join('');
+  }
+  const sub = $('#result-sub');
+  if(sub){
+    let text = `${data.firstTry} dari ${QUESTIONS_PER_LEVEL} soal benar pada percobaan pertama. `;
+    if(data.starsEarned > data.previousStars) text += `Bintang level ini naik menjadi ${data.starsEarned}. `;
+    else text += `Bintang terbaikmu tetap ${data.bestStars}. `;
+    if(data.nextUnlockedNow) text += `Lapak ${data.nextStallName} sekarang terbuka!`;
+    else if(data.stallId === 'campur' && data.level === 4) text += 'Kamu sudah menyelesaikan seluruh petualangan Lapak Kancil.';
+    sub.innerHTML = `${text}${data.nextUnlockedNow ? '<br><span class="unlock-note">Lapak baru terbuka</span>' : ''}`;
+  }
+  const stickerBox = $('#result-sticker');
+  if(stickerBox){
+    if(data.newSticker){
+      stickerBox.innerHTML = `<div class="sticker-reward">
+        ${itemIcon(data.newSticker.icon)}
+        <div><strong>Stiker baru: ${data.newSticker.name}</strong><span>Stiker ini masuk ke Buku Stiker-mu.</span></div>
+      </div>`;
+    } else if(data.sticker){
+      stickerBox.innerHTML = `<div class="sticker-reward no-sticker">
+        ${itemIcon(data.sticker.icon)}
+        <div><strong>Stiker ${data.sticker.name}</strong><span>Sudah ada di buku stikermu. Main lagi untuk bintang lebih baik.</span></div>
+      </div>`;
+    } else {
+      stickerBox.innerHTML = `<div class="sticker-reward no-sticker">
+        ${uiIcon('icon-book')}
+        <div><strong>Bintang tersimpan</strong><span>Stiker hadiah ada di tingkat 1, 3, dan 5 setiap lapak.</span></div>
+      </div>`;
+    }
+  }
+  const actions = $('#result-actions');
+  if(actions){
+    const buttons = [];
+    if(data.level < LEVELS - 1){
+      const nextMeta = LEVEL_META[data.stallId][data.level + 1];
+      buttons.push(`<button class="btn btn-primary" type="button" data-action="next-level" data-level="${data.level + 1}">Level ${data.level + 2}: ${nextMeta.title}</button>`);
+    } else if(data.nextStall && isStallUnlocked(data.nextStall)){
+      buttons.push(`<button class="btn btn-primary" type="button" data-action="next-stall">Kunjungi Lapak ${data.nextStallName}</button>`);
+    } else {
+      buttons.push('<button class="btn btn-primary" type="button" data-action="back-stall">Kembali ke lapak</button>');
+    }
+    buttons.push('<button class="btn btn-cream" type="button" data-action="retry">Main lagi</button>');
+    if(!(data.level >= LEVELS - 1 && (!data.nextStall || !isStallUnlocked(data.nextStall)))){
+      buttons.push('<button class="btn btn-cream" type="button" data-action="back-stall">Kembali ke lapak</button>');
+    }
+    actions.innerHTML = buttons.join('');
+  }
+}
+function handleResultAction(action, level){
+  if(!lastResult) return;
+  if(action === 'next-level') startSession(lastResult.stallId, Number(level));
+  else if(action === 'retry') startSession(lastResult.stallId, lastResult.level);
+  else if(action === 'next-stall' && lastResult.nextStall) openStall(lastResult.nextStall);
+  else if(action === 'back-stall') openStall(lastResult.stallId);
+}
+function openExitBar(){
+  if(!session || currentScreen !== 'play') return;
+  const bar = $('#exit-bar');
+  if(!bar) return;
+  bar.hidden = false;
+  stopSpeech();
+  const cancel = $('#btn-exit-cancel');
+  if(cancel) window.setTimeout(function(){ cancel.focus({preventScroll:true}); }, 30);
+}
+function closeExitBar(){
+  const bar = $('#exit-bar');
+  if(bar) bar.hidden = true;
+}
+function confirmExitLevel(){
+  const stallId = session ? session.stallId : activeStallId;
+  session = null;
+  closeExitBar();
+  if(stallId) openStall(stallId);
+  else {
+    renderMap();
+    showScreen('map');
+  }
+}
+function openStickers(){
+  renderStickers();
+  showScreen('stickers');
+  soundClick();
+}
+function openSettings(){
+  renderSettings();
+  showScreen('settings');
+  soundClick();
+}
+function openResetConfirm(){
+  const box = $('#confirm-reset');
+  if(box) box.hidden = false;
+  const cancel = $('#btn-reset-cancel');
+  if(cancel) window.setTimeout(function(){ cancel.focus({preventScroll:true}); }, 30);
+}
+function closeResetConfirm(){
+  const box = $('#confirm-reset');
+  if(box) box.hidden = true;
+}
+function doReset(){
+  resetProgress();
+  session = null;
+  activeStallId = null;
+  closeResetConfirm();
+  const name = $('#nama');
+  if(name) name.value = '';
+  const hint = $('#nama-hint');
+  if(hint) hint.textContent = '';
+  renderMap();
+  renderSettings();
+  showScreen('intro');
+  toast('Progres sudah dihapus. Kita mulai dari awal, ya.');
+}
+function toggleEffects(){
+  state.settings.effects = !state.settings.effects;
+  saveState();
+  updateSoundUI();
+  if(state.settings.effects) soundClick();
+  toast(state.settings.effects ? 'Efek suara aktif.' : 'Efek suara dimatikan.');
+}
+function toggleAutoRead(){
+  if(!canUseSpeech()){
+    toast('Perangkat ini belum punya suara bahasa Indonesia.');
+    return;
+  }
+  state.settings.autoRead = !state.settings.autoRead;
+  saveState();
+  updateSpeechUI();
+  if(state.settings.autoRead){
+    toast('Soal akan dibacakan otomatis.');
+    if(session && session.current && currentScreen === 'play') speakQuestion(session.current.speech);
+  } else {
+    stopSpeech();
+    toast('Bacaan otomatis dimatikan.');
+  }
+}
+function startFromIntro(event){
+  event.preventDefault();
+  const input = $('#nama');
+  const hint = $('#nama-hint');
+  const raw = input ? input.value : '';
+  const cleaned = String(raw || '').replace(/[\u0000-\u001f]/g, ' ').replace(/\s+/g, ' ').trim();
+  if(!cleaned){
+    if(hint) hint.textContent = 'Tulis nama panggilanmu dulu, ya.';
+    if(input) input.focus();
+    return;
+  }
+  setPlayerName(cleaned);
+  if(input) input.value = state.name;
+  if(hint) hint.textContent = '';
+  renderMap();
+  showScreen('map');
+  soundCorrect();
+  toast(`Halo, ${state.name}! Ayo buka lapak pertama.`);
+}
+function toggleCountButton(button){
+  const on = !button.classList.contains('is-counted');
+  button.classList.toggle('is-counted', on);
+  button.setAttribute('aria-pressed', on ? 'true' : 'false');
+  soundTap(1);
+}
+function toggleArrayRow(row){
+  if(!session || !session.current) return;
+  const q = session.current;
+  const on = !row.classList.contains('is-counted');
+  row.classList.toggle('is-counted', on);
+  row.setAttribute('aria-pressed', on ? 'true' : 'false');
+  const index = Number(row.dataset.arrayRow);
+  const count = row.querySelector('[data-row-count]');
+  if(count) count.textContent = on ? String((index + 1) * q.b) : '';
+  soundTap(1);
+}
+function toggleShareSelection(index){
+  if(!session || !session.share || session.phase !== 'answering') return;
+  session.share.selected = session.share.selected === index ? null : index;
+  $$('#share-pool .drag-item').forEach(function(item){
+    const selected = Number(item.dataset.shareIndex) === session.share.selected;
+    item.classList.toggle('is-selected', selected);
+    item.setAttribute('aria-pressed', selected ? 'true' : 'false');
+  });
+  soundClick();
+}
+function assignShare(index, plate){
+  if(!session || !session.share || session.phase !== 'answering') return;
+  if(!Number.isInteger(index) || index < 0 || index >= session.share.assignment.length) return;
+  if(!Number.isInteger(plate) || plate < 0 || plate >= session.share.divisor) return;
+  session.share.assignment[index] = plate;
+  session.share.selected = null;
+  renderShareStage();
+  const counts = sharePlateCounts();
+  soundTap(counts[plate] || 1);
+}
+function resetShare(){
+  if(!session || !session.share || session.phase !== 'answering') return;
+  session.share.assignment.fill(-1);
+  session.share.selected = null;
+  renderShareStage();
+  soundClick();
+}
+function showDragGhost(x, y){
+  const ghost = $('#drag-ghost');
+  if(!ghost || !session || !session.current) return;
+  ghost.innerHTML = itemIcon(session.current.item);
+  ghost.classList.add('is-active');
+  ghost.style.left = x + 'px';
+  ghost.style.top = y + 'px';
+}
+function moveDragGhost(x, y){
+  const ghost = $('#drag-ghost');
+  if(!ghost || !ghost.classList.contains('is-active')) return;
+  ghost.style.left = x + 'px';
+  ghost.style.top = y + 'px';
+}
+function hideDragGhost(){
+  const ghost = $('#drag-ghost');
+  if(!ghost) return;
+  ghost.classList.remove('is-active');
+  ghost.innerHTML = '';
+}
+function highlightPlateAt(x, y){
+  $$('.plate.is-target').forEach(function(plate){ plate.classList.remove('is-target'); });
+  const target = document.elementFromPoint(x, y);
+  const plate = target && target.closest ? target.closest('.plate') : null;
+  if(plate) plate.classList.add('is-target');
+}
+function cleanupShareDrag(){
+  if(dragState && dragState.source) dragState.source.classList.remove('is-dragging');
+  $$('.plate.is-target').forEach(function(plate){ plate.classList.remove('is-target'); });
+  hideDragGhost();
+  dragState = null;
+}
+function onSharePointerDown(event){
+  if(!session || session.phase !== 'answering' || !session.current) return;
+  if(session.current.visual.type !== 'share') return;
+  const target = event.target;
+  const item = target && target.closest ? target.closest('.drag-item') : null;
+  if(!item) return;
+  if(event.pointerType === 'mouse' && event.button !== 0) return;
+  event.preventDefault();
+  dragState = {
+    index:Number(item.dataset.shareIndex),
+    startX:event.clientX,
+    startY:event.clientY,
+    active:false,
+    source:item,
+    pointerId:event.pointerId
+  };
+}
+function onSharePointerMove(event){
+  if(!dragState || event.pointerId !== dragState.pointerId) return;
+  const dx = event.clientX - dragState.startX;
+  const dy = event.clientY - dragState.startY;
+  if(!dragState.active && Math.hypot(dx, dy) > 8){
+    dragState.active = true;
+    if(dragState.source) dragState.source.classList.add('is-dragging');
+    showDragGhost(event.clientX, event.clientY);
+  }
+  if(dragState.active){
+    event.preventDefault();
+    moveDragGhost(event.clientX, event.clientY);
+    highlightPlateAt(event.clientX, event.clientY);
+  }
+}
+function onSharePointerUp(event){
+  if(!dragState || event.pointerId !== dragState.pointerId) return;
+  const drag = dragState;
+  const active = drag.active;
+  const index = drag.index;
+  let plateIndex = null;
+  if(active){
+    const target = document.elementFromPoint(event.clientX, event.clientY);
+    const plate = target && target.closest ? target.closest('.plate') : null;
+    if(plate) plateIndex = Number(plate.dataset.plate);
+  }
+  cleanupShareDrag();
+  suppressClickUntil = performance.now() + 400;
+  if(active){
+    if(plateIndex !== null) assignShare(index, plateIndex);
+  } else {
+    toggleShareSelection(index);
+  }
+}
+function onClick(event){
+  const target = event.target;
+  if(!target || !target.closest) return;
+  const soundToggle = target.closest('[data-sound-toggle]');
+  if(soundToggle){
+    event.preventDefault();
+    toggleEffects();
+    return;
+  }
+  const actionButton = target.closest('button, a');
+  const id = actionButton ? actionButton.id : '';
+  if(id === 'btn-stickers'){ openStickers(); return; }
+  if(id === 'btn-settings'){ openSettings(); return; }
+  if(id === 'btn-stall-back'){
+    renderMap();
+    showScreen('map');
+    soundClick();
+    return;
+  }
+  if(id === 'btn-stickers-back' || id === 'btn-settings-back'){
+    renderMap();
+    showScreen('map');
+    soundClick();
+    return;
+  }
+  if(id === 'btn-play-back'){ openExitBar(); return; }
+  if(id === 'btn-exit-cancel'){ closeExitBar(); return; }
+  if(id === 'btn-exit-confirm'){ confirmExitLevel(); return; }
+  if(id === 'btn-play-read' || id === 'btn-read-inline'){
+    if(!session || !session.current) return;
+    if(speechSynth && speechSynth.speaking) stopSpeech();
+    else speakQuestion(session.current.speech);
+    return;
+  }
+  if(id === 'btn-sound-settings'){ toggleEffects(); return; }
+  if(id === 'btn-read-settings'){ toggleAutoRead(); return; }
+  if(id === 'btn-reset'){ openResetConfirm(); return; }
+  if(id === 'btn-reset-cancel'){ closeResetConfirm(); return; }
+  if(id === 'btn-reset-confirm'){ doReset(); return; }
+  if(id === 'btn-check-share'){ checkShare(); return; }
+  if(id === 'btn-share-reset'){ resetShare(); return; }
+  if(id === 'btn-next-q'){ continueSession(); return; }
+  const stallCard = target.closest('.stall-card');
+  if(stallCard){
+    const stallId = stallCard.dataset.stall;
+    if(stallLockInfo(stallId).locked) toast(stallLockInfo(stallId).text);
+    else openStall(stallId);
+    return;
+  }
+  const levelCard = target.closest('.level-card');
+  if(levelCard){
+    const level = Number(levelCard.dataset.level);
+    if(!activeStallId) return;
+    if(!isLevelUnlocked(activeStallId, level)){
+      toast('Selesaikan level sebelumnya dulu, ya.');
+      return;
+    }
+    startSession(activeStallId, level);
+    return;
+  }
+  const keyButton = target.closest('[data-key]');
+  if(keyButton){
+    const key = keyButton.dataset.key;
+    if(key === 'submit') submitKeypad();
+    else if(key === 'back') backspaceDigit();
+    else if(/^\d$/.test(key)) addDigit(key);
+    return;
+  }
+  const choice = target.closest('[data-choice]');
+  if(choice){
+    handleChoice(choice.dataset.choice, choice);
+    return;
+  }
+  const countButton = target.closest('[data-count]');
+  if(countButton){
+    toggleCountButton(countButton);
+    return;
+  }
+  const arrayRow = target.closest('[data-array-row]');
+  if(arrayRow){
+    toggleArrayRow(arrayRow);
+    return;
+  }
+  const shareItem = target.closest('[data-share-index]');
+  if(shareItem){
+    if(event.detail > 0 && performance.now() < suppressClickUntil) return;
+    toggleShareSelection(Number(shareItem.dataset.shareIndex));
+    return;
+  }
+  const plate = target.closest('[data-plate]');
+  if(plate){
+    if(!session || !session.share || session.phase !== 'answering') return;
+    if(session.share.selected !== null) assignShare(session.share.selected, Number(plate.dataset.plate));
+    return;
+  }
+  const action = target.closest('[data-action]');
+  if(action){
+    const value = action.dataset.action;
+    if(value === 'continue') continueSession();
+    else handleResultAction(value, action.dataset.level);
+    return;
+  }
+}
+function onKeydown(event){
+  if(event.key === 'Escape'){
+    const exit = $('#exit-bar');
+    if(exit && !exit.hidden){ closeExitBar(); return; }
+    const reset = $('#confirm-reset');
+    if(reset && !reset.hidden){ closeResetConfirm(); return; }
+  }
+  if(currentScreen !== 'play' || !session || session.phase !== 'answering') return;
+  if(event.ctrlKey || event.metaKey || event.altKey) return;
+  const tag = (event.target && event.target.tagName || '').toUpperCase();
+  if(tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+  const q = session.current;
+  if(!q) return;
+  if(q.mc && /^[1-4]$/.test(event.key)){
+    const buttons = $$('.choice-btn').filter(function(button){ return !button.disabled; });
+    const button = buttons[Number(event.key) - 1];
+    if(button){
+      event.preventDefault();
+      button.click();
+    }
+    return;
+  }
+  if(q.visual.type === 'share') return;
+  if(/^\d$/.test(event.key)){
+    event.preventDefault();
+    addDigit(event.key);
+    return;
+  }
+  if(event.key === 'Backspace'){
+    event.preventDefault();
+    backspaceDigit();
+    return;
+  }
+  if(event.key === 'Enter'){
+    if(event.target && event.target.closest && event.target.closest('button')) return;
+    event.preventDefault();
+    submitKeypad();
+  }
+}
+function bindEvents(){
+  const form = $('#form-start');
+  if(form) form.addEventListener('submit', startFromIntro);
+  const name = $('#nama');
+  if(name){
+    name.addEventListener('input', function(){
+      const hint = $('#nama-hint');
+      if(hint) hint.textContent = '';
+    });
+  }
+  document.addEventListener('click', onClick);
+  document.addEventListener('pointerdown', onSharePointerDown);
+  document.addEventListener('pointermove', onSharePointerMove, {passive:false});
+  document.addEventListener('pointerup', onSharePointerUp);
+  document.addEventListener('pointercancel', cleanupShareDrag);
+  document.addEventListener('keydown', onKeydown);
+  window.addEventListener('blur', cleanupShareDrag);
+}
+(function bootGame(){
+  bindEvents();
+  refreshVoices();
+  placeMascots();
+  renderMap();
+  renderSettings();
+  updateSoundUI();
+  updateSpeechUI();
+  const nameInput = $('#nama');
+  if(nameInput) nameInput.value = state.name || '';
+  if(state.name) showScreen('map');
+  else showScreen('intro');
+})();
+</script>
+</body>
+</html>
