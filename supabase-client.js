@@ -8,7 +8,7 @@
 
     const config = window.LAPAK_SUPABASE_CONFIG;
     if(!config || !/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.url || '') ||
-      !config.anonKey || config.anonKey === 'sb_publishable_g6VgLQcx2uLu3lC26UU2FA_Q_FxiHAF'){
+      !config.anonKey || config.anonKey === 'YOUR_SUPABASE_ANON_KEY'){
       return Promise.reject(new Error('Konfigurasi kelas belum diisi. Hubungi pengelola aplikasi.'));
     }
 
