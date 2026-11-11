@@ -39,6 +39,21 @@ create unique index if not exists lapak_reset_requests_one_pending_per_student_i
 create index if not exists lapak_classes_teacher_id_idx on public.lapak_classes(teacher_id);
 create index if not exists lapak_students_class_id_idx on public.lapak_students(class_id);
 
+do $$
+begin
+  if exists (select 1 from pg_publication where pubname = 'supabase_realtime')
+    and not exists (
+      select 1
+      from pg_publication_tables
+      where pubname = 'supabase_realtime'
+        and schemaname = 'public'
+        and tablename = 'lapak_reset_requests'
+    ) then
+    alter publication supabase_realtime add table public.lapak_reset_requests;
+  end if;
+end;
+$$;
+
 alter table public.lapak_classes enable row level security;
 alter table public.lapak_students enable row level security;
 alter table public.lapak_reset_requests enable row level security;
@@ -98,6 +113,32 @@ revoke all on public.lapak_classes, public.lapak_students, public.lapak_reset_re
 grant select, insert, update, delete on public.lapak_classes to authenticated;
 grant select, delete on public.lapak_students to authenticated;
 grant select on public.lapak_reset_requests to authenticated;
+
+create or replace function public.lapak_broadcast_reset_decision()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if old.status is distinct from new.status and new.status in ('approved', 'denied') then
+    perform realtime.send(
+      payload => jsonb_build_object('request_id', new.id, 'status', new.status),
+      event => 'reset_decision',
+      topic => 'lapak-reset-' || new.id::text,
+      private => false
+    );
+  end if;
+  return new;
+end;
+$$;
+
+revoke all on function public.lapak_broadcast_reset_decision() from public, anon, authenticated;
+drop trigger if exists lapak_reset_decision_broadcast on public.lapak_reset_requests;
+create trigger lapak_reset_decision_broadcast
+  after update of status on public.lapak_reset_requests
+  for each row
+  execute function public.lapak_broadcast_reset_decision();
 
 drop function if exists public.lapak_student_save_progress(uuid, text, jsonb);
 drop function if exists public.lapak_student_save_progress(uuid, text, text, jsonb);
@@ -161,6 +202,13 @@ begin
     'student_id', v_student_id,
     'class_name', v_class_name,
     'reset_version', (select s.reset_version from public.lapak_students as s where s.id = v_student_id),
+    'reset_request_id', (
+      select r.id
+      from public.lapak_reset_requests as r
+      where r.student_id = v_student_id and r.status = 'pending'
+      order by r.requested_at desc
+      limit 1
+    ),
     'reset_status', (
       select r.status
       from public.lapak_reset_requests as r
@@ -189,6 +237,7 @@ declare
   v_nickname text := btrim(p_nickname);
   v_reset_version integer;
   v_reset_status text;
+  v_reset_request_id uuid;
 begin
   if p_session_token is null
     or p_session_token !~ '^[a-f0-9]{64}$'
@@ -214,8 +263,8 @@ begin
     raise exception 'Sesi murid tidak dikenali. Buka kembali tautan kelas.';
   end if;
 
-  select r.status
-    into v_reset_status
+  select r.id, r.status
+    into v_reset_request_id, v_reset_status
     from public.lapak_reset_requests as r
     where r.student_id = p_student_id
     order by r.requested_at desc
@@ -225,7 +274,8 @@ begin
     return jsonb_build_object(
       'reset_required', true,
       'reset_version', v_reset_version,
-      'reset_status', v_reset_status
+      'reset_status', v_reset_status,
+      'reset_request_id', v_reset_request_id
     );
   end if;
 
@@ -236,7 +286,8 @@ begin
   return jsonb_build_object(
     'reset_required', false,
     'reset_version', v_reset_version,
-    'reset_status', v_reset_status
+    'reset_status', v_reset_status,
+    'reset_request_id', v_reset_request_id
   );
 end;
 $$;

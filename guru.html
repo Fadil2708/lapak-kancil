@@ -15,6 +15,27 @@
     .reset-requests{margin-top:16px;padding:14px;background:#fff0d9;border:2px solid var(--ink);border-radius:12px}
     .reset-requests h4{font:22px var(--display);margin-bottom:8px;color:#a92f1a}
     .reset-request-item{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 0;border-top:1px solid #d6bd91}
+    .notification-center{margin:18px 0;padding:18px;background:linear-gradient(135deg,#fff5de,#ffe5a0);border:3px solid var(--ink);border-radius:18px;box-shadow:3px 3px 0 var(--ink)}
+    .notification-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .notification-title{display:flex;align-items:center;gap:10px}
+    .notification-title h3{font-size:25px}
+    .notification-bell{display:grid;place-items:center;width:42px;height:42px;border:2px solid var(--ink);border-radius:50%;background:var(--yellow);font-size:22px}
+    .notification-count{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 7px;border-radius:999px;background:var(--red);color:white;font-weight:800;font-size:14px}
+    .notification-list{display:grid;gap:10px;margin-top:12px}
+    .notification-empty{padding:14px;border:2px dashed #d6bd91;border-radius:12px;text-align:center;color:var(--soft);font-weight:700}
+    .notification-card{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:14px;background:#fffaf0;border:2px solid var(--ink);border-radius:12px;animation:notifyIn .25s ease-out}
+    .notification-card p{font-weight:800}
+    .notification-card small{display:block;color:var(--soft);font-size:14px}
+    .realtime-state{font-size:14px;font-weight:800;color:var(--green)}
+    .action-dialog{width:min(460px,calc(100% - 32px));padding:0;border:4px solid var(--ink);border-radius:20px;background:var(--paper);color:var(--ink);box-shadow:8px 8px 0 rgba(59,34,20,.45)}
+    .action-dialog::backdrop{background:rgba(35,22,12,.62);backdrop-filter:blur(3px)}
+    .action-dialog form{padding:clamp(22px,6vw,32px)}
+    .action-dialog .dialog-kicker{font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#a92f1a}
+    .action-dialog h2{margin:7px 0 10px;font-size:30px;color:var(--ink)}
+    .action-dialog p{color:var(--soft)}
+    .dialog-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:22px}
+    @keyframes notifyIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+    @media(prefers-reduced-motion:reduce){.notification-card{animation:none}}
     .confirm-panel{max-width:680px;margin:34px auto;text-align:center;overflow:hidden;position:relative}
     .confirm-art{width:min(190px,52vw);height:auto;margin:2px auto 16px;filter:drop-shadow(4px 5px 0 rgba(59,34,20,.18))}
     .confirm-art .mail-flap{transform-origin:90px 70px;animation:mailWave 2.4s ease-in-out infinite}
@@ -135,6 +156,20 @@
     </section>
     <section class="panel hidden" id="dashboard">
       <h2>Kelas saya</h2>
+      <section class="notification-center" aria-labelledby="notification-heading">
+        <div class="notification-head">
+          <div class="notification-title">
+            <span class="notification-bell" aria-hidden="true">🔔</span>
+            <div><h3 id="notification-heading">Notifikasi kelas</h3><span class="realtime-state" id="realtime-state">Menghubungkan...</span></div>
+            <span class="notification-count" id="notification-count" aria-label="Permintaan reset menunggu">0</span>
+          </div>
+          <button class="btn btn-small" id="enable-notifications" type="button">Aktifkan notifikasi browser</button>
+        </div>
+        <p class="status" id="inbox-status" role="status" aria-live="polite"></p>
+        <div class="notification-list" id="notification-list" aria-live="polite">
+          <p class="notification-empty">Memuat permintaan reset...</p>
+        </div>
+      </section>
       <form class="class-form" id="create-class-form">
         <label class="sr-only" for="class-name">Nama kelas</label>
         <input class="class-name" id="class-name" maxlength="60" placeholder="Contoh: Kelas 3A" required>
@@ -144,6 +179,17 @@
       <div class="class-list" id="class-list"></div>
     </section>
   </main>
+  <dialog class="action-dialog" id="action-confirm" aria-labelledby="action-confirm-title" aria-describedby="action-confirm-copy">
+    <form method="dialog">
+      <span class="dialog-kicker">Konfirmasi tindakan</span>
+      <h2 id="action-confirm-title">Yakin?</h2>
+      <p id="action-confirm-copy"></p>
+      <div class="dialog-actions">
+        <button class="btn btn-small" type="submit" value="cancel">Batal</button>
+        <button class="btn btn-red btn-small" id="action-confirm-submit" type="submit" value="confirm">Lanjutkan</button>
+      </div>
+    </form>
+  </dialog>
   <script src="supabase-config.js"></script>
   <script src="supabase-client.js"></script>
   <script>
@@ -152,11 +198,57 @@
     let supabaseClient = null;
     let currentUser = null;
     let renderedClasses = [];
+    let teacherResetChannel = null;
+    let resetInboxRefreshTimer = 0;
     let pendingConfirmationEmail = '';
     let confirmationUser = null;
     function setStatus(element, message, isError){
       element.textContent = message || '';
       element.classList.toggle('error', !!isError);
+    }
+    function confirmAction(title, message, confirmLabel, isDanger){
+      const dialog = $('#action-confirm');
+      $('#action-confirm-title').textContent = title;
+      $('#action-confirm-copy').textContent = message;
+      const submit = $('#action-confirm-submit');
+      submit.textContent = confirmLabel || 'Lanjutkan';
+      submit.classList.toggle('btn-red', !!isDanger);
+      submit.classList.toggle('btn-green', !isDanger);
+      return new Promise(function(resolve){
+        const onClose = function(){
+          dialog.removeEventListener('close', onClose);
+          resolve(dialog.returnValue === 'confirm');
+        };
+        dialog.addEventListener('close', onClose);
+        dialog.showModal();
+      });
+    }
+    function setRealtimeState(message, isError){
+      const state = $('#realtime-state');
+      state.textContent = message;
+      state.style.color = isError ? '#a92f1a' : '';
+    }
+    function notifyBrowser(title, body, tag){
+      if('Notification' in window && Notification.permission === 'granted'){
+        new Notification(title, {body, tag});
+      }
+    }
+    function enableBrowserNotifications(){
+      if(!('Notification' in window)){
+        setStatus($('#inbox-status'), 'Browser ini belum mendukung notifikasi sistem. Notifikasi tetap tampil di portal.', true);
+        return;
+      }
+      Notification.requestPermission().then(function(permission){
+        const button = $('#enable-notifications');
+        if(permission === 'granted'){
+          button.textContent = 'Notifikasi browser aktif';
+          setStatus($('#inbox-status'), 'Notifikasi browser aktif. Portal tetap perlu terbuka agar pemberitahuan realtime diterima.');
+        } else {
+          setStatus($('#inbox-status'), 'Izin notifikasi browser belum diberikan. Permintaan tetap terlihat di portal.', true);
+        }
+      }).catch(function(err){
+        setStatus($('#inbox-status'), err.message || 'Izin notifikasi browser gagal diminta.', true);
+      });
     }
     async function getClient(){
       if(!supabaseClient) supabaseClient = await window.loadLapakSupabase();
@@ -238,7 +330,12 @@
       $('#auth-panel').classList.add('hidden');
       $('#dashboard').classList.remove('hidden');
       $('#logout').classList.remove('hidden');
+      if('Notification' in window && Notification.permission === 'granted'){
+        $('#enable-notifications').textContent = 'Notifikasi browser aktif';
+      }
       await loadClasses();
+      await refreshResetInbox();
+      subscribeTeacherResetRequests();
     }
     async function loadClasses(){
       const client = await getClient();
@@ -270,6 +367,7 @@
       }
       renderedClasses.forEach(function(classInfo){
         const card = el('article', undefined, 'class-card');
+        card.dataset.classId = classInfo.id;
         const head = el('div', undefined, 'class-head');
         const titleBox = document.createElement('div');
         titleBox.append(el('h3', classInfo.name), el('span', classInfo.is_active ? 'Tautan aktif' : 'Tautan dinonaktifkan', 'pill'));
@@ -403,11 +501,126 @@
         setStatus($('#dashboard-status'), `${result.data.length} murid ditampilkan. Data diperbarui saat murid menyinkronkan progres.`);
       } catch(err){ setStatus($('#dashboard-status'), err.message || 'Data murid gagal dimuat.', true); }
     }
+    function renderResetInbox(requests){
+      const root = $('#notification-list');
+      const count = $('#notification-count');
+      root.replaceChildren();
+      count.textContent = String(requests.length);
+      count.setAttribute('aria-label', `${requests.length} permintaan reset menunggu`);
+      if(!requests.length){
+        root.appendChild(el('p', 'Semua beres! Belum ada permintaan reset yang menunggu.', 'notification-empty'));
+        return;
+      }
+      requests.forEach(function(item){
+        const card = el('article', undefined, 'notification-card');
+        const info = document.createElement('div');
+        info.append(
+          el('p', `${item.student.nickname} meminta izin reset`),
+          el('small', `${item.classInfo.name} · ${new Date(item.request.requested_at).toLocaleString('id-ID')}`)
+        );
+        const actions = el('div', undefined, 'actions');
+        actions.append(
+          makeButton('Setujui', function(){ reviewResetRequest(item.request, true, item.classInfo, item.classCard); }, 'btn-green'),
+          makeButton('Tolak', function(){ reviewResetRequest(item.request, false, item.classInfo, item.classCard); }, 'btn-red')
+        );
+        card.append(info, actions);
+        root.appendChild(card);
+      });
+    }
+    async function refreshResetInbox(notifyRequestId){
+      if(!currentUser) return;
+      const client = await getClient();
+      const classes = renderedClasses;
+      if(!classes.length){
+        renderResetInbox([]);
+        return;
+      }
+      const studentsResult = await client.from('lapak_students')
+        .select('id,nickname,class_id')
+        .in('class_id', classes.map(function(item){ return item.id; }));
+      if(studentsResult.error) throw studentsResult.error;
+      const students = studentsResult.data || [];
+      if(!students.length){
+        renderResetInbox([]);
+        return;
+      }
+      const requestsResult = await client.from('lapak_reset_requests')
+        .select('id,student_id,status,requested_at')
+        .in('student_id', students.map(function(item){ return item.id; }))
+        .eq('status', 'pending')
+        .order('requested_at', {ascending:true});
+      if(requestsResult.error) throw requestsResult.error;
+      const requestItems = (requestsResult.data || []).map(function(request){
+        const student = students.find(function(item){ return item.id === request.student_id; });
+        const classInfo = student && classes.find(function(item){ return item.id === student.class_id; });
+        if(!student || !classInfo) return null;
+        const classCard = Array.from(document.querySelectorAll('.class-card')).find(function(item){
+          return item.dataset.classId === classInfo.id;
+        });
+        return {request, student, classInfo, classCard};
+      }).filter(Boolean);
+      renderResetInbox(requestItems);
+      if(notifyRequestId){
+        const newRequest = requestItems.find(function(item){ return item.request.id === notifyRequestId; });
+        if(newRequest){
+          const message = `${newRequest.student.nickname} meminta reset progres di ${newRequest.classInfo.name}.`;
+          setStatus($('#inbox-status'), message);
+          notifyBrowser('Permintaan reset baru', message, notifyRequestId);
+        }
+      }
+    }
+    function queueResetInboxRefresh(notifyRequestId){
+      window.clearTimeout(resetInboxRefreshTimer);
+      resetInboxRefreshTimer = window.setTimeout(function(){
+        refreshResetInbox(notifyRequestId).catch(function(err){
+          setStatus($('#inbox-status'), err.message || 'Notifikasi belum berhasil diperbarui.', true);
+        });
+        renderedClasses.forEach(function(classInfo){
+          const card = Array.from(document.querySelectorAll('.class-card')).find(function(item){
+            return item.dataset.classId === classInfo.id;
+          });
+          if(card && card.querySelector('.student-area')) loadStudents(classInfo, card);
+        });
+      }, 120);
+    }
+    function subscribeTeacherResetRequests(){
+      if(!currentUser || teacherResetChannel) return;
+      getClient().then(function(client){
+        teacherResetChannel = client.channel(`lapak-teacher-reset-${currentUser.id}`)
+          .on('postgres_changes', {
+            event:'INSERT',
+            schema:'public',
+            table:'lapak_reset_requests'
+          }, function(payload){
+            if(payload.new && payload.new.id) queueResetInboxRefresh(payload.new.id);
+          })
+          .on('postgres_changes', {
+            event:'UPDATE',
+            schema:'public',
+            table:'lapak_reset_requests'
+          }, function(){
+            queueResetInboxRefresh();
+          })
+          .subscribe(function(status){
+            if(status === 'SUBSCRIBED'){
+              setRealtimeState('Terhubung langsung', false);
+              refreshResetInbox().catch(function(err){
+                setStatus($('#inbox-status'), err.message || 'Notifikasi belum berhasil dimuat.', true);
+              });
+            } else if(status === 'CHANNEL_ERROR' || status === 'TIMED_OUT'){
+              setRealtimeState('Koneksi realtime terputus', true);
+            }
+          });
+      }).catch(function(err){
+        setRealtimeState(err.message || 'Realtime belum tersedia', true);
+      });
+    }
     async function reviewResetRequest(request, approve, classInfo, card){
+      const title = approve ? 'Setujui reset progres?' : 'Tolak permintaan reset?';
       const message = approve
-        ? 'Setujui reset? Progres tersimpan murid ini akan dihapus pada perangkat yang tersinkron.'
-        : 'Tolak permintaan reset? Progres murid akan tetap tersimpan.';
-      if(!window.confirm(message)) return;
+        ? 'Progres tersimpan murid ini akan dihapus dari server. Perangkat murid akan menerapkan reset saat menerima notifikasi atau tersambung kembali.'
+        : 'Progres murid tetap tersimpan dan permintaan ini akan ditutup.';
+      if(!await confirmAction(title, message, approve ? 'Setujui reset' : 'Tolak permintaan', !approve)) return;
       try {
         const client = await getClient();
         const result = await client.rpc('lapak_teacher_review_reset', {
@@ -418,16 +631,18 @@
         setStatus($('#dashboard-status'), approve
           ? 'Reset disetujui. Progres kelas dihapus saat perangkat murid tersinkron.'
           : 'Permintaan reset ditolak. Progres murid tetap tersimpan.');
-        await loadStudents(classInfo, card);
+        await refreshResetInbox();
+        if(card) await loadStudents(classInfo, card);
       } catch(err){ setStatus($('#dashboard-status'), err.message || 'Permintaan reset gagal ditinjau.', true); }
     }
     async function removeStudent(student, classInfo, card){
-      if(!window.confirm(`Hapus progres ${student.nickname} dari kelas ini?`)) return;
+      if(!await confirmAction('Hapus murid dari kelas?', `Progres ${student.nickname} akan dihapus dari kelas dan tidak dapat dipulihkan.`, 'Hapus murid', true)) return;
       try {
         const client = await getClient();
         const result = await client.from('lapak_students').delete().eq('id', student.id);
         if(result.error) throw result.error;
         setStatus($('#dashboard-status'), `Progres ${student.nickname} dihapus dari kelas.`);
+        await refreshResetInbox();
         await loadStudents(classInfo, card);
       } catch(err){ setStatus($('#dashboard-status'), err.message || 'Murid gagal dihapus.', true); }
     }
@@ -589,6 +804,10 @@
     $('#logout').addEventListener('click', async function(){
       try {
         const client = await getClient();
+        if(teacherResetChannel){
+          await client.removeChannel(teacherResetChannel);
+          teacherResetChannel = null;
+        }
         const result = await client.auth.signOut();
         if(result.error) throw result.error;
         currentUser = null;
@@ -598,6 +817,7 @@
         setStatus($('#auth-status'), 'Kamu sudah keluar.');
       } catch(err){ setStatus($('#dashboard-status'), err.message || 'Tidak dapat keluar.', true); }
     });
+    $('#enable-notifications').addEventListener('click', enableBrowserNotifications);
     (async function boot(){
       try {
         const client = await getClient();

@@ -5,7 +5,7 @@ Fitur kelas memakai Supabase. Permainan tetap dapat dimainkan offline; tautan ke
 ## 1. Buat project Supabase
 
 1. Buat project di Supabase dan simpan URL project serta **anon/public key**.
-2. Buka **SQL Editor**, jalankan seluruh isi `supabase-schema.sql`. Jalankan ulang skrip terbaru agar kolom versi reset, tabel permintaan, dan fungsi persetujuan tersedia di project yang sudah dipakai.
+2. Buka **SQL Editor**, jalankan seluruh isi `supabase-schema.sql`. Jalankan ulang skrip terbaru agar tabel notifikasi masuk ke publikasi Realtime, kolom versi reset, dan fungsi persetujuan tersedia di project yang sudah dipakai.
 3. Buka **Authentication → Providers → Email**. Aktifkan email/password dan tentukan apakah konfirmasi email diwajibkan.
 4. Di **Authentication → URL Configuration**:
    - Set **Site URL** ke domain utama Vercel, misalnya `https://nama-proyek.vercel.app`.
@@ -33,7 +33,8 @@ Deploy `lapak-kancil.html`, `guru.html`, `supabase-config.js`, dan `supabase-cli
 - Pada portal guru, pilih **Lupa kata sandi?** untuk meminta email pemulihan; tautannya membuka formulir untuk menyimpan kata sandi baru.
 - Murid membuka tautan tersebut dan mengisi nama panggilan. Tidak ada akun murid.
 - Guru memilih **Muat murid** pada kelas untuk melihat bintang, level yang sedang dimainkan, dan soal yang sering perlu latihan.
-- Untuk murid dari tautan kelas, permintaan reset tampil di bagian **Permintaan reset progres** setelah guru memuat daftar murid. Murid harus online untuk mengirim permintaan. Progres baru dihapus dari server setelah guru menyetujui; penolakan mempertahankan progres lama. Perangkat murid menerapkan reset saat kembali online dan tersinkron.
+- Untuk murid dari tautan kelas, permintaan reset tampil di **Notifikasi kelas** portal guru secara realtime. Murid harus online untuk mengirim permintaan. Progres baru dihapus dari server setelah guru menyetujui; penolakan mempertahankan progres lama. Keputusan muncul di game murid secara realtime, lalu progres disinkronkan ulang.
+- Tombol **Aktifkan notifikasi browser** (portal guru) dan **Aktifkan notifikasi** (game murid) meminta izin notifikasi sistem. Notifikasi langsung memerlukan halaman terkait tetap terbuka; bila halaman ditutup, keputusan akan terlihat saat dibuka dan tersinkron kembali.
 - Tautan kelas dapat dinonaktifkan. Data murid hanya dapat dibaca/dihapus guru pemilik kelas.
 
 Gunakan nama panggilan, bukan nama lengkap atau informasi pribadi anak. Guru dapat menghapus data murid dari dashboard; menghapus kelas di Supabase juga menghapus murid dan progres terkait.
@@ -42,7 +43,7 @@ Gunakan nama panggilan, bukan nama lengkap atau informasi pribadi anak. Guru dap
 
 Murid masih menyimpan progres lengkap lokal seperti sebelumnya. Salinan online berisi ringkasan bintang, level aktif/terakhir, jumlah stiker, dan beberapa kesulitan yang sering muncul. Ringkasan dikirim saat kelas dibuka dan setelah jawaban tercatat; jika offline, sinkronisasi dicoba lagi saat koneksi pulih. Tombol **Muat murid** mengambil data terbaru saat diminta.
 
-Identitas murid terikat ke browser/perangkat dan tautan kelas, bukan akun murid. Murid yang memakai perangkat lain akan muncul sebagai sesi terpisah. Untuk reset murid kelas, versi progres di server memastikan salinan lokal lama dibersihkan pada sinkronisasi setelah persetujuan guru. Saat perangkat offline, permintaan/persetujuan menunggu koneksi.
+Identitas murid terikat ke browser/perangkat dan tautan kelas, bukan akun murid. Murid yang memakai perangkat lain akan muncul sebagai sesi terpisah. Untuk reset murid kelas, notifikasi Realtime memberi tahu portal guru saat permintaan masuk dan game saat keputusan dibuat; versi progres di server memastikan salinan lokal lama dibersihkan saat tersinkron. Saat perangkat offline, permintaan/persetujuan menunggu koneksi.
 
 Database menggunakan Row Level Security. Murid mengakses fungsi RPC untuk bergabung, menyinkronkan progres, dan meminta reset; token sesi perangkat disimpan dalam bentuk hash di database. Guru hanya dapat melihat dan meninjau permintaan reset di kelas miliknya. Tabel murid tidak dapat dibaca publik.
 
