@@ -425,8 +425,27 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
   box-shadow:var(--shadow-xs);
 }
 .story-tools{display:flex;justify-content:flex-end;margin-top:12px}
-.word-stage-audio-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin:12px auto 0}
-.word-stage-audio-controls .read-btn{min-height:64px}
+.language-tools-card{
+  margin:12px 0 0;padding:12px 14px;
+  border:3px dashed var(--ink);border-radius:10px 15px 11px 16px;
+  background:var(--kunyit-light);transform:rotate(.35deg);
+}
+.language-tools-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.language-tools-head h2{font-size:clamp(20px,3vw,26px);color:var(--cabai-dark)}
+.language-tools-head p{font-size:14px;font-weight:700;color:var(--ink-soft)}
+.language-tools-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.language-tool-beo{
+  display:inline-flex;align-items:center;gap:8px;min-height:64px;padding:5px 12px;
+  border:3px solid var(--ink);border-radius:10px;background:var(--cream-2);
+  color:var(--ink);font:inherit;font-weight:800;text-align:left;cursor:pointer;touch-action:manipulation;
+  box-shadow:var(--shadow-xs);
+}
+.language-tool-beo:hover{background:#fff0c1;transform:translateY(-2px)}
+.language-tool-beo:focus-visible{outline:3px dashed var(--ink);outline-offset:3px}
+.language-tool-beo .beo-mini{width:58px;height:58px}
+.language-tool-beo>span{display:flex;flex-direction:column;gap:2px}
+.language-tool-beo small{font-size:12px;color:var(--ink-soft)}
+.language-tool-beo.is-speaking{background:#fff0c1}
 .read-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   min-height:56px;padding:8px 16px;border:3px solid var(--ink);border-radius:999px;
@@ -1096,13 +1115,6 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
 .word-stage-meaning{font-size:18px;font-weight:800;color:var(--ink-soft)}
 .word-stage-audio{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;border:2px dashed var(--ink);border-radius:9px;background:var(--cream-2);font-size:13px;font-weight:800}
 .word-stage-audio .beo-mini{width:38px;height:38px}
-.word-stage-audio.beo-listen-button{min-height:64px;padding:6px 12px;border-style:solid;font:inherit;font-size:15px;color:var(--ink);text-align:left;cursor:pointer;touch-action:manipulation}
-.word-stage-audio.beo-listen-button .beo-mini{width:56px;height:56px}
-.word-stage-audio.beo-listen-button>span{display:flex;flex-direction:column;gap:2px}
-.word-stage-audio.beo-listen-button small{font-size:12px;color:var(--ink-soft)}
-.word-stage-audio.beo-listen-button:hover{background:var(--kunyit-light);transform:translateY(-2px)}
-.word-stage-audio.beo-listen-button:focus-visible{outline:3px solid var(--langit);outline-offset:3px}
-.word-stage-audio.beo-listen-button.is-speaking{background:var(--kunyit-light);border-style:solid}
 .word-number{font-family:var(--font-display);font-size:clamp(72px,18vw,128px);line-height:1;color:var(--cabai);text-shadow:4px 4px 0 var(--kunyit)}
 .word-color{display:block;width:clamp(90px,22vw,150px);height:clamp(90px,22vw,150px);border:4px solid var(--ink);border-radius:50%;background:var(--swatch);box-shadow:inset -8px -8px 0 rgba(0,0,0,.08),4px 5px 0 rgba(59,34,20,.2)}
 .sentence-stage{display:flex;align-items:center;gap:10px;padding:10px 12px;border:3px solid var(--ink);border-radius:13px;background:var(--cream-2);margin-top:8px}
@@ -2026,6 +2038,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
           <button class="btn btn-primary btn-wide" type="submit">Buka lapak</button>
         </form>
         <p class="microcopy">Tanpa akun murid. Progres tersimpan di perangkat ini; jika masuk lewat tautan kelas, progres juga dikirim saat online.</p>
+        <a class="btn btn-cream btn-wide" href="guru.html">Masuk / daftar sebagai guru</a>
       </div>
     </div>
   </section>
@@ -2125,6 +2138,18 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
             </button>
           </div>
         </article>
+        <section class="language-tools-card" id="language-tools-card" aria-labelledby="language-tools-title" hidden>
+          <div class="language-tools-head">
+            <h2 id="language-tools-title">Alat bantu bahasa</h2>
+            <p>Beo membacakan English, Kancil memberi petunjuk Indonesia.</p>
+          </div>
+          <div class="language-tools-actions" id="language-tools-actions">
+            <button class="language-tool-beo" id="btn-play-beo-inline" type="button" aria-label="Dengarkan Beo dalam bahasa Inggris" aria-pressed="false" hidden>
+              <span id="language-beo-figure" aria-hidden="true"></span>
+              <span>Dengar Beo<small>Bahasa Inggris</small></span>
+            </button>
+          </div>
+        </section>
         <div class="visual-tray" id="visual-tray"></div>
       </div>
       <aside class="answer-column">
@@ -4575,16 +4600,21 @@ function updateSoundUI(){
 function updateSpeechUI(){
   const idAvailable = canUseIndonesianSpeech();
   const enAvailable = canUseEnglishSpeech();
-  const inlineAudioQuestion = !!(currentScreen === 'play' && session && session.current &&
-    session.current.visual && session.current.visual.type === 'kata' && session.current.visual.audioOnly);
+  const currentQuestion = session && session.current;
+  const hasLanguageTools = !!(currentScreen === 'play' && currentQuestion &&
+    currentQuestion.family && currentQuestion.family !== 'math');
   ['#btn-play-read', '#btn-read-inline'].forEach(function(sel){
     const btn = $(sel);
-    if(btn) btn.hidden = !idAvailable || (sel === '#btn-play-read' && inlineAudioQuestion);
+    if(btn) btn.hidden = !idAvailable || (sel === '#btn-play-read' && hasLanguageTools);
   });
   ['#btn-play-beo', '#btn-play-beo-inline', '#btn-word-speak'].forEach(function(sel){
     const btn = $(sel);
-    if(btn) btn.hidden = !enAvailable || (sel === '#btn-play-beo' && inlineAudioQuestion);
+    if(btn) btn.hidden = !enAvailable ||
+      (sel === '#btn-play-beo' && hasLanguageTools) ||
+      (sel === '#btn-play-beo-inline' && !hasLanguageTools);
   });
+  const languageTools = $('#language-tools-card');
+  if(languageTools) languageTools.hidden = !hasLanguageTools || (!idAvailable && !enAvailable);
   const wordId = $('#btn-word-id');
   if(wordId) wordId.hidden = !idAvailable;
   const row = $('#row-auto-read');
@@ -4931,13 +4961,11 @@ function renderEnglishVisual(q){
     body = `<div class="word-stage">
       ${wordPicture(word, 'is-large')}
       <div class="word-stage-copy">
-        ${q.visual.audioOnly ? '' : `<span class="word-stage-word">${word.en}</span>`}
+        ${q.visual.audioOnly ? '<span class="word-stage-audio">Ketuk Beo pada kartu alat bantu bahasa.</span>' : `<span class="word-stage-word">${word.en}</span>`}
         <span class="word-stage-meaning">${word.idn}</span>
         <span class="track-label is-english">${WORD_CAT_LABEL[word.cat] || 'Kata'}</span>
       </div>
-    </div>${q.visual.audioOnly ? `<div class="word-stage-audio-controls" id="word-audio-tools">
-      <button class="word-stage-audio beo-listen-button" id="btn-play-beo-inline" type="button" aria-label="Dengarkan kata dari Beo" aria-pressed="false" ${canUseEnglishSpeech() ? '' : 'hidden'}>${beoArt('beo-mini')}<span>Dengarkan Beo<small>Ketuk untuk mendengar kata</small></span></button>
-    </div>` : ''}`;
+    </div>`;
   } else if(q.visual.type === 'eja'){
     body = `<div class="word-stage">
       ${wordPicture(q.visual.word, 'is-large')}
@@ -5466,22 +5494,28 @@ function renderQuestion(q){
   const beoBtn = $('#btn-play-beo');
   const readInline = $('#btn-read-inline');
   const englishQuestion = q.family && q.family !== 'math';
-  const inlineAudioQuestion = !!(q.visual && q.visual.type === 'kata' && q.visual.audioOnly);
-  if(readBtn) readBtn.hidden = !canUseIndonesianSpeech() || inlineAudioQuestion;
+  const languageTools = $('#language-tools-card');
+  const inlineBeoButton = $('#btn-play-beo-inline');
+  const beoFigure = $('#language-beo-figure');
+  if(readBtn) readBtn.hidden = !canUseIndonesianSpeech() || englishQuestion;
   if(readInline) readInline.hidden = !canUseIndonesianSpeech();
+  if(languageTools) languageTools.hidden = !englishQuestion ||
+    (!canUseEnglishSpeech() && !canUseIndonesianSpeech());
+  if(inlineBeoButton) inlineBeoButton.hidden = !englishQuestion || !canUseEnglishSpeech();
+  if(beoFigure) beoFigure.innerHTML = englishQuestion ? beoArt('beo-mini') : '';
   [readBtn, readInline].forEach(function(button){
     if(!button) return;
     const label = englishQuestion ? 'Dengarkan petunjuk bahasa Indonesia' : 'Bacakan soal';
     button.setAttribute('aria-label', label);
     const text = button.querySelector('span');
-    if(text) text.textContent = inlineAudioQuestion && button === readInline ? 'Petunjuk Indonesia' : label;
+    if(text) text.textContent = englishQuestion && button === readInline ? 'Petunjuk Indonesia' : label;
   });
-  if(beoBtn) beoBtn.hidden = !canUseEnglishSpeech() || !englishQuestion || inlineAudioQuestion;
+  if(beoBtn) beoBtn.hidden = !canUseEnglishSpeech() || englishQuestion;
   renderVisual(q);
   const storyTools = $('#story-tools');
-  const audioTools = $('#word-audio-tools');
+  const languageActions = $('#language-tools-actions');
   if(readInline && storyTools){
-    const destination = inlineAudioQuestion && audioTools ? audioTools : storyTools;
+    const destination = englishQuestion && languageActions ? languageActions : storyTools;
     destination.appendChild(readInline);
   }
   renderAnswerCard(q);
