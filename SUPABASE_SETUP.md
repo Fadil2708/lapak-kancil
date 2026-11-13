@@ -62,6 +62,7 @@ Di **Authentication → Email Templates**, edit **Confirm signup** dan **Reset P
     <tr><td align="center" style="padding:32px 12px">
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:560px;background-color:#fff5de;border:3px solid #3b2214;border-radius:18px">
         <tr><td align="center" style="padding:26px 24px 12px">
+          <img src="https://lapak-kancil.vercel.app/favicon.svg" width="64" height="64" alt="Ikon Lapak Kancil" style="display:block;width:64px;height:64px;margin:0 auto 16px;border:0">
           <div style="display:inline-block;padding:8px 16px;background-color:#f3b61f;border:2px solid #3b2214;border-radius:12px;font-size:13px;font-weight:bold;letter-spacing:2px">PASAR PAGI SUDAH RAMAI!</div>
           <h1 style="margin:18px 0 8px;font-size:34px;line-height:1.15;color:#d94a2b">Selamat datang<br>di Lapak Kancil!</h1>
           <p style="margin:0;font-size:16px;line-height:1.6">Satu langkah lagi sebelum kamu membuka kelas dan menemani murid belajar berhitung.</p>
@@ -93,6 +94,11 @@ Di **Authentication → Email Templates**, edit **Confirm signup** dan **Reset P
 <html lang="id">
 <body style="margin:0;padding:0;background-color:#f6e5c3;font-family:Arial,Helvetica,sans-serif;color:#3b2214">
   <div style="display:none;max-height:0;overflow:hidden;opacity:0">Gunakan tautan aman untuk membuat kata sandi baru akun Lapak Kancil.</div>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+    <tr><td align="center" style="padding:18px 12px 0">
+      <img src="https://lapak-kancil.vercel.app/favicon.svg" width="64" height="64" alt="Ikon Lapak Kancil" style="display:block;width:64px;height:64px;border:0">
+    </td></tr>
+  </table>
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#f6e5c3">
     <tr><td align="center" style="padding:32px 12px">
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:560px;background-color:#fff5de;border:3px solid #3b2214;border-radius:18px">
@@ -102,7 +108,7 @@ Di **Authentication → Email Templates**, edit **Confirm signup** dan **Reset P
           <p style="margin:0;font-size:16px;line-height:1.6">Kami menerima permintaan untuk membuat kata sandi baru bagi akun guru Lapak Kancil.</p>
         </td></tr>
         <tr><td align="center" style="padding:18px 24px">
-          <table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td align="center" bgcolor="#f3b61f" style="border:2px solid #3b2214;border-radius:10px">
+          <table role="presentation" cellspacing="0" ssqs="0" border="0"><tr><td align="center" bgcolor="#f3b61f" style="border:2px solid #3b2214;border-radius:10px">
             <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 24px;color:#3b2214;text-decoration:none;font-size:17px;font-weight:bold">Buat kata sandi baru</a>
           </td></tr></table>
         </td></tr>

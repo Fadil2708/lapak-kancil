@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f3b61f">
-<title>Lapak Kancil — Belajar Hitung di Pasar</title>
+<title>Lapak Kancil — Belajar Hitung &amp; Bahasa Inggris di Pasar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Lilita+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Lilita+One&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
 :root{
@@ -28,7 +28,7 @@
   --pink:#e8899a;
   --cokelat-terang:#b5763e;
   --font-display:'Lilita One','Arial Rounded MT Bold','Trebuchet MS',sans-serif;
-  --font-body:'Baloo 2','Trebuchet MS','Segoe UI',Tahoma,sans-serif;
+  --font-body:'Andika','Trebuchet MS','Segoe UI',Tahoma,sans-serif;
   --shadow:6px 6px 0 var(--ink);
   --shadow-sm:4px 4px 0 var(--ink);
   --shadow-xs:3px 3px 0 var(--ink);
@@ -219,6 +219,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
 .intro-card .microcopy{margin-top:16px}
 .map-wrap,.stall-wrap{width:min(1180px,100%);margin:0 auto;padding:clamp(20px,4vw,44px) clamp(12px,3.5vw,30px) 70px}
 .map-heading{position:relative;z-index:1;max-width:730px;margin-bottom:clamp(18px,4vw,36px)}
+.market-sign{display:inline-flex;align-items:center;gap:7px;min-height:48px;padding:3px 12px 3px 5px;background:var(--kunyit);border:3px solid var(--ink);box-shadow:var(--shadow-xs);transform:rotate(-1deg)}
+.market-sign svg{width:42px;height:42px;flex:none}
 .map-heading h1{font-size:clamp(34px,6vw,62px);color:var(--ink);margin:4px 0 8px;text-wrap:balance}
 .map-heading h1 span{color:var(--cabai);text-shadow:2px 3px 0 var(--kunyit)}
 .map-heading>p:last-child{font-size:clamp(16px,2.4vw,20px);font-weight:600;max-width:580px}
@@ -252,11 +254,12 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
 }
 .stall-sign .motif{width:30px;height:30px;flex:none}
 .stall-name{font-family:var(--font-display);font-size:clamp(24px,5.3vw,38px);line-height:1;letter-spacing:.6px;color:var(--ink)}
-.stall-card[data-stall="tambah"]{--tent-a:#f3b61f;--tent-b:#fff1c9}
-.stall-card[data-stall="kurang"]{--tent-a:#d94a2b;--tent-b:#ffe0c9}
-.stall-card[data-stall="kali"]{--tent-a:#3f7d3b;--tent-b:#e8f3c7}
-.stall-card[data-stall="bagi"]{--tent-a:#78bad3;--tent-b:#e7f7ff}
-.stall-card[data-stall="campur"]{--tent-a:#e8899a;--tent-b:#fff0cf}
+.stall-card[data-track="math"]{--tent-a:#f3b61f;--tent-b:#d94a2b}
+.stall-card[data-track="english"]{--tent-a:#78bad3;--tent-b:#3f7d3b}
+.stall-card[data-stall="turis"]{--tent-a:#f3b61f;--tent-b:#78bad3;--tent-c:#d94a2b;--tent-d:#3f7d3b}
+.stall-hero-art[data-track="math"]{--tent-a:#f3b61f;--tent-b:#d94a2b}
+.stall-hero-art[data-track="english"]{--tent-a:#78bad3;--tent-b:#3f7d3b}
+.stall-hero-art[data-stall="turis"]{--tent-a:#f3b61f;--tent-b:#78bad3;--tent-c:#d94a2b;--tent-d:#3f7d3b}
 .stall-card.is-locked .tent{filter:grayscale(.55) sepia(.15) drop-shadow(5px 6px 0 rgba(59,34,20,.55))}
 .stall-card.is-locked .stall-sign{transform:translateX(-50%) rotate(-2deg) translateY(3px);background:#e8dcc4}
 .stall-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:6px}
@@ -292,17 +295,21 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
   border-radius:14px 16px 14px 4px;padding:8px 12px;
   box-shadow:var(--shadow-xs);font-weight:700;font-size:15px;transform:rotate(2deg);
 }
-@media(min-width:880px){
-  .stall-list{grid-template-columns:1fr 1fr;column-gap:clamp(8px,4vw,54px);row-gap:0;align-items:start}
+@media(min-width:700px){
+  .stall-list{grid-template-columns:1fr 1fr;column-gap:clamp(8px,4vw,54px);row-gap:clamp(8px,3vw,42px);align-items:start}
   .stall-card{width:min(390px,100%)}
-  .stall-card:nth-child(1){grid-column:1;margin-top:0;margin-left:3%}
-  .stall-card:nth-child(2){grid-column:2;margin-top:120px;margin-right:2%}
-  .stall-card:nth-child(3){grid-column:1;margin-top:-14px;margin-left:8%}
-  .stall-card:nth-child(4){grid-column:2;margin-top:110px;margin-right:4%}
-  .stall-card:nth-child(5){grid-column:1/-1;width:min(560px,72%);margin-top:32px;justify-self:center}
+  .stall-card[data-stall="tambah"]{grid-column:1;grid-row:1;margin:0 0 0 4%}
+  .stall-card[data-stall="kurang"]{grid-column:1;grid-row:2;margin:0 0 0 4%}
+  .stall-card[data-stall="kali"]{grid-column:1;grid-row:3;margin:0 0 0 4%}
+  .stall-card[data-stall="bagi"]{grid-column:1;grid-row:4;margin:0 0 0 4%}
+  .stall-card[data-stall="campur"]{grid-column:1;grid-row:5;margin:0 0 0 4%}
+  .stall-card[data-stall="kata"]{grid-column:2;grid-row:1;margin:0 3% 0 0}
+  .stall-card[data-stall="eja"]{grid-column:2;grid-row:2;margin:0 3% 0 0}
+  .stall-card[data-stall="kalimat"]{grid-column:2;grid-row:3;margin:0 3% 0 0}
+  .stall-card[data-stall="turis"]{grid-column:2;grid-row:4;margin:0 3% 0 0}
   .map-mascot{margin-top:20px;margin-left:4%}
 }
-@media(max-width:879px){
+@media(max-width:699px){
   .stall-card:nth-child(odd){margin-left:-2%}
   .stall-card:nth-child(even){margin-right:-2%}
   .stall-card:nth-child(2),.stall-card:nth-child(4){margin-top:6px}
@@ -379,10 +386,10 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
 .progress-dot.is-current{background:var(--kunyit);transform:scale(1.3)}
 .progress-dot.is-miss{background:var(--pink)}
 .exit-bar{
-  position:sticky;top:78px;z-index:34;
+  position:fixed;left:0;right:0;top:78px;z-index:70;
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
   padding:10px clamp(10px,3vw,24px);
-  background:#ffe2b8;border-bottom:3px solid var(--ink);
+  background:#ffe2b8;border-bottom:3px solid var(--ink);box-shadow:var(--shadow-sm);
 }
 .exit-bar p{font-weight:700;font-size:15px}
 .exit-actions{display:flex;gap:8px;flex-wrap:wrap}
@@ -418,6 +425,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
   box-shadow:var(--shadow-xs);
 }
 .story-tools{display:flex;justify-content:flex-end;margin-top:12px}
+.word-stage-audio-controls{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin:12px auto 0}
+.word-stage-audio-controls .read-btn{min-height:64px}
 .read-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   min-height:56px;padding:8px 16px;border:3px solid var(--ink);border-radius:999px;
@@ -851,7 +860,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
   .lock-badge{font-size:12px;padding:6px 10px}
   .map-mascot{width:140px}
   .map-speech{font-size:13px;max-width:180px}
-  .stall-hero-copy{text-align:center;min-width:0}
+  .stall-hero{flex-direction:column}
+  .stall-hero-copy{flex:1 0 100%;width:100%;text-align:center;min-width:0}
   .stall-starline{justify-content:center}
   .stall-help{flex-direction:column;text-align:center;gap:4px}
   .stall-help .kancil-svg{width:70px}
@@ -893,6 +903,235 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
 }
 @supports(padding:max(0px)){
   .toast{bottom:max(18px,calc(env(safe-area-inset-bottom,0px) + 12px))}
+}
+
+/* Lapak bahasa Inggris */
+.stall-card[data-stall="kata"]{--tent-a:#78bad3;--tent-b:#e7f7ff}
+.stall-card[data-stall="eja"]{--tent-a:#3f7d3b;--tent-b:#e8f3c7}
+.stall-card[data-stall="kalimat"]{--tent-a:#2f7f9e;--tent-b:#dff4fb}
+.stall-card[data-stall="turis"]{--tent-a:#e8899a;--tent-b:#fff0cf}
+.stall-card[data-track="english"] .stall-sign{background:#e7f7ff}
+.stall-card[data-stall="turis"] .stall-sign{background:#fff0cf}
+.stall-card[data-stall="turis"] .tent-wrap::after{
+  content:"";position:absolute;left:6%;right:6%;top:29%;height:12%;
+  background:repeating-linear-gradient(90deg,#d94a2b 0 12px,#fff5de 12px 24px,#78bad3 24px 36px);
+  border:3px solid var(--ink);border-radius:4px;transform:rotate(-1deg);
+  pointer-events:none;
+}
+.track-label{
+  display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:3px 10px;
+  border:2px solid var(--ink);border-radius:999px;background:var(--cream-2);
+  font-size:13px;font-weight:800;color:var(--ink-soft);
+}
+.track-label.is-english{background:#dff4fb}
+.track-label.is-turis{background:#fff0cf}
+.beo-mini{width:34px;height:34px;flex:none}
+.beo-svg{width:clamp(92px,17vw,150px);height:auto;filter:drop-shadow(4px 5px 0 rgba(59,34,20,.35));transform:rotate(-2deg)}
+.beo-svg .beo-eye{transform-box:fill-box;transform-origin:center;animation:beoBlink 4.6s infinite}
+.beo-svg .beo-crest{transform-box:fill-box;transform-origin:bottom;animation:beoNod 3.4s ease-in-out infinite}
+.beo-svg.is-speaking,.beo-art.is-speaking,.beo-mini.is-speaking{animation:beoTalk .28s ease-in-out infinite alternate}
+.beo-svg .beo-beak,.beo-art .beo-beak,.beo-mini .beo-beak{transform-box:fill-box;transform-origin:50% 0}
+.beo-svg .beo-mouth,.beo-art .beo-mouth,.beo-mini .beo-mouth{opacity:0;transform-box:fill-box;transform-origin:50% 0}
+.beo-svg.is-speaking .beo-beak,.beo-art.is-speaking .beo-beak,.beo-mini.is-speaking .beo-beak{animation:beoBeak .22s ease-in-out infinite alternate}
+.beo-svg.is-speaking .beo-mouth,.beo-art.is-speaking .beo-mouth,.beo-mini.is-speaking .beo-mouth{animation:beoMouth .22s ease-in-out infinite alternate}
+@keyframes beoBlink{0%,91%,97%,100%{transform:scaleY(1)}93%,95%{transform:scaleY(.08)}}
+@keyframes beoNod{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)}}
+@keyframes beoTalk{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+@keyframes beoBeak{to{transform:scaleY(.68)}}
+@keyframes beoMouth{from{opacity:.15;transform:scaleY(.35)}to{opacity:1;transform:scaleY(1)}}
+
+#screen-word{background:var(--langit);background-image:radial-gradient(rgba(255,255,255,.18) 2px,transparent 2.2px);background-size:24px 24px}
+.word-wrap{width:min(900px,100%);margin:0 auto;padding:clamp(18px,4vw,40px) clamp(12px,3vw,28px) 70px;display:grid;grid-template-columns:minmax(220px,.8fr) minmax(280px,1.2fr);gap:clamp(14px,3vw,28px);align-items:center;min-height:calc(100dvh - 78px)}
+.word-card{position:relative;background:var(--cream-2);border:4px solid var(--ink);border-radius:var(--radius-b);box-shadow:var(--shadow);padding:clamp(16px,3vw,26px);transform:rotate(-.7deg)}
+.word-card::before{content:"";position:absolute;top:-13px;left:30px;width:90px;height:24px;background:rgba(243,182,31,.8);border:2px solid rgba(59,34,20,.3);transform:rotate(-5deg)}
+.word-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.word-picture{display:grid;place-items:center;min-height:190px;padding:12px;border:3px dashed var(--ink);border-radius:16px;background:var(--putih);margin:10px 0 12px}
+.word-picture svg{width:clamp(130px,28vw,220px);height:auto;filter:drop-shadow(4px 5px 0 rgba(59,34,20,.28))}
+#word-picture .word-picture{border:0;padding:0;margin:0;min-height:0;background:transparent;display:block}
+#word-picture .word-picture svg{width:clamp(130px,28vw,220px)}
+.word-title{font-family:var(--font-display);font-size:clamp(38px,9vw,64px);line-height:.95;letter-spacing:1px;color:var(--cabai);text-align:center;text-shadow:2px 3px 0 var(--kunyit)}
+.word-meaning{text-align:center;font-size:clamp(19px,3.6vw,25px);font-weight:800;color:var(--ink-soft);margin-top:3px}
+.word-hint{text-align:center;font-size:14px;font-weight:700;color:var(--ink-soft);margin-top:6px}
+.word-beo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
+.word-bubble{max-width:330px;background:var(--cream-2);border:3px solid var(--ink);border-radius:16px 18px 16px 4px;padding:10px 14px;box-shadow:var(--shadow-xs);font-weight:800;font-size:17px;line-height:1.25}
+.word-actions{display:grid;gap:10px;width:min(360px,100%);margin-top:6px}
+.word-speech-btn{
+  display:flex;align-items:center;gap:10px;min-height:60px;padding:8px 14px;
+  border:3px solid var(--ink);border-radius:14px 17px 13px 18px;
+  background:var(--cream-2);box-shadow:var(--shadow-sm);font-weight:800;font-size:17px;
+  text-align:left;transition:transform .12s,box-shadow .12s,background .12s;touch-action:manipulation;
+}
+.word-speech-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.word-speech-btn svg{width:44px;height:44px;flex:none}
+.word-speech-btn.is-speaking{background:var(--kunyit-light)}
+.word-speech-btn small{display:block;font-size:12px;font-weight:700;color:var(--ink-soft)}
+.word-done{min-height:64px;font-size:21px}
+.word-progress{display:flex;justify-content:center;gap:6px;margin-top:4px}
+.word-progress-dot{width:12px;height:12px;border:2px solid var(--ink);border-radius:50%;background:var(--cream)}
+.word-progress-dot.is-current{background:var(--kunyit);transform:scale(1.25)}
+.word-progress-dot.is-done{background:var(--daun-light)}
+
+#screen-kamus{background:var(--langit);background-image:radial-gradient(rgba(255,255,255,.18) 2px,transparent 2.2px);background-size:24px 24px}
+.kamus-wrap{width:min(1180px,100%);margin:0 auto;padding:clamp(18px,4vw,38px) clamp(12px,3vw,28px) 70px}
+.kamus-intro{max-width:720px;margin-bottom:18px}
+.kamus-intro h2{font-size:clamp(30px,5vw,46px);color:var(--ink);margin:4px 0 6px}
+.kamus-intro p{font-weight:700;font-size:clamp(15px,2.3vw,19px)}
+.kamus-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:clamp(9px,2vw,16px)}
+.kamus-card{position:relative;min-height:170px;padding:10px 7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:3px solid var(--ink);border-radius:12px 16px 11px 15px;background:var(--cream-2);box-shadow:var(--shadow-xs);transform:rotate(var(--tilt,0deg))}
+.kamus-card.is-locked{background:repeating-linear-gradient(-45deg,#e8dcc4 0 12px,#f0e4cc 12px 24px);filter:saturate(.5);box-shadow:none}
+.kamus-card.is-locked .kamus-art{filter:grayscale(1) brightness(.3) opacity(.14)}
+.kamus-art{width:clamp(68px,11vw,92px);height:clamp(68px,11vw,92px);display:grid;place-items:center}
+.kamus-art svg{width:100%;height:100%}
+.kamus-word{font-family:var(--font-display);font-size:18px;line-height:1.05;text-align:center}
+.kamus-meaning{font-size:12px;font-weight:800;color:var(--ink-soft);text-align:center}
+.kamus-cat{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--cabai-dark);opacity:.75}
+.kamus-card.is-locked .kamus-word{opacity:.5}
+.kamus-note{margin-top:18px;font-weight:700;font-size:15px;text-align:center;color:var(--ink-soft)}
+.kamus-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.kamus-legend span{display:inline-flex;align-items:center;gap:5px;min-height:34px;padding:3px 10px;border:2px solid var(--ink);border-radius:999px;background:var(--cream-2);font-size:12px;font-weight:800}
+.kamus-legend i{width:12px;height:12px;border:2px solid var(--ink);border-radius:50%;display:inline-block;background:var(--daun-light)}
+
+.picture-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.picture-choice{
+  min-height:132px;padding:8px;border:3px solid var(--ink);border-radius:13px 16px 12px 17px;
+  background:var(--cream-2);box-shadow:var(--shadow-xs);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  transition:transform .1s,box-shadow .1s,background .1s;touch-action:manipulation;
+}
+.picture-choice:hover{background:var(--kunyit-light);transform:translateY(-2px)}
+.picture-choice:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.picture-choice svg{width:clamp(64px,15vw,92px);height:clamp(64px,15vw,92px)}
+.picture-choice .picture-label{font-weight:800;font-size:14px;line-height:1.1;text-align:center}
+.picture-choice.is-audio-only .picture-label{visibility:hidden}
+.word-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.word-choice{
+  min-height:64px;padding:7px 9px;border:3px solid var(--ink);border-radius:12px 15px 11px 16px;
+  background:var(--cream-2);box-shadow:var(--shadow-xs);font-family:var(--font-display);
+  font-size:clamp(19px,4.2vw,25px);line-height:1.05;transition:transform .1s,box-shadow .1s,background .1s;touch-action:manipulation;
+}
+.word-choice:hover{background:var(--kunyit-light)}
+.word-choice:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.word-choice .word-choice-small{display:block;font-family:var(--font-body);font-size:12px;font-weight:700;color:var(--ink-soft);margin-top:2px}
+.audio-note{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border:2px dashed var(--ink);border-radius:8px;background:var(--cream-2);font-size:13px;font-weight:800;color:var(--ink-soft)}
+
+.letter-line{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;min-height:64px;padding:8px;border:3px dashed var(--ink);border-radius:13px;background:rgba(255,245,222,.65)}
+.letter-slot{
+  width:56px;height:56px;min-width:56px;display:grid;place-items:center;
+  border:3px solid var(--ink);border-radius:11px 14px 10px 15px;background:var(--putih);
+  box-shadow:inset 2px 2px 0 rgba(59,34,20,.08);font-family:var(--font-display);font-size:27px;
+  touch-action:manipulation;transition:transform .1s,background .1s;
+}
+.letter-slot.is-filled{background:var(--kunyit-light);transform:rotate(-1deg)}
+.letter-slot.is-target{background:var(--langit);transform:scale(1.06)}
+.letter-pool{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;min-height:70px;padding:7px;margin-top:10px;border:3px dashed var(--ink);border-radius:13px;background:rgba(255,245,222,.45)}
+.letter-tile{
+  width:56px;height:56px;min-width:56px;display:grid;place-items:center;border:3px solid var(--ink);
+  border-radius:11px 14px 10px 15px;background:var(--cream-2);box-shadow:var(--shadow-xs);
+  font-family:var(--font-display);font-size:27px;line-height:1;touch-action:none;transition:transform .1s,background .1s,opacity .1s;
+}
+.letter-tile:hover{transform:translateY(-2px);background:var(--kunyit-light)}
+.letter-tile.is-used{opacity:.25;pointer-events:none;filter:grayscale(1)}
+.letter-tile.is-selected{background:var(--kunyit-light);transform:translateY(-4px);border-color:var(--cabai)}
+.letter-tile.is-dragging{opacity:.22}
+.letter-check{margin-top:10px}
+.spell-hint{text-align:center;font-size:14px;font-weight:700;color:var(--ink-soft);margin-top:8px;min-height:18px}
+
+.builder-line{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px;min-height:70px;padding:8px;border:3px dashed var(--ink);border-radius:13px;background:rgba(255,245,222,.65)}
+.builder-slot{min-height:56px;min-width:56px;padding:6px 9px;display:flex;align-items:center;justify-content:center;border:2px dashed rgba(59,34,20,.45);border-radius:10px;background:rgba(255,250,240,.55);font-weight:800;font-size:15px;line-height:1.1;touch-action:manipulation}
+.builder-slot.is-filled{border-style:solid;border-color:var(--ink);background:var(--kunyit-light);box-shadow:2px 2px 0 rgba(59,34,20,.18)}
+.builder-slot.is-target{background:var(--langit);transform:scale(1.04)}
+.builder-pool{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;min-height:64px;padding:7px;margin-top:10px;border:3px dashed var(--ink);border-radius:13px;background:rgba(255,245,222,.45)}
+.builder-tile{min-height:56px;padding:7px 12px;border:3px solid var(--ink);border-radius:11px 14px 10px 15px;background:var(--cream-2);box-shadow:var(--shadow-xs);font-weight:800;font-size:15px;line-height:1.1;touch-action:manipulation;transition:transform .1s,background .1s,opacity .1s}
+.builder-tile:hover{background:var(--kunyit-light);transform:translateY(-2px)}
+.builder-tile.is-used{opacity:.25;pointer-events:none;filter:grayscale(1)}
+.builder-tile.is-selected{background:var(--kunyit-light);transform:translateY(-3px);border-color:var(--cabai)}
+.builder-end{font-family:var(--font-display);font-size:28px;color:var(--cabai)}
+.builder-note{text-align:center;font-size:14px;font-weight:700;color:var(--ink-soft);margin-top:8px;min-height:18px}
+.price-board{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:clamp(9px,2.5vw,18px);padding:6px}
+.price-item{position:relative;min-width:130px;max-width:190px;padding:8px;border:3px solid var(--ink);border-radius:12px 16px 11px 15px;background:var(--cream-2);box-shadow:var(--shadow-xs);display:flex;flex-direction:column;align-items:center;gap:2px;transform:rotate(var(--tilt,-1deg))}
+.price-item:nth-child(even){transform:rotate(1deg)}
+.price-item svg{width:82px;height:82px}
+.price-item .price-en{font-family:var(--font-display);font-size:19px;line-height:1;text-align:center}
+.price-tag{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border:2px solid var(--ink);border-radius:6px;background:var(--kunyit-light);font-family:var(--font-display);font-size:18px;margin-top:2px}
+.price-qty{position:absolute;top:-10px;right:-7px;min-width:34px;height:34px;padding:0 5px;display:grid;place-items:center;background:var(--cabai);color:var(--putih);border:2px solid var(--ink);border-radius:999px;font-family:var(--font-display);font-size:15px;transform:rotate(5deg)}
+.turis-scene{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:10px;padding:8px;border:3px solid var(--ink);border-radius:13px;background:#fff0cf}
+.turis-scene .tourist-svg{width:100px;height:auto;filter:drop-shadow(3px 4px 0 rgba(59,34,20,.25))}
+.tourist-name{width:100%;margin-top:-8px;text-align:center;font-family:var(--font-display);font-size:16px}
+.turis-bubble{flex:1;min-width:190px;max-width:420px;background:var(--cream-2);border:3px solid var(--ink);border-radius:14px 16px 14px 4px;padding:7px 11px;font-weight:800;font-size:15px;line-height:1.25}
+.turis-bubble .en{display:block;font-size:17px;color:var(--langit-dark)}
+.turis-bubble .id{display:block;font-size:13px;color:var(--ink-soft);margin-top:2px}
+.conversation-strip{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.conversation-step{min-height:36px;padding:4px 10px;border:2px solid var(--ink);border-radius:999px;background:var(--cream-2);font-size:12px;font-weight:800;color:var(--ink-soft)}
+.conversation-step.is-done{background:var(--daun-light)}
+.conversation-step.is-current{background:var(--kunyit-light);transform:scale(1.04)}
+.result-track-note{font-size:14px;font-weight:800;color:var(--ink-soft);margin-top:6px}
+.kamus-link{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:4px 11px;border:2px solid var(--ink);border-radius:999px;background:var(--cream-2);font-size:14px;font-weight:800;box-shadow:var(--shadow-xs);touch-action:manipulation}
+.kamus-link:active{transform:translate(2px,2px);box-shadow:none}
+@media(max-width:900px){
+  .word-wrap{grid-template-columns:1fr;min-height:auto;padding-top:18px}
+  .word-beo{order:-1}
+  .word-picture{min-height:150px}
+  .word-picture svg{width:clamp(110px,30vw,180px)}
+}
+@media(max-width:600px){
+  .kamus-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  .kamus-card{min-height:142px;padding:8px 5px}
+  .kamus-art{width:62px;height:62px}
+  .kamus-word{font-size:16px}
+  .picture-choice{min-height:112px}
+  .picture-choice svg{width:62px;height:62px}
+  .letter-slot,.letter-tile{width:50px;height:50px;min-width:50px;font-size:24px}
+  .builder-tile{font-size:14px;padding:6px 9px}
+  .builder-slot{font-size:14px;padding:5px 7px}
+  .price-item{min-width:104px;max-width:145px}
+  .price-item svg{width:64px;height:64px}
+  .turis-scene .tourist-svg{width:74px}
+  .word-actions{width:100%}
+  .word-speech-btn{font-size:16px}
+  .word-speech-btn svg{width:38px;height:38px}
+}
+.word-stage{display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,22px);flex-wrap:wrap;margin-top:10px}
+.word-stage .word-picture{width:min(250px,46vw);min-height:0;margin:0;border-style:solid;background:var(--cream-2)}
+.word-stage-copy{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-width:150px}
+.word-stage-word{font-family:var(--font-display);font-size:clamp(32px,7vw,52px);line-height:1;color:var(--cabai);text-shadow:2px 2px 0 var(--kunyit)}
+.word-stage-meaning{font-size:18px;font-weight:800;color:var(--ink-soft)}
+.word-stage-audio{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;border:2px dashed var(--ink);border-radius:9px;background:var(--cream-2);font-size:13px;font-weight:800}
+.word-stage-audio .beo-mini{width:38px;height:38px}
+.word-stage-audio.beo-listen-button{min-height:64px;padding:6px 12px;border-style:solid;font:inherit;font-size:15px;color:var(--ink);text-align:left;cursor:pointer;touch-action:manipulation}
+.word-stage-audio.beo-listen-button .beo-mini{width:56px;height:56px}
+.word-stage-audio.beo-listen-button>span{display:flex;flex-direction:column;gap:2px}
+.word-stage-audio.beo-listen-button small{font-size:12px;color:var(--ink-soft)}
+.word-stage-audio.beo-listen-button:hover{background:var(--kunyit-light);transform:translateY(-2px)}
+.word-stage-audio.beo-listen-button:focus-visible{outline:3px solid var(--langit);outline-offset:3px}
+.word-stage-audio.beo-listen-button.is-speaking{background:var(--kunyit-light);border-style:solid}
+.word-number{font-family:var(--font-display);font-size:clamp(72px,18vw,128px);line-height:1;color:var(--cabai);text-shadow:4px 4px 0 var(--kunyit)}
+.word-color{display:block;width:clamp(90px,22vw,150px);height:clamp(90px,22vw,150px);border:4px solid var(--ink);border-radius:50%;background:var(--swatch);box-shadow:inset -8px -8px 0 rgba(0,0,0,.08),4px 5px 0 rgba(59,34,20,.2)}
+.sentence-stage{display:flex;align-items:center;gap:10px;padding:10px 12px;border:3px solid var(--ink);border-radius:13px;background:var(--cream-2);margin-top:8px}
+.sentence-stage-copy{display:flex;flex-direction:column;gap:2px;font-size:14px;font-weight:700;color:var(--ink-soft)}
+.sentence-stage-copy strong{font-size:18px;color:var(--ink)}
+.choice-btn.word-choice{display:flex;align-items:center;justify-content:center;gap:8px;min-height:74px;padding:8px 10px;font-size:clamp(18px,3.6vw,24px)}
+.choice-btn.word-choice.is-picture-choice{flex-direction:column;min-height:132px}
+.choice-pic{display:grid;place-items:center;width:clamp(62px,14vw,88px);height:clamp(62px,14vw,88px);flex:none}
+.choice-pic svg{width:100%;height:100%}
+.choice-label{display:block;line-height:1.08}
+.word-answer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px}
+.word-answer-actions .btn{min-height:52px}
+.sentence-slot{min-height:52px;min-width:58px;height:auto;padding:5px 9px;font-size:15px;line-height:1.1}
+.sentence-tile{min-height:52px;padding:6px 10px;border:3px solid var(--ink);border-radius:11px 14px 10px 15px;background:var(--cream-2);box-shadow:var(--shadow-xs);font-weight:800;font-size:15px;line-height:1.1;touch-action:manipulation}
+.sentence-tile:hover{background:var(--kunyit-light);transform:translateY(-2px)}
+.tourist-art{width:clamp(80px,18vw,120px);height:auto;flex:none;filter:drop-shadow(3px 4px 0 rgba(59,34,20,.25))}
+.turis-scene .tourist-art{width:clamp(80px,18vw,120px)}
+.kamus-art .word-picture{min-height:0;width:100%;height:100%;margin:0;padding:0;border:0;background:transparent}
+.kamus-art .word-picture svg{width:100%;height:100%}
+.kamus-art .word-number{font-size:48px;text-shadow:2px 2px 0 var(--kunyit)}
+.kamus-art .word-color{width:62px;height:62px;border-width:3px}
+.word-title.is-slow{letter-spacing:4px;color:var(--langit-dark)}
+@media(max-width:600px){
+  .word-stage{flex-direction:column;text-align:center}
+  .word-stage-copy{align-items:center}
+  .word-stage .word-picture{width:min(220px,70vw)}
+  .word-answer-actions{flex-direction:column-reverse}
+  .word-answer-actions .btn,.word-answer-actions .btn-text{width:100%}
+  .sentence-stage{align-items:flex-start}
 }
 </style>
 </head>
@@ -994,6 +1233,27 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
     <path d="M14 32h20" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
     <circle cx="18" cy="28" r="2.4" fill="#3b2214"/><circle cx="30" cy="28" r="2.4" fill="#3b2214"/>
   </symbol>
+  <symbol id="motif-kata" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#78bad3" stroke="#3b2214" stroke-width="3"/>
+    <path d="M14 14h20a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H23l-7 6v-6h-2a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4Z" fill="#fffaf0" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M20 20h8M20 26h5" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="motif-eja" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#3f7d3b" stroke="#3b2214" stroke-width="3"/>
+    <rect x="10" y="14" width="12" height="13" rx="2" fill="#fff5de" stroke="#3b2214" stroke-width="2.6"/>
+    <rect x="26" y="21" width="12" height="13" rx="2" fill="#fff5de" stroke="#3b2214" stroke-width="2.6"/>
+    <path d="M13 18h6M13 22h4M29 25h6M29 29h4" stroke="#3b2214" stroke-width="2.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="motif-kalimat" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#2f7f9e" stroke="#3b2214" stroke-width="3"/>
+    <path d="M12 17h24M12 24h20M12 31h14" stroke="#fff5de" stroke-width="4" stroke-linecap="round"/>
+    <path d="M35 29v7l-6-3" fill="#f3b61f" stroke="#3b2214" stroke-width="2.6" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="motif-turis" viewBox="0 0 48 48">
+    <circle cx="24" cy="24" r="21" fill="#e8899a" stroke="#3b2214" stroke-width="3"/>
+    <circle cx="24" cy="24" r="12" fill="#dff4fb" stroke="#3b2214" stroke-width="3"/>
+    <path d="M12 24h24M24 12c5 4 7 8 7 12s-2 8-7 12c-5-4-7-8-7-12s2-8 7-12Z" fill="none" stroke="#3b2214" stroke-width="2.6"/>
+  </symbol>
   <symbol id="decor-sun" viewBox="0 0 120 120">
     <circle cx="60" cy="60" r="30" fill="#ffd35c" stroke="#3b2214" stroke-width="4"/>
     <g stroke="#3b2214" stroke-width="4" stroke-linecap="round">
@@ -1043,8 +1303,8 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
     <rect x="280" y="88" width="12" height="126" rx="4" fill="#8a542b" stroke="#3b2214" stroke-width="5"/>
     <path d="M20 78 65 30h190l45 48Z" fill="var(--tent-b,#fff5de)" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
     <path d="M65 30h38l-15 48H20Z" fill="var(--tent-a,#f3b61f)" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M141 30h38l5 48h-53Z" fill="var(--tent-a,#f3b61f)" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M217 30h38l30 48h-63Z" fill="var(--tent-a,#f3b61f)" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M141 30h38l5 48h-53Z" fill="var(--tent-c,var(--tent-a,#f3b61f))" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M217 30h38l30 48h-63Z" fill="var(--tent-d,var(--tent-a,#f3b61f))" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
     <path d="M20 78h280c-3 16-17 25-28 20-6 15-21 21-31 8-9 12-24 12-33-2-8 12-22 12-31 0-10 14-25 12-33-2-9 12-24 10-31-5-11 13-25 6-28-8-13 4-24-2-26-11Z" fill="var(--tent-b,#fff5de)" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
     <path d="M48 92c9 7 20 8 29 1M103 95c9 7 20 7 29 0M158 96c9 7 20 7 29 0M213 95c9 7 20 7 29 0M266 92c8 6 17 6 25 1" fill="none" stroke="var(--tent-a,#f3b61f)" stroke-width="5" stroke-linecap="round"/>
     <path d="M42 162h236v39H42Z" fill="#b5763e" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
@@ -1304,6 +1564,441 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
   </symbol>
 </defs>
 </svg>
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<defs>
+  <symbol id="beo-head" viewBox="0 0 120 120">
+    <path d="M25 92c-14-14-16-37-4-55 12-18 35-25 55-17 19 8 29 28 24 49-4 17-18 28-36 32Z" fill="#171a19" stroke="#3b2214" stroke-width="5" stroke-linejoin="round"/>
+    <path class="beo-crest" d="M41 25c-5-13 1-22 11-25 5 9 4 18-2 27M57 23c0-14 8-22 19-22 2 11-3 20-13 25Z" fill="#252a28" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M35 83c-8-1-14-6-17-12 7-6 15-6 22 0ZM77 82c8-1 14-6 17-12-7-6-15-6-22 0Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M48 68c4 7 9 10 14 10s10-3 14-10l-13 3Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <circle cx="44" cy="52" r="13" fill="#fffaf0" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="76" cy="52" r="13" fill="#fffaf0" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><circle cx="47" cy="53" r="4.5" fill="#171a19"/><circle cx="73" cy="53" r="4.5" fill="#171a19"/></g>
+    <g fill="none" stroke="#3b2214" stroke-width="3.5" stroke-linecap="round">
+      <circle cx="44" cy="52" r="15"/>
+      <circle cx="76" cy="52" r="15"/>
+      <path d="M59 51h2M29 49l-6-3M91 49l6-3"/>
+    </g>
+    <path class="beo-beak" d="M57 63c5-3 10-3 15 0l-7 12Z" fill="#e88924" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <path class="beo-mouth" d="M59 65c4 2 8 2 12 0l-6 8Z" fill="#3b2214"/>
+    <path d="M31 38c10-9 20-12 31-12" fill="none" stroke="#fffaf0" stroke-width="3" stroke-linecap="round" opacity=".22"/>
+    <path d="M40 95c8 7 20 9 31 5" fill="none" stroke="#4b514e" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="tourist-figure" viewBox="0 0 120 160">
+    <ellipse cx="60" cy="150" rx="36" ry="7" fill="rgba(59,34,20,.2)"/>
+    <path d="M38 146v-32l-7-27 18-8 11 22 11-22 18 8-7 27v32Z" fill="#78bad3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M47 86h26v29H47Z" fill="#fff5de" stroke="#3b2214" stroke-width="3"/>
+    <circle cx="30" cy="48" r="21" fill="#777d78" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="90" cy="48" r="21" fill="#777d78" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="30" cy="48" r="11" fill="#e8899a" stroke="#3b2214" stroke-width="2.5"/>
+    <circle cx="90" cy="48" r="11" fill="#e8899a" stroke="#3b2214" stroke-width="2.5"/>
+    <ellipse cx="60" cy="61" rx="36" ry="34" fill="#a7aaa3" stroke="#3b2214" stroke-width="4"/>
+    <ellipse cx="60" cy="71" rx="24" ry="18" fill="#fff5de" stroke="#3b2214" stroke-width="3"/>
+    <circle cx="48" cy="55" r="4" fill="#3b2214"/><circle cx="72" cy="55" r="4" fill="#3b2214"/>
+    <ellipse cx="60" cy="67" rx="10" ry="8" fill="#3b2214" stroke="#3b2214" stroke-width="2"/>
+    <path d="M52 79c5 4 11 4 16 0" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+    <path d="M33 105c-8 10-10 22-9 34M87 105c8 10 10 22 9 34" fill="none" stroke="#3b2214" stroke-width="5" stroke-linecap="round"/>
+    <rect x="25" y="120" width="27" height="19" rx="4" fill="#3b2214"/>
+    <circle cx="39" cy="129" r="7" fill="#78bad3" stroke="#fff5de" stroke-width="2"/>
+    <path d="M53 119h15" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-grape" viewBox="0 0 100 100">
+    <path d="M50 22c-3-10 2-17 11-19" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+    <path d="M49 23c9-9 21-10 28-3-6 10-18 12-28 3Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.5" stroke-linejoin="round"/>
+    <g fill="#8b5bb5" stroke="#3b2214" stroke-width="3.2">
+      <circle cx="40" cy="39" r="12"/><circle cx="58" cy="37" r="12"/><circle cx="50" cy="55" r="13"/><circle cx="68" cy="53" r="12"/><circle cx="36" cy="57" r="11"/><circle cx="50" cy="72" r="12"/><circle cx="64" cy="70" r="10"/>
+    </g>
+    <path d="M43 32c3-3 7-4 10-2" fill="none" stroke="#d5b4e8" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="word-lemon" viewBox="0 0 100 100">
+    <path d="M18 52c0-20 16-34 34-34 15 0 28 11 30 26 2 18-12 34-31 35-18 1-33-10-33-27Z" fill="#f3d33f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M23 52c5-12 17-20 29-20" fill="none" stroke="#fff0a8" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+    <path d="M77 27c7-7 14-8 18-3-2 7-9 11-18 3Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M17 60c-5 3-7 8-4 12 4 4 9 1 10-4" fill="#f3d33f" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-melon" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="55" rx="36" ry="29" fill="#7bb661" stroke="#3b2214" stroke-width="4"/>
+    <path d="M20 45c9 8 20 12 30 12s21-4 30-12M18 62c11 8 21 11 32 11s21-3 32-11" fill="none" stroke="#3f7d3b" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M50 27c2-8 8-13 16-13" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+    <path d="M50 27c8-7 17-7 22 0-7 6-15 6-22 0Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.2" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-peach" viewBox="0 0 100 100">
+    <path d="M50 28c14-8 32 1 33 23 1 23-14 38-33 37-19 1-34-15-33-37 1-21 18-30 33-23Z" fill="#f0a07c" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 28c-2-9 2-16 10-20 2 8-1 16-10 20Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M50 28c-4 8-5 18-2 28M54 30c5 6 7 13 6 21" fill="none" stroke="#d96f55" stroke-width="3" stroke-linecap="round" opacity=".65"/>
+    <path d="M32 45c5-6 11-9 18-9" fill="none" stroke="#ffd0b5" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="word-pear" viewBox="0 0 100 100">
+    <path d="M50 26c9 0 16 8 17 18 1 9 12 16 12 29 0 15-13 24-29 24S21 88 21 73c0-13 11-20 12-29 1-10 8-18 17-18Z" fill="#9fbf4a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 26c-2-9 2-16 10-20 2 8-1 16-10 20Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M36 62c3-8 8-13 15-15" fill="none" stroke="#d8eaa0" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="word-plum" viewBox="0 0 100 100">
+    <circle cx="50" cy="58" r="34" fill="#7a3f8f" stroke="#3b2214" stroke-width="4"/>
+    <path d="M50 25c-2-9 2-16 10-20 2 8-1 16-10 20Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M50 25c-4 8-5 18-3 29" fill="none" stroke="#5a2768" stroke-width="3.5" stroke-linecap="round" opacity=".65"/>
+    <path d="M32 46c5-7 12-10 19-10" fill="none" stroke="#c49bd3" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="word-kiwi" viewBox="0 0 100 100">
+    <ellipse cx="50" cy="53" rx="37" ry="30" fill="#b5763e" stroke="#3b2214" stroke-width="4"/>
+    <ellipse cx="50" cy="53" rx="27" ry="21" fill="#9fbf4a" stroke="#3b2214" stroke-width="3.5"/>
+    <ellipse cx="50" cy="53" rx="12" ry="9" fill="#e8f3c7"/>
+    <g fill="#3b2214"><circle cx="38" cy="45" r="2"/><circle cx="48" cy="41" r="2"/><circle cx="59" cy="44" r="2"/><circle cx="65" cy="53" r="2"/><circle cx="58" cy="63" r="2"/><circle cx="46" cy="65" r="2"/><circle cx="36" cy="58" r="2"/></g>
+  </symbol>
+  <symbol id="word-papaya" viewBox="0 0 100 100">
+    <path d="M46 22c18-6 32 7 34 27 2 22-11 39-29 40-18 1-29-14-27-32 2-18 10-30 22-35Z" fill="#f0a23c" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M52 28c13-3 23 8 23 23 0 17-9 30-23 30-12 0-20-10-19-24 1-15 7-26 19-29Z" fill="#f6c86b" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <g fill="#3b2214"><circle cx="50" cy="45" r="2.4"/><circle cx="59" cy="49" r="2.4"/><circle cx="54" cy="57" r="2.4"/><circle cx="45" cy="55" r="2.4"/><circle cx="61" cy="62" r="2.4"/><circle cx="50" cy="66" r="2.4"/><circle cx="43" cy="47" r="2.4"/></g>
+    <path d="M46 22c-5-6-5-13-1-18" fill="none" stroke="#3b2214" stroke-width="3.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-pineapple" viewBox="0 0 100 100">
+    <path d="M50 32c15 0 27 15 27 33 0 18-12 28-27 28S23 83 23 65c0-18 12-33 27-33Z" fill="#f3b61f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M31 43 68 83M24 56l33 35M42 35l29 30M67 42 34 83M74 56 43 86" stroke="#b5763e" stroke-width="2.6" opacity=".8"/>
+    <path d="M50 32c-9-5-15-13-15-23 9 1 16 8 18 18 2-11 9-18 18-19 0 11-7 20-17 25 10-5 20-4 26 3-8 7-18 8-27 2" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.2" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-potato" viewBox="0 0 100 100">
+    <path d="M22 53c-2-17 12-31 30-31 19 0 31 12 29 29-2 19-16 31-33 30-17-1-25-12-26-28Z" fill="#c58a4a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#8a542b"><ellipse cx="39" cy="45" rx="4" ry="3"/><ellipse cx="59" cy="38" rx="3" ry="2.4"/><ellipse cx="67" cy="57" rx="4" ry="3"/><ellipse cx="46" cy="65" rx="3" ry="2.2"/><ellipse cx="31" cy="58" rx="2.4" ry="2"/></g>
+    <path d="M30 44c4-6 10-9 17-10" fill="none" stroke="#e8b77f" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="word-onion" viewBox="0 0 100 100">
+    <path d="M50 26c18 0 31 14 31 31 0 18-14 29-31 29S19 75 19 57c0-17 13-31 31-31Z" fill="#c99acb" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 27c-7-8-7-17 0-23 7 6 7 15 0 23Z" fill="#7bb661" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M50 30c-5 15-7 31-4 50M50 30c5 15 7 31 4 50" fill="none" stroke="#9c6ca0" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+    <path d="M32 70c-5 5-8 10-8 14M68 70c5 5 8 10 8 14M50 83v10" stroke="#3b2214" stroke-width="2.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-garlic" viewBox="0 0 100 100">
+    <path d="M50 24c5 0 9 4 9 10 7-4 14 0 14 8 6 1 10 7 8 14 7 5 5 14-2 18-5 12-16 18-29 18S21 86 16 74c-7-4-9-13-2-18-2-7 2-13 8-14 0-8 7-12 14-8 0-6 4-10 9-10Z" fill="#fff5de" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 24c-6 14-8 31-5 50M50 24c6 14 8 31 5 50M36 42c-4 10-5 21-3 32M64 42c4 10 5 21 3 32" fill="none" stroke="#d9c7a5" stroke-width="2.8" stroke-linecap="round"/>
+    <path d="M50 24c-2-7 0-12 5-15 2 6 1 11-5 15Z" fill="#7bb661" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-corn" viewBox="0 0 100 100">
+    <path d="M50 20c13 0 22 15 22 34 0 20-9 32-22 32S28 74 28 54c0-19 9-34 22-34Z" fill="#f3d33f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M35 35 65 75M31 48l27 35M41 28l27 34M66 36 37 76M72 48 44 84" stroke="#d9a51f" stroke-width="2.4" opacity=".8"/>
+    <path d="M50 22c-9-8-10-17-5-23 8 5 10 14 5 23ZM28 58c-12 2-19-4-19-13 11-2 19 3 22 11ZM72 58c12 2 19-4 19-13-11-2-19 3-22 11Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.2" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-pumpkin" viewBox="0 0 100 100">
+    <path d="M50 30c11-10 27-4 31 10 8 1 13 9 9 18 5 8 0 18-9 20-4 12-19 17-31 8-12 9-27 4-31-8-9-2-14-12-9-20-4-9 1-17 9-18 4-14 20-20 31-10Z" fill="#e8872e" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M50 30c-5 17-5 38 0 56M33 35c-5 14-5 32 0 47M67 35c5 14 5 32 0 47" fill="none" stroke="#b85f1c" stroke-width="3" stroke-linecap="round"/>
+    <path d="M50 30c-2-9 1-16 8-20 2 8-1 15-8 20Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-bean" viewBox="0 0 100 100">
+    <path d="M20 65C25 35 51 18 75 27c14 5 11 24-3 35-18 14-38 19-52 3Z" fill="#7bb661" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#5a9e4b" stroke="#3b2214" stroke-width="2.6">
+      <ellipse cx="36" cy="57" rx="9" ry="7"/><ellipse cx="53" cy="49" rx="9" ry="7"/><ellipse cx="69" cy="43" rx="8" ry="6"/>
+    </g>
+    <path d="M23 67c14 4 32 0 50-12" fill="none" stroke="#3f7d3b" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="word-pea" viewBox="0 0 100 100">
+    <path d="M18 61c9-25 34-37 59-28 13 4 11 19-1 28-18 13-40 16-58 0Z" fill="#8fbf4a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#5a9e4b" stroke="#3b2214" stroke-width="2.6">
+      <circle cx="35" cy="57" r="8"/><circle cx="51" cy="50" r="8"/><circle cx="67" cy="45" r="8"/>
+    </g>
+    <path d="M20 62c16 2 32-2 48-11" fill="none" stroke="#d8eaa0" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="word-cabbage" viewBox="0 0 100 100">
+    <circle cx="50" cy="56" r="34" fill="#9fbf4a" stroke="#3b2214" stroke-width="4"/>
+    <path d="M50 23c-9 12-11 28-6 44M50 23c9 12 11 28 6 44M24 44c10 4 18 11 23 21M76 44c-10 4-18 11-23 21M27 67c9-3 17-3 25 1M73 67c-9-3-17-3-25 1" fill="none" stroke="#3f7d3b" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M50 23c-3-8 0-14 6-18 2 7 0 13-6 18Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-chili" viewBox="0 0 100 100">
+    <path d="M38 28c11-6 22-1 25 10 5 18-5 41-25 48-13 5-22-2-17-12 8-15 12-27 9-37-2-6 2-8 8-9Z" fill="#d94a2b" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 28c-2-8 2-15 10-18 2 8-1 14-10 18Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M35 43c4 11 1 24-8 37" fill="none" stroke="#f6a07e" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+  </symbol>
+  <symbol id="word-egg" viewBox="0 0 100 100">
+    <path d="M50 14c15 0 27 25 27 43 0 17-12 29-27 29S23 74 23 57c0-18 12-43 27-43Z" fill="#fffaf0" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M37 55c1-10 5-21 11-28" fill="none" stroke="#f3b61f" stroke-width="4" stroke-linecap="round" opacity=".65"/>
+  </symbol>
+  <symbol id="word-umbrella" viewBox="0 0 100 100">
+    <path d="M14 49c4-19 19-31 36-31s32 12 36 31Z" fill="#e8899a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M14 49c6-5 13-5 19 0 6-5 13-5 19 0 6-5 13-5 19 0 5-5 10-5 15 0" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+    <path d="M50 49v28c0 7 10 7 10 0" fill="none" stroke="#3b2214" stroke-width="5" stroke-linecap="round"/>
+    <path d="M50 18v-6" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-celery" viewBox="0 0 100 100">
+    <path d="M36 88c-2-23 1-45 10-66M50 89c0-26 2-49 8-70M64 87c3-22 2-42-2-62" fill="none" stroke="#5a9e4b" stroke-width="8" stroke-linecap="round"/>
+    <path d="M36 88c-2-23 1-45 10-66M50 89c0-26 2-49 8-70M64 87c3-22 2-42-2-62" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+    <g fill="#7bb661" stroke="#3b2214" stroke-width="3" stroke-linejoin="round">
+      <path d="M46 22C34 13 25 16 23 25c9 7 18 6 23-3Z"/><path d="M58 19c11-10 21-8 24 1-8 8-18 8-24-1Z"/><path d="M34 42c-13-6-21-1-21 8 9 5 18 2 21-8Z"/><path d="M66 36c12-7 21-3 22 6-8 6-17 4-22-6Z"/>
+    </g>
+  </symbol>
+  <symbol id="word-cat" viewBox="0 0 100 100">
+    <path d="M25 33 20 14l20 11M75 33l5-19-20 11" fill="#e8a33d" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M23 52c0-18 12-30 27-30s27 12 27 30c0 20-12 31-27 31S23 72 23 52Z" fill="#e8a33d" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><ellipse cx="40" cy="49" rx="5" ry="7" fill="#3b2214"/><ellipse cx="60" cy="49" rx="5" ry="7" fill="#3b2214"/></g>
+    <path d="M47 61h6l-3 4Z" fill="#d96f55" stroke="#3b2214" stroke-width="2"/>
+    <path d="M50 66c-3 5-8 6-11 2M50 66c3 5 8 6 11 2M31 59l-13 3M31 66l-12 7M69 59l13 3M69 66l12 7" fill="none" stroke="#3b2214" stroke-width="2.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-dog" viewBox="0 0 100 100">
+    <path d="M27 34c-13 0-18 9-13 21 4 10 12 14 20 11M73 34c13 0 18 9 13 21-4 10-12 14-20 11" fill="#b5763e" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M24 52c0-18 12-30 26-30s26 12 26 30c0 20-12 31-26 31S24 72 24 52Z" fill="#c58a4a" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><circle cx="40" cy="49" r="4.5" fill="#3b2214"/><circle cx="60" cy="49" r="4.5" fill="#3b2214"/></g>
+    <ellipse cx="50" cy="63" rx="9" ry="7" fill="#3b2214"/>
+    <path d="M50 70v6M50 76c-4 5-9 5-12 0M50 76c4 5 9 5 12 0" fill="none" stroke="#3b2214" stroke-width="2.6" stroke-linecap="round"/>
+    <path d="M41 38c4-3 9-3 13 0" fill="none" stroke="#8a542b" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-hen" viewBox="0 0 100 100">
+    <path d="M35 43c0-13 9-22 21-22 11 0 19 8 19 19 0 9-5 16-12 19l-3 22H43l-2-22c-4-4-6-9-6-16Z" fill="#fff5de" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M49 21c-1-8 4-13 9-15 0 6 3 9 8 10-2 7-8 10-17 5Z" fill="#d94a2b" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M74 40c7-1 11 2 12 7-5 3-10 3-15-1Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <g class="beo-eye"><circle cx="58" cy="37" r="3.5" fill="#3b2214"/></g>
+    <path d="M48 86v8M62 86v8M43 94h10M59 94h10" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+    <path d="M37 60c-7 5-9 14-5 22 4-6 8-8 12-8" fill="#f3b61f" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-pig" viewBox="0 0 100 100">
+    <path d="M25 34 17 21l21 7M75 34l8-13-21 7" fill="#e8899a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M22 53c0-18 12-30 28-30s28 12 28 30c0 20-12 31-28 31S22 73 22 53Z" fill="#f0a7b4" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><circle cx="39" cy="48" r="4" fill="#3b2214"/><circle cx="61" cy="48" r="4" fill="#3b2214"/></g>
+    <ellipse cx="50" cy="65" rx="13" ry="9" fill="#e8899a" stroke="#3b2214" stroke-width="3"/>
+    <circle cx="45" cy="65" r="2.4" fill="#3b2214"/><circle cx="55" cy="65" r="2.4" fill="#3b2214"/>
+  </symbol>
+  <symbol id="word-cow" viewBox="0 0 100 100">
+    <path d="M27 34c-7-8-5-15 2-18 7-2 12 3 13 11M73 34c7-8 5-15-2-18-7-2-12 3-13 11" fill="#fff5de" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M22 53c0-18 12-30 28-30s28 12 28 30c0 20-12 31-28 31S22 73 22 53Z" fill="#fff5de" stroke="#3b2214" stroke-width="4"/>
+    <path d="M24 43c8-4 16-2 20 7 3 7-2 12-9 9-7-3-11-9-11-16ZM76 43c-8-4-16-2-20 7-3 7 2 12 9 9 7-3 11-9 11-16Z" fill="#3b2214"/>
+    <g class="beo-eye"><circle cx="39" cy="50" r="4" fill="#3b2214"/><circle cx="61" cy="50" r="4" fill="#3b2214"/></g>
+    <ellipse cx="50" cy="67" rx="12" ry="8" fill="#f0a7b4" stroke="#3b2214" stroke-width="3"/>
+    <circle cx="45" cy="67" r="2.2" fill="#3b2214"/><circle cx="55" cy="67" r="2.2" fill="#3b2214"/>
+  </symbol>
+  <symbol id="word-duck" viewBox="0 0 100 100">
+    <path d="M31 45c0-15 11-25 26-25 14 0 24 10 24 23 0 10-6 18-15 21l-2 22H46l-3-23c-7-4-12-10-12-18Z" fill="#f3d33f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M80 40c8-2 13 2 14 8-6 4-12 4-17 0Z" fill="#e8872e" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <g class="beo-eye"><circle cx="63" cy="38" r="3.5" fill="#3b2214"/></g>
+    <path d="M46 21c-2-8 2-14 9-17 1 7-2 13-9 17Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M42 84v10M61 84v10M37 94h10M57 94h10" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+    <path d="M34 61c-10 5-14 15-11 25 5-7 10-9 16-8" fill="#f3d33f" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-goat" viewBox="0 0 100 100">
+    <path d="M30 37c-7-9-5-17 2-21 7-3 13 2 14 12M70 37c7-9 5-17-2-21-7-3-13 2-14 12" fill="#d9c7a5" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M22 53c0-18 12-30 28-30s28 12 28 30c0 20-12 31-28 31S22 73 22 53Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><circle cx="39" cy="49" r="4" fill="#3b2214"/><circle cx="61" cy="49" r="4" fill="#3b2214"/></g>
+    <path d="M50 57v10M50 67c-4 5-8 5-11 1M50 67c4 5 8 5 11 1" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+    <path d="M43 80c4 6 10 6 14 0" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-bird" viewBox="0 0 100 100">
+    <path d="M27 59c-8-15 1-31 17-36 18-6 35 6 35 24 0 17-13 29-30 29-9 0-17-6-22-17Z" fill="#78bad3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M77 45c8-4 14-1 17 4-5 5-11 6-17 2Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <g class="beo-eye"><circle cx="68" cy="41" r="3.5" fill="#3b2214"/></g>
+    <path d="M39 57c10-9 20-10 29-3-7 12-18 17-29 3Z" fill="#2f7f9e" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M36 78c3-10 0-18-8-24M53 78c0-11 3-19 9-25" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-fish" viewBox="0 0 100 100">
+    <path d="M18 54c13-20 37-27 57-17 8 4 12 10 13 17-1 7-5 13-13 17-20 10-44 3-57-17Z" fill="#f0923c" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M23 54 9 37v34Z" fill="#f3b61f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g class="beo-eye"><circle cx="69" cy="49" r="4" fill="#3b2214"/></g>
+    <path d="M49 40c5 9 5 19 0 28M45 34c8-8 17-9 24-3-5 7-13 9-24 3Z" fill="#f6c86b" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-rabbit" viewBox="0 0 100 100">
+    <path d="M34 45c-8-14-7-29 0-34 8-6 16 4 18 24M66 45c8-14 7-29 0-34-8-6-16 4-18 24" fill="#fff5de" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M24 58c0-18 12-29 26-29s26 11 26 29c0 19-12 29-26 29S24 77 24 58Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><circle cx="40" cy="55" r="4" fill="#3b2214"/><circle cx="60" cy="55" r="4" fill="#3b2214"/></g>
+    <path d="M47 65h6l-3 4Z" fill="#e8899a" stroke="#3b2214" stroke-width="2"/>
+    <path d="M50 69c-3 5-8 5-11 1M50 69c3 5 8 5 11 1M31 63l-12 2M31 69l-11 6M69 63l12 2M69 69l11 6" fill="none" stroke="#3b2214" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-koala" viewBox="0 0 100 100">
+    <circle cx="25" cy="35" r="16" fill="#a9a9a9" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="75" cy="35" r="16" fill="#a9a9a9" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="25" cy="35" r="7" fill="#d9c7a5"/><circle cx="75" cy="35" r="7" fill="#d9c7a5"/>
+    <path d="M22 55c0-17 12-28 28-28s28 11 28 28c0 19-12 29-28 29S22 74 22 55Z" fill="#b8b8b8" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><circle cx="40" cy="51" r="4" fill="#3b2214"/><circle cx="60" cy="51" r="4" fill="#3b2214"/></g>
+    <ellipse cx="50" cy="65" rx="9" ry="11" fill="#3b2214"/>
+    <path d="M50 76c-4 4-9 4-12 0" fill="none" stroke="#3b2214" stroke-width="2.6" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-bear" viewBox="0 0 100 100">
+    <circle cx="28" cy="34" r="14" fill="#b5763e" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="72" cy="34" r="14" fill="#b5763e" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="28" cy="34" r="6" fill="#e8a33d"/><circle cx="72" cy="34" r="6" fill="#e8a33d"/>
+    <path d="M22 55c0-17 12-28 28-28s28 11 28 28c0 19-12 29-28 29S22 74 22 55Z" fill="#b5763e" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><circle cx="40" cy="51" r="4" fill="#3b2214"/><circle cx="60" cy="51" r="4" fill="#3b2214"/></g>
+    <ellipse cx="50" cy="65" rx="12" ry="9" fill="#e8c98f" stroke="#3b2214" stroke-width="3"/>
+    <ellipse cx="50" cy="62" rx="5" ry="3.5" fill="#3b2214"/>
+    <path d="M50 66v4M50 70c-3 4-7 4-10 0M50 70c3 4 7 4 10 0" fill="none" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-mother" viewBox="0 0 100 100">
+    <circle cx="50" cy="28" r="17" fill="#f6d7ae" stroke="#3b2214" stroke-width="4"/>
+    <path d="M33 27c1-14 11-21 23-19 10 2 16 10 14 21-8-6-17-8-25-5-5 2-9 3-12 3Z" fill="#5d3a22" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M32 51c6-7 30-7 36 0l9 39H23Z" fill="#d94a2b" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M39 53c-3 8-4 16-3 24M61 53c3 8 4 16 3 24" fill="none" stroke="#a92f1a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M42 30h4M54 30h4" stroke="#3b2214" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M45 38c3 3 7 3 10 0" fill="none" stroke="#3b2214" stroke-width="2.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-father" viewBox="0 0 100 100">
+    <circle cx="50" cy="27" r="17" fill="#f6d7ae" stroke="#3b2214" stroke-width="4"/>
+    <path d="M33 26c2-13 12-20 23-18 9 2 14 9 13 19-8-4-17-5-25-3-4 1-8 2-11 2Z" fill="#3b2214" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M31 51c7-7 31-7 38 0l6 39H25Z" fill="#78bad3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M42 30h4M54 30h4" stroke="#3b2214" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M45 38c3 3 7 3 10 0" fill="none" stroke="#3b2214" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M50 53v29" stroke="#2f7f9e" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-sister" viewBox="0 0 100 100">
+    <circle cx="50" cy="29" r="16" fill="#f6d7ae" stroke="#3b2214" stroke-width="4"/>
+    <path d="M32 28c0-13 9-21 20-20 11 1 18 9 16 21-7-5-15-7-22-5-5 2-10 3-14 4Z" fill="#8a542b" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M32 31c-6 3-9 9-8 16M68 31c6 3 9 9 8 16" fill="none" stroke="#8a542b" stroke-width="5" stroke-linecap="round"/>
+    <path d="M34 52c6-6 26-6 32 0l8 38H26Z" fill="#e8899a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M43 31h4M54 31h4" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M46 39c3 2 6 2 9 0" fill="none" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-brother" viewBox="0 0 100 100">
+    <circle cx="50" cy="29" r="16" fill="#f6d7ae" stroke="#3b2214" stroke-width="4"/>
+    <path d="M34 27c1-12 9-19 19-18 9 1 15 8 14 18-7-4-15-5-22-3-4 1-8 2-11 3Z" fill="#5d3a22" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M32 51c6-6 30-6 36 0l7 39H25Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M43 31h4M54 31h4" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M46 39c3 2 6 2 9 0" fill="none" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-baby" viewBox="0 0 100 100">
+    <circle cx="50" cy="34" r="18" fill="#f6d7ae" stroke="#3b2214" stroke-width="4"/>
+    <path d="M50 16c-2-7 2-12 8-14 1 6-1 11-8 14Z" fill="#5d3a22" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M31 57c7-7 31-7 38 0l5 34H26Z" fill="#f3d33f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g class="beo-eye"><circle cx="43" cy="32" r="3.2" fill="#3b2214"/><circle cx="57" cy="32" r="3.2" fill="#3b2214"/></g>
+    <path d="M45 41c3 3 7 3 10 0" fill="none" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M35 61h30M32 71h36" stroke="#e8a33d" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-aunt" viewBox="0 0 100 100">
+    <circle cx="50" cy="29" r="16" fill="#f6d7ae" stroke="#3b2214" stroke-width="4"/>
+    <path d="M31 30c-2-14 8-23 20-22 12 1 20 10 18 23-8-6-16-8-24-6-5 1-10 3-14 5Z" fill="#3b2214" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M35 53c6-7 24-7 30 0l9 37H26Z" fill="#8b5bb5" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M42 31h4M54 31h4" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M46 39c3 2 6 2 9 0" fill="none" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M32 32c-6 8-8 17-7 26M68 32c6 8 8 17 7 26" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-uncle" viewBox="0 0 100 100">
+    <circle cx="50" cy="29" r="16" fill="#f6d7ae" stroke="#3b2214" stroke-width="4"/>
+    <path d="M31 24c5-10 15-15 25-13 8 2 13 8 13 15-12-4-25-4-38-2Z" fill="#b5763e" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M31 51c7-6 31-6 38 0l6 39H25Z" fill="#e8872e" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M43 31h4M54 31h4" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M46 39c3 2 6 2 9 0" fill="none" stroke="#3b2214" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M41 44c3-2 6-2 9 0M51 44c3-2 6-2 9 0" fill="none" stroke="#5d3a22" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-family" viewBox="0 0 100 100">
+    <circle cx="31" cy="35" r="10" fill="#f6d7ae" stroke="#3b2214" stroke-width="3.4"/>
+    <circle cx="69" cy="35" r="10" fill="#f6d7ae" stroke="#3b2214" stroke-width="3.4"/>
+    <circle cx="50" cy="52" r="9" fill="#f6d7ae" stroke="#3b2214" stroke-width="3.4"/>
+    <path d="M19 49c4-5 20-5 24 0l4 28H15Z" fill="#d94a2b" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M57 49c4-5 20-5 24 0l4 28H53Z" fill="#78bad3" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M40 63c3-4 17-4 20 0l3 20H37Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M25 30c1-8 6-12 13-11 5 1 8 5 7 11-4-3-8-4-12-3-3 1-6 2-8 3ZM62 30c1-8 6-12 13-11 5 1 8 5 7 11-4-3-8-4-12-3-3 1-6 2-8 3Z" fill="#5d3a22" stroke="#3b2214" stroke-width="2.6" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="word-big" viewBox="0 0 100 100">
+    <path d="M19 59c0-17 14-29 33-29 12 0 20 3 27 10l9-2 7 10-7 3c-2 17-15 27-34 27-21 0-35-8-35-19Z" fill="#a9a9a9" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M51 31c-2-6 2-11 9-12 6-1 10 2 12 7-7 4-14 5-21 5Z" fill="#a9a9a9" stroke="#3b2214" stroke-width="3.4" stroke-linejoin="round"/>
+    <path d="M70 56c-10-9-22-12-35-7" fill="none" stroke="#7d7d7d" stroke-width="3.2" stroke-linecap="round"/>
+    <g class="beo-eye"><circle cx="40" cy="45" r="3.2" fill="#3b2214"/></g>
+    <path d="M28 78v8M47 78v8M63 76v10M81 74v12" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-small" viewBox="0 0 100 100">
+    <path d="M26 62c0-13 11-23 25-23 9 0 16 3 21 8l7-4 5 8-6 4c-1 12-11 20-26 20-16 0-26-5-26-13Z" fill="#b8b8b8" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M51 42c-3-8 2-14 10-15 5-1 9 2 11 7-6 5-13 7-21 8Z" fill="#b8b8b8" stroke="#3b2214" stroke-width="3.2" stroke-linejoin="round"/>
+    <circle cx="41" cy="57" r="2.6" fill="#3b2214"/>
+    <path d="M33 73c-5 4-8 8-9 12M53 75c4 4 6 8 6 12" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-hot" viewBox="0 0 100 100">
+    <circle cx="50" cy="49" r="22" fill="#f3d33f" stroke="#3b2214" stroke-width="4"/>
+    <g stroke="#3b2214" stroke-width="4" stroke-linecap="round">
+      <path d="M50 14v12M50 72v12M15 49h12M73 49h12M26 25l8 8M66 65l8 8M74 25l-8 8M34 65l-8 8"/>
+    </g>
+    <path d="M35 43c3-4 7-6 12-6" fill="none" stroke="#fff0a8" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+    <path d="M28 86c5-5 10-5 15 0s10 5 15 0 10-5 15 0" fill="none" stroke="#d94a2b" stroke-width="3.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="word-cold" viewBox="0 0 100 100">
+    <path d="M50 12v76M17 31l66 38M83 31 17 69" stroke="#78bad3" stroke-width="5" stroke-linecap="round"/>
+    <path d="M50 22 40 31M50 22l10 9M50 78 40 69M50 78l10-9M25 38l4 13M25 38l13-2M75 62l-4-13M75 62l-13 2M75 38l-13-2M75 38l-4 13M25 62l13 2M25 62l4-13" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="50" cy="50" r="8" fill="#e7f7ff" stroke="#3b2214" stroke-width="3"/>
+  </symbol>
+  <symbol id="word-sweet" viewBox="0 0 100 100">
+    <path d="M27 50c0-13 10-23 23-23s23 10 23 23-10 23-23 23S27 63 27 50Z" fill="#e8899a" stroke="#3b2214" stroke-width="4"/>
+    <path d="M27 41 11 32v36l16-9M73 41l16-9v36l-16-9" fill="#f3b61f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M39 43c3-3 7-4 11-2" fill="none" stroke="#ffd0d9" stroke-width="4" stroke-linecap="round"/>
+    <g fill="#fff5de"><circle cx="41" cy="55" r="2.4"/><circle cx="54" cy="49" r="2.4"/><circle cx="62" cy="58" r="2.4"/></g>
+  </symbol>
+  <symbol id="word-sour" viewBox="0 0 100 100">
+    <path d="M21 55c0-19 14-32 31-32 15 0 27 10 29 25 2 17-11 31-28 32-18 1-32-9-32-25Z" fill="#b5d24a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M76 29c7-6 13-6 17-1-3 7-9 9-17 1Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3.2" stroke-linejoin="round"/>
+    <path d="M38 50c3-4 7-4 10 0M55 50c3-4 7-4 10 0M39 68c7-7 15-7 22 0" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round"/>
+    <path d="M28 39c4-5 10-8 16-8" fill="none" stroke="#e8f3c7" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="word-happy" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="35" fill="#f3d33f" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><ellipse cx="38" cy="43" rx="4" ry="6" fill="#3b2214"/><ellipse cx="62" cy="43" rx="4" ry="6" fill="#3b2214"/></g>
+    <path d="M32 61c5 10 13 15 18 15s13-5 18-15" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="29" cy="57" r="4" fill="#e8899a" opacity=".7"/><circle cx="71" cy="57" r="4" fill="#e8899a" opacity=".7"/>
+  </symbol>
+  <symbol id="word-sad" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="35" fill="#78bad3" stroke="#3b2214" stroke-width="4"/>
+    <g class="beo-eye"><ellipse cx="38" cy="43" rx="4" ry="6" fill="#3b2214"/><ellipse cx="62" cy="43" rx="4" ry="6" fill="#3b2214"/></g>
+    <path d="M33 69c5-9 12-13 17-13s12 4 17 13" fill="none" stroke="#3b2214" stroke-width="4" stroke-linecap="round"/>
+    <path d="M68 53c3 5 3 9 0 12-3-3-3-7 0-12Z" fill="#e7f7ff" stroke="#3b2214" stroke-width="2.4"/>
+  </symbol>
+  <symbol id="sticker-kerupuk" viewBox="0 0 100 100">
+    <path d="M50 15c18-8 35 8 32 27-2 13 8 22 0 33-8 12-25 9-32 2-9-9-22-3-27-15-5-12 7-19 9-29 2-11 8-15 18-18Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#e8c98f"><circle cx="39" cy="37" r="3"/><circle cx="59" cy="31" r="3"/><circle cx="68" cy="52" r="3"/><circle cx="46" cy="58" r="3"/><circle cx="56" cy="73" r="3"/><circle cx="31" cy="65" r="3"/></g>
+  </symbol>
+  <symbol id="sticker-kacang" viewBox="0 0 100 100">
+    <path d="M22 62c-8-16 3-34 20-36 12-2 18 4 25 12 7 8 14 10 12 22-3 17-20 26-35 22-10-3-17-10-22-20Z" fill="#d9a15b" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M36 38c-6 8-7 18-3 27M55 36c-4 10-3 21 2 30" fill="none" stroke="#a96b36" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#8a542b"><circle cx="35" cy="48" r="2"/><circle cx="48" cy="55" r="2"/><circle cx="60" cy="48" r="2"/><circle cx="67" cy="61" r="2"/></g>
+  </symbol>
+  <symbol id="sticker-jagung-bakar" viewBox="0 0 100 100">
+    <path d="M50 22c12 0 20 14 20 31 0 18-8 29-20 29s-20-11-20-29c0-17 8-31 20-31Z" fill="#f3d33f" stroke="#3b2214" stroke-width="4"/>
+    <path d="M38 38 62 74M34 51l25 31M44 30l24 33" stroke="#b5763e" stroke-width="2.6" opacity=".8"/>
+    <path d="M49 82 43 96M57 82l6 14" stroke="#b5763e" stroke-width="4" stroke-linecap="round"/>
+    <path d="M50 22c-8-7-9-15-4-21 7 5 8 13 4 21Z" fill="#5a9e4b" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="sticker-es-kelapa" viewBox="0 0 100 100">
+    <path d="M28 25h44l-6 58c-1 7-6 11-16 11s-15-4-16-11Z" fill="#f6e5c3" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M25 25h50" stroke="#3b2214" stroke-width="5" stroke-linecap="round"/>
+    <path d="M33 39c11 3 24 3 34-1l-4 39c-1 5-5 8-13 8s-12-3-13-8Z" fill="#e7f7ff" opacity=".9"/>
+    <path d="M65 9c-3 18-4 31-7 45" stroke="#e8899a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M36 31h8M50 31h8" stroke="#7bb661" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="sticker-roti-bakso" viewBox="0 0 100 100">
+    <path d="M21 53c0-16 13-29 29-29s29 13 29 29-13 29-29 29S21 69 21 53Z" fill="#e8a33d" stroke="#3b2214" stroke-width="4"/>
+    <path d="M31 48c7-9 29-9 38 0 4 5-1 10-7 10H38c-6 0-11-5-7-10Z" fill="#c58a4a" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="50" cy="48" r="7" fill="#8a542b" stroke="#3b2214" stroke-width="2.5"/>
+    <path d="M34 65c9 3 23 3 32 0" fill="none" stroke="#f6c86b" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="sticker-martabak" viewBox="0 0 100 100">
+    <path d="M18 68c12-13 52-17 66-3-8 14-25 21-41 19-12-2-21-8-25-16Z" fill="#e8a33d" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M25 63c12-8 37-11 52-4 5 2 4 7-2 10-15 7-35 7-49 1-5-2-5-5-1-7Z" fill="#f3b61f" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+    <g fill="#8a542b"><circle cx="38" cy="61" r="2.4"/><circle cx="50" cy="57" r="2.4"/><circle cx="62" cy="60" r="2.4"/><circle cx="56" cy="68" r="2.4"/><circle cx="43" cy="69" r="2.4"/></g>
+  </symbol>
+  <symbol id="sticker-donat" viewBox="0 0 100 100">
+    <circle cx="50" cy="53" r="34" fill="#e8899a" stroke="#3b2214" stroke-width="4"/>
+    <circle cx="50" cy="53" r="12" fill="#fff5de" stroke="#3b2214" stroke-width="4"/>
+    <path d="M28 40c6-8 15-13 25-14" fill="none" stroke="#ffd0d9" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+    <g fill="#f3b61f"><circle cx="35" cy="35" r="2.4"/><circle cx="48" cy="27" r="2.4"/><circle cx="63" cy="33" r="2.4"/><circle cx="72" cy="48" r="2.4"/><circle cx="69" cy="67" r="2.4"/><circle cx="54" cy="77" r="2.4"/><circle cx="35" cy="71" r="2.4"/></g>
+  </symbol>
+  <symbol id="sticker-permen" viewBox="0 0 100 100">
+    <circle cx="50" cy="52" r="24" fill="#8b5bb5" stroke="#3b2214" stroke-width="4"/>
+    <path d="M27 40 11 29v45l16-10M73 40l16-11v45L73 63" fill="#f3b61f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M38 43c3-4 7-5 11-3" fill="none" stroke="#d5b4e8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M35 58c8 7 19 7 28 0" fill="none" stroke="#3b2214" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+  </symbol>
+  <symbol id="sticker-cokelat" viewBox="0 0 100 100">
+    <rect x="23" y="20" width="54" height="62" rx="5" fill="#8a542b" stroke="#3b2214" stroke-width="4"/>
+    <path d="M23 36h54M23 52h54M23 68h54M41 20v62M59 20v62" stroke="#5d3a22" stroke-width="3"/>
+    <path d="M28 25h9M46 25h9M64 25h8" stroke="#b5763e" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+    <path d="M77 82c7 3 9 10 4 14-5 4-12 1-13-5-1-4 3-8 9-9Z" fill="#8a542b" stroke="#3b2214" stroke-width="3" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="sticker-biskuit" viewBox="0 0 100 100">
+    <circle cx="50" cy="52" r="34" fill="#e8c98f" stroke="#3b2214" stroke-width="4"/>
+    <g fill="#8a542b"><circle cx="35" cy="38" r="3"/><circle cx="53" cy="31" r="3"/><circle cx="68" cy="42" r="3"/><circle cx="65" cy="61" r="3"/><circle cx="47" cy="66" r="3"/><circle cx="30" cy="58" r="3"/><circle cx="50" cy="48" r="3"/></g>
+    <path d="M29 35c4-5 10-8 16-9" fill="none" stroke="#f6e5c3" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  </symbol>
+  <symbol id="sticker-keripik" viewBox="0 0 100 100">
+    <path d="M22 70 40 22c13 3 25 9 35 19 9 9 12 20 10 31Z" fill="#f3d33f" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M42 28c5 14 10 28 11 41M55 34c3 12 6 23 6 34M67 43c2 8 3 16 2 24" fill="none" stroke="#d9a51f" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#fff0a8"><circle cx="48" cy="43" r="2"/><circle cx="61" cy="53" r="2"/><circle cx="40" cy="58" r="2"/></g>
+  </symbol>
+  <symbol id="sticker-es-tebu" viewBox="0 0 100 100">
+    <path d="M31 28h38l-5 55c-1 7-6 10-14 10s-13-3-14-10Z" fill="#9fbf4a" stroke="#3b2214" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M28 28h44" stroke="#3b2214" stroke-width="5" stroke-linecap="round"/>
+    <path d="M35 41c9 3 21 3 30 0l-4 39c-1 5-4 7-11 7s-10-2-11-7Z" fill="#7bb661" opacity=".75"/>
+    <path d="M62 10c-3 19-5 34-8 49" stroke="#78bad3" stroke-width="4" stroke-linecap="round"/>
+    <path d="M35 34h8M49 34h8" stroke="#fff5de" stroke-width="3" stroke-linecap="round"/>
+  </symbol>
+</defs>
+</svg>
 <main id="app">
   <section class="screen" id="screen-intro" aria-labelledby="intro-title">
     <div class="intro-decor" aria-hidden="true">
@@ -1316,7 +2011,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
       <div class="intro-hero">
         <p class="kicker">Pasar pagi sudah ramai!</p>
         <h1 class="game-title" id="intro-title">Lapak<br><span>Kancil</span></h1>
-        <p class="intro-tagline">Bantu Si Kancil melayani pembeli sambil berhitung.</p>
+        <p class="intro-tagline">Bantu Si Kancil melayani pembeli sambil berhitung dan belajar bahasa Inggris bersama Beo.</p>
         <div class="intro-mascot mascot-slot" id="intro-mascot" aria-hidden="true"></div>
         <div class="intro-tent" aria-hidden="true"><svg viewBox="0 0 320 240"><use href="#stall-tent"/></svg></div>
       </div>
@@ -1339,10 +2034,15 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
     <header class="topbar">
       <div class="brand-small">Lapak Kancil</div>
       <div class="topbar-spacer"></div>
-      <button class="pill-btn" id="btn-stickers" type="button">
+      <button class="pill-btn" id="btn-kamus" type="button">
         <svg class="ui-icon"><use href="#icon-book"/></svg>
+        <span class="pill-label">Kamus</span>
+        <span class="badge" id="kamus-count">0/80</span>
+      </button>
+      <button class="pill-btn" id="btn-stickers" type="button">
+        <svg class="ui-icon"><use href="#icon-star"/></svg>
         <span class="pill-label">Stiker</span>
-        <span class="badge" id="sticker-count">0/15</span>
+        <span class="badge" id="sticker-count">0/27</span>
       </button>
       <button class="icon-btn" id="btn-sound-map" type="button" data-sound-toggle aria-label="Matikan efek suara" aria-pressed="true">
         <svg><use href="#icon-sound"/></svg>
@@ -1353,14 +2053,16 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
     </header>
     <div class="map-wrap">
       <div class="map-heading">
-        <p class="kicker">Jalan Pasar Kancil</p>
+        <p class="kicker market-sign"><svg viewBox="0 0 120 120" aria-hidden="true"><use href="#beo-head"/></svg><span>Pasar Kancil</span></p>
         <h1 id="map-title">Pilih lapakmu, <span id="map-name">Sahabat</span>!</h1>
         <p>Kumpulkan bintang di setiap lapak. Lapak berikutnya terbuka kalau bintangmu cukup.</p>
       </div>
       <div class="market-map">
         <svg class="road-map" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <path class="road-edge" d="M50 -5 C20 10, 80 25, 50 40 C20 55, 82 68, 50 82 C35 89, 40 95, 50 105"/>
-          <path class="road-line" d="M50 -5 C20 10, 80 25, 50 40 C20 55, 82 68, 50 82 C35 89, 40 95, 50 105"/>
+          <path class="road-edge" d="M50 -5 C47 3, 27 4, 25 13 C22 22, 28 30, 25 40 C21 52, 29 61, 25 73 C22 84, 25 94, 25 105"/>
+          <path class="road-line" d="M50 -5 C47 3, 27 4, 25 13 C22 22, 28 30, 25 40 C21 52, 29 61, 25 73 C22 84, 25 94, 25 105"/>
+          <path class="road-edge" d="M50 -5 C53 3, 73 4, 75 13 C78 22, 72 30, 75 40 C79 52, 71 61, 75 73 C78 84, 75 94, 75 105"/>
+          <path class="road-line" d="M50 -5 C53 3, 73 4, 75 13 C78 22, 72 30, 75 40 C79 52, 71 61, 75 73 C78 84, 75 94, 75 105"/>
         </svg>
         <div class="market-decor" aria-hidden="true">
           <svg class="deco-plant deco-plant-a"><use href="#decor-plant"/></svg>
@@ -1397,6 +2099,9 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
         <div class="play-progress-top"><span id="play-title">Lapak</span><span id="play-counter">Soal 1/10</span></div>
         <div class="progress-dots" id="progress-dots" aria-hidden="true"></div>
       </div>
+      <button class="icon-btn" id="btn-play-beo" type="button" aria-label="Dengarkan bahasa Inggris" hidden>
+        <svg><use href="#beo-head"/></svg>
+      </button>
       <button class="icon-btn" id="btn-play-read" type="button" aria-label="Bacakan soal" hidden>
         <svg><use href="#icon-read"/></svg>
       </button>
@@ -1404,13 +2109,6 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
         <svg><use href="#icon-sound"/></svg>
       </button>
     </header>
-    <div class="exit-bar" id="exit-bar" hidden>
-      <p>Keluar dari level? Progres soal ini belum disimpan.</p>
-      <div class="exit-actions">
-        <button class="btn btn-cream" id="btn-exit-cancel" type="button">Lanjut main</button>
-        <button class="btn btn-primary" id="btn-exit-confirm" type="button">Ya, keluar</button>
-      </div>
-    </div>
     <div class="play-wrap">
       <div class="story-column">
         <article class="story-card">
@@ -1420,7 +2118,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
           </div>
           <p class="story-text" id="story-text"></p>
           <p class="question-text" id="question-text"></p>
-          <div class="story-tools">
+          <div class="story-tools" id="story-tools">
             <button class="read-btn" id="btn-read-inline" type="button" hidden>
               <svg><use href="#icon-read"/></svg>
               <span>Bacakan soal</span>
@@ -1434,6 +2132,46 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
         <div class="answer-card" id="answer-card"></div>
         <div class="feedback" id="feedback" aria-live="polite"></div>
       </aside>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-word" aria-labelledby="word-title">
+    <header class="playbar">
+      <button class="icon-btn" id="btn-word-back" type="button" aria-label="Kembali ke lapak">
+        <svg><use href="#icon-back"/></svg>
+      </button>
+      <div class="play-progress">
+        <div class="play-progress-top"><span>Kata baru</span><span id="word-counter">1/1</span></div>
+        <div class="progress-dots" id="word-dots" aria-hidden="true"></div>
+      </div>
+      <button class="icon-btn" id="btn-word-sound" type="button" data-sound-toggle aria-label="Matikan efek suara" aria-pressed="true">
+        <svg><use href="#icon-sound"/></svg>
+      </button>
+    </header>
+    <div class="word-wrap">
+      <div class="word-beo" id="word-beo"></div>
+      <div class="word-card">
+        <div class="word-card-top">
+          <span class="track-label is-english" id="word-cat">Kata baru</span>
+          <span class="audio-note">Beo membacakan</span>
+        </div>
+        <div class="word-picture" id="word-picture"></div>
+        <h1 class="word-title" id="word-title">apple</h1>
+        <p class="word-meaning" id="word-meaning">apel</p>
+        <p class="word-hint" id="word-hint">Ucapkan dengan suara keras, lalu tekan Sudah.</p>
+        <div class="word-actions">
+          <button class="word-speech-btn" id="btn-word-speak" type="button">
+            <svg viewBox="0 0 120 120" aria-hidden="true"><use href="#beo-head"/></svg>
+            <span id="btn-word-speak-label">Dengar Beo<small>Ketuk lagi untuk pelan</small></span>
+          </button>
+          <button class="word-speech-btn" id="btn-word-id" type="button">
+            <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#icon-sound"/></svg>
+            <span>Dengar arti<small>Bahasa Indonesia</small></span>
+          </button>
+          <button class="btn btn-primary btn-wide word-done" id="btn-word-done" type="button">Sudah, aku sudah ucapkan</button>
+        </div>
+        <div class="word-progress" id="word-progress" aria-hidden="true"></div>
+      </div>
     </div>
   </section>
 
@@ -1458,16 +2196,37 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
       </button>
       <h1 class="topbar-title" id="stickers-title">Buku Stiker</h1>
       <div class="topbar-spacer"></div>
-      <div class="star-chip"><svg><use href="#icon-star"/></svg><span id="stickers-count">0/15</span></div>
+      <div class="star-chip"><svg><use href="#icon-star"/></svg><span id="stickers-count">0/27</span></div>
     </header>
     <div class="sticker-page">
       <div class="sticker-heading">
         <p class="kicker">Koleksi jajanan pasar</p>
         <h2>Stiker yang sudah ditempel</h2>
-        <p>Setiap lapak punya tiga stiker. Selesaikan tingkat 1, 3, dan 5 untuk mendapatkannya.</p>
+        <p>Sembilan lapak punya tiga stiker. Selesaikan tingkat 1, 3, dan 5 untuk mendapatkannya.</p>
       </div>
       <div class="sticker-grid" id="sticker-grid"></div>
       <p class="sticker-note" id="sticker-note"></p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-kamus" aria-labelledby="kamus-title">
+    <header class="topbar">
+      <button class="icon-btn" id="btn-kamus-back" type="button" aria-label="Kembali ke peta">
+        <svg><use href="#icon-back"/></svg>
+      </button>
+      <h1 class="topbar-title" id="kamus-title">Kamus Beo</h1>
+      <div class="topbar-spacer"></div>
+      <div class="star-chip"><svg><use href="#icon-book"/></svg><span id="kamus-total">0/80</span></div>
+    </header>
+    <div class="kamus-wrap">
+      <div class="kamus-intro">
+        <p class="kicker">Delapan puluh kata bergambar</p>
+        <h2>Kata yang sudah kamu pelajari</h2>
+        <p>Kata baru terbuka lewat kartu Beo di Lapak Kata. Ketuk kartu untuk mendengar lagi.</p>
+        <div class="kamus-legend"><span><i></i>Sudah dipelajari</span><span>Garis miring: belum terbuka</span></div>
+      </div>
+      <div class="kamus-grid" id="kamus-grid"></div>
+      <p class="kamus-note" id="kamus-note"></p>
     </div>
   </section>
 
@@ -1486,7 +2245,7 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
           <button class="switch" id="btn-sound-settings" type="button" role="switch" aria-checked="true" aria-label="Efek suara"><span class="sr-only">Efek suara</span></button>
         </div>
         <div class="setting-row" id="row-auto-read" hidden>
-          <div><strong>Bacakan soal otomatis</strong><p>Soal dibacakan dengan suara Indonesia setiap kali muncul.</p></div>
+          <div><strong>Bacakan soal otomatis</strong><p>Soal dibacakan dengan suara yang tersedia: Indonesia untuk soal hitung, Inggris untuk soal Beo.</p></div>
           <button class="switch" id="btn-read-settings" type="button" role="switch" aria-checked="false" aria-label="Bacakan soal otomatis"><span class="sr-only">Bacakan soal otomatis</span></button>
         </div>
         <p class="settings-note" id="speech-note"></p>
@@ -1518,24 +2277,33 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.06;letter
       </div>
       <div class="settings-card settings-about">
         <h2>Tentang Lapak Kancil</h2>
-        <p>Game hitung untuk anak SD kelas 1–4. Dibuat sebagai satu file yang bisa dibuka tanpa internet; font akan memakai cadangan sistem saat offline.</p>
+        <p>Game hitung dan bahasa Inggris untuk anak SD kelas 1–4. Dibuat sebagai satu file yang bisa dibuka tanpa internet; font akan memakai cadangan sistem saat offline.</p>
         <ul>
-          <li>Lima lapak, masing-masing lima tingkat.</li>
-          <li>Tambah, kurang, kali, bagi, lalu campuran.</li>
+          <li>Sembilan lapak, masing-masing lima tingkat.</li>
+          <li>Hitung, kata, eja, kalimat, lalu percakapan dengan Turis.</li>
           <li>Tidak ada timer, nyawa, iklan, atau peringkat.</li>
-          <li>Sentuh benda, seret ke piring, atau ketik jawaban di keypad.</li>
+          <li>Sentuh gambar, seret huruf, susun kalimat, atau ketik angka.</li>
+          <li>Suara Beo memakai suara bahasa Inggris perangkat; arti memakai suara Indonesia.</li>
         </ul>
       </div>
     </div>
   </section>
 </main>
+<div class="exit-bar" id="exit-bar" hidden>
+  <p>Keluar dari level? Progres soal ini belum disimpan.</p>
+  <div class="exit-actions">
+    <button class="btn btn-cream" id="btn-exit-cancel" type="button">Lanjut main</button>
+    <button class="btn btn-primary" id="btn-exit-confirm" type="button">Ya, keluar</button>
+  </div>
+</div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <div id="drag-ghost" aria-hidden="true"></div>
 <script src="supabase-config.js"></script>
 <script src="supabase-client.js"></script>
 <script>
 'use strict';
-const STORAGE_KEY = 'lapakKancil.v1';
+const STORAGE_KEY = 'lapakKancil.v2';
+const LEGACY_STORAGE_KEY = 'lapakKancil.v1';
 const classInviteCode = new URLSearchParams(window.location.search).get('kelas');
 const validClassInvite = classInviteCode && /^[a-f0-9]{24}$/i.test(classInviteCode);
 let classLinkSession = null;
@@ -1546,20 +2314,33 @@ let classSyncPending = false;
 let lastClassSyncError = '';
 const LEVELS = 5;
 const QUESTIONS_PER_LEVEL = 10;
+const TURIS_FINAL_QUESTIONS = 10;
 const UNLOCK_STARS = 8;
 const MC_CHANCE = 0.3;
+const TOTAL_STARS_PER_STALL = 15;
+const TOTAL_STARS = 9 * TOTAL_STARS_PER_STALL;
+const TOTAL_STICKERS = 27;
+const WORD_TARGET = 80;
 
 const STALLS = [
-  {id:'tambah', name:'Tambah', motif:'plus', op:'+', tentA:'#f3b61f', tentB:'#fff1c9',
+  {id:'tambah', name:'Tambah', motif:'plus', op:'+', track:'math', tentA:'#f3b61f', tentB:'#fff1c9',
    blurb:'Hitung sayur dan buah yang datang.', hero:'Sayur mayur dan buah menumpuk di meja. Ayo bantu Kancil menghitung!'},
-  {id:'kurang', name:'Kurang', motif:'minus', op:'-', tentA:'#d94a2b', tentB:'#ffe0c9',
+  {id:'kurang', name:'Kurang', motif:'minus', op:'-', track:'math', tentA:'#d94a2b', tentB:'#ffe0c9',
    blurb:'Hitung yang terjual dan yang tersisa.', hero:'Pembeli sudah datang. Hitung sisa dagangan dengan teliti, ya.'},
-  {id:'kali', name:'Kali', motif:'kali', op:'×', tentA:'#3f7d3b', tentB:'#e8f3c7',
+  {id:'kali', name:'Kali', motif:'kali', op:'×', track:'math', tentA:'#3f7d3b', tentB:'#e8f3c7',
    blurb:'Lihat kelompok baris dan kolom.', hero:'Kantong-kantong berisi buah ditata rapi. Hitung per kelompok!'},
-  {id:'bagi', name:'Bagi', motif:'bagi', op:'÷', tentA:'#78bad3', tentB:'#e7f7ff',
+  {id:'bagi', name:'Bagi', motif:'bagi', op:'÷', track:'math', tentA:'#78bad3', tentB:'#e7f7ff',
    blurb:'Bagikan jajanan sampai rata.', hero:'Piring-piring kosong sudah siap. Bagi jajanan sama banyak, ya.'},
-  {id:'campur', name:'Campur', motif:'campur', op:'mix', tentA:'#e8899a', tentB:'#fff0cf',
-   blurb:'Tambah, kurang, kali, bagi — semua jadi satu!', hero:'Lapak paling ramai di ujung jalan. Semua hitungan ada di sini!'}
+  {id:'campur', name:'Campur', motif:'campur', op:'mix', track:'math', tentA:'#e8899a', tentB:'#fff0cf',
+   blurb:'Tambah, kurang, kali, bagi — semua jadi satu!', hero:'Lapak paling ramai di ujung jalan. Semua hitungan ada di sini!'},
+  {id:'kata', name:'Kata', motif:'kata', op:'en', track:'english', tentA:'#78bad3', tentB:'#e7f7ff',
+   blurb:'Kenali gambar dan kata bahasa Inggris.', hero:'Beo membawa kartu gambar dari pasar. Dengar, tirukan, lalu pilih gambar yang tepat!'},
+  {id:'eja', name:'Eja', motif:'eja', op:'en', track:'english', tentA:'#3f7d3b', tentB:'#e8f3c7',
+   blurb:'Susun huruf sampai kata itu lengkap.', hero:'Huruf-huruf Beo tercampur. Susun kembali sambil melihat gambarnya!'},
+  {id:'kalimat', name:'Kalimat', motif:'kalimat', op:'en', track:'english', tentA:'#2f7f9e', tentB:'#dff4fb',
+   blurb:'Susun kalimat dan pilih kata yang pas.', hero:'Beo ingin bercerita tentang pasar. Bantu susun kalimat bahasa Inggrisnya!'},
+  {id:'turis', name:'Turis', motif:'turis', op:'en', track:'turis', tentA:'#e8899a', tentB:'#fff0cf',
+   blurb:'Layani turis dengan harga dan kembalian.', hero:'Turis asing datang ke lapak. Jawab dengan kalimat bahasa Inggris yang sopan!'}
 ];
 const STALL_BY_ID = Object.fromEntries(STALLS.map(s => [s.id, s]));
 
@@ -1598,6 +2379,34 @@ const LEVEL_META = {
     {title:'Empat operasi', blurb:'Semua jenis soal.', hint:'Pilih cara yang paling mudah untukmu.'},
     {title:'Dua langkah', blurb:'Hitung dua kali.', hint:'Selesaikan langkah pertama, lalu langkah kedua.'},
     {title:'Pasar besar', blurb:'Tantangan terakhir.', hint:'Tulis dulu yang diketahui, lalu hitung.'}
+  ],
+  kata:[
+    {title:'Gambar & kata', blurb:'Dengar, lihat, lalu pilih.', hint:'Dengarkan kata dari Beo, lalu cocokkan dengan gambarnya.'},
+    {title:'Warna & hewan', blurb:'Kata baru setiap hari.', hint:'Perhatikan benda dan warnanya. Beo akan membacakan sekali lagi.'},
+    {title:'Keluarga & sifat', blurb:'Kata untuk orang dan rasa.', hint:'Ingat arti kata dalam bahasa Indonesia, lalu pilih gambarnya.'},
+    {title:'Dengar dulu', blurb:'Latihan tanpa teks.', hint:'Kalau tidak ada suara, gambar dan pilihan tetap bisa dibaca.'},
+    {title:'Kamus kecil', blurb:'Campuran semua kata.', hint:'Kamu sudah kenal banyak kata. Pilih dengan tenang.'}
+  ],
+  eja:[
+    {title:'Tiga huruf', blurb:'Susun huruf pendek.', hint:'Dengarkan kata, lalu susun dari huruf pertama.'},
+    {title:'Empat huruf', blurb:'Tambah satu huruf.', hint:'Ucapkan pelan-pelan sambil menunjuk setiap huruf.'},
+    {title:'Lima huruf', blurb:'Kata yang lebih panjang.', hint:'Cari huruf pertama dan terakhir dulu.'},
+    {title:'Enam huruf', blurb:'Latihan ejaan lengkap.', hint:'Susun dari kiri ke kanan. Beo bisa mengulang.'},
+    {title:'Eja campur', blurb:'Semua panjang kata.', hint:'Periksa jumlah keping huruf sebelum menekan Periksa.'}
+  ],
+  kalimat:[
+    {title:'Susun tiga kata', blurb:'Kalimat pendek.', hint:'Mulai dari orang atau benda yang dibicarakan.'},
+    {title:'Susun empat kata', blurb:'Tambah keterangan.', hint:'Baca kalimat dari kiri ke kanan.'},
+    {title:'A atau an', blurb:'Pilih kata sandang.', hint:'Gunakan an sebelum bunyi vokal: a, e, i, o, u.'},
+    {title:'Bentuk jamak', blurb:'Satu menjadi banyak.', hint:'Biasanya tambahkan s. Beberapa kata punya bentuk khusus.'},
+    {title:'Pasar bercerita', blurb:'Kalimat campuran.', hint:'Susun kalimat yang paling masuk akal, lalu baca ulang.'}
+  ],
+  turis:[
+    {title:'Satu barang', blurb:'Sebutkan harganya.', hint:'Gunakan It is ... rupiah.'},
+    {title:'Beberapa barang', blurb:'Hitung jumlahnya.', hint:'Kalikan jumlah dengan harga satuannya.'},
+    {title:'Hitung total', blurb:'Jumlah × harga.', hint:'Sebutkan jumlah barang dulu, lalu total harganya.'},
+    {title:'Uang kembalian', blurb:'Bayar dan terima kembalian.', hint:'Kembalian = uang dibayar − total harga.'},
+    {title:'Kembalian & percakapan', blurb:'Hitung kembalian, lalu susun tiga balasan.', hint:'Hitung dengan teliti, lalu susun jawaban sopan dari keping kata.'}
   ]
 };
 
@@ -1659,9 +2468,199 @@ const STICKERS = [
   {id:'kue-talam', name:'Kue Talam', icon:'item-kue-talam', stall:'bagi', level:4},
   {id:'batagor', name:'Batagor', icon:'item-batagor', stall:'campur', level:0},
   {id:'es-doger', name:'Es Doger', icon:'item-es-doger', stall:'campur', level:2},
-  {id:'putu-ayu', name:'Putu Ayu', icon:'item-putu-ayu', stall:'campur', level:4}
+  {id:'putu-ayu', name:'Putu Ayu', icon:'item-putu-ayu', stall:'campur', level:4},
+  {id:'kerupuk', name:'Kerupuk', icon:'sticker-kerupuk', stall:'kata', level:0},
+  {id:'kacang', name:'Kacang Goreng', icon:'sticker-kacang', stall:'kata', level:2},
+  {id:'jagung-bakar', name:'Jagung Bakar', icon:'sticker-jagung-bakar', stall:'kata', level:4},
+  {id:'es-kelapa', name:'Es Kelapa', icon:'sticker-es-kelapa', stall:'eja', level:0},
+  {id:'roti-bakso', name:'Roti Bakso', icon:'sticker-roti-bakso', stall:'eja', level:2},
+  {id:'martabak', name:'Martabak', icon:'sticker-martabak', stall:'eja', level:4},
+  {id:'donat', name:'Donat', icon:'sticker-donat', stall:'kalimat', level:0},
+  {id:'permen', name:'Permen', icon:'sticker-permen', stall:'kalimat', level:2},
+  {id:'cokelat', name:'Cokelat', icon:'sticker-cokelat', stall:'kalimat', level:4},
+  {id:'biskuit', name:'Biskuit', icon:'sticker-biskuit', stall:'turis', level:0},
+  {id:'keripik', name:'Keripik', icon:'sticker-keripik', stall:'turis', level:2},
+  {id:'es-tebu', name:'Es Tebu', icon:'sticker-es-tebu', stall:'turis', level:4}
 ];
 const STICKER_BY_ID = Object.fromEntries(STICKERS.map(s => [s.id, s]));
+
+const WORD_CAT_LABEL = {
+  buah:'Buah', sayur:'Sayur', angka:'Angka', warna:'Warna',
+  hewan:'Hewan', keluarga:'Keluarga', sifat:'Kata sifat'
+};
+function wordEntry(en, idn, icon, cat, extra){
+  return Object.assign({
+    en,
+    idn,
+    icon:icon || '',
+    cat,
+    letters:en.replace(/[^a-z]/gi, '').split('')
+  }, extra || {});
+}
+const WORD_BANK = [
+  wordEntry('apple','apel','item-apel','buah'),
+  wordEntry('banana','pisang','item-pisang','buah'),
+  wordEntry('mango','mangga','item-mangga','buah'),
+  wordEntry('grape','anggur','word-grape','buah'),
+  wordEntry('lemon','lemon','word-lemon','buah'),
+  wordEntry('melon','melon','word-melon','buah'),
+  wordEntry('peach','persik','word-peach','buah'),
+  wordEntry('pear','pir','word-pear','buah'),
+  wordEntry('plum','prem','word-plum','buah'),
+  wordEntry('kiwi','kiwi','word-kiwi','buah'),
+  wordEntry('papaya','pepaya','word-papaya','buah'),
+  wordEntry('pineapple','nanas','word-pineapple','buah'),
+  wordEntry('carrot','wortel','item-wortel','sayur'),
+  wordEntry('potato','kentang','word-potato','sayur'),
+  wordEntry('onion','bawang','word-onion','sayur'),
+  wordEntry('garlic','bawang putih','word-garlic','sayur'),
+  wordEntry('corn','jagung','word-corn','sayur'),
+  wordEntry('pumpkin','labu','word-pumpkin','sayur'),
+  wordEntry('bean','kacang','word-bean','sayur'),
+  wordEntry('pea','kacang polong','word-pea','sayur'),
+  wordEntry('cabbage','kol','word-cabbage','sayur'),
+  wordEntry('spinach','bayam','item-bayam','sayur'),
+  wordEntry('chili','cabai','word-chili','sayur'),
+  wordEntry('celery','seledri','word-celery','sayur'),
+  wordEntry('one','satu','','angka',{kind:'number', num:1}),
+  wordEntry('two','dua','','angka',{kind:'number', num:2}),
+  wordEntry('three','tiga','','angka',{kind:'number', num:3}),
+  wordEntry('four','empat','','angka',{kind:'number', num:4}),
+  wordEntry('five','lima','','angka',{kind:'number', num:5}),
+  wordEntry('six','enam','','angka',{kind:'number', num:6}),
+  wordEntry('seven','tujuh','','angka',{kind:'number', num:7}),
+  wordEntry('eight','delapan','','angka',{kind:'number', num:8}),
+  wordEntry('nine','sembilan','','angka',{kind:'number', num:9}),
+  wordEntry('ten','sepuluh','','angka',{kind:'number', num:10}),
+  wordEntry('eleven','sebelas','','angka',{kind:'number', num:11}),
+  wordEntry('twelve','dua belas','','angka',{kind:'number', num:12}),
+  wordEntry('thirteen','tiga belas','','angka',{kind:'number', num:13}),
+  wordEntry('fourteen','empat belas','','angka',{kind:'number', num:14}),
+  wordEntry('fifteen','lima belas','','angka',{kind:'number', num:15}),
+  wordEntry('sixteen','enam belas','','angka',{kind:'number', num:16}),
+  wordEntry('seventeen','tujuh belas','','angka',{kind:'number', num:17}),
+  wordEntry('eighteen','delapan belas','','angka',{kind:'number', num:18}),
+  wordEntry('nineteen','sembilan belas','','angka',{kind:'number', num:19}),
+  wordEntry('twenty','dua puluh','','angka',{kind:'number', num:20}),
+  wordEntry('red','merah','','warna',{kind:'color', color:'#d94a2b'}),
+  wordEntry('blue','biru','','warna',{kind:'color', color:'#3c86c9'}),
+  wordEntry('green','hijau','','warna',{kind:'color', color:'#3f7d3b'}),
+  wordEntry('yellow','kuning','','warna',{kind:'color', color:'#f3d33f'}),
+  wordEntry('black','hitam','','warna',{kind:'color', color:'#3b2214'}),
+  wordEntry('white','putih','','warna',{kind:'color', color:'#fffaf0'}),
+  wordEntry('brown','cokelat','','warna',{kind:'color', color:'#8a542b'}),
+  wordEntry('purple','ungu','','warna',{kind:'color', color:'#8b5bb5'}),
+  wordEntry('cat','kucing','word-cat','hewan'),
+  wordEntry('dog','anjing','word-dog','hewan'),
+  wordEntry('hen','ayam','word-hen','hewan'),
+  wordEntry('pig','babi','word-pig','hewan'),
+  wordEntry('cow','sapi','word-cow','hewan'),
+  wordEntry('duck','bebek','word-duck','hewan'),
+  wordEntry('goat','kambing','word-goat','hewan'),
+  wordEntry('bird','burung','word-bird','hewan'),
+  wordEntry('fish','ikan','word-fish','hewan'),
+  wordEntry('rabbit','kelinci','word-rabbit','hewan'),
+  wordEntry('koala','koala','word-koala','hewan'),
+  wordEntry('bear','beruang','word-bear','hewan'),
+  wordEntry('mother','ibu','word-mother','keluarga'),
+  wordEntry('father','ayah','word-father','keluarga'),
+  wordEntry('sister','kakak perempuan','word-sister','keluarga'),
+  wordEntry('brother','kakak laki-laki','word-brother','keluarga'),
+  wordEntry('baby','bayi','word-baby','keluarga'),
+  wordEntry('aunt','bibi','word-aunt','keluarga'),
+  wordEntry('uncle','paman','word-uncle','keluarga'),
+  wordEntry('family','keluarga','word-family','keluarga'),
+  wordEntry('big','besar','word-big','sifat'),
+  wordEntry('small','kecil','word-small','sifat'),
+  wordEntry('hot','panas','word-hot','sifat'),
+  wordEntry('cold','dingin','word-cold','sifat'),
+  wordEntry('sweet','manis','word-sweet','sifat'),
+  wordEntry('sour','asam','word-sour','sifat'),
+  wordEntry('happy','senang','word-happy','sifat'),
+  wordEntry('sad','sedih','word-sad','sifat')
+];
+const WORD_BY_EN = Object.fromEntries(WORD_BANK.map(function(word){ return [word.en, word]; }));
+const WORD_BY_ICON = Object.fromEntries(WORD_BANK.filter(function(word){ return word.icon; }).map(function(word){ return [word.icon, word]; }));
+
+const SENTENCE_BANK = [
+  {id:'have-apple', text:'I have an apple.', level:0},
+  {id:'like-banana', text:'I like bananas.', level:0},
+  {id:'see-cat', text:'I see a cat.', level:0},
+  {id:'want-mango', text:'I want a mango.', level:0},
+  {id:'the-fish', text:'The fish is small.', level:1},
+  {id:'she-mother', text:'She is my mother.', level:1},
+  {id:'we-family', text:'We are a happy family.', level:1},
+  {id:'carrot-crunchy', text:'The carrot is crunchy.', level:1},
+  {id:'two-apples', text:'I want two apples.', level:2},
+  {id:'grapes-purple', text:'The grapes are purple.', level:2},
+  {id:'how-much', text:'How much is it?', level:3},
+  {id:'would-like', text:'I would like two bananas.', level:3},
+  {id:'do-you-want', text:'Do you want a melon?', level:3},
+  {id:'change-money', text:'Here is your change.', level:4},
+  {id:'thank-you', text:'Thank you very much.', level:4},
+  {id:'nice-market', text:'The market is very busy today.', level:4}
+];
+const ARTICLE_NOUNS = [
+  {word:'apple', article:'an', idn:'apel', icon:'item-apel'},
+  {word:'banana', article:'a', idn:'pisang', icon:'item-pisang'},
+  {word:'mango', article:'a', idn:'mangga', icon:'item-mangga'},
+  {word:'orange', article:'an', idn:'jeruk', icon:'item-jeruk'},
+  {word:'egg', article:'an', idn:'telur', icon:'word-egg'},
+  {word:'carrot', article:'a', idn:'wortel', icon:'item-wortel'},
+  {word:'onion', article:'an', idn:'bawang', icon:'word-onion'},
+  {word:'umbrella', article:'an', idn:'payung', icon:'word-umbrella'}
+];
+const PLURAL_PAIRS = [
+  {single:'apple', plural:'apples', idn:'apel', icon:'item-apel'},
+  {single:'banana', plural:'bananas', idn:'pisang', icon:'item-pisang'},
+  {single:'mango', plural:'mangoes', idn:'mangga', icon:'item-mangga'},
+  {single:'grape', plural:'grapes', idn:'anggur', icon:'word-grape'},
+  {single:'pear', plural:'pears', idn:'pir', icon:'word-pear'},
+  {single:'carrot', plural:'carrots', idn:'wortel', icon:'item-wortel'},
+  {single:'bean', plural:'beans', idn:'kacang', icon:'word-bean'},
+  {single:'peach', plural:'peaches', idn:'persik', icon:'word-peach'}
+];
+const TURIS_ITEMS = [
+  {en:'apple', plural:'apples', idn:'apel', icon:'item-apel', price:4000},
+  {en:'banana', plural:'bananas', idn:'pisang', icon:'item-pisang', price:5000},
+  {en:'mango', plural:'mangoes', idn:'mangga', icon:'item-mangga', price:6000},
+  {en:'grape', plural:'grapes', idn:'anggur', icon:'word-grape', price:7000},
+  {en:'melon', plural:'melons', idn:'melon', icon:'word-melon', price:8000},
+  {en:'pear', plural:'pears', idn:'pir', icon:'word-pear', price:6000},
+  {en:'carrot', plural:'carrots', idn:'wortel', icon:'item-wortel', price:3000},
+  {en:'corn', plural:'corn', idn:'jagung', icon:'word-corn', price:4000}
+];
+const EN_ONES = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+const EN_TENS = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+function englishNumber(n){
+  n = Math.floor(Number(n) || 0);
+  if(n < 20) return EN_ONES[n];
+  if(n < 100){
+    const ten = Math.floor(n / 10);
+    const one = n % 10;
+    return EN_TENS[ten] + (one ? '-' + EN_ONES[one] : '');
+  }
+  if(n < 1000){
+    const hundred = Math.floor(n / 100);
+    const rest = n % 100;
+    return EN_ONES[hundred] + ' hundred' + (rest ? ' and ' + englishNumber(rest) : '');
+  }
+  if(n < 1000000){
+    const thousand = Math.floor(n / 1000);
+    const rest = n % 1000;
+    return englishNumber(thousand) + ' thousand' + (rest ? ' ' + englishNumber(rest) : '');
+  }
+  return String(n);
+}
+function englishArticle(word){
+  return /^[aeiou]/i.test(String(word || '')) ? 'an' : 'a';
+}
+function pricePhrase(n){
+  return `It is ${englishNumber(n)} rupiah.`;
+}
+function normalizeEnglish(text){
+  return String(text || '').toLowerCase().replace(/[^a-z0-9' ]/g, '').replace(/\s+/g, ' ').trim();
+}
 
 function rnd(n){ return Math.floor(Math.random() * n); }
 function randInt(min, max){ return min + rnd(max - min + 1); }
@@ -1974,6 +2973,7 @@ function buildOptions(q){
 }
 let __questionSerial = 0;
 function finalizeQuestion(q){
+  if(q.family && q.family !== 'math') return finalizeEnglishQuestion(q);
   q.id = 'q' + (++__questionSerial) + '-' + Date.now().toString(36);
   q.answer = Math.round(q.answer);
   q.answerText = q.money ? formatRp(q.answer) : String(q.answer);
@@ -1982,6 +2982,19 @@ function finalizeQuestion(q){
   q.speech = speechText(q);
   if(q.mc) q.options = buildOptions(q);
   if(!q.visual) q.visual = {type:'story', item:itemOf(q.item || 'mangga').icon};
+  return q;
+}
+function finalizeEnglishQuestion(q){
+  q.id = 'q' + (++__questionSerial) + '-' + Date.now().toString(36);
+  q.family = q.family || q.stallId;
+  q.mc = false;
+  q.speechLang = q.speechLang || 'en';
+  q.speech = q.speech || q.question || '';
+  q.speechId = q.speechId || '';
+  q.hint = q.hint || 'Dengarkan Beo, lalu pilih jawaban yang paling tepat.';
+  q.steps = q.steps || [{text:q.solution || q.answerText || 'Baca ulang kata kuncinya.'}];
+  q.answerText = q.answerText || String(q.answer);
+  if(!q.visual) q.visual = {type:q.family};
   return q;
 }
 function parseFactKey(key){
@@ -2245,6 +3258,358 @@ function generateCampur(level, opts){
   }
   return q;
 }
+function kataPool(level){
+  const L = clamp(level, 0, 4);
+  if(L === 0) return WORD_BANK.filter(function(w){
+    return w.cat === 'buah' || w.cat === 'sayur' || (w.cat === 'angka' && w.num <= 10);
+  });
+  if(L === 1) return WORD_BANK.filter(function(w){
+    return w.cat === 'buah' || w.cat === 'sayur' || w.cat === 'warna' || w.cat === 'hewan' ||
+      (w.cat === 'angka' && w.num <= 20);
+  });
+  if(L === 2) return WORD_BANK.slice();
+  return WORD_BANK.slice();
+}
+function wordDistractors(word, count, mode){
+  let pool = WORD_BANK.filter(function(w){
+    if(w.en === word.en) return false;
+    if(word.cat === 'angka' && w.cat === 'angka') return true;
+    if(word.cat === 'warna' && w.cat === 'warna') return true;
+    return w.cat === word.cat;
+  });
+  if(pool.length < count) pool = pool.concat(WORD_BANK.filter(function(w){ return w.en !== word.en; }));
+  return shuffle(unique(pool.map(function(w){ return w.en; }))).slice(0, count).map(function(en){
+    const w = WORD_BY_EN[en];
+    return {
+      value:mode === 'meaning' ? w.idn : w.en,
+      label:mode === 'meaning' ? w.idn : w.en,
+      icon:w.icon,
+      word:w
+    };
+  });
+}
+function generateKata(level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  const pool = kataPool(L);
+  const word = opts.word && WORD_BY_EN[opts.word] ? WORD_BY_EN[opts.word] : pick(pool);
+  let mode = opts.mode;
+  if(!mode){
+    if(L >= 3) mode = pick(['picture','word','meaning','audio']);
+    else mode = pick(['picture','picture','word','meaning']);
+  }
+  if(mode === 'audio' && !canUseEnglishSpeech()) mode = 'picture';
+  const audioOnly = mode === 'audio';
+  let options;
+  let answer;
+  let question;
+  if(mode === 'picture' || mode === 'audio'){
+    answer = word.en;
+    question = audioOnly ? 'Listen to Beo. Which picture is it?' : `Which picture is “${word.en}”?`;
+    options = [{value:word.en, label:word.en, icon:word.icon, word:word}]
+      .concat(wordDistractors(word, 3, 'picture'))
+      .map(function(option){
+        return Object.assign({}, option, {label:option.word ? option.word.en : option.label});
+      });
+  } else if(mode === 'meaning'){
+    answer = word.idn;
+    question = `What does “${word.en}” mean?`;
+    options = [{value:word.idn, label:word.idn, word:word}]
+      .concat(wordDistractors(word, 3, 'meaning'));
+  } else {
+    answer = word.en;
+    question = 'What is this?';
+    options = [{value:word.en, label:word.en, word:word}]
+      .concat(wordDistractors(word, 3, 'word'));
+  }
+  const q = {
+    family:'kata',
+    stallId:'kata',
+    level:L,
+    word:word,
+    answer:answer,
+    answerText:word.en,
+    story:'Beo membawa kartu dari pasar. Dengarkan kata bahasa Inggrisnya, lalu pilih jawaban yang tepat.',
+    question:question,
+    speech:word.en,
+    speechLang:'en',
+    speechId:word.idn,
+    hint:audioOnly ? 'Dengarkan Beo sekali lagi. Perhatikan gambar dan pilihan yang tersedia.' : `Kata “${word.en}” berarti “${word.idn}”.`,
+    steps:[
+      {text:`Beo mengatakan “${word.en}”.`},
+      {text:`Gambarnya adalah ${word.idn}.`},
+      {text:`Jadi jawabannya ${word.en}.`, answer:true}
+    ],
+    visual:{type:'kata', mode:mode, word:word, audioOnly:audioOnly},
+    factKey:'kata:' + word.en,
+    options:shuffle(options),
+    mc:false
+  };
+  return q;
+}
+function generateEja(level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  const lengths = [3,4,5,6];
+  const targetLength = L < 4 ? lengths[L] : pick(lengths);
+  let pool = WORD_BANK.filter(function(w){ return w.letters.length === targetLength; });
+  if(!pool.length) pool = WORD_BANK.filter(function(w){ return w.letters.length >= 3 && w.letters.length <= 6; });
+  const word = opts.word && WORD_BY_EN[opts.word] ? WORD_BY_EN[opts.word] : pick(pool);
+  const letters = word.letters.slice();
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  const used = letters.slice();
+  const distractors = [];
+  while(distractors.length < 3){
+    const letter = pick(alphabet);
+    if(used.filter(function(x){ return x === letter; }).length > 1) continue;
+    if(letters.indexOf(letter) >= 0 && chance(0.5)) continue;
+    distractors.push(letter);
+    used.push(letter);
+  }
+  const tiles = shuffle(letters.concat(distractors).map(function(letter, index){
+    return {letter:letter, index:index};
+  }));
+  return {
+    family:'eja',
+    stallId:'eja',
+    level:L,
+    word:word,
+    answer:word.en,
+    answerText:word.en,
+    story:'Beo menjatuhkan huruf-hurufnya. Susun kembali sampai kata bahasa Inggrisnya benar.',
+    question:`Susun huruf menjadi kata untuk gambar ${word.idn}.`,
+    speech:word.en,
+    speechLang:'en',
+    speechId:word.idn,
+    hint:`Kata ini diawali huruf “${letters[0]}” dan terdiri dari ${letters.length} huruf.`,
+    steps:[
+      {text:`Dengarkan kata “${word.en}”.`},
+      {text:`Susun huruf dari kiri ke kanan: ${letters.join(' - ')}.`},
+      {text:`Kata lengkapnya ${word.en}.`, answer:true}
+    ],
+    visual:{type:'eja', mode:'spell', word:word, letters:letters, tiles:tiles},
+    factKey:'eja:' + word.en,
+    options:null,
+    mc:false
+  };
+}
+function generateKalimat(level, opts){
+  opts = opts || {};
+  const L = clamp(level, 0, 4);
+  let mode = opts.mode;
+  if(!mode){
+    if(L === 2) mode = 'article';
+    else if(L === 3) mode = 'plural';
+    else if(L === 4) mode = pick(['arrange','arrange','article','plural']);
+    else mode = 'arrange';
+  }
+  if(mode === 'article'){
+    const noun = pick(ARTICLE_NOUNS);
+    const correct = noun.article;
+    const options = shuffle(['a','an'].map(function(value){
+      return {value:value, label:value, sub:`${value} ${noun.word}`};
+    }));
+    return {
+      family:'kalimat',
+      stallId:'kalimat',
+      level:L,
+      answer:correct,
+      answerText:`${correct} ${noun.word}`,
+      story:'Beo sedang menulis label harga. Bantu pilih kata sandang yang tepat.',
+      question:`Pilih kata yang tepat: ___ ${noun.word}.`,
+      speech:`${correct} ${noun.word}`,
+      speechLang:'en',
+      speechId:`${correct} ${noun.word}`,
+      hint:'Gunakan “an” sebelum bunyi vokal a, e, i, o, u. Gunakan “a” untuk bunyi lainnya.',
+      steps:[
+        {text:`Kata “${noun.word}” dimulai dengan bunyi ${/^[aeiou]/i.test(noun.word) ? 'vokal' : 'konsonan'}.`},
+        {text:`Jadi kata sandangnya “${correct}”.`},
+        {text:`Lengkapnya: ${correct} ${noun.word}.`, answer:true}
+      ],
+      visual:{type:'kalimat', mode:'article', word:noun.word, idn:noun.idn, icon:noun.icon, article:correct},
+      factKey:'kalimat:article:' + noun.word,
+      options:options,
+      mc:false
+    };
+  }
+  if(mode === 'plural'){
+    const pair = pick(PLURAL_PAIRS);
+    const wrong = [pair.single, pair.plural + 's', pair.single + 'es'].filter(function(value, index, arr){
+      return value !== pair.plural && arr.indexOf(value) === index;
+    }).slice(0, 2);
+    const options = shuffle([pair.plural].concat(wrong)).map(function(value){
+      return {value:value, label:value, sub:value === pair.plural ? 'banyak' : 'belum tepat'};
+    });
+    return {
+      family:'kalimat',
+      stallId:'kalimat',
+      level:L,
+      answer:pair.plural,
+      answerText:pair.plural,
+      story:'Beo ingin membeli lebih dari satu. Ubah nama barangnya menjadi bentuk jamak.',
+      question:`Satu ${pair.single}. Dua ___?`,
+      speech:`Two ${pair.plural}.`,
+      speechLang:'en',
+      speechId:`Dua ${pair.idn}.`,
+      hint:'Bentuk jamak biasanya ditambah -s. Untuk kata berakhiran -ch, tambahkan -es.',
+      steps:[
+        {text:`Bentuk tunggalnya “${pair.single}”.`},
+        {text:`Bentuk jamaknya “${pair.plural}”.`},
+        {text:`Jadi jawabannya ${pair.plural}.`, answer:true}
+      ],
+      visual:{type:'kalimat', mode:'plural', word:pair.single, idn:pair.idn, icon:pair.icon, plural:pair.plural},
+      factKey:'kalimat:plural:' + pair.single,
+      options:options,
+      mc:false
+    };
+  }
+  let pool = SENTENCE_BANK.filter(function(sentence){ return sentence.level <= L; });
+  if(!pool.length) pool = SENTENCE_BANK;
+  const sentence = opts.sentence ? SENTENCE_BANK.find(function(s){ return s.id === opts.sentence; }) || pick(pool) : pick(pool);
+  const words = sentence.text.split(' ');
+  const tiles = shuffle(words.map(function(word, index){ return {word:word, index:index}; }));
+  return {
+    family:'kalimat',
+    stallId:'kalimat',
+    level:L,
+    answer:sentence.text,
+    answerText:sentence.text,
+    story:'Kepingan kalimat Beo tercampur. Susun menjadi kalimat bahasa Inggris yang benar.',
+    question:'Susun kepingan menjadi kalimat yang masuk akal.',
+    speech:sentence.text,
+    speechLang:'en',
+    speechId:sentence.text,
+    hint:`Mulai dari kata “${words[0]}”, lalu baca terus sampai tanda titik.`,
+    steps:[
+      {text:`Kalimat dimulai dengan “${words[0]}”.`},
+      {text:`Urutan lengkapnya: ${words.join(' ')}`},
+      {text:`Jadi jawabannya ${sentence.text}`, answer:true}
+    ],
+    visual:{type:'kalimat', mode:'arrange', word:sentence.text, tiles:tiles, sentence:sentence.text},
+    factKey:'kalimat:' + sentence.id,
+    options:null,
+    mc:false
+  };
+}
+const TURIS_CONVERSATIONS = [
+  {
+    id:'greeting-price',
+    item:'apple',
+    prompt:'Good morning! How much is one apple?',
+    answer:'It is four thousand rupiah.',
+    options:['It is four thousand rupiah.','I am fine, thank you.','Yes, please.']
+  },
+  {
+    id:'order-bananas',
+    item:'banana',
+    prompt:'I would like two bananas. How much is it?',
+    answer:'It is ten thousand rupiah.',
+    options:['It is ten thousand rupiah.','It is two bananas.','Here is your change.']
+  },
+  {
+    id:'pay-change',
+    item:'banana',
+    prompt:'Here is twenty thousand rupiah. How much is my change?',
+    answer:'The change is ten thousand rupiah.',
+    options:['The change is ten thousand rupiah.','It is twenty thousand rupiah.','I like bananas.']
+  }
+];
+function responseTiles(sentence){
+  const words = sentence.split(' ');
+  const decoys = shuffle(['thirteen','thirty','twelve','twenty','fifteen','fifty'])
+    .filter(function(word){ return words.map(normalizeEnglish).indexOf(normalizeEnglish(word)) < 0; })
+    .slice(0, 3);
+  return shuffle(words.concat(decoys).map(function(word, index){ return {word:word, index:index}; }));
+}
+function priceOptions(correct, item, qty, kind){
+  const values = [correct];
+  const candidates = kind === 'change'
+    ? [correct + 1000, correct - 1000, correct + 2000, correct - 2000, correct + 5000]
+    : [correct + item.price, correct - item.price, correct + 1000, correct - 1000, correct + 10000];
+  candidates.forEach(function(value){
+    if(values.length < 3 && value > 0 && values.indexOf(value) === -1) values.push(value);
+  });
+  while(values.length < 3) values.push(correct + values.length * 1000);
+  return shuffle(values.map(function(value){
+    return {value:value, label:pricePhrase(value), sub:''};
+  }));
+}
+function generateTuris(level, opts){
+  opts = opts || {};
+  let L = clamp(level, 0, 4);
+  if(L >= 2 && !isStallUnlocked('kali')) L = 1;
+  if(L === 4 && opts.turn){
+    const turn = opts.turn ? TURIS_CONVERSATIONS.find(function(t){ return t.id === opts.turn; }) || pick(TURIS_CONVERSATIONS) : pick(TURIS_CONVERSATIONS);
+    const item = TURIS_ITEMS.find(function(it){ return it.en === turn.item; }) || pick(TURIS_ITEMS);
+    return {
+      family:'turis',
+      stallId:'turis',
+      level:L,
+      answer:turn.answer,
+      answerText:turn.answer,
+      story:'Turis tersenyum dan bertanya kepada Beo. Jawab dengan kalimat bahasa Inggris yang sopan.',
+      question:'Pilih balasan yang paling tepat.',
+      speech:turn.prompt,
+      speechLang:'en',
+      speechId:'Dengarkan pertanyaan turis, lalu susun balasan yang sopan.',
+      hint:'Dengarkan pertanyaannya. Pilih kalimat yang menjawab pertanyaan itu, bukan kalimat acak.',
+      steps:[
+        {text:`Turis berkata: “${turn.prompt}”`},
+        {text:`Balasan yang tepat: “${turn.answer}”`},
+        {text:'Jawab dengan kalimat lengkap dan sopan.', answer:true}
+      ],
+      visual:{type:'turis', mode:'response', prompt:turn.prompt, item:item, qty:turn.id === 'order-bananas' || turn.id === 'pay-change' ? 2 : 1, sentence:turn.answer, tiles:responseTiles(turn.answer)},
+      factKey:'turis:conversation:' + turn.id,
+      options:null,
+      mc:false
+    };
+  }
+  const calculationLevel = L === 4 ? 3 : L;
+  const item = opts.item ? TURIS_ITEMS.find(function(it){ return it.en === opts.item; }) || pick(TURIS_ITEMS) : pick(TURIS_ITEMS);
+  const qty = calculationLevel <= 1 ? 1 : randInt(2, 4);
+  const total = item.price * qty;
+  const isChange = calculationLevel >= 3;
+  const paid = isChange ? Math.ceil((total + 5000) / 10000) * 10000 : 0;
+  const answer = isChange ? paid - total : total;
+  const kind = isChange ? 'change' : (qty > 1 ? 'quantity' : 'price');
+  const label = isChange
+    ? `The change is ${englishNumber(answer)} rupiah.`
+    : pricePhrase(answer);
+  const sentence = label;
+  const question = isChange
+    ? `The tourist pays ${formatRp(paid)}. How much change does the tourist get?`
+    : qty === 1
+      ? `How much is one ${item.en}?`
+      : `The tourist wants ${englishNumber(qty)} ${item.plural || (item.en + 's')}. How much is it?`;
+  return {
+    family:'turis',
+    stallId:'turis',
+    level:L,
+    answer:sentence,
+    answerText:label,
+    story:isChange
+      ? `Turis membeli ${qty} ${item.idn} dengan harga ${formatRp(item.price)} per buah, lalu membayar ${formatRp(paid)}.`
+      : `Turis ingin membeli ${qty} ${item.idn}. Harga satu ${item.en} adalah ${formatRp(item.price)}.`,
+    question:question,
+    speech:isChange
+      ? `The total is ${englishNumber(total)} rupiah. The tourist pays ${englishNumber(paid)} rupiah. How much change?`
+      : `The tourist wants ${englishNumber(qty)} ${item.en}. One ${item.en} is ${englishNumber(item.price)} rupiah. How much is it?`,
+    speechLang:'en',
+    speechId:isChange ? 'Hitung kembalian turis.' : 'Hitung total harga belanja turis.',
+    hint:isChange
+      ? 'Kembalian = uang dibayar − total harga. Total harga = jumlah × harga satuannya.'
+      : 'Total harga = jumlah barang × harga satu barang.',
+    steps:[
+      {text:`Harga satu ${item.en}: ${formatRp(item.price)}.`},
+      {text:isChange ? `Total belanja: ${qty} × ${formatRp(item.price)} = ${formatRp(total)}.` : `Total: ${qty} × ${formatRp(item.price)} = ${formatRp(total)}.`},
+      {text:isChange ? `Kembalian: ${formatRp(paid)} − ${formatRp(total)} = ${formatRp(answer)}.` : `Jadi jawabannya ${label}`, answer:true}
+    ],
+    visual:{type:'turis', mode:'response', item:item, qty:qty, price:item.price, total:total, paid:paid, amount:answer, sentence:sentence, tiles:responseTiles(sentence)},
+    factKey:'turis:' + kind + ':' + item.en + ':' + qty + (isChange ? ':' + paid : ''),
+    options:null,
+    mc:false
+  };
+}
 function generateQuestion(stallId, level, opts){
   opts = opts || {};
   const L = clamp(level, 0, 4);
@@ -2254,6 +3619,10 @@ function generateQuestion(stallId, level, opts){
   else if(stallId === 'kurang') q = generateKurang(stallId, L, opts);
   else if(stallId === 'kali') q = generateKali(stallId, L, opts);
   else if(stallId === 'bagi') q = generateBagi(stallId, L, opts);
+  else if(stallId === 'kata') q = generateKata(L, opts);
+  else if(stallId === 'eja') q = generateEja(L, opts);
+  else if(stallId === 'kalimat') q = generateKalimat(L, opts);
+  else if(stallId === 'turis') q = generateTuris(L, opts);
   else q = generateCampur(L, opts);
   q.stallId = stallId;
   q.level = L;
@@ -2262,8 +3631,20 @@ function generateQuestion(stallId, level, opts){
 function generateReview(factKey, stallId, level){
   const f = parseFactKey(factKey);
   const L = clamp(level, 0, 4);
+  const parts = String(factKey || '').split(':');
   let q;
-  if(f.type === 'tambah') q = generateTambah(stallId, L, {a:f.a, b:f.b, review:true});
+  if(parts[0] === 'kata') q = generateKata(L, {word:parts[1], review:true});
+  else if(parts[0] === 'eja') q = generateEja(L, {word:parts[1], review:true});
+  else if(parts[0] === 'kalimat'){
+    if(parts[1] === 'article') q = generateKalimat(L, {mode:'article', review:true});
+    else if(parts[1] === 'plural') q = generateKalimat(L, {mode:'plural', review:true});
+    else q = generateKalimat(L, {sentence:parts.slice(1).join(':'), review:true});
+  }
+  else if(parts[0] === 'turis'){
+    if(parts[1] === 'conversation') q = generateTuris(4, {turn:parts[2], review:true});
+    else q = generateTuris(L, {item:parts[2], review:true});
+  }
+  else if(f.type === 'tambah') q = generateTambah(stallId, L, {a:f.a, b:f.b, review:true});
   else if(f.type === 'kurang') q = generateKurang(stallId, L, {a:f.a, b:f.b, review:true, money:false});
   else if(f.type === 'uang') q = generateKurang(stallId, L, {a:f.a, b:f.b, review:true, money:true});
   else if(f.type === 'kali') q = generateKali(stallId, L, {a:f.a, b:f.b, review:true});
@@ -2274,14 +3655,77 @@ function generateReview(factKey, stallId, level){
   q.level = L;
   q.campur = stallId === 'campur';
   q.review = true;
+  if(q.family && q.family !== 'math') return finalizeQuestion(q);
   q.mc = false;
   q.options = null;
   return finalizeQuestion(q);
+}
+function validateEnglishQuestion(q){
+  const errors = [];
+  const fail = function(msg){ errors.push(msg); };
+  if(['kata','eja','kalimat','turis'].indexOf(q.family) < 0) fail('family English tidak dikenal');
+  if(!STALL_BY_ID[q.stallId]) fail('stallId tidak dikenal');
+  if(!(Number.isInteger(q.level) && q.level >= 0 && q.level < LEVELS)) fail('level tidak valid');
+  if(q.answer === undefined || q.answer === null || q.answer === '') fail('jawaban kosong');
+  if(typeof q.story !== 'string' || q.story.length < 10) fail('cerita kosong');
+  if(typeof q.question !== 'string' || q.question.length < 5) fail('pertanyaan kosong');
+  if(typeof q.hint !== 'string' || q.hint.length < 5) fail('hint kosong');
+  if(!Array.isArray(q.steps) || !q.steps.length) fail('langkah kosong');
+  if(typeof q.speech !== 'string' || !q.speech.length) fail('speech kosong');
+  if(typeof q.factKey !== 'string' || !q.factKey.includes(':')) fail('factKey kosong');
+  const textCheck = [q.story, q.question, q.hint, q.speech, q.answerText].join(' ');
+  if(/undefined|NaN|\{|\}/.test(textCheck)) fail('teks memuat nilai rusak');
+  if(q.visual){
+    if(q.visual.type !== q.family) fail('visual tidak cocok dengan family');
+    if(q.family === 'eja'){
+      if(!q.visual.word || !Array.isArray(q.visual.letters)) fail('data eja tidak lengkap');
+      if(q.visual.letters && q.visual.letters.join('') !== q.answer) fail('ejaan tidak cocok');
+      if(!Array.isArray(q.visual.tiles) || q.visual.tiles.length < q.visual.letters.length) fail('keping huruf kurang');
+    }
+    if(q.family === 'kalimat'){
+      if(q.visual.mode === 'arrange'){
+        if(!Array.isArray(q.visual.tiles) || !q.visual.sentence) fail('keping kalimat kurang');
+        const tileWords = q.visual.tiles.map(function(t){ return normalizeEnglish(t.word); }).sort();
+        const answerWords = normalizeEnglish(q.answer).split(' ').filter(Boolean).sort();
+        if(tileWords.join(' ') !== answerWords.join(' ')) fail('kata kalimat tidak cocok');
+      }
+      if(q.visual.mode === 'article' && ['a','an'].indexOf(q.answer) < 0) fail('article tidak valid');
+      if(q.visual.mode === 'plural' && !q.answer) fail('plural kosong');
+    }
+    if(q.family === 'turis'){
+      if(!q.visual.item) fail('item turis kosong');
+      if(q.visual.mode === 'response'){
+        if(typeof q.answer !== 'string' || normalizeEnglish(q.visual.sentence) !== normalizeEnglish(q.answer)) fail('susunan jawaban turis tidak cocok');
+        const tiles = Array.isArray(q.visual.tiles) ? q.visual.tiles.map(function(tile){ return normalizeEnglish(tile.word); }) : [];
+        q.visual.sentence.split(' ').forEach(function(word){
+          const normalized = normalizeEnglish(word);
+          const needed = q.visual.sentence.split(' ').filter(function(part){ return normalizeEnglish(part) === normalized; }).length;
+          const available = tiles.filter(function(tile){ return tile === normalized; }).length;
+          if(available < needed) fail('keping jawaban turis kurang: ' + word);
+        });
+        if(q.visual.amount !== undefined && (!(Number.isInteger(q.visual.amount) && q.visual.amount > 0))) fail('jumlah turis tidak valid');
+      } else {
+        fail('mode jawaban turis tidak dikenal');
+      }
+    }
+    if(q.family === 'kata' && !q.visual.word) fail('kata kosong');
+  } else {
+    fail('visual kosong');
+  }
+  if(q.options){
+    if(!Array.isArray(q.options) || q.options.length < 2) fail('pilihan terlalu sedikit');
+    else {
+      if(!q.options.some(function(option){ return option.value === q.answer; })) fail('jawaban tidak ada di pilihan');
+      if(unique(q.options.map(function(option){ return option.value; })).length !== q.options.length) fail('pilihan duplikat');
+    }
+  }
+  return errors;
 }
 function validateQuestion(q){
   const errors = [];
   const fail = function(msg){ errors.push(msg); };
   if(!q || typeof q !== 'object'){ return ['bukan objek']; }
+  if(q.family && q.family !== 'math') return validateEnglishQuestion(q);
   if(!STALL_BY_ID[q.stallId]) fail('stallId tidak dikenal');
   if(!(Number.isInteger(q.level) && q.level >= 0 && q.level < LEVELS)) fail('level tidak valid');
   if(!Number.isInteger(q.answer) || q.answer < 0) fail('jawaban harus bilangan bulat positif');
@@ -2365,12 +3809,13 @@ function emptyStars(){
 }
 function defaultState(){
   return {
-    version:1,
+    version:2,
     name:'',
     stars:emptyStars(),
     stickers:[],
     newStickers:[],
     mistakes:{},
+    dictionary:[],
     settings:{effects:true, autoRead:false},
     createdAt:Date.now()
   };
@@ -2398,6 +3843,9 @@ function normalizeState(raw){
   if(Array.isArray(raw.newStickers)){
     base.newStickers = unique(raw.newStickers.filter(function(id){ return !!STICKER_BY_ID[id]; }));
   }
+  if(Array.isArray(raw.dictionary)){
+    base.dictionary = unique(raw.dictionary.filter(function(en){ return !!WORD_BY_EN[en]; }));
+  }
   if(raw.mistakes && typeof raw.mistakes === 'object'){
     const entries = [];
     Object.keys(raw.mistakes).forEach(function(key){
@@ -2423,7 +3871,8 @@ function normalizeState(raw){
 }
 function loadState(){
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    let raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) raw = localStorage.getItem(LEGACY_STORAGE_KEY);
     if(!raw) return defaultState();
     return normalizeState(JSON.parse(raw));
   } catch(err){
@@ -2714,18 +4163,39 @@ function isLevelDone(stallId, level){
 }
 function isLevelUnlocked(stallId, level){
   if(!isStallUnlocked(stallId)) return false;
+  if(stallId === 'turis' && level >= 2 && !isStallUnlocked('kali')) return false;
   if(level <= 0) return true;
   return isLevelDone(stallId, level - 1);
 }
 function stallLockInfo(stallId){
   const index = STALLS.findIndex(function(s){ return s.id === stallId; });
-  if(index <= 0) return {locked:false, text:''};
-  if(index === 4){
+  if(index <= 0 || stallId === 'kata') return {locked:false, text:''};
+  if(stallId === 'campur'){
     const weak = STALLS.slice(0, 4).filter(function(s){ return stallStars(s.id) < UNLOCK_STARS; });
     if(!weak.length) return {locked:false, text:''};
     return {
       locked:true,
       text:`Campur terbuka setelah empat lapak punya ${UNLOCK_STARS} bintang. Masih perlu di ${weak.map(function(s){ return s.name; }).join(', ')}.`
+    };
+  }
+  if(stallId === 'eja'){
+    const got = stallStars('kata');
+    if(got >= UNLOCK_STARS) return {locked:false, text:''};
+    return {locked:true, text:`Kumpulkan ${UNLOCK_STARS - got} bintang lagi di Lapak Kata.`};
+  }
+  if(stallId === 'kalimat'){
+    const got = stallStars('eja');
+    if(got >= UNLOCK_STARS) return {locked:false, text:''};
+    return {locked:true, text:`Kumpulkan ${UNLOCK_STARS - got} bintang lagi di Lapak Eja.`};
+  }
+  if(stallId === 'turis'){
+    const need = [
+      ['kalimat','Kalimat'], ['tambah','Tambah']
+    ].filter(function(pair){ return stallStars(pair[0]) < UNLOCK_STARS; });
+    if(!need.length) return {locked:false, text:''};
+    return {
+      locked:true,
+      text:`Turis terbuka setelah Kalimat dan Tambah masing-masing punya ${UNLOCK_STARS} bintang. Masih perlu di ${need.map(function(pair){ return pair[1]; }).join(', ')}.`
     };
   }
   const prev = STALLS[index - 1];
@@ -2812,6 +4282,7 @@ function resetProgress(){
   state = defaultState();
   state.settings = settings;
   try { localStorage.removeItem(STORAGE_KEY); } catch(err){}
+  try { localStorage.removeItem(LEGACY_STORAGE_KEY); } catch(err){}
   if(validClassInvite){
     try { localStorage.removeItem(classSessionStorageKey()); } catch(err){}
     classLinkSession = null;
@@ -2880,11 +4351,13 @@ function soundUnlock(){
 const speechSynth = window.speechSynthesis || null;
 let voiceList = [];
 let indonesianVoice = null;
+let englishVoice = null;
 let speakToken = 0;
 function refreshVoices(){
   if(!speechSynth){
     voiceList = [];
     indonesianVoice = null;
+    englishVoice = null;
     if(typeof updateSpeechUI === 'function') updateSpeechUI();
     return;
   }
@@ -2894,15 +4367,40 @@ function refreshVoices(){
   }) || voiceList.find(function(voice){
     return /indones/i.test(voice.name || '') && /^id/i.test(voice.lang || '');
   }) || null;
+  englishVoice = voiceList.find(function(voice){
+    return /^en-US$/i.test(voice.lang || '');
+  }) || voiceList.find(function(voice){
+    return /^en([-_]|$)/i.test(voice.lang || '');
+  }) || voiceList.find(function(voice){
+    return /english/i.test(voice.name || '');
+  }) || null;
   if(typeof updateSpeechUI === 'function') updateSpeechUI();
 }
 function canUseSpeech(){
   return !!speechSynth && !!indonesianVoice;
 }
-function setSpeakingUI(on){
-  document.querySelectorAll('#btn-play-read, #btn-read-inline').forEach(function(btn){
+function canUseIndonesianSpeech(){
+  return !!speechSynth && !!indonesianVoice;
+}
+function canUseEnglishSpeech(){
+  return !!speechSynth && !!englishVoice;
+}
+function setSpeakingUI(on, lang){
+  const englishSpeaking = !!on && lang === 'en';
+  document.querySelectorAll('#btn-play-read, #btn-read-inline, #btn-word-id').forEach(function(btn){
     btn.classList.toggle('is-speaking', !!on);
   });
+  document.querySelectorAll('#btn-play-beo, #btn-word-speak').forEach(function(btn){
+    btn.classList.toggle('is-speaking', englishSpeaking);
+  });
+  document.querySelectorAll('.beo-svg, .beo-art, .beo-mini').forEach(function(beo){
+    beo.classList.toggle('is-speaking', englishSpeaking);
+  });
+  const inlineBeoButton = $('#btn-play-beo-inline');
+  if(inlineBeoButton){
+    inlineBeoButton.classList.toggle('is-speaking', englishSpeaking);
+    inlineBeoButton.setAttribute('aria-pressed', englishSpeaking ? 'true' : 'false');
+  }
 }
 function stopSpeech(){
   if(!speechSynth) return;
@@ -2910,17 +4408,19 @@ function stopSpeech(){
   try { speechSynth.cancel(); } catch(err){}
   setSpeakingUI(false);
 }
-function speakQuestion(text){
-  if(!canUseSpeech() || !text) return false;
+function speakText(text, lang, rate){
+  const isEnglish = lang === 'en';
+  const voice = isEnglish ? englishVoice : indonesianVoice;
+  if(!speechSynth || !voice || !text) return false;
   stopSpeech();
   const token = ++speakToken;
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'id-ID';
-  utterance.voice = indonesianVoice;
-  utterance.rate = 0.92;
-  utterance.pitch = 1.03;
+  utterance.lang = isEnglish ? 'en-US' : 'id-ID';
+  utterance.voice = voice;
+  utterance.rate = rate || (isEnglish ? 0.82 : 0.92);
+  utterance.pitch = isEnglish ? 1.02 : 1.03;
   utterance.onstart = function(){
-    if(token === speakToken) setSpeakingUI(true);
+    if(token === speakToken) setSpeakingUI(true, isEnglish ? 'en' : 'id');
   };
   utterance.onend = function(){
     if(token === speakToken) setSpeakingUI(false);
@@ -2936,6 +4436,12 @@ function speakQuestion(text){
     return false;
   }
 }
+function speakQuestion(text, lang){
+  const useEnglish = typeof lang === 'string'
+    ? lang === 'en'
+    : !!(session && session.current && session.current.speechLang === 'en');
+  return speakText(text, useEnglish ? 'en' : 'id');
+}
 if(speechSynth){
   speechSynth.addEventListener('voiceschanged', refreshVoices);
 }
@@ -2950,7 +4456,7 @@ function uiIcon(id, cls){
 }
 function itemIcon(id, cls){
   const raw = String(id || '');
-  const icon = raw.indexOf('item-') === 0 || raw.indexOf('icon-') === 0 ? raw : itemOf(raw).icon;
+  const icon = /^(item-|icon-|word-|sticker-)/.test(raw) ? raw : itemOf(raw).icon;
   return `<svg class="${cls || ''}" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="#${icon}"/></svg>`;
 }
 function tentSVG(cls){
@@ -3067,22 +4573,32 @@ function updateSoundUI(){
   if(readSwitch) readSwitch.setAttribute('aria-checked', state.settings.autoRead ? 'true' : 'false');
 }
 function updateSpeechUI(){
-  const available = canUseSpeech();
+  const idAvailable = canUseIndonesianSpeech();
+  const enAvailable = canUseEnglishSpeech();
+  const inlineAudioQuestion = !!(currentScreen === 'play' && session && session.current &&
+    session.current.visual && session.current.visual.type === 'kata' && session.current.visual.audioOnly);
   ['#btn-play-read', '#btn-read-inline'].forEach(function(sel){
     const btn = $(sel);
-    if(btn) btn.hidden = !available;
+    if(btn) btn.hidden = !idAvailable || (sel === '#btn-play-read' && inlineAudioQuestion);
   });
+  ['#btn-play-beo', '#btn-play-beo-inline', '#btn-word-speak'].forEach(function(sel){
+    const btn = $(sel);
+    if(btn) btn.hidden = !enAvailable || (sel === '#btn-play-beo' && inlineAudioQuestion);
+  });
+  const wordId = $('#btn-word-id');
+  if(wordId) wordId.hidden = !idAvailable;
   const row = $('#row-auto-read');
-  if(row) row.hidden = !available;
+  if(row) row.hidden = !idAvailable && !enAvailable;
   const note = $('#speech-note');
   if(note){
-    note.textContent = available
-      ? 'Suara bahasa Indonesia tersedia. Soal bisa dibacakan kapan saja.'
-      : 'Perangkat ini belum menyediakan suara bahasa Indonesia. Kamu tetap bisa membaca soal sendiri.';
+    if(idAvailable && enAvailable) note.textContent = 'Suara Indonesia dan Inggris tersedia. Beo bisa membacakan kata atau soal.';
+    else if(idAvailable) note.textContent = 'Suara bahasa Indonesia tersedia. Suara Inggris belum ada di perangkat ini.';
+    else if(enAvailable) note.textContent = 'Suara bahasa Inggris tersedia. Suara Indonesia belum ada di perangkat ini.';
+    else note.textContent = 'Perangkat ini belum menyediakan suara. Kamu tetap bisa membaca soal sendiri.';
   }
   const readSwitch = $('#btn-read-settings');
-  if(readSwitch) readSwitch.setAttribute('aria-checked', available && state.settings.autoRead ? 'true' : 'false');
-  if(!available) stopSpeech();
+  if(readSwitch) readSwitch.setAttribute('aria-checked', (idAvailable || enAvailable) && state.settings.autoRead ? 'true' : 'false');
+  if(!idAvailable && !enAvailable) stopSpeech();
 }
 function renderSoundButtons(){
   updateSoundUI();
@@ -3091,10 +4607,12 @@ function renderMap(){
   const name = $('#map-name');
   if(name) name.textContent = state.name || 'Sahabat';
   const count = $('#sticker-count');
-  if(count) count.textContent = stickerCount() + '/15';
+  if(count) count.textContent = stickerCount() + '/' + TOTAL_STICKERS;
+  const kamusCount = $('#kamus-count');
+  if(kamusCount) kamusCount.textContent = state.dictionary.length + '/' + WORD_TARGET;
   const list = $('#stall-list');
   if(!list) return;
-  const tilts = ['-1.2deg','1deg','-.7deg','1.1deg','-.4deg'];
+  const tilts = ['-1.2deg','1deg','-.7deg','1.1deg','-.4deg','.8deg','-1deg','.6deg','-1.1deg'];
   list.innerHTML = STALLS.map(function(stall, index){
     const info = stallLockInfo(stall.id);
     const stars = stallStars(stall.id);
@@ -3103,9 +4621,9 @@ function renderMap(){
       : (stall.id === 'campur' ? '<span class="lock-badge is-open">Tantangan akhir</span>' : '');
     const label = info.locked
       ? `Lapak ${stall.name}, terkunci. ${info.text}`
-      : `Buka Lapak ${stall.name}, ${stars} dari 15 bintang. ${stall.blurb}`;
+      : `Buka Lapak ${stall.name}, ${stars} dari ${TOTAL_STARS_PER_STALL} bintang. ${stall.blurb}`;
     return `<button class="stall-card ${info.locked ? 'is-locked' : ''}" type="button"
-      data-stall="${stall.id}" style="--tilt:${tilts[index]}"
+      data-stall="${stall.id}" data-track="${stall.track || 'math'}" style="--tilt:${tilts[index]}"
       aria-label="${label}" ${info.locked ? 'aria-disabled="true"' : ''}>
       <span class="tent-wrap">
         ${tentSVG()}
@@ -3115,7 +4633,7 @@ function renderMap(){
         </span>
       </span>
       <span class="stall-meta">
-        <span class="stall-stars">${uiIcon('icon-star')}<span>${stars}/15</span></span>
+        <span class="stall-stars">${uiIcon('icon-star')}<span>${stars}/${TOTAL_STARS_PER_STALL}</span></span>
       </span>
       <span class="stall-blurb">${stall.blurb}</span>
       ${badge}
@@ -3123,12 +4641,12 @@ function renderMap(){
   }).join('');
   const speech = $('#map-speech');
   if(speech){
-    if(stickerCount() >= 15){
+    if(stickerCount() >= TOTAL_STICKERS){
       speech.textContent = 'Semua stiker lengkap! Kamu teman lapak yang hebat.';
     } else if(allStars() === 0){
       speech.textContent = 'Ayo mulai dari Lapak Tambah. Kancil menunggumu!';
     } else {
-      const next = STALLS.find(function(s){ return !stallLockInfo(s.id).locked && (nextLevelIndex(s.id) >= 0 || stallStars(s.id) < 15); });
+      const next = STALLS.find(function(s){ return !stallLockInfo(s.id).locked && (nextLevelIndex(s.id) >= 0 || stallStars(s.id) < TOTAL_STARS_PER_STALL); });
       speech.textContent = next ? `Lapak ${next.name} siap dikunjungi.` : 'Kumpulkan bintang sebanyak mungkin, ya!';
     }
   }
@@ -3149,7 +4667,7 @@ function renderStall(stallId){
   const title = $('#stall-title');
   if(title) title.textContent = 'Lapak ' + stall.name;
   const chip = $('#stall-star-chip');
-  if(chip) chip.textContent = stars + '/15';
+  if(chip) chip.textContent = stars + '/' + TOTAL_STARS_PER_STALL;
   const next = nextLevelIndex(stallId);
   const tilts = ['-1deg','.9deg','-.5deg','1.2deg','-.8deg'];
   const levels = LEVEL_META[stallId].map(function(meta, i){
@@ -3159,7 +4677,7 @@ function renderStall(stallId){
     const sticker = stickerFor(stallId, i);
     const hasSticker = sticker && state.stickers.indexOf(sticker.id) >= 0;
     let note = 'Siap dimainkan';
-    if(!unlocked) note = 'Selesaikan level sebelumnya';
+    if(!unlocked) note = (stallId === 'turis' && i >= 2 && !isStallUnlocked('kali')) ? 'Buka Lapak Kali dulu' : 'Selesaikan level sebelumnya';
     else if(sticker && !hasSticker) note = 'Hadiah stiker ' + sticker.name;
     else if(done) note = earned + ' bintang · main lagi';
     const label = `Level ${i + 1}, ${meta.title}. ${unlocked ? (done ? earned + ' bintang' : 'siap dimainkan') : 'terkunci'}`;
@@ -3175,16 +4693,16 @@ function renderStall(stallId){
   const wrap = $('#stall-content');
   if(!wrap) return;
   wrap.innerHTML = `<div class="stall-hero">
-      <div class="stall-hero-art">
+      <div class="stall-hero-art" data-stall="${stall.id}" data-track="${stall.track}">
         ${tentSVG()}
         <span class="stall-sign">${uiIcon('motif-' + stall.motif, 'motif')}<span class="stall-name">${stall.name}</span></span>
       </div>
       <div class="stall-hero-copy">
-        <p class="kicker">Lapak ${STALLS.findIndex(function(s){ return s.id === stallId; }) + 1} dari 5</p>
+        <p class="kicker">Lapak ${STALLS.findIndex(function(s){ return s.id === stallId; }) + 1} dari ${STALLS.length}</p>
         <h1>Lapak ${stall.name}</h1>
         <p>${stall.hero}</p>
         <div class="stall-starline">
-          <span class="star-chip">${uiIcon('icon-star')}<span>${stars}/15 bintang</span></span>
+          <span class="star-chip">${uiIcon('icon-star')}<span>${stars}/${TOTAL_STARS_PER_STALL} bintang</span></span>
           <span class="star-chip">${uiIcon('icon-book')}<span>${stickerTotal}/3 stiker</span></span>
         </div>
       </div>
@@ -3196,7 +4714,7 @@ function renderStall(stallId){
 }
 function renderStickers(){
   const count = $('#stickers-count');
-  if(count) count.textContent = stickerCount() + '/15';
+  if(count) count.textContent = stickerCount() + '/' + TOTAL_STICKERS;
   const grid = $('#sticker-grid');
   if(!grid) return;
   const fresh = state.newStickers.slice();
@@ -3212,7 +4730,7 @@ function renderStickers(){
   }).join('');
   const note = $('#sticker-note');
   if(note){
-    note.textContent = stickerCount() >= 15
+    note.textContent = stickerCount() >= TOTAL_STICKERS
       ? 'Semua stiker sudah ditempel. Buku stikermu penuh!'
       : 'Selesaikan tingkat 1, 3, dan 5 di setiap lapak untuk mengisi buku ini.';
   }
@@ -3244,20 +4762,24 @@ function renderSettings(){
   updateSpeechUI();
 }
 function answerText(q){
+  if(q.family && q.family !== 'math') return q.answerText || String(q.answer);
   return q.money ? formatRp(q.answer) : String(q.answer);
 }
 function equationText(q){
+  if(q.family && q.family !== 'math') return q.answerText || String(q.answer);
   if(q.twoStep) return 'Dua langkah hitung';
   if(q.money) return `${formatRp(q.a)} − ${formatRp(q.b)} = ?`;
   if(q.op === '÷') return `${q.b} × ? = ${q.a}`;
   return `${q.a} ${q.op} ${q.b} = ?`;
 }
 function correctEquationText(q){
+  if(q.family && q.family !== 'math') return q.answerText || String(q.answer);
   if(q.twoStep) return 'Jawaban akhir: ' + answerText(q);
   if(q.money) return `${formatRp(q.a)} − ${formatRp(q.b)} = ${formatRp(q.answer)}`;
   return `${q.a} ${q.op} ${q.b} = ${q.answer}`;
 }
 function tallyText(q){
+  if(q.family && q.family !== 'math') return q.family === 'turis' ? 'Bahasa Inggris' : 'Beo';
   if(q.money) return `${formatRp(q.a)} − ${formatRp(q.b)}`;
   if(q.twoStep) return 'Dua langkah';
   return `${q.a} ${q.op} ${q.b}`;
@@ -3385,7 +4907,80 @@ function groupShareVisual(q){
     <div class="plates">${plates}</div>
     <p class="share-static-note">Dibagi rata ke ${q.b} piring. Berapa isi setiap piring?</p>`;
 }
+function wordPicture(word, cls){
+  let body = '?';
+  if(word && word.kind === 'number') body = `<span class="word-number">${word.num}</span>`;
+  else if(word && word.kind === 'color') body = `<span class="word-color" style="--swatch:${word.color}"></span>`;
+  else if(word && word.icon) body = itemIcon(word.icon);
+  return `<div class="word-picture ${cls || ''}" aria-hidden="true">${body}</div>`;
+}
+function touristArt(cls){
+  return `<svg class="${cls || 'tourist-art'}" viewBox="0 0 120 160" aria-hidden="true" focusable="false"><use href="#tourist-figure"/></svg>`;
+}
+function beoArt(cls){
+  const face = $('#beo-head');
+  if(!face) throw new Error('Ilustrasi Beo tidak ditemukan.');
+  return `<svg class="${cls || 'beo-art'}" viewBox="0 0 120 120" aria-hidden="true" focusable="false">${face.innerHTML}</svg>`;
+}
+function renderEnglishVisual(q){
+  const tray = $('#visual-tray');
+  if(!tray) return;
+  let body = '';
+  if(q.visual.type === 'kata'){
+    const word = q.visual.word;
+    body = `<div class="word-stage">
+      ${wordPicture(word, 'is-large')}
+      <div class="word-stage-copy">
+        ${q.visual.audioOnly ? '' : `<span class="word-stage-word">${word.en}</span>`}
+        <span class="word-stage-meaning">${word.idn}</span>
+        <span class="track-label is-english">${WORD_CAT_LABEL[word.cat] || 'Kata'}</span>
+      </div>
+    </div>${q.visual.audioOnly ? `<div class="word-stage-audio-controls" id="word-audio-tools">
+      <button class="word-stage-audio beo-listen-button" id="btn-play-beo-inline" type="button" aria-label="Dengarkan kata dari Beo" aria-pressed="false" ${canUseEnglishSpeech() ? '' : 'hidden'}>${beoArt('beo-mini')}<span>Dengarkan Beo<small>Ketuk untuk mendengar kata</small></span></button>
+    </div>` : ''}`;
+  } else if(q.visual.type === 'eja'){
+    body = `<div class="word-stage">
+      ${wordPicture(q.visual.word, 'is-large')}
+      <div class="word-stage-copy">
+        <span class="word-stage-meaning">${q.visual.word.idn}</span>
+        <span class="track-label is-english">Eja dalam bahasa Inggris</span>
+        <span class="word-stage-audio">${beoArt('beo-mini')}<span>Beo bisa mengulang</span></span>
+      </div>
+    </div>`;
+  } else if(q.visual.type === 'kalimat'){
+    if(q.visual.mode === 'arrange'){
+      body = `<div class="sentence-stage">
+        ${beoArt('beo-mini')}
+        <div class="sentence-stage-copy"><strong>Susun kalimat</strong><span>Ketuk keping kata dari kiri ke kanan.</span></div>
+      </div>`;
+    } else if(q.visual.mode === 'article'){
+      body = `<div class="word-stage">
+        ${wordPicture({icon:q.visual.icon, idn:q.visual.idn}, 'is-large')}
+        <div class="word-stage-copy"><span class="word-stage-word">___ ${q.visual.word}</span><span class="word-stage-meaning">${q.visual.idn}</span></div>
+      </div>`;
+    } else {
+      body = `<div class="word-stage">
+        ${wordPicture({icon:q.visual.icon, idn:q.visual.idn}, 'is-large')}
+        <div class="word-stage-copy"><span class="word-stage-word">${q.visual.word}</span><span class="word-stage-meaning">${q.visual.idn} · banyak</span></div>
+      </div>`;
+    }
+  } else if(q.visual.type === 'turis'){
+    const item = q.visual.item;
+    body = `<div class="turis-scene">
+    ${touristArt()}
+    <span class="tourist-name">Mr. Koala</span>
+      <div class="turis-bubble">${q.visual.prompt || q.question}</div>
+      <div class="price-board">
+        <div class="price-item">${itemIcon(item.icon)}<span>${item.en}</span><span class="price-tag">${formatRp(item.price)}</span></div>
+        ${q.visual.qty > 1 ? `<div class="qty-note">× ${q.visual.qty}</div>` : ''}
+      </div>
+    </div>`;
+  }
+  tray.innerHTML = `<div class="tray-title"><span>Alat bantu bahasa</span><span class="tally">${tallyText(q)}</span></div>
+    <p class="tray-instruction">${q.family === 'turis' ? 'Dengarkan turis, lalu susun jawaban bahasa Inggris dari keping kata.' : 'Dengarkan Beo dan perhatikan gambarnya.'}</p>${body}`;
+}
 function renderVisual(q){
+  if(q.family && q.family !== 'math'){ renderEnglishVisual(q); return; }
   const tray = $('#visual-tray');
   if(!tray) return;
   let body = '';
@@ -3473,7 +5068,88 @@ function syncShareCheck(){
   const emptyPool = session && session.share && session.share.assignment.every(function(plate){ return plate >= 0; });
   btn.disabled = !emptyPool || !session || session.phase !== 'answering';
 }
+function escAttr(value){
+  return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+function englishSelectionState(q){
+  if(!session) return null;
+  if(!session.english || session.english.qid !== q.id) session.english = {qid:q.id, selected:[]};
+  return session.english;
+}
+function renderEnglishChoices(q){
+  const card = $('#answer-card');
+  if(!card) return;
+  const isPicture = q.visual.mode === 'picture' || q.visual.mode === 'audio';
+  const prompt = isPicture ? 'Pilih gambar' : (q.family === 'turis' ? 'Pilih balasan' : 'Pilih jawaban');
+  card.innerHTML = `<div class="answer-prompt"><span>${prompt}</span><span class="campur-note">Satu yang tepat</span></div>
+    <div class="choices is-english" id="choices">${q.options.map(function(option, index){
+      const word = option.word || (option.icon ? WORD_BY_ICON[option.icon] : null);
+      const icon = isPicture ? (option.icon || (word && word.icon)) : null;
+      return `<button class="choice-btn word-choice ${isPicture ? 'is-picture-choice' : ''}" type="button"
+        data-word-choice="${escAttr(option.value)}" data-option-index="${index}"
+        aria-label="${escAttr(option.label || option.value)}">
+        ${icon ? `<span class="choice-pic">${itemIcon(icon)}</span>` : ''}
+        <span class="choice-label">${option.label || option.value}</span>
+      </button>`;
+    }).join('')}</div>
+    <p class="keypad-note">${isPicture ? 'Ketuk gambar yang cocok dengan kata Beo.' : 'Ketuk jawaban yang kamu pilih.'}</p>`;
+}
+function renderLetterAnswer(q){
+  const card = $('#answer-card');
+  if(!card) return;
+  const state = englishSelectionState(q);
+  const selected = state.selected;
+  const slots = q.visual.letters.map(function(_, index){
+    const tileIndex = selected[index];
+    if(tileIndex === undefined) return '<span class="letter-slot is-empty" aria-hidden="true"></span>';
+    const tile = q.visual.tiles[tileIndex];
+    return `<button class="letter-slot is-filled" type="button" data-letter-slot="${index}" aria-label="Huruf ${tile.letter}, ketuk untuk mengembalikan">${tile.letter}</button>`;
+  }).join('');
+  const pool = q.visual.tiles.map(function(tile, index){
+    if(selected.indexOf(index) >= 0) return '';
+    return `<button class="letter-tile" type="button" data-letter-index="${index}" aria-label="Huruf ${tile.letter}">${tile.letter}</button>`;
+  }).join('');
+  card.innerHTML = `<div class="answer-prompt"><span>Susun ejaan</span><span class="campur-note">${q.visual.letters.length} huruf</span></div>
+    <div class="letter-line" id="letter-line">${slots}</div>
+    <div class="letter-pool" id="letter-pool">${pool}</div>
+    <div class="word-answer-actions">
+      <button class="btn-text" type="button" id="btn-reset-eja">Ulangi</button>
+      <button class="btn btn-primary" type="button" id="btn-check-eja" ${selected.length === q.visual.letters.length ? '' : 'disabled'}>Periksa</button>
+    </div>
+    <p class="keypad-note">Ketuk huruf untuk memasang. Ketuk huruf di kotak untuk mengembalikan.</p>`;
+}
+function renderSentenceAnswer(q){
+  const card = $('#answer-card');
+  if(!card) return;
+  const state = englishSelectionState(q);
+  const selected = state.selected;
+  const slots = q.visual.sentence.split(' ').map(function(_, index){
+    const tileIndex = selected[index];
+    if(tileIndex === undefined) return '<span class="letter-slot sentence-slot is-empty" aria-hidden="true"></span>';
+    const tile = q.visual.tiles[tileIndex];
+    return `<button class="letter-slot sentence-slot is-filled" type="button" data-sentence-slot="${index}" aria-label="Kata ${tile.word}, ketuk untuk mengembalikan">${tile.word}</button>`;
+  }).join('');
+  const pool = q.visual.tiles.map(function(tile, index){
+    if(selected.indexOf(index) >= 0) return '';
+    return `<button class="sentence-tile" type="button" data-sentence-index="${index}" aria-label="Kata ${tile.word}">${tile.word}</button>`;
+  }).join('');
+  card.innerHTML = `<div class="answer-prompt"><span>${q.family === 'turis' ? 'Susun jawaban' : 'Susun kalimat'}</span><span class="campur-note">${q.visual.sentence.split(' ').length} kata</span></div>
+    <div class="builder-line" id="builder-line">${slots}</div>
+    <div class="builder-pool" id="builder-pool">${pool}</div>
+    <div class="word-answer-actions">
+      <button class="btn-text" type="button" id="btn-reset-sentence">Ulangi</button>
+      <button class="btn btn-primary" type="button" id="btn-check-sentence" ${selected.length === q.visual.sentence.split(' ').length ? '' : 'disabled'}>Periksa</button>
+    </div>
+    <p class="keypad-note">Ketuk keping kata dari kiri ke kanan. Baca ulang sebelum memeriksa.</p>`;
+}
+function renderEnglishAnswer(q){
+  if(q.visual.type === 'eja'){ renderLetterAnswer(q); return; }
+  if(q.visual.type === 'kalimat' && q.visual.mode === 'arrange'){ renderSentenceAnswer(q); return; }
+  if(q.visual.type === 'turis' && q.visual.mode === 'response'){ renderSentenceAnswer(q); return; }
+  renderEnglishChoices(q);
+}
 function renderAnswerCard(q){
+  if(q.family && q.family !== 'math'){ renderEnglishAnswer(q); return; }
   const card = $('#answer-card');
   if(!card) return;
   if(q.mc){
@@ -3563,19 +5239,21 @@ function feedbackCard(kind, icon, title, body){
 function showGoodFeedback(q){
   const feedback = $('#feedback');
   if(!feedback) return;
-  const isLast = session && session.solved >= QUESTIONS_PER_LEVEL;
+  const isLast = session && session.solved >= sessionTotal();
+  const english = q.family && q.family !== 'math';
   feedback.innerHTML = feedbackCard('good', uiIcon('icon-check'), pick(PRAISES),
-    `<p>${correctEquationText(q)}</p>
+    `<p>${english ? (q.answerText || q.answer) : correctEquationText(q)}</p>
      <div class="feedback-actions"><button class="btn btn-primary" type="button" data-action="continue" id="btn-next-q">${isLast ? 'Lihat hasil' : 'Lanjut'}</button></div>`);
   revealFeedback();
 }
 function showHintFeedback(q){
   const feedback = $('#feedback');
   if(!feedback) return;
+  const english = q.family && q.family !== 'math';
   feedback.innerHTML = feedbackCard('hint', uiIcon('icon-read'), 'Coba sekali lagi',
     `<p>${pick(RETRY_LINES)}</p>
      <p><strong>Petunjuk:</strong> ${q.hint}</p>
-     <div class="equation-hint">${equationText(q)}</div>`);
+     ${english ? '' : `<div class="equation-hint">${equationText(q)}</div>`}`);
   revealFeedback();
 }
 function showSolutionFeedback(q){
@@ -3586,7 +5264,7 @@ function showSolutionFeedback(q){
       <span class="step-num">${i + 1}</span><span>${step.text}</span>
     </div>`;
   }).join('');
-  const isLast = session && session.solved >= QUESTIONS_PER_LEVEL - 1;
+  const isLast = session && session.solved >= sessionTotal() - 1;
   feedback.innerHTML = feedbackCard('solution', uiIcon('icon-book'), 'Ini cara menyelesaikannya',
     `<p>Jawaban yang tepat: <strong>${answerText(q)}</strong></p>
      <div class="solution-steps">${steps}</div>
@@ -3603,7 +5281,7 @@ function renderProgress(){
   if(dots){
     const results = session ? session.results : [];
     const current = session ? (session.phase === 'correct' ? Math.max(0, session.solved - 1) : session.solved) : 0;
-    dots.innerHTML = Array.from({length:QUESTIONS_PER_LEVEL}, function(_, i){
+    dots.innerHTML = Array.from({length:sessionTotal()}, function(_, i){
       const res = results[i];
       const cls = res ? (res.firstTry ? 'is-done' : 'is-miss') : (i === current ? 'is-current' : '');
       return `<span class="progress-dot ${cls}"></span>`;
@@ -3612,7 +5290,7 @@ function renderProgress(){
   const counter = $('#play-counter');
   if(counter && session){
     const number = session.phase === 'correct' ? session.solved : session.solved + 1;
-    counter.textContent = `Soal ${Math.min(number, QUESTIONS_PER_LEVEL)}/${QUESTIONS_PER_LEVEL}`;
+    counter.textContent = `Soal ${Math.min(number, sessionTotal())}/${sessionTotal()}`;
   }
 }
 let session = null;
@@ -3645,9 +5323,11 @@ function startSession(stallId, level){
   stopSpeech();
   activeStallId = stallId;
   lastResult = null;
+  const total = stallId === 'turis' && level === 4 ? TURIS_FINAL_QUESTIONS : QUESTIONS_PER_LEVEL;
   session = {
     stallId,
     level,
+    total,
     solved:0,
     firstTry:0,
     results:[],
@@ -3662,21 +5342,42 @@ function startSession(stallId, level){
     stateReviews:0,
     usedKeys:{},
     share:null,
+    wordQueue:[],
+    wordIndex:0,
     runId:Date.now() + '-' + Math.random(),
     startedAt:Date.now(),
     finished:false
   };
+  if(stallId === 'kata'){
+    const words = newWordsForSession(3);
+    if(words.length){
+      session.wordQueue = words;
+      session.wordIndex = 0;
+      showWordIntro();
+      soundClick();
+      scheduleClassSync();
+      return;
+    }
+  }
   renderProgress();
   showScreen('play');
   soundClick();
   nextQuestion();
   scheduleClassSync();
 }
+function sessionTotal(){
+  return session && session.total ? session.total : QUESTIONS_PER_LEVEL;
+}
+function newWordsForSession(limit){
+  const pool = session ? kataPool(session.level) : WORD_BANK;
+  const unseen = pool.filter(function(word){ return state.dictionary.indexOf(word.en) < 0; });
+  return shuffle(unseen).slice(0, limit || 3);
+}
 function dueReviewKey(){
   if(!session) return null;
   session.reviewQueue = session.reviewQueue.filter(function(entry){ return !!state.mistakes[entry.key]; });
   const due = session.reviewQueue.filter(function(entry){
-    return entry.at <= session.solved && entry.at < QUESTIONS_PER_LEVEL;
+    return entry.at <= session.solved && entry.at < sessionTotal();
   }).sort(function(a, b){ return a.at - b.at; });
   if(!due.length) return null;
   const entry = due[0];
@@ -3684,6 +5385,13 @@ function dueReviewKey(){
   return entry.key;
 }
 function pickNextQuestion(){
+  if(session.stallId === 'turis' && session.level === 4){
+    if(session.solved >= TURIS_FINAL_QUESTIONS - TURIS_CONVERSATIONS.length){
+      const turn = TURIS_CONVERSATIONS[session.solved - (TURIS_FINAL_QUESTIONS - TURIS_CONVERSATIONS.length)];
+      return generateQuestion('turis', 4, {turn:turn.id});
+    }
+    return generateQuestion('turis', 4, {calculation:true});
+  }
   const dueKey = dueReviewKey();
   if(dueKey){
     return generateReview(dueKey, session.stallId, session.level);
@@ -3705,13 +5413,13 @@ function scheduleReview(q){
   if(!session || q.review || session.scheduledCurrent) return;
   session.scheduledCurrent = true;
   const at = session.solved + 1 + randInt(3, 6);
-  if(at >= QUESTIONS_PER_LEVEL) return;
+  if(at >= sessionTotal()) return;
   if(session.reviewQueue.some(function(entry){ return entry.key === q.factKey; })) return;
   session.reviewQueue.push({at, key:q.factKey});
 }
 function nextQuestion(){
   if(!session || session.finished) return;
-  if(session.solved >= QUESTIONS_PER_LEVEL){
+  if(session.solved >= sessionTotal()){
     finishSession();
     return;
   }
@@ -3722,12 +5430,14 @@ function nextQuestion(){
   session.scheduledCurrent = false;
   session.recordedCurrent = false;
   session.share = null;
+  session.english = null;
   clearFeedback();
   const q = pickNextQuestion();
   session.current = q;
   renderQuestion(q);
   window.scrollTo(0, 0);
-  if(state.settings.autoRead && canUseSpeech()){
+  const canRead = q.speechLang === 'en' ? canUseEnglishSpeech() : canUseIndonesianSpeech();
+  if(state.settings.autoRead && canRead){
     const runId = session.runId;
     window.setTimeout(function(){
       if(session && session.runId === runId && session.current === q && currentScreen === 'play'){
@@ -3742,9 +5452,9 @@ function renderQuestion(q){
   const title = $('#play-title');
   if(title) title.textContent = `${stall.name} · Level ${session.level + 1}`;
   const counter = $('#play-counter');
-  if(counter) counter.textContent = `Soal ${session.solved + 1}/${QUESTIONS_PER_LEVEL}`;
+  if(counter) counter.textContent = `Soal ${session.solved + 1}/${sessionTotal()}`;
   const buyer = $('#buyer-chip');
-  if(buyer) buyer.textContent = q.review ? 'Ulangi pelajaran' : (q.buyer ? 'Pembeli: ' + q.buyer : 'Soal cerita');
+  if(buyer) buyer.textContent = q.review ? 'Ulangi pelajaran' : (q.family === 'turis' ? 'Turis' : (q.family ? 'Beo' : (q.buyer ? 'Pembeli: ' + q.buyer : 'Soal cerita')));
   const levelChip = $('#level-chip');
   if(levelChip) levelChip.textContent = `Level ${session.level + 1} · ${meta.title}`;
   const story = $('#story-text');
@@ -3752,10 +5462,31 @@ function renderQuestion(q){
   const question = $('#question-text');
   if(question) question.textContent = q.question;
   updateSpeechUI();
+  const readBtn = $('#btn-play-read');
+  const beoBtn = $('#btn-play-beo');
+  const readInline = $('#btn-read-inline');
+  const englishQuestion = q.family && q.family !== 'math';
+  const inlineAudioQuestion = !!(q.visual && q.visual.type === 'kata' && q.visual.audioOnly);
+  if(readBtn) readBtn.hidden = !canUseIndonesianSpeech() || inlineAudioQuestion;
+  if(readInline) readInline.hidden = !canUseIndonesianSpeech();
+  [readBtn, readInline].forEach(function(button){
+    if(!button) return;
+    const label = englishQuestion ? 'Dengarkan petunjuk bahasa Indonesia' : 'Bacakan soal';
+    button.setAttribute('aria-label', label);
+    const text = button.querySelector('span');
+    if(text) text.textContent = inlineAudioQuestion && button === readInline ? 'Petunjuk Indonesia' : label;
+  });
+  if(beoBtn) beoBtn.hidden = !canUseEnglishSpeech() || !englishQuestion || inlineAudioQuestion;
   renderVisual(q);
+  const storyTools = $('#story-tools');
+  const audioTools = $('#word-audio-tools');
+  if(readInline && storyTools){
+    const destination = inlineAudioQuestion && audioTools ? audioTools : storyTools;
+    destination.appendChild(readInline);
+  }
   renderAnswerCard(q);
   renderProgress();
-  setMascotBubble(q.review ? 'Kita ulangi soal ini, ya. Pelan-pelan saja.' : 'Baca dulu, lalu hitung pelan-pelan.');
+  setMascotBubble(q.family ? 'Dengarkan Beo, lalu pilih jawaban yang tepat.' : (q.review ? 'Kita ulangi soal ini, ya. Pelan-pelan saja.' : 'Baca dulu, lalu hitung pelan-pelan.'));
   window.scrollTo(0, 0);
 }
 function recordCurrent(firstTry){
@@ -3781,7 +5512,7 @@ function handleCorrect(){
   disableAnswerControls(true);
   recordCurrent(session.attempts === 0);
   showGoodFeedback(q);
-  setMascotBubble(session.solved >= QUESTIONS_PER_LEVEL ? 'Semua pembeli senang! Lihat hasilnya, yuk.' : 'Lanjut ke pembeli berikutnya, yuk.');
+  setMascotBubble(session.solved >= sessionTotal() ? 'Semua pembeli senang! Lihat hasilnya, yuk.' : 'Lanjut ke pembeli berikutnya, yuk.');
   soundCorrect();
   celebrateMascot();
   window.setTimeout(function(){
@@ -3798,6 +5529,27 @@ function handleWrong(sourceButton){
     session.mistakeMarked = true;
   }
   scheduleReview(q);
+  if(q.family && q.family !== 'math'){
+    if(sourceButton) sourceButton.disabled = true;
+    if(session.attempts === 1){
+      showHintFeedback(q);
+      const card = $('#answer-card');
+      if(card){
+        card.classList.remove('is-shake');
+        void card.offsetWidth;
+        card.classList.add('is-shake');
+        window.setTimeout(function(){ card.classList.remove('is-shake'); }, 400);
+      }
+      setMascotBubble('Hampir! Dengarkan Beo sekali lagi, lalu coba lagi.');
+      soundWrong();
+    } else {
+      session.phase = 'solution';
+      showSolutionFeedback(q);
+      setMascotBubble('Tidak apa-apa. Kita lihat jawabannya bersama.');
+      soundWrong();
+    }
+    return;
+  }
   if(session.attempts === 1){
     if(q.mc && sourceButton) sourceButton.disabled = true;
     if(!q.mc && q.visual.type !== 'share'){
@@ -3828,6 +5580,36 @@ function handleChoice(value, button){
   if(Number(value) === q.answer) handleCorrect();
   else handleWrong(button);
 }
+function handleEnglishChoice(value, button){
+  if(!session || session.phase !== 'answering' || !session.current) return;
+  const q = session.current;
+  if(!q.family || q.family === 'math') return;
+  const correct = typeof q.answer === 'number'
+    ? Number(value) === q.answer
+    : String(value) === String(q.answer);
+  if(correct) handleCorrect();
+  else handleWrong(button);
+}
+function checkEnglishSelection(){
+  if(!session || session.phase !== 'answering' || !session.current) return;
+  const q = session.current;
+  const state = englishSelectionState(q);
+  if(!state) return;
+  let correct = false;
+  if(q.visual.type === 'eja'){
+    if(state.selected.length !== q.visual.letters.length) return;
+    const attempt = state.selected.map(function(index){ return q.visual.tiles[index].letter; }).join('');
+    correct = attempt === q.answer;
+  } else if((q.visual.type === 'kalimat' && q.visual.mode === 'arrange') ||
+    (q.visual.type === 'turis' && q.visual.mode === 'response')){
+    const words = q.visual.sentence.split(' ');
+    if(state.selected.length !== words.length) return;
+    const attempt = state.selected.map(function(index){ return q.visual.tiles[index].word; }).join(' ');
+    correct = normalizeEnglish(attempt) === normalizeEnglish(q.answer);
+  }
+  if(correct) handleCorrect();
+  else handleWrong();
+}
 function shareAllPlaced(){
   return !!session && !!session.share && session.share.assignment.every(function(plate){ return plate >= 0; });
 }
@@ -3846,12 +5628,12 @@ function continueSession(){
   if(!session) return;
   if(session.phase === 'correct'){
     session.phase = 'advancing';
-    if(session.solved >= QUESTIONS_PER_LEVEL) finishSession();
+    if(session.solved >= sessionTotal()) finishSession();
     else nextQuestion();
   } else if(session.phase === 'solution'){
     session.phase = 'advancing';
     recordCurrent(false);
-    if(session.solved >= QUESTIONS_PER_LEVEL) finishSession();
+    if(session.solved >= sessionTotal()) finishSession();
     else nextQuestion();
   }
 }
@@ -3862,7 +5644,10 @@ function finishSession(){
   const stall = STALL_BY_ID[snapshot.stallId];
   const meta = LEVEL_META[snapshot.stallId][snapshot.level];
   const firstTry = snapshot.firstTry;
-  const starsEarned = 1 + (firstTry >= 7 ? 1 : 0) + (firstTry >= 9 ? 1 : 0);
+  const total = snapshot.total || QUESTIONS_PER_LEVEL;
+  const starsEarned = total <= 3
+    ? 1 + (firstTry >= 2 ? 1 : 0) + (firstTry >= 3 ? 1 : 0)
+    : 1 + (firstTry >= 7 ? 1 : 0) + (firstTry >= 9 ? 1 : 0);
   const nextStall = nextStallId(snapshot.stallId);
   const wasNextUnlocked = nextStall ? isStallUnlocked(nextStall) : false;
   const record = recordLevelResult(snapshot.stallId, snapshot.level, starsEarned);
@@ -3873,6 +5658,7 @@ function finishSession(){
     level:snapshot.level,
     levelTitle:meta.title,
     firstTry,
+    total,
     starsEarned,
     previousStars:record.previousStars,
     bestStars:record.stars,
@@ -3908,11 +5694,11 @@ function renderResult(data){
   }
   const sub = $('#result-sub');
   if(sub){
-    let text = `${data.firstTry} dari ${QUESTIONS_PER_LEVEL} soal benar pada percobaan pertama. `;
+    let text = `${data.firstTry} dari ${data.total} soal benar pada percobaan pertama. `;
     if(data.starsEarned > data.previousStars) text += `Bintang level ini naik menjadi ${data.starsEarned}. `;
     else text += `Bintang terbaikmu tetap ${data.bestStars}. `;
     if(data.nextUnlockedNow) text += `Lapak ${data.nextStallName} sekarang terbuka!`;
-    else if(data.stallId === 'campur' && data.level === 4) text += 'Kamu sudah menyelesaikan seluruh petualangan Lapak Kancil.';
+    else if((data.stallId === 'campur' || data.stallId === 'turis') && data.level === LEVELS - 1) text += 'Kamu sudah menyelesaikan seluruh petualangan Lapak Kancil.';
     sub.innerHTML = `${text}${data.nextUnlockedNow ? '<br><span class="unlock-note">Lapak baru terbuka</span>' : ''}`;
   }
   const stickerBox = $('#result-sticker');
@@ -3960,7 +5746,7 @@ function handleResultAction(action, level){
   else if(action === 'back-stall') openStall(lastResult.stallId);
 }
 function openExitBar(){
-  if(!session || currentScreen !== 'play') return;
+  if(!session || (currentScreen !== 'play' && currentScreen !== 'word')) return;
   const bar = $('#exit-bar');
   if(!bar) return;
   bar.hidden = false;
@@ -3980,6 +5766,111 @@ function confirmExitLevel(){
   else {
     renderMap();
     showScreen('map');
+  }
+}
+let wordSlow = false;
+function showWordIntro(){
+  if(!session || !session.wordQueue || !session.wordQueue.length) return;
+  const word = session.wordQueue[session.wordIndex];
+  if(!word){
+    session.wordQueue = [];
+    renderProgress();
+    showScreen('play');
+    nextQuestion();
+    return;
+  }
+  wordSlow = false;
+  renderWordIntro();
+  showScreen('word');
+  updateSpeechUI();
+  if(state.settings.autoRead && canUseEnglishSpeech()){
+    const runId = session.runId;
+    window.setTimeout(function(){
+      if(session && session.runId === runId && currentScreen === 'word') speakText(word.en, 'en', 0.78);
+    }, 350);
+  }
+}
+function renderWordIntro(){
+  if(!session || !session.wordQueue) return;
+  const word = session.wordQueue[session.wordIndex];
+  if(!word) return;
+  const counter = $('#word-counter');
+  if(counter) counter.textContent = `${session.wordIndex + 1}/${session.wordQueue.length}`;
+  const dots = $('#word-dots');
+  if(dots){
+    dots.innerHTML = session.wordQueue.map(function(_, index){
+      const cls = index < session.wordIndex ? 'is-done' : (index === session.wordIndex ? 'is-current' : '');
+      return `<span class="word-progress-dot ${cls}"></span>`;
+    }).join('');
+  }
+  const beo = $('#word-beo');
+  if(beo) beo.innerHTML = `${beoArt('beo-svg')}<div class="word-bubble">Halo! Aku Beo. Kata <strong>${word.en}</strong> artinya <strong>${word.idn}</strong>. Ayo ucapkan bersama!</div>`;
+  const cat = $('#word-cat');
+  if(cat) cat.textContent = WORD_CAT_LABEL[word.cat] || 'Kata baru';
+  const picture = $('#word-picture');
+  if(picture) picture.innerHTML = wordPicture(word, 'is-large');
+  const title = $('#word-title');
+  if(title){
+    title.textContent = word.en;
+    title.classList.remove('is-slow');
+  }
+  const meaning = $('#word-meaning');
+  if(meaning) meaning.textContent = word.idn;
+  const hint = $('#word-hint');
+  if(hint) hint.textContent = `Ucapkan “${word.en}” dengan suara keras, lalu tekan Sudah.`;
+  const progress = $('#word-progress');
+  if(progress){
+    progress.innerHTML = `<span>${session.wordIndex + 1} dari ${session.wordQueue.length} kata baru</span><span>${state.dictionary.length}/${WORD_TARGET} di Kamus</span>`;
+  }
+  const speakLabel = $('#btn-word-speak-label');
+  if(speakLabel) speakLabel.innerHTML = 'Dengar Beo<small>Ketuk lagi untuk pelan</small>';
+}
+function finishWordIntro(){
+  if(!session || !session.wordQueue) return;
+  const word = session.wordQueue[session.wordIndex];
+  if(word && state.dictionary.indexOf(word.en) < 0){
+    state.dictionary.push(word.en);
+    saveState();
+  }
+  session.wordIndex++;
+  soundClick();
+  if(session.wordIndex >= session.wordQueue.length){
+    session.wordQueue = [];
+    renderProgress();
+    showScreen('play');
+    nextQuestion();
+  } else {
+    showWordIntro();
+  }
+}
+function openKamus(){
+  renderKamus();
+  showScreen('kamus');
+  soundClick();
+}
+function renderKamus(){
+  const grid = $('#kamus-grid');
+  const total = $('#kamus-total');
+  if(total) total.textContent = state.dictionary.length + '/' + WORD_TARGET;
+  const mapCount = $('#kamus-count');
+  if(mapCount) mapCount.textContent = state.dictionary.length + '/' + WORD_TARGET;
+  if(!grid) return;
+  grid.innerHTML = WORD_BANK.map(function(word){
+    const learned = state.dictionary.indexOf(word.en) >= 0;
+    return `<button class="kamus-card ${learned ? 'is-learned' : 'is-locked'}" type="button"
+      data-kamus-word="${word.en}" ${learned ? '' : 'disabled'}
+      aria-label="${word.en}, ${learned ? 'sudah dipelajari' : 'belum terbuka'}">
+      <span class="kamus-art">${wordPicture(word)}</span>
+      <span class="kamus-word">${learned ? word.en : '???'}</span>
+      <span class="kamus-meaning">${learned ? word.idn : WORD_CAT_LABEL[word.cat]}</span>
+      <span class="track-label ${learned ? 'is-english' : ''}">${WORD_CAT_LABEL[word.cat]}</span>
+    </button>`;
+  }).join('');
+  const note = $('#kamus-note');
+  if(note){
+    note.textContent = state.dictionary.length >= WORD_TARGET
+      ? 'Semua kata sudah terbuka. Kamu punya kamus lengkap!'
+      : 'Buka kata baru lewat kartu Beo di Lapak Kata. Kata yang belum terbuka tetap bergaris miring.';
   }
 }
 function openStickers(){
@@ -4028,8 +5919,8 @@ function toggleEffects(){
   toast(state.settings.effects ? 'Efek suara aktif.' : 'Efek suara dimatikan.');
 }
 function toggleAutoRead(){
-  if(!canUseSpeech()){
-    toast('Perangkat ini belum punya suara bahasa Indonesia.');
+  if(!canUseIndonesianSpeech() && !canUseEnglishSpeech()){
+    toast('Perangkat ini belum punya suara untuk membaca soal.');
     return;
   }
   state.settings.autoRead = !state.settings.autoRead;
@@ -4208,25 +6099,64 @@ function onClick(event){
   const id = actionButton ? actionButton.id : '';
   if(id === 'btn-stickers'){ openStickers(); return; }
   if(id === 'btn-settings'){ openSettings(); return; }
+  if(id === 'btn-kamus'){ openKamus(); return; }
   if(id === 'btn-stall-back'){
     renderMap();
     showScreen('map');
     soundClick();
     return;
   }
-  if(id === 'btn-stickers-back' || id === 'btn-settings-back'){
+  if(id === 'btn-stickers-back' || id === 'btn-settings-back' || id === 'btn-kamus-back'){
     renderMap();
     showScreen('map');
     soundClick();
     return;
   }
-  if(id === 'btn-play-back'){ openExitBar(); return; }
+  if(id === 'btn-word-back' || id === 'btn-play-back'){ openExitBar(); return; }
+  if(id === 'btn-word-done'){ finishWordIntro(); return; }
+  if(id === 'btn-word-speak'){
+    if(!session || !session.wordQueue || !session.wordQueue.length) return;
+    const word = session.wordQueue[session.wordIndex];
+    if(!word) return;
+    const label = $('#btn-word-speak-label');
+    const title = $('#word-title');
+    if(wordSlow){
+      speakText(word.en, 'en', 0.55);
+      if(title) title.classList.add('is-slow');
+      if(label) label.innerHTML = 'Dengar pelan<small>Beo mengulang perlahan</small>';
+    } else {
+      wordSlow = true;
+      speakText(word.en, 'en', 0.82);
+      if(label) label.innerHTML = 'Dengar lagi<small>Ketuk untuk pelan</small>';
+    }
+    return;
+  }
+  if(id === 'btn-word-id'){
+    if(!session || !session.wordQueue || !session.wordQueue.length) return;
+    const word = session.wordQueue[session.wordIndex];
+    if(word) speakText(word.idn, 'id', 0.9);
+    return;
+  }
+  if(id === 'btn-play-beo' || id === 'btn-play-beo-inline'){
+    if(currentScreen === 'word' && session && session.wordQueue && session.wordQueue.length){
+      const word = session.wordQueue[session.wordIndex];
+      if(word) speakText(word.en, 'en', 0.82);
+      return;
+    }
+    if(!session || !session.current) return;
+    if(speechSynth && speechSynth.speaking) stopSpeech();
+    else speakQuestion(session.current.speech, session.current.speechLang || 'en');
+    return;
+  }
   if(id === 'btn-exit-cancel'){ closeExitBar(); return; }
   if(id === 'btn-exit-confirm'){ confirmExitLevel(); return; }
   if(id === 'btn-play-read' || id === 'btn-read-inline'){
     if(!session || !session.current) return;
     if(speechSynth && speechSynth.speaking) stopSpeech();
-    else speakQuestion(session.current.speech);
+    else {
+      const englishQuestion = session.current.family && session.current.family !== 'math';
+      speakQuestion(englishQuestion ? session.current.hint : session.current.speech, 'id');
+    }
     return;
   }
   if(id === 'btn-sound-settings'){ toggleEffects(); return; }
@@ -4255,6 +6185,71 @@ function onClick(event){
       return;
     }
     startSession(activeStallId, level);
+    return;
+  }
+  const wordChoice = target.closest('[data-word-choice]');
+  if(wordChoice){
+    handleEnglishChoice(wordChoice.dataset.wordChoice, wordChoice);
+    return;
+  }
+  const kamusWord = target.closest('[data-kamus-word]');
+  if(kamusWord){
+    const word = WORD_BY_EN[kamusWord.dataset.kamusWord];
+    if(word) speakText(word.en, 'en', 0.82);
+    return;
+  }
+  const letterTile = target.closest('[data-letter-index]');
+  if(letterTile){
+    if(!session || !session.current || session.current.visual.type !== 'eja') return;
+    const state = englishSelectionState(session.current);
+    if(!state) return;
+    const index = Number(letterTile.dataset.letterIndex);
+    if(state.selected.indexOf(index) < 0) state.selected.push(index);
+    renderEnglishAnswer(session.current);
+    soundTap(state.selected.length);
+    return;
+  }
+  const letterSlot = target.closest('[data-letter-slot]');
+  if(letterSlot){
+    if(!session || !session.current || session.current.visual.type !== 'eja') return;
+    const state = englishSelectionState(session.current);
+    if(!state) return;
+    state.selected.splice(Number(letterSlot.dataset.letterSlot), 1);
+    renderEnglishAnswer(session.current);
+    soundClick();
+    return;
+  }
+  const sentenceTile = target.closest('[data-sentence-index]');
+  if(sentenceTile){
+    if(!session || !session.current || (session.current.visual.type !== 'kalimat' &&
+      !(session.current.visual.type === 'turis' && session.current.visual.mode === 'response'))) return;
+    const state = englishSelectionState(session.current);
+    if(!state) return;
+    const index = Number(sentenceTile.dataset.sentenceIndex);
+    if(state.selected.indexOf(index) < 0) state.selected.push(index);
+    renderEnglishAnswer(session.current);
+    soundTap(state.selected.length);
+    return;
+  }
+  const sentenceSlot = target.closest('[data-sentence-slot]');
+  if(sentenceSlot){
+    if(!session || !session.current || (session.current.visual.type !== 'kalimat' &&
+      !(session.current.visual.type === 'turis' && session.current.visual.mode === 'response'))) return;
+    const state = englishSelectionState(session.current);
+    if(!state) return;
+    state.selected.splice(Number(sentenceSlot.dataset.sentenceSlot), 1);
+    renderEnglishAnswer(session.current);
+    soundClick();
+    return;
+  }
+  if(id === 'btn-check-eja' || id === 'btn-check-sentence'){ checkEnglishSelection(); return; }
+  if(id === 'btn-reset-eja' || id === 'btn-reset-sentence'){
+    if(session && session.current){
+      const state = englishSelectionState(session.current);
+      if(state) state.selected = [];
+      renderEnglishAnswer(session.current);
+      soundClick();
+    }
     return;
   }
   const keyButton = target.closest('[data-key]');
@@ -4313,6 +6308,16 @@ function onKeydown(event){
   if(tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
   const q = session.current;
   if(!q) return;
+  if(q.family && q.family !== 'math'){
+    if(event.key === 'Enter' && (q.visual.type === 'eja' ||
+      (q.visual.type === 'kalimat' && q.visual.mode === 'arrange') ||
+      (q.visual.type === 'turis' && q.visual.mode === 'response'))){
+      if(event.target && event.target.closest && event.target.closest('button')) return;
+      event.preventDefault();
+      checkEnglishSelection();
+    }
+    return;
+  }
   if(q.mc && /^[1-4]$/.test(event.key)){
     const buttons = $$('.choice-btn').filter(function(button){ return !button.disabled; });
     const button = buttons[Number(event.key) - 1];
@@ -4387,6 +6392,238 @@ function bindEvents(){
   window.setInterval(function(){
     if(validClassInvite && state.name) scheduleClassSync(0);
   }, 30000);
+})();
+(function runSelfTest(){
+  if(new URLSearchParams(window.location.search).get('uji') !== '1') return;
+  const failures = [];
+  let checks = 0;
+  function assert(ok, label){
+    checks++;
+    if(!ok) failures.push(label);
+  }
+  function run(label, fn){
+    try { fn(); }
+    catch(err){ failures.push(label + ': ' + (err && err.message ? err.message : err)); }
+  }
+  function checkQuestion(q, label){
+    assert(!!q && typeof q === 'object', label + ' kosong');
+    if(!q || typeof q !== 'object') return;
+    const errors = validateQuestion(q);
+    assert(errors.length === 0, label + ' tidak valid: ' + errors.join('; '));
+    assert(typeof q.answerText === 'string' && q.answerText.length > 0, label + ' answerText kosong');
+    if(q.options){
+      const values = q.options.map(function(option){ return option && typeof option === 'object' ? option.value : option; });
+      assert(Array.isArray(q.options) && q.options.length >= 2, label + ' pilihan kurang dari 2');
+      assert(values.indexOf(q.answer) >= 0, label + ' jawaban tidak ada di pilihan');
+      assert(unique(values).length === values.length, label + ' pilihan duplikat');
+    }
+  }
+  run('konstanta dan data', function(){
+    assert(STALLS.length === 9, 'jumlah lapak bukan 9');
+    assert(STALLS.filter(function(stall){ return stall.track === 'english' || stall.track === 'turis'; }).length === 4, 'jumlah lapak English/Turis bukan 4');
+    assert(WORD_BANK.length === WORD_TARGET && WORD_TARGET === 80, 'jumlah WORD_BANK bukan 80');
+    assert(unique(WORD_BANK.map(function(word){ return word.en; })).length === WORD_BANK.length, 'kata English duplikat');
+    assert(unique(WORD_BANK.map(function(word){ return word.idn; })).length === WORD_BANK.length, 'arti Indonesia duplikat');
+    WORD_BANK.forEach(function(word){
+      assert(word.letters.join('') === word.en, 'huruf tidak cocok: ' + word.en);
+      assert(!!WORD_CAT_LABEL[word.cat], 'kategori tanpa label: ' + word.en);
+      assert(!!word.icon || word.kind === 'number' || word.kind === 'color', 'kata tanpa ilustrasi: ' + word.en);
+      if(word.icon) assert(!!document.getElementById(word.icon), 'ikon kata tidak ada: ' + word.icon);
+    });
+    assert(STICKERS.length === TOTAL_STICKERS && TOTAL_STICKERS === 27, 'jumlah stiker bukan 27');
+    assert(unique(STICKERS.map(function(sticker){ return sticker.id; })).length === STICKERS.length, 'id stiker duplikat');
+    assert(ARTICLE_NOUNS.length === 8, 'ARTICLE_NOUNS bukan 8');
+    ARTICLE_NOUNS.forEach(function(noun){
+      const expected = /^[aeiou]/i.test(noun.word) ? 'an' : 'a';
+      assert(noun.article === expected, 'article salah: ' + noun.word);
+      assert(!!document.getElementById(noun.icon), 'ikon article tidak ada: ' + noun.icon);
+    });
+    assert(PLURAL_PAIRS.length >= 6, 'PLURAL_PAIRS terlalu sedikit');
+    PLURAL_PAIRS.forEach(function(pair){
+      assert(pair.plural && pair.plural !== pair.single, 'plural tidak valid: ' + pair.single);
+      if(pair.icon) assert(!!document.getElementById(pair.icon), 'ikon plural tidak ada: ' + pair.icon);
+    });
+    TURIS_ITEMS.forEach(function(item){
+      assert(item.price > 0, 'harga turis tidak valid: ' + item.en);
+      assert(!!item.plural, 'plural turis kosong: ' + item.en);
+      assert(!!document.getElementById(item.icon), 'ikon turis tidak ada: ' + item.icon);
+    });
+    TURIS_CONVERSATIONS.forEach(function(turn){
+      assert(TURIS_ITEMS.some(function(item){ return item.en === turn.item; }), 'item percakapan tidak ada: ' + turn.id);
+      assert(turn.options.indexOf(turn.answer) >= 0, 'jawaban percakapan tidak ada di opsi: ' + turn.id);
+    });
+    assert(TURIS_FINAL_QUESTIONS === 10, 'tingkat akhir Turis bukan 10 soal');
+    const levelOneWords = kataPool(0).map(function(word){ return word.en; });
+    const levelTwoWords = kataPool(1).map(function(word){ return word.en; });
+    const levelThreeWords = kataPool(2).map(function(word){ return word.en; });
+    assert(levelOneWords.indexOf('one') >= 0 && levelOneWords.indexOf('ten') >= 0, 'Kata tingkat 1 tidak memuat angka 1–10');
+    assert(levelOneWords.indexOf('red') < 0 && levelOneWords.indexOf('dog') < 0, 'Kata tingkat 1 memuat kosakata terlalu awal');
+    assert(levelTwoWords.indexOf('apple') >= 0 && levelTwoWords.indexOf('red') >= 0 &&
+      levelTwoWords.indexOf('dog') >= 0 && levelTwoWords.indexOf('twenty') >= 0, 'Kata tingkat 2 tidak kumulatif');
+    assert(levelThreeWords.length === WORD_TARGET, 'Kata tingkat 3 tidak memuat seluruh kosakata');
+    assert(englishNumber(4000) === 'four thousand', 'englishNumber 4000 salah');
+    assert(englishNumber(10000) === 'ten thousand', 'englishNumber 10000 salah');
+    assert(englishNumber(21000) === 'twenty-one thousand', 'englishNumber 21000 salah');
+    assert(pricePhrase(4000) === 'It is four thousand rupiah.', 'pricePhrase 4000 salah');
+    assert(itemIcon('word-grape').indexOf('#word-grape') >= 0, 'itemIcon word-grape salah');
+    assert(itemIcon(STICKERS[0].icon).indexOf('#' + STICKERS[0].icon) >= 0, 'itemIcon stiker salah');
+  });
+  run('migrasi state', function(){
+    const legacy = defaultState();
+    legacy.version = 1;
+    delete legacy.dictionary;
+    legacy.stars.tambah[0] = 9;
+    legacy.dictionary = ['apple', 'bukan-kata', 'apple'];
+    const migrated = normalizeState(legacy);
+    assert(migrated.version === 2, 'versi state bukan 2');
+    assert(Array.isArray(migrated.dictionary), 'dictionary bukan array');
+    assert(migrated.dictionary.length === 1 && migrated.dictionary[0] === 'apple', 'filter dictionary gagal');
+    assert(migrated.stars.tambah[0] === 3, 'clamp bintang gagal');
+    assert(normalizeState(null).version === 2, 'normalizeState null gagal');
+  });
+  const savedStars = state.stars;
+  const savedDictionary = state.dictionary.slice();
+  try {
+    state.stars = {};
+    STALLS.forEach(function(stall){ state.stars[stall.id] = [3,3,3,3,3]; });
+    state.dictionary = WORD_BANK.map(function(word){ return word.en; });
+    run('bintang dan kunci', function(){
+      state.stars = emptyStars();
+      assert(!stallLockInfo('tambah').locked && !stallLockInfo('kata').locked, 'Tambah dan Kata harus terbuka dari awal');
+      assert(stallLockInfo('turis').locked, 'Turis terbuka tanpa bintang');
+      state.stars.kalimat[0] = 3;
+      state.stars.kalimat[1] = 3;
+      state.stars.kalimat[2] = 3;
+      state.stars.tambah[0] = 3;
+      state.stars.tambah[1] = 3;
+      state.stars.tambah[2] = 3;
+      assert(!stallLockInfo('turis').locked, 'Turis tidak terbuka dengan cukup bintang di Kalimat dan Tambah');
+      state.stars = {};
+      STALLS.forEach(function(stall){ state.stars[stall.id] = [3,3,3,3,3]; });
+      assert(allStars() === TOTAL_STARS, 'total bintang penuh bukan 135');
+      assert(stallStars('kata') === TOTAL_STARS_PER_STALL, 'bintang lapak penuh bukan 15');
+      STALLS.forEach(function(stall){ assert(isStallUnlocked(stall.id), 'lapak terkunci saat penuh: ' + stall.id); });
+      for(let level = 0; level < LEVELS; level++){
+        STALLS.forEach(function(stall){ assert(isLevelUnlocked(stall.id, level), 'level terkunci saat penuh: ' + stall.id + ' ' + level); });
+      }
+    });
+    run('generator hitung', function(){
+      ['tambah','kurang','kali','bagi','campur'].forEach(function(stallId){
+        for(let level = 0; level < LEVELS; level++){
+          for(let i = 0; i < 12; i++){
+            const q = generateQuestion(stallId, level);
+            checkQuestion(q, stallId + ' L' + level);
+            assert(q.stallId === stallId, 'stallId salah: ' + stallId);
+            assert(q.level === level, 'level salah: ' + stallId + ' L' + level);
+          }
+        }
+      });
+    });
+    run('generator English', function(){
+      ['kata','eja','kalimat','turis'].forEach(function(stallId){
+        for(let level = 0; level < LEVELS; level++){
+          for(let i = 0; i < 12; i++){
+            const q = generateQuestion(stallId, level);
+            checkQuestion(q, stallId + ' L' + level);
+            assert(q.stallId === stallId, 'stallId English salah: ' + stallId);
+            assert(q.level === level, 'level English salah: ' + stallId + ' L' + level);
+          }
+        }
+      });
+      ['picture','word','meaning','audio'].forEach(function(mode){
+        const q = generateKata(3, {mode:mode});
+        checkQuestion(q, 'kata mode ' + mode);
+        if(mode === 'audio' && !canUseEnglishSpeech()){
+          assert(q.visual.mode === 'picture', 'audio tanpa suara tidak fallback ke picture');
+        }
+      });
+      ['article','plural','arrange'].forEach(function(mode){
+        const q = generateKalimat(4, {mode:mode});
+        checkQuestion(q, 'kalimat mode ' + mode);
+      });
+      const order = generateTuris(4, {turn:'order-bananas'});
+      checkQuestion(order, 'percakapan order-bananas');
+      assert(order.visual.qty === 2, 'qty order-bananas bukan 2');
+      assert(order.answer === 'It is ten thousand rupiah.', 'jawaban order-bananas salah');
+      assert(order.visual.tiles.length > order.visual.sentence.split(' ').length, 'jawaban Turis tidak memiliki keping pengecoh');
+      assert(generateTuris(1).visual.qty === 1, 'Turis level 2 memakai perkalian sebelum Kali terbuka');
+      assert(generateTuris(2).visual.qty >= 2, 'Turis tingkat tengah tidak memuat beberapa barang');
+      const finalCalculation = generateQuestion('turis', 4, {calculation:true});
+      checkQuestion(finalCalculation, 'perhitungan akhir Turis');
+      assert(finalCalculation.visual.amount > 0 && typeof finalCalculation.answer === 'string', 'jawaban Turis bukan kalimat harga');
+      const savedSession = session;
+      try {
+        session = {stallId:'turis', level:4, solved:7};
+        TURIS_CONVERSATIONS.forEach(function(turn, index){
+          session.solved = 7 + index;
+          const question = pickNextQuestion();
+          checkQuestion(question, 'giliran Turis ' + (index + 1));
+          assert(question.factKey === 'turis:conversation:' + turn.id, 'urutan percakapan Turis tidak cocok');
+        });
+      } finally {
+        session = savedSession;
+      }
+      const savedEnglishVoice = englishVoice;
+      const savedIndonesianVoice = indonesianVoice;
+      try {
+        englishVoice = null;
+        indonesianVoice = null;
+        assert(generateKata(3, {mode:'audio'}).visual.mode === 'picture', 'audio tanpa suara Inggris tidak fallback ke gambar');
+        if(speechSynth){
+          englishVoice = {lang:'en-US'};
+          updateSpeechUI();
+          assert(!$('#btn-play-beo').hidden && $('#btn-play-read').hidden, 'tombol suara tidak sesuai saat suara Indonesia tidak tersedia');
+          indonesianVoice = {lang:'id-ID'};
+          englishVoice = null;
+          updateSpeechUI();
+          assert($('#btn-play-beo').hidden && !$('#btn-play-read').hidden, 'tombol suara tidak sesuai saat suara Inggris tidak tersedia');
+        }
+      } finally {
+        englishVoice = savedEnglishVoice;
+        indonesianVoice = savedIndonesianVoice;
+        updateSpeechUI();
+      }
+    });
+    run('review', function(){
+      ['kata:apple','eja:apple','kalimat:article:apple','kalimat:plural:apple','kalimat:have-apple','turis:conversation:order-bananas','turis:price:apple:1'].forEach(function(key){
+        const family = key.split(':')[0];
+        const q = generateReview(key, family, family === 'turis' ? 4 : 2);
+        checkQuestion(q, 'review ' + key);
+        assert(q.review === true, 'review flag tidak aktif: ' + key);
+      });
+      ['tambah:2:3','kurang:5:2','kali:2:3','bagi:6:2','dua:kaliKurang:2:3:1','dua:tambahKurang:9:4:2','dua:kaliTambah:2:3:4'].forEach(function(key){
+        const q = generateReview(key, 'campur', 4);
+        checkQuestion(q, 'review ' + key);
+      });
+    });
+  } finally {
+    state.stars = savedStars;
+    state.dictionary = savedDictionary;
+  }
+  run('render', function(){
+    renderMap();
+    assert($$('#stall-list .stall-card').length === 9, 'renderMap tidak menghasilkan 9 kartu');
+    assert($$('#stall-list [data-track]').length === 9, 'renderMap tidak menghasilkan 9 data-track');
+    renderStall('kata');
+    assert($$('#stall-content .level-card').length === 5, 'renderStall kata bukan 5 level');
+    assert($('#stall-star-chip').textContent === stallStars('kata') + '/' + TOTAL_STARS_PER_STALL, 'chip bintang tidak sinkron');
+    renderKamus();
+    assert($$('#kamus-grid .kamus-card').length === WORD_TARGET, 'renderKamus bukan 80 kartu');
+    assert($$('#kamus-grid .kamus-card.is-learned').length === state.dictionary.length, 'jumlah kata terbuka tidak sinkron');
+    WORD_BANK.forEach(function(word){
+      assert(wordPicture(word).indexOf('word-picture') >= 0, 'wordPicture rusak: ' + word.en);
+    });
+    renderMap();
+  });
+  const status = failures.length ? 'FAIL' : 'PASS';
+  const output = document.createElement('pre');
+  output.id = 'uji-output';
+  output.dataset.status = status;
+  output.style.cssText = 'position:fixed;inset:0;z-index:99999;margin:0;padding:18px;overflow:auto;background:#fffdf4;color:#24160d;font:13px/1.45 monospace;white-space:pre-wrap;';
+  output.textContent = 'UJI ' + status + ' (' + checks + ' pemeriksaan)\n' +
+    (failures.length ? failures.join('\n') : 'Semua pemeriksaan lulus.') + '\n';
+  document.body.appendChild(output);
+  console.log(output.textContent);
 })();
 </script>
 </body>
